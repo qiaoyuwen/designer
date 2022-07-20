@@ -1,0 +1,19 @@
+{
+  "name": "@designer/eslint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf -rf ./dist && tsc"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "~4.7.4",
+    "rimraf": "~3.0.2",
+    "@rushstack/eslint-config": "~2.5.0",
+    "eslint": "~8.5.0",
+    "@types/node": "~18.0.0",
+    "eslint-plugin-react-hooks": "~4.3.0"
+  }
+}

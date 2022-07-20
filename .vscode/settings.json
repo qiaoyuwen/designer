@@ -1,0 +1,7 @@
+{
+  "npm.packageManager": "pnpm",
+  "prettier.prettierPath": "common/autoinstallers/rush-lint/node_modules/prettier",
+  "eslint.packageManager": "pnpm",
+  "eslint.nodePath": "common/autoinstallers/rush-lint/node_modules/eslint",
+  "editor.formatOnSave": true
+}
