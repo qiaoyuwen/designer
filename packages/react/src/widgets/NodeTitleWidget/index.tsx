@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
 import { observer } from '@formily/reactive-react';
-// TODO
-// import { TreeNode } from '@designer/core';
+import { TreeNode } from '@designer/core';
 export interface INodeTitleWidgetProps {
-  // node: TreeNode;
+  node: TreeNode;
 }
 
 export const NodeTitleWidget: React.FC<INodeTitleWidgetProps> = observer((props) => {
-  /* const takeNode = () => {
+  const takeNode = () => {
     const node = props.node;
     if (node.componentName === '$$ResourceNode$$') {
       return node.children[0];
@@ -15,6 +14,5 @@ export const NodeTitleWidget: React.FC<INodeTitleWidgetProps> = observer((props)
     return node;
   };
   const node = takeNode();
-  return <Fragment>{node.getMessage('title') || node.componentName}</Fragment>; */
-  return <></>;
+  return <Fragment>{node.getMessage('title') || node.componentName}</Fragment>;
 });

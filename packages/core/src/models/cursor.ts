@@ -1,5 +1,5 @@
 import { action, define, observable } from '@formily/reactive';
-import { Engine } from './engine';
+import { Engine } from './Engine';
 import { globalThisPolyfill, isValidNumber } from '@designer/utils';
 
 export enum CursorStatus {
@@ -126,8 +126,7 @@ export class Cursor {
       dragStartToCurrentDelta: observable.ref,
       dragStartToEndDelta: observable.ref,
       view: observable.ref,
-      // TODO
-      // setStyle: action,
+      setStyle: action,
       setPosition: action,
       setStatus: action,
       setType: action,
@@ -146,12 +145,11 @@ export class Cursor {
     this.dragType = type;
   }
 
-  // TODO
-  /* public setStyle(style: string) {
+  public setStyle(style: string) {
     this.engine.workbench.eachWorkspace((workspace) => {
       setCursorStyle(workspace.viewport.contentWindow, style);
     });
-  } */
+  }
 
   public setPosition(position?: ICursorPosition) {
     this.dragAtomDelta = calcPositionDelta(this.position, position);

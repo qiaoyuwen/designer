@@ -1,12 +1,16 @@
-import { Event, globalThisPolyfill, uid } from '@designer/utils';
-import { EngineMountEvent } from '../events/engine/EngineMountEvent';
-import { EngineUnmountEvent } from '../events/engine/EngineUnmountEvent';
 import { IEngineProps } from '../types';
-import { Cursor } from './cursor';
+import { ITreeNode, TreeNode } from './TreeNode';
+import { Workbench } from './Workbench';
+import { Cursor } from './Cursor';
+import { Keyboard } from './Keyboard';
+import { Screen, ScreenType } from './Screen';
+import { Event, uid, globalThisPolyfill, isFn } from '@designer/utils';
+import { EngineMountEvent, EngineUnmountEvent } from '../events/engine';
 
 /**
  * 设计器引擎
  */
+
 export class Engine extends Event {
   public id: string;
 
@@ -14,8 +18,14 @@ export class Engine extends Event {
 
   public cursor: Cursor;
 
+  public workbench: Workbench;
+
+  public keyboard: Keyboard;
+
+  public screen: Screen;
+
   public static defaultProps: IEngineProps<Engine> = {
-    // shortcuts: [],
+    shortcuts: [],
     effects: [],
     drivers: [],
     rootComponentName: 'Root',
@@ -31,7 +41,7 @@ export class Engine extends Event {
     nodeRotateHandlerAttrName: 'data-designer-node-rotate-handler',
     outlineNodeIdAttrName: 'data-designer-outline-node-id',
     nodeTranslateAttrName: 'data-designer-node-translate-handler',
-    // defaultScreenType: ScreenType.PC,
+    defaultScreenType: ScreenType.PC,
   };
 
   public constructor(props: IEngineProps<Engine>) {
@@ -45,20 +55,74 @@ export class Engine extends Event {
   }
 
   public init() {
+    this.workbench = new Workbench(this);
+    this.screen = new Screen(this);
     this.cursor = new Cursor(this);
+    this.keyboard = new Keyboard(this);
   }
 
-  public findMovingNodes() /*:  TreeNode[] */ {
+  public setCurrentTree(tree?: ITreeNode) {
+    if (this.workbench.currentWorkspace) {
+      this.workbench.currentWorkspace.operation.tree.from(tree);
+    }
+  }
+
+  public getCurrentTree() {
+    return this.workbench?.currentWorkspace?.operation?.tree;
+  }
+
+  public getAllSelectedNodes() {
+    let results: TreeNode[] = [];
+    for (let i = 0; i < this.workbench.workspaces.length; i++) {
+      const workspace = this.workbench.workspaces[i];
+      results = results.concat(workspace.operation.selection.selectedNodes);
+    }
+    return results;
+  }
+
+  public findNodeById(id: string) {
+    return TreeNode.findById(id);
+  }
+
+  public findMovingNodes(): TreeNode[] {
     const results = [];
-    // TODO
-    /* this.workbench.eachWorkspace((workspace) => {
+    this.workbench.eachWorkspace((workspace) => {
       workspace.operation.moveHelper.dragNodes?.forEach((node) => {
         if (!results.includes(node)) {
-          results.push(node)
+          results.push(node);
         }
-      })
-    }) */
+      });
+    });
     return results;
+  }
+
+  public findTransformingNodes(): TreeNode[] {
+    const results = [];
+    this.workbench.eachWorkspace((workspace) => {
+      workspace.operation.transformHelper.dragNodes?.forEach((node) => {
+        if (!results.includes(node)) {
+          results.push(node);
+        }
+      });
+    });
+    return results;
+  }
+
+  public createNode(node: ITreeNode, parent?: TreeNode) {
+    return new TreeNode(node, parent);
+  }
+
+  public effect(effect: () => (() => void) | void) {
+    const disposers = [];
+    this.subscribeTo(EngineMountEvent, () => {
+      const disposer = effect?.();
+      if (isFn(disposer)) {
+        disposers.push(disposer);
+      }
+    });
+    this.subscribeTo(EngineUnmountEvent, () => {
+      disposers.forEach((disposer) => disposer());
+    });
   }
 
   public mount() {

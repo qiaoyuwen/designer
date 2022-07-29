@@ -8,11 +8,17 @@
   },
   "author": "",
   "license": "MIT",
+  "dependencies": {
+    "requestidlecallback": "~0.3.0",
+    "transformation-matrix": "~2.12.0",
+    "parse-unit": "~1.0.1"
+  },
   "devDependencies": {
     "typescript": "~4.7.4",
     "rimraf": "~3.0.2",
     "@designer/eslint": "workspace:*",
     "@rushstack/eslint-patch": "~1.1.0",
-    "@types/node": "~18.0.0"
+    "@types/node": "~18.0.0",
+    "@types/parse-unit": "~1.0.1"
   }
 }

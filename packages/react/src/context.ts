@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import { Context, createContext } from 'react';
 import { Engine } from '@designer/core';
 import { IDesignerLayoutContext } from './types';
 
-export const DesignerEngineContext = createContext<Engine>(null);
+export const DesignerEngineContext: Context<Engine> = createContext<Engine>(null);
 
-export const DesignerLayoutContext = createContext<IDesignerLayoutContext>(null);
+export const DesignerLayoutContext: Context<IDesignerLayoutContext> = createContext<IDesignerLayoutContext>(null);
