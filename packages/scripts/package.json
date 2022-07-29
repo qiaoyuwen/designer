@@ -1,0 +1,23 @@
+{
+  "name": "@designer/scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf -rf ./dist && tsc --project tsconfig.build.json"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "~10.0.0",
+    "glob": "~7.2.0"
+  },
+  "devDependencies": {
+    "typescript": "~4.7.4",
+    "rimraf": "~3.0.2",
+    "@types/fs-extra": "~9.0.13",
+    "@types/glob": "~7.2.0",
+    "@designer/eslint": "workspace:*",
+    "@rushstack/eslint-patch": "~1.1.0"
+  }
+}

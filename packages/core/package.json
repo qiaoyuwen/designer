@@ -1,0 +1,25 @@
+{
+  "name": "@designer/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf -rf ./dist && tsc --project tsconfig.build.json"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@designer/utils": "workspace:*",
+    "@formily/reactive": "~2.1.11",
+    "@juggle/resize-observer": "~3.3.1",
+    "@formily/path": "~2.1.11",
+    "@formily/json-schema": "~2.1.11"
+  },
+  "devDependencies": {
+    "rimraf": "~3.0.2",
+    "typescript": "~4.7.4",
+    "@types/node": "~18.0.0",
+    "@designer/eslint": "workspace:*",
+    "@rushstack/eslint-patch": "~1.1.0"
+  }
+}

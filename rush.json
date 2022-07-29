@@ -402,6 +402,18 @@
     {
       "packageName": "@designer/playground",
       "projectFolder": "packages/playground"
+    },
+    {
+      "packageName": "@designer/core",
+      "projectFolder": "packages/core"
+    },
+    {
+      "packageName": "@designer/scripts",
+      "projectFolder": "packages/scripts"
+    },
+    {
+      "packageName": "@designer/react",
+      "projectFolder": "packages/react"
     }
     // {
     //   /**
