@@ -1,10 +1,13 @@
-import { Engine } from '@designer/core';
+import { Engine, GlobalRegistry } from '@designer/core';
 import { FunctionComponent, useEffect, useRef, PropsWithChildren } from 'react';
 import { DesignerEngineContext } from '../context';
 import { useDesigner } from '../hooks';
 import { IDesignerProps } from '../types';
 import { GhostWidget } from '../widgets';
 import { Layout } from './layout';
+import * as icons from '../icons';
+
+GlobalRegistry.registerDesignerIcons(icons);
 
 export const Designer: FunctionComponent<PropsWithChildren<IDesignerProps>> = (props) => {
   const engine = useDesigner();

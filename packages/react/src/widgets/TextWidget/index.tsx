@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment, FunctionComponent, PropsWithChildren } from 'react';
 import { isStr, isPlainObj } from '@designer/utils';
 import { GlobalRegistry, IDesignerMiniLocales } from '@designer/core';
 import { observer } from '@formily/reactive-react';
@@ -10,7 +10,7 @@ export interface ITextWidgetProps {
   defaultMessage?: string | IDesignerMiniLocales;
 }
 
-export const TextWidget: React.FC<ITextWidgetProps> = observer((props) => {
+export const TextWidget: FunctionComponent<PropsWithChildren<ITextWidgetProps>> = observer((props) => {
   const takeLocale = (message: string | IDesignerMiniLocales): React.ReactNode => {
     if (isStr(message)) return message;
     if (isPlainObj(message)) {
