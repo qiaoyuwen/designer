@@ -3,3 +3,7 @@ export * from './pushpin';
 export * from './close';
 export * from './expand';
 export * from './sources';
+export * from './animations';
+export * from './command';
+export * from './shift';
+export * from './delete';

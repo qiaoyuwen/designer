@@ -1,2 +1,5 @@
-export * from './designer';
-export * from './layout';
+export * from './Designer';
+export * from './Layout';
+export * from './Workspace';
+export * from './Simulator';
+export * from './Viewport';

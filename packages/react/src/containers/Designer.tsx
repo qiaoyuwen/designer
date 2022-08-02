@@ -4,7 +4,7 @@ import { DesignerEngineContext } from '../context';
 import { useDesigner } from '../hooks';
 import { IDesignerProps } from '../types';
 import { GhostWidget } from '../widgets';
-import { Layout } from './layout';
+import { Layout } from './Layout';
 import * as icons from '../icons';
 
 GlobalRegistry.registerDesignerIcons(icons);

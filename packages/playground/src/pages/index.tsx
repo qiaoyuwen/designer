@@ -1,7 +1,17 @@
 import 'antd/dist/antd.less';
 import { FunctionComponent, useMemo } from 'react';
 import { createDesigner, GlobalRegistry, IEngineContext, KeyCode, Shortcut } from '@designer/core';
-import { Designer, StudioPanel, CompositePanel, ResourceWidget } from '@designer/react';
+import {
+  Designer,
+  StudioPanel,
+  CompositePanel,
+  ResourceWidget,
+  Workspace,
+  WorkspacePanel,
+  ToolbarPanel,
+  ViewportPanel,
+  ViewPanel,
+} from '@designer/react';
 import { saveSchema } from '@/service';
 import { ActionsWidget, LogoWidget } from '@/widgets';
 import { Input } from '@/components';
@@ -42,6 +52,18 @@ const HomePage: FunctionComponent = () => {
             <ResourceWidget title="sources.Inputs" sources={[Input]} />
           </CompositePanel.Item>
         </CompositePanel>
+        <Workspace id="form">
+          <WorkspacePanel>
+            <ToolbarPanel></ToolbarPanel>
+            <ViewportPanel style={{ height: '100%' }}>
+              <ViewPanel type="DESIGNABLE">
+                {() => {
+                  return <></>;
+                }}
+              </ViewPanel>
+            </ViewportPanel>
+          </WorkspacePanel>
+        </Workspace>
       </StudioPanel>
     </Designer>
   );
