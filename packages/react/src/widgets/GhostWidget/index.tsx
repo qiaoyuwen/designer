@@ -31,10 +31,7 @@ export const GhostWidget = observer(() => {
           whiteSpace: 'nowrap',
         }}
       >
-        {
-          // TODO
-          // <NodeTitleWidget node={firstNode} />
-        }
+        <NodeTitleWidget node={firstNode} />
         {movingNodes.length > 1 ? '...' : ''}
       </span>
     );

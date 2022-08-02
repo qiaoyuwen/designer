@@ -4,6 +4,7 @@ import { createDesigner, GlobalRegistry, IEngineContext, KeyCode, Shortcut } fro
 import { Designer, StudioPanel, CompositePanel, ResourceWidget } from '@designer/react';
 import { saveSchema } from '@/service';
 import { ActionsWidget, LogoWidget } from '@/widgets';
+import { Input } from '@/components';
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
@@ -38,7 +39,7 @@ const HomePage: FunctionComponent = () => {
       <StudioPanel logo={<LogoWidget />} actions={<ActionsWidget />}>
         <CompositePanel>
           <CompositePanel.Item title="panels.Component" icon="Component">
-            <ResourceWidget title="sources.Inputs" sources={[]} />
+            <ResourceWidget title="sources.Inputs" sources={[Input]} />
           </CompositePanel.Item>
         </CompositePanel>
       </StudioPanel>

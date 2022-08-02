@@ -53,8 +53,12 @@ importers:
       '@designer/eslint': workspace:*
       '@designer/react': workspace:*
       '@designer/utils': workspace:*
+      '@formily/antd': ~2.1.11
+      '@formily/core': ~2.1.11
       '@formily/json-schema': ~2.1.11
       '@formily/react': ~2.1.11
+      '@formily/reactive': ~2.1.11
+      '@formily/reactive-react': ~2.1.11
       '@rushstack/eslint-patch': ~1.1.0
       '@types/node': ~18.0.0
       '@types/react': ~18.0.15
@@ -67,8 +71,12 @@ importers:
       '@designer/core': link:../core
       '@designer/react': link:../react
       '@designer/utils': link:../utils
+      '@formily/antd': registry.npmmirror.com/@formily/antd/2.1.11_793df8499bc5388d3b44e2d4c8d9b577
+      '@formily/core': registry.npmmirror.com/@formily/core/2.1.11
       '@formily/json-schema': registry.npmmirror.com/@formily/json-schema/2.1.11_typescript@4.7.4
       '@formily/react': registry.npmmirror.com/@formily/react/2.1.11_a661de2e0dda3438d06b4b877c7d949b
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.1.11
+      '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react/2.1.11_031bc34c10457774b45fd32962bae9b0
       antd: registry.npmmirror.com/antd/4.18.9
       umi: registry.npmmirror.com/umi/4.0.9_2f23fd4c7b0ee0fcd20cb14a0a248a42
     devDependencies:
@@ -1127,6 +1135,45 @@ packages:
       - '@types/react'
     dev: false
 
+  registry.npmmirror.com/@formily/antd/2.1.11_793df8499bc5388d3b44e2d4c8d9b577:
+    resolution: {integrity: sha512-M/9N/W/f0RHrkb6bWhoYM41wif59ITI95GMlAiW4KeI4epUtAJg1PAVkMrVlb2URthCEJ/wW1mphCz9DdGWBbg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@formily/antd/-/antd-2.1.11.tgz}
+    id: registry.npmmirror.com/@formily/antd/2.1.11
+    name: '@formily/antd'
+    version: 2.1.11
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      '@ant-design/icons': 4.x
+      '@types/react': '>=16.8.0'
+      '@types/react-dom': '>=16.8.0'
+      antd: 4.x
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      react-is: '>=16.8.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/4.7.0
+      '@formily/core': registry.npmmirror.com/@formily/core/2.1.11
+      '@formily/grid': registry.npmmirror.com/@formily/grid/2.1.11_typescript@4.7.4
+      '@formily/json-schema': registry.npmmirror.com/@formily/json-schema/2.1.11_typescript@4.7.4
+      '@formily/react': registry.npmmirror.com/@formily/react/2.1.11_a661de2e0dda3438d06b4b877c7d949b
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.1.11
+      '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react/2.1.11_031bc34c10457774b45fd32962bae9b0
+      '@formily/shared': registry.npmmirror.com/@formily/shared/2.1.11
+      '@types/react': registry.npmmirror.com/@types/react/18.0.15
+      '@types/react-dom': registry.npmmirror.com/@types/react-dom/18.0.6
+      antd: registry.npmmirror.com/antd/4.18.9
+      classnames: registry.npmmirror.com/classnames/2.3.1
+      react-sortable-hoc: registry.npmmirror.com/react-sortable-hoc/1.11.0
+      react-sticky-box: registry.npmmirror.com/react-sticky-box/0.9.3
+    transitivePeerDependencies:
+      - prop-types
+      - typescript
+    dev: false
+
   registry.npmmirror.com/@formily/core/2.1.11:
     resolution: {integrity: sha512-tN/iTRIhZOJhQ7bwBKUG36RWc4568AkVA+V2genNEIrTsm8T2DaNPEWQPNdP8nY6q5xoUYI/nsacEI4OuMNT+A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@formily/core/-/core-2.1.11.tgz}
     name: '@formily/core'
@@ -1136,6 +1183,20 @@ packages:
       '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.1.11
       '@formily/shared': registry.npmmirror.com/@formily/shared/2.1.11
       '@formily/validator': registry.npmmirror.com/@formily/validator/2.1.11
+    dev: false
+
+  registry.npmmirror.com/@formily/grid/2.1.11_typescript@4.7.4:
+    resolution: {integrity: sha512-w7llFf0gRJmEZd40TGCnGfjQ+xVjI+vIy84B1TFmJHZMQml1ayjlW8xtUMPBZPkWZkW2CRngRnH7edKCkQ1cLQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@formily/grid/-/grid-2.1.11.tgz}
+    id: registry.npmmirror.com/@formily/grid/2.1.11
+    name: '@formily/grid'
+    version: 2.1.11
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      typescript: ^4.1.0
+    dependencies:
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.1.11
+      '@juggle/resize-observer': registry.npmmirror.com/@juggle/resize-observer/3.3.1
+      typescript: registry.npmmirror.com/typescript/4.7.4
     dev: false
 
   registry.npmmirror.com/@formily/json-schema/2.1.11_typescript@4.7.4:
@@ -5981,6 +6042,14 @@ packages:
       has: registry.npmmirror.com/has/1.0.3
       side-channel: registry.npmmirror.com/side-channel/1.0.4
 
+  registry.npmmirror.com/invariant/2.2.4:
+    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/invariant/-/invariant-2.2.4.tgz}
+    name: invariant
+    version: 2.2.4
+    dependencies:
+      loose-envify: registry.npmmirror.com/loose-envify/1.4.0
+    dev: false
+
   registry.npmmirror.com/is-accessor-descriptor/0.1.6:
     resolution: {integrity: sha512-e1BM1qnDbMRG3ll2U9dSK0UMHuWOs3pY3AtcFsmvwPtKL3MML/Q86i+GilLfvqEs4GW+ExB91tQ3Ig9noDIZ+A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-accessor-descriptor/-/is-accessor-descriptor-0.1.6.tgz}
     name: is-accessor-descriptor
@@ -9630,6 +9699,31 @@ packages:
     dependencies:
       history: registry.npmmirror.com/history/5.3.0
       react: registry.npmmirror.com/react/18.1.0
+    dev: false
+
+  registry.npmmirror.com/react-sortable-hoc/1.11.0:
+    resolution: {integrity: sha512-v1CDCvdfoR3zLGNp6qsBa4J1BWMEVH25+UKxF/RvQRh+mrB+emqtVHMgZ+WreUiKJoEaiwYoScaueIKhMVBHUg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-sortable-hoc/-/react-sortable-hoc-1.11.0.tgz}
+    name: react-sortable-hoc
+    version: 1.11.0
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0
+      react-dom: ^0.14.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.18.9
+      invariant: registry.npmmirror.com/invariant/2.2.4
+      prop-types: registry.npmmirror.com/prop-types/15.8.1
+    dev: false
+
+  registry.npmmirror.com/react-sticky-box/0.9.3:
+    resolution: {integrity: sha512-Y/qO7vTqAvXuRR6G6ZCW4fX2Bz0GZRwiiLTVeZN5CVz9wzs37ev0Xj3KSKF/PzF0jifwATivI4t24qXG8rSz4Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-sticky-box/-/react-sticky-box-0.9.3.tgz}
+    name: react-sticky-box
+    version: 0.9.3
+    peerDependencies:
+      prop-types: ^15.6.2
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.18.9
+      resize-observer-polyfill: registry.npmmirror.com/resize-observer-polyfill/1.5.1
     dev: false
 
   registry.npmmirror.com/react/18.1.0:
