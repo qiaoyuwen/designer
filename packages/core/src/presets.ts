@@ -35,6 +35,7 @@ import {
 } from './shortcuts' */
 
 import { MouseMoveDriver } from './drivers';
+import { DragDropDriver } from './drivers/DragDropDriver';
 
 export const DEFAULT_EFFECTS = [
   /* useFreeSelectionEffect,
@@ -51,8 +52,8 @@ export const DEFAULT_EFFECTS = [
 
 export const DEFAULT_DRIVERS = [
   MouseMoveDriver,
-  /* DragDropDriver,
-  MouseClickDriver,
+  DragDropDriver,
+  /* MouseClickDriver,
   ViewportResizeDriver,
   ViewportScrollDriver,
   KeyboardDriver, */
