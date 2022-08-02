@@ -16,7 +16,7 @@ import {
 } from '@designer/react';
 import { saveSchema } from '@/service';
 import { ActionsWidget, LogoWidget } from '@/widgets';
-import { Field, Input } from '@/components';
+import { Form, Field, Input } from '@/components';
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
@@ -60,7 +60,7 @@ const HomePage: FunctionComponent = () => {
             <ViewportPanel style={{ height: '100%' }}>
               <ViewPanel type="DESIGNABLE">
                 {() => {
-                  return <ComponentTreeWidget components={[Field, Input] as any} />;
+                  return <ComponentTreeWidget components={{ Form, Field, Input }} />;
                 }}
               </ViewPanel>
             </ViewportPanel>
