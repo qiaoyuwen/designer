@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import 'antd/dist/antd.less';
 import { FunctionComponent, useMemo } from 'react';
 import { createDesigner, GlobalRegistry, IEngineContext, KeyCode, Shortcut } from '@designer/core';
@@ -11,10 +12,11 @@ import {
   ToolbarPanel,
   ViewportPanel,
   ViewPanel,
+  ComponentTreeWidget,
 } from '@designer/react';
 import { saveSchema } from '@/service';
 import { ActionsWidget, LogoWidget } from '@/widgets';
-import { Input } from '@/components';
+import { Field, Input } from '@/components';
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
@@ -58,7 +60,7 @@ const HomePage: FunctionComponent = () => {
             <ViewportPanel style={{ height: '100%' }}>
               <ViewPanel type="DESIGNABLE">
                 {() => {
-                  return <></>;
+                  return <ComponentTreeWidget components={[Field, Input] as any} />;
                 }}
               </ViewPanel>
             </ViewportPanel>

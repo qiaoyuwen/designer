@@ -293,7 +293,6 @@ export class TreeNode {
   }
 
   public getMessage(token: string) {
-    console.log('getMessage token', token, this.designerLocales);
     return GlobalRegistry.getDesignerMessage(token, this.designerLocales);
   }
 
