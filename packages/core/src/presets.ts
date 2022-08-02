@@ -34,6 +34,8 @@ import {
   SelectNextNode,
 } from './shortcuts' */
 
+import { MouseMoveDriver } from './drivers';
+
 export const DEFAULT_EFFECTS = [
   /* useFreeSelectionEffect,
   useCursorEffect,
@@ -48,8 +50,8 @@ export const DEFAULT_EFFECTS = [
 ];
 
 export const DEFAULT_DRIVERS = [
-  /* MouseMoveDriver,
-  DragDropDriver,
+  MouseMoveDriver,
+  /* DragDropDriver,
   MouseClickDriver,
   ViewportResizeDriver,
   ViewportScrollDriver,
