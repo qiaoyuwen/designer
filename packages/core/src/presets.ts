@@ -34,18 +34,16 @@ import {
   SelectNextNode,
 } from './shortcuts' */
 
-import { MouseMoveDriver } from './drivers';
-import { DragDropDriver } from './drivers/DragDropDriver';
-import { MouseClickDriver } from './drivers/MouseClickDriver';
-import { useCursorEffect, useDragDropEffect, useSelectionEffect } from './effects';
+import { MouseMoveDriver, DragDropDriver, MouseClickDriver, KeyboardDriver } from './drivers';
+import { useCursorEffect, useDragDropEffect, useKeyboardEffect, useSelectionEffect } from './effects';
 
 export const DEFAULT_EFFECTS = [
   useCursorEffect,
   useDragDropEffect,
   useSelectionEffect,
+  useKeyboardEffect,
   // useFreeSelectionEffect,
   // useViewportEffect,
-  // useKeyboardEffect,
   // useAutoScrollEffect,
   // useWorkspaceEffect,
   // useContentEditableEffect,
@@ -56,9 +54,9 @@ export const DEFAULT_DRIVERS = [
   MouseMoveDriver,
   DragDropDriver,
   MouseClickDriver,
+  KeyboardDriver,
   /* ViewportResizeDriver,
-  ViewportScrollDriver,
-  KeyboardDriver, */
+  ViewportScrollDriver, */
 ];
 
 export const DEFAULT_SHORTCUTS = [
