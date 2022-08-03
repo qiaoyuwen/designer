@@ -16,6 +16,9 @@ export const GhostWidget = observer(() => {
   useEffect(
     () =>
       autorun(() => {
+        if (cursor.status !== CursorStatus.Dragging) {
+          return;
+        }
         const transform = `perspective(1px) translate3d(${cursor.position?.topClientX - 18}px,${
           cursor.position?.topClientY - 12
         }px,0) scale(0.8)`;

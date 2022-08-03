@@ -112,6 +112,7 @@ export class Cursor {
 
   public constructor(engine: Engine) {
     this.engine = engine;
+    this.makeObservable();
   }
 
   public makeObservable() {
