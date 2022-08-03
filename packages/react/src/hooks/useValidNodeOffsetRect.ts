@@ -10,17 +10,18 @@ const isEqualRect = (rect1: Rect, rect2: Rect) => {
   );
 };
 
-export const useValidNodeOffsetRect = (node: TreeNode) => {
+export const useValidNodeOffsetRect = (node?: TreeNode) => {
   const engine = useDesigner();
   const viewport = useViewport();
   const [, forceUpdate] = useState(null);
   const rectRef = useMemo(() => ({ current: viewport.getValidNodeOffsetRect(node) }), [viewport]);
-
   const element = viewport.findElementById(node?.id);
 
   useEffect(() => {
     const compute = () => {
-      if (engine.cursor.status !== CursorStatus.Normal && engine.cursor.dragType === CursorDragType.Move) return;
+      if (engine.cursor.status !== CursorStatus.Normal && engine.cursor.dragType === CursorDragType.Move) {
+        return;
+      }
       const nextRect = viewport.getValidNodeOffsetRect(node);
       if (!isEqualRect(rectRef.current, nextRect) && nextRect) {
         rectRef.current = nextRect;
@@ -28,7 +29,9 @@ export const useValidNodeOffsetRect = (node: TreeNode) => {
       }
     };
     const paintObserver = new PaintObserver(compute);
-    if (element) paintObserver.observe(element);
+    if (element) {
+      paintObserver.observe(element);
+    }
     return () => {
       paintObserver.disconnect();
     };

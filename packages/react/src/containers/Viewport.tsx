@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePrefix, useViewport } from '../hooks';
 import { AuxToolWidget, EmptyWidget } from '../widgets';
 import { Viewport as ViewportType } from '@designer/core';
@@ -16,6 +16,12 @@ export const Viewport: React.FC<IViewportProps> = ({ placeholder, dragTipsDirect
   const ref = useRef<HTMLDivElement>();
   const viewportRef = useRef<ViewportType>();
   const isFrameRef = useRef(false);
+  const [renderCount, setRenderCount] = useState(0);
+
+  useEffect(() => {
+    setRenderCount(1);
+  }, []);
+
   useLayoutEffect(() => {
     const frameElement = ref.current.querySelector('iframe');
     if (!viewport) return;
@@ -55,7 +61,7 @@ export const Viewport: React.FC<IViewportProps> = ({ placeholder, dragTipsDirect
       }}
     >
       {props.children}
-      <AuxToolWidget />
+      {renderCount > 0 && <AuxToolWidget />}
       <EmptyWidget dragTipsDirection={dragTipsDirection}>{placeholder}</EmptyWidget>
     </div>
   );
