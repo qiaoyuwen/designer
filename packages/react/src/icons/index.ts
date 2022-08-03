@@ -7,3 +7,7 @@ export * from './animations';
 export * from './command';
 export * from './shift';
 export * from './delete';
+export * from './cursor';
+export * from './remove';
+export * from './clone';
+export * from './page';

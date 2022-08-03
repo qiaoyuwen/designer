@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { usePrefix, useViewport } from '../hooks';
-import { /* AuxToolWidget, */ EmptyWidget } from '../widgets';
+import { AuxToolWidget, EmptyWidget } from '../widgets';
 import { Viewport as ViewportType } from '@designer/core';
 import { requestIdle, globalThisPolyfill } from '@designer/utils';
 import cls from 'classnames';
@@ -55,10 +55,7 @@ export const Viewport: React.FC<IViewportProps> = ({ placeholder, dragTipsDirect
       }}
     >
       {props.children}
-      {
-        // TODO
-        // <AuxToolWidget />
-      }
+      <AuxToolWidget />
       <EmptyWidget dragTipsDirection={dragTipsDirection}>{placeholder}</EmptyWidget>
     </div>
   );

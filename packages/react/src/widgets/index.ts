@@ -7,3 +7,4 @@ export * from './ResourceWidget';
 export * from './DroppableWidget';
 export * from './EmptyWidget';
 export * from './ComponentTreeWidget';
+export * from './AuxToolWidget';

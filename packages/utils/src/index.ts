@@ -15,3 +15,4 @@ export * from './transformer';
 export * from './debounce';
 export * from './animation';
 export * from './scroller';
+export * from './observer';

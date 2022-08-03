@@ -13,3 +13,4 @@ export * from './Selection';
 export * from './SnapLine';
 export * from './SpaceBlock';
 export * from './TransformHelper';
+export * from './MoveHelper';
