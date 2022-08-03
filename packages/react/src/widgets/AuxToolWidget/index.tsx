@@ -2,9 +2,9 @@ import { FunctionComponent, useEffect, useRef } from 'react';
 import { useViewport, useDesigner, usePrefix } from '../../hooks';
 import { Cover } from './Cover';
 import { Selection } from './Selection';
+import { DashedBox } from './DashedBox';
 /* import { Insertion } from './Insertion';
 import { FreeSelection } from './FreeSelection'
-import { DashedBox } from './DashedBox'
 import { SpaceBlock } from './SpaceBlock'
 import { SnapLine } from './SnapLine'
 import { TransformBox } from './TransformBox' */
@@ -31,12 +31,12 @@ export const AuxToolWidget: FunctionComponent = () => {
         <>
           <Cover />
           <Selection />
+          <DashedBox />
         </>
         /*
           <Insertion />
           <SpaceBlock />
           <SnapLine />
-          <DashedBox />
           <TransformBox />
           <FreeSelection /> */
       }
