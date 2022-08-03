@@ -36,14 +36,15 @@ import {
 
 import { MouseMoveDriver } from './drivers';
 import { DragDropDriver } from './drivers/DragDropDriver';
-import { useCursorEffect, useDragDropEffect } from './effects';
+import { MouseClickDriver } from './drivers/MouseClickDriver';
+import { useCursorEffect, useDragDropEffect, useSelectionEffect } from './effects';
 
 export const DEFAULT_EFFECTS = [
   useCursorEffect,
   useDragDropEffect,
+  useSelectionEffect,
   // useFreeSelectionEffect,
   // useViewportEffect,
-  // useSelectionEffect,
   // useKeyboardEffect,
   // useAutoScrollEffect,
   // useWorkspaceEffect,
@@ -54,8 +55,8 @@ export const DEFAULT_EFFECTS = [
 export const DEFAULT_DRIVERS = [
   MouseMoveDriver,
   DragDropDriver,
-  /* MouseClickDriver,
-  ViewportResizeDriver,
+  MouseClickDriver,
+  /* ViewportResizeDriver,
   ViewportScrollDriver,
   KeyboardDriver, */
 ];
