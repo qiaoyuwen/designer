@@ -3,11 +3,11 @@ import { useViewport, useDesigner, usePrefix } from '../../hooks';
 import { Cover } from './Cover';
 import { Selection } from './Selection';
 import { DashedBox } from './DashedBox';
-/* import { Insertion } from './Insertion';
-import { FreeSelection } from './FreeSelection'
+import { TransformBox } from './TransformBox';
+import { Insertion } from './Insertion';
+/* import { FreeSelection } from './FreeSelection'
 import { SpaceBlock } from './SpaceBlock'
-import { SnapLine } from './SnapLine'
-import { TransformBox } from './TransformBox' */
+import { SnapLine } from './SnapLine' */
 import './styles.less';
 
 export const AuxToolWidget: FunctionComponent = () => {
@@ -29,15 +29,15 @@ export const AuxToolWidget: FunctionComponent = () => {
     <div ref={ref} className={prefix}>
       {
         <>
+          <Insertion />
           <Cover />
           <Selection />
           <DashedBox />
+          <TransformBox />
         </>
         /*
-          <Insertion />
           <SpaceBlock />
           <SnapLine />
-          <TransformBox />
           <FreeSelection /> */
       }
     </div>

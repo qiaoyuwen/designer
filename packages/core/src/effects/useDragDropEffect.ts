@@ -17,10 +17,10 @@ export const useDragDropEffect = (engine: Engine) => {
     const handler = target?.closest(`*[${engine.props.nodeDragHandlerAttrName}]`);
     const helper = handler?.closest(`*[${engine.props.nodeSelectionIdAttrName}]`);
     if (!el?.getAttribute && !handler) return;
-    const sourceId = el.getAttribute(engine.props.sourceIdAttrName);
-    const outlineId = el.getAttribute(engine.props.outlineNodeIdAttrName);
+    const sourceId = el?.getAttribute(engine.props.sourceIdAttrName);
+    const outlineId = el?.getAttribute(engine.props.outlineNodeIdAttrName);
     const handlerId = helper?.getAttribute(engine.props.nodeSelectionIdAttrName);
-    const nodeId = el.getAttribute(engine.props.nodeIdAttrName);
+    const nodeId = el?.getAttribute(engine.props.nodeIdAttrName);
     engine.workbench.eachWorkspace((currentWorkspace) => {
       const operation = currentWorkspace.operation;
       const moveHelper = operation.moveHelper;
