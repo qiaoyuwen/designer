@@ -13,6 +13,7 @@ import {
   ViewportPanel,
   ViewPanel,
   ComponentTreeWidget,
+  SettingsPanel,
 } from '@designer/react';
 import { saveSchema } from '@/service';
 import { ActionsWidget, LogoWidget } from '@/widgets';
@@ -66,6 +67,7 @@ const HomePage: FunctionComponent = () => {
             </ViewportPanel>
           </WorkspacePanel>
         </Workspace>
+        <SettingsPanel title="panels.PropertySettings"></SettingsPanel>
       </StudioPanel>
     </Designer>
   );
