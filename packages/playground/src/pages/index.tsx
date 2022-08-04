@@ -18,6 +18,9 @@ import {
 import { saveSchema } from '@/service';
 import { ActionsWidget, LogoWidget } from '@/widgets';
 import { Form, Field, Input } from '@/components';
+import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
+
+setNpmCDNRegistry('//unpkg.com');
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
@@ -67,7 +70,9 @@ const HomePage: FunctionComponent = () => {
             </ViewportPanel>
           </WorkspacePanel>
         </Workspace>
-        <SettingsPanel title="panels.PropertySettings"></SettingsPanel>
+        <SettingsPanel title="panels.PropertySettings">
+          <SettingsForm />
+        </SettingsPanel>
       </StudioPanel>
     </Designer>
   );

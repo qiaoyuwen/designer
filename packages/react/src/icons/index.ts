@@ -12,3 +12,4 @@ export * from './remove';
 export * from './clone';
 export * from './page';
 export * from './setting';
+export * from './position';

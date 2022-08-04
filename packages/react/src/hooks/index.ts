@@ -19,3 +19,4 @@ export * from './useViewport';
 export * from './useMoveHelper';
 export * from './useValidNodeOffsetRect';
 export * from './useHover';
+export * from './useSelectedNode';

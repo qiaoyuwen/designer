@@ -414,6 +414,10 @@
     {
       "packageName": "@designer/react",
       "projectFolder": "packages/react"
+    },
+    {
+      "packageName": "@designer/react-settings-form",
+      "projectFolder": "packages/react-settings-form"
     }
     // {
     //   /**

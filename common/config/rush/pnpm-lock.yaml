@@ -52,6 +52,7 @@ importers:
       '@designer/core': workspace:*
       '@designer/eslint': workspace:*
       '@designer/react': workspace:*
+      '@designer/react-settings-form': workspace:*
       '@designer/utils': workspace:*
       '@formily/antd': ~2.1.11
       '@formily/core': ~2.1.11
@@ -70,6 +71,7 @@ importers:
       '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/4.7.0
       '@designer/core': link:../core
       '@designer/react': link:../react
+      '@designer/react-settings-form': link:../react-settings-form
       '@designer/utils': link:../utils
       '@formily/antd': registry.npmmirror.com/@formily/antd/2.1.11_793df8499bc5388d3b44e2d4c8d9b577
       '@formily/core': registry.npmmirror.com/@formily/core/2.1.11
@@ -114,6 +116,49 @@ importers:
       antd: registry.npmmirror.com/antd/4.18.9_react@18.2.0
       classnames: registry.npmmirror.com/classnames/2.3.1
       dateformat: registry.npmmirror.com/dateformat/5.0.3
+      react: registry.npmmirror.com/react/18.2.0
+    devDependencies:
+      '@designer/eslint': link:../eslint
+      '@designer/scripts': link:../scripts
+      '@rushstack/eslint-patch': registry.npmmirror.com/@rushstack/eslint-patch/1.1.4
+      '@types/react': registry.npmmirror.com/@types/react/18.0.15
+      rimraf: registry.npmmirror.com/rimraf/3.0.2
+      ts-node: registry.npmmirror.com/ts-node/10.5.0_typescript@4.7.4
+      typescript: registry.npmmirror.com/typescript/4.7.4
+
+  ../../packages/react-settings-form:
+    specifiers:
+      '@designer/core': workspace:*
+      '@designer/eslint': workspace:*
+      '@designer/react': workspace:*
+      '@designer/scripts': workspace:*
+      '@designer/utils': workspace:*
+      '@formily/antd': ~2.1.11
+      '@formily/core': ~2.1.11
+      '@formily/react': ~2.1.11
+      '@monaco-editor/loader': ~1.3.2
+      '@monaco-editor/react': ~4.4.5
+      '@rushstack/eslint-patch': ~1.1.0
+      '@types/react': ~18.0.15
+      antd: ~4.18.6
+      classnames: ~2.3.1
+      monaco-editor: ~0.33.0
+      react: ~18.2.0
+      rimraf: ~3.0.2
+      ts-node: ~10.5.0
+      typescript: ~4.7.4
+    dependencies:
+      '@designer/core': link:../core
+      '@designer/react': link:../react
+      '@designer/utils': link:../utils
+      '@formily/antd': registry.npmmirror.com/@formily/antd/2.1.11_9f1a450315d69484bfc127802a898de0
+      '@formily/core': registry.npmmirror.com/@formily/core/2.1.11
+      '@formily/react': registry.npmmirror.com/@formily/react/2.1.11_bb8b18b59e63ef3ed498bfef2b53e691
+      '@monaco-editor/loader': registry.npmmirror.com/@monaco-editor/loader/1.3.2_monaco-editor@0.33.0
+      '@monaco-editor/react': registry.npmmirror.com/@monaco-editor/react/4.4.5_d84fc09406e0b53c7948a73fdec3ce09
+      antd: registry.npmmirror.com/antd/4.18.9_react@18.2.0
+      classnames: registry.npmmirror.com/classnames/2.3.1
+      monaco-editor: registry.npmmirror.com/monaco-editor/0.33.0
       react: registry.npmmirror.com/react/18.2.0
     devDependencies:
       '@designer/eslint': link:../eslint
@@ -1174,6 +1219,44 @@ packages:
       - typescript
     dev: false
 
+  registry.npmmirror.com/@formily/antd/2.1.11_9f1a450315d69484bfc127802a898de0:
+    resolution: {integrity: sha512-M/9N/W/f0RHrkb6bWhoYM41wif59ITI95GMlAiW4KeI4epUtAJg1PAVkMrVlb2URthCEJ/wW1mphCz9DdGWBbg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@formily/antd/-/antd-2.1.11.tgz}
+    id: registry.npmmirror.com/@formily/antd/2.1.11
+    name: '@formily/antd'
+    version: 2.1.11
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      '@ant-design/icons': 4.x
+      '@types/react': '>=16.8.0'
+      '@types/react-dom': '>=16.8.0'
+      antd: 4.x
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      react-is: '>=16.8.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@formily/core': registry.npmmirror.com/@formily/core/2.1.11
+      '@formily/grid': registry.npmmirror.com/@formily/grid/2.1.11_typescript@4.7.4
+      '@formily/json-schema': registry.npmmirror.com/@formily/json-schema/2.1.11_typescript@4.7.4
+      '@formily/react': registry.npmmirror.com/@formily/react/2.1.11_bb8b18b59e63ef3ed498bfef2b53e691
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.1.11
+      '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react/2.1.11_d9efaa4a57b9ddc48121b447e3437c81
+      '@formily/shared': registry.npmmirror.com/@formily/shared/2.1.11
+      '@types/react': registry.npmmirror.com/@types/react/18.0.15
+      antd: registry.npmmirror.com/antd/4.18.9_react@18.2.0
+      classnames: registry.npmmirror.com/classnames/2.3.1
+      react: registry.npmmirror.com/react/18.2.0
+      react-sortable-hoc: registry.npmmirror.com/react-sortable-hoc/1.11.0_react@18.2.0
+      react-sticky-box: registry.npmmirror.com/react-sticky-box/0.9.3_react@18.2.0
+    transitivePeerDependencies:
+      - prop-types
+      - typescript
+    dev: false
+
   registry.npmmirror.com/@formily/core/2.1.11:
     resolution: {integrity: sha512-tN/iTRIhZOJhQ7bwBKUG36RWc4568AkVA+V2genNEIrTsm8T2DaNPEWQPNdP8nY6q5xoUYI/nsacEI4OuMNT+A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@formily/core/-/core-2.1.11.tgz}
     name: '@formily/core'
@@ -1248,6 +1331,37 @@ packages:
       '@types/react': registry.npmmirror.com/@types/react/18.0.15
       '@types/react-dom': registry.npmmirror.com/@types/react-dom/18.0.6
       hoist-non-react-statics: registry.npmmirror.com/hoist-non-react-statics/3.3.2
+    transitivePeerDependencies:
+      - typescript
+    dev: false
+
+  registry.npmmirror.com/@formily/react/2.1.11_bb8b18b59e63ef3ed498bfef2b53e691:
+    resolution: {integrity: sha512-Q6Ecq9ptWZU2VXhuW84gKC5e0HhgCAD+UOk1RsR14uiLr3pGkMSD4d8vaZrEI9s+TNQDQBKWgGpAzPJOaIE22A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@formily/react/-/react-2.1.11.tgz}
+    id: registry.npmmirror.com/@formily/react/2.1.11
+    name: '@formily/react'
+    version: 2.1.11
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      '@types/react': '>=16.8.0'
+      '@types/react-dom': '>=16.8.0'
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      react-is: '>=16.8.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@formily/core': registry.npmmirror.com/@formily/core/2.1.11
+      '@formily/json-schema': registry.npmmirror.com/@formily/json-schema/2.1.11_typescript@4.7.4
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.1.11
+      '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react/2.1.11_d9efaa4a57b9ddc48121b447e3437c81
+      '@formily/shared': registry.npmmirror.com/@formily/shared/2.1.11
+      '@formily/validator': registry.npmmirror.com/@formily/validator/2.1.11
+      '@types/react': registry.npmmirror.com/@types/react/18.0.15
+      hoist-non-react-statics: registry.npmmirror.com/hoist-non-react-statics/3.3.2
+      react: registry.npmmirror.com/react/18.2.0
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -1521,6 +1635,34 @@ packages:
     name: '@microsoft/tsdoc'
     version: 0.14.1
     dev: true
+
+  registry.npmmirror.com/@monaco-editor/loader/1.3.2_monaco-editor@0.33.0:
+    resolution: {integrity: sha512-BTDbpHl3e47r3AAtpfVFTlAi7WXv4UQ/xZmz8atKl4q7epQV5e7+JbigFDViWF71VBi4IIBdcWP57Hj+OWuc9g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@monaco-editor/loader/-/loader-1.3.2.tgz}
+    id: registry.npmmirror.com/@monaco-editor/loader/1.3.2
+    name: '@monaco-editor/loader'
+    version: 1.3.2
+    peerDependencies:
+      monaco-editor: '>= 0.21.0 < 1'
+    dependencies:
+      monaco-editor: registry.npmmirror.com/monaco-editor/0.33.0
+      state-local: registry.npmmirror.com/state-local/1.0.7
+    dev: false
+
+  registry.npmmirror.com/@monaco-editor/react/4.4.5_d84fc09406e0b53c7948a73fdec3ce09:
+    resolution: {integrity: sha512-IImtzU7sRc66OOaQVCG+5PFHkSWnnhrUWGBuH6zNmH2h0YgmAhcjHZQc/6MY9JWEbUtVF1WPBMJ9u1XuFbRrVA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@monaco-editor/react/-/react-4.4.5.tgz}
+    id: registry.npmmirror.com/@monaco-editor/react/4.4.5
+    name: '@monaco-editor/react'
+    version: 4.4.5
+    peerDependencies:
+      monaco-editor: '>= 0.25.0 < 1'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@monaco-editor/loader': registry.npmmirror.com/@monaco-editor/loader/1.3.2_monaco-editor@0.33.0
+      monaco-editor: registry.npmmirror.com/monaco-editor/0.33.0
+      prop-types: registry.npmmirror.com/prop-types/15.8.1
+      react: registry.npmmirror.com/react/18.2.0
+    dev: false
 
   registry.npmmirror.com/@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz}
@@ -6961,6 +7103,12 @@ packages:
     version: 2.29.4
     dev: false
 
+  registry.npmmirror.com/monaco-editor/0.33.0:
+    resolution: {integrity: sha512-VcRWPSLIUEgQJQIE0pVT8FcGBIgFoxz7jtqctE+IiCxWugD0DwgyQBcZBhdSrdMC84eumoqMZsGl2GTreOzwqw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/monaco-editor/-/monaco-editor-0.33.0.tgz}
+    name: monaco-editor
+    version: 0.33.0
+    dev: false
+
   registry.npmmirror.com/ms/2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ms/-/ms-2.0.0.tgz}
     name: ms
@@ -9714,6 +9862,21 @@ packages:
       prop-types: registry.npmmirror.com/prop-types/15.8.1
     dev: false
 
+  registry.npmmirror.com/react-sortable-hoc/1.11.0_react@18.2.0:
+    resolution: {integrity: sha512-v1CDCvdfoR3zLGNp6qsBa4J1BWMEVH25+UKxF/RvQRh+mrB+emqtVHMgZ+WreUiKJoEaiwYoScaueIKhMVBHUg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-sortable-hoc/-/react-sortable-hoc-1.11.0.tgz}
+    id: registry.npmmirror.com/react-sortable-hoc/1.11.0
+    name: react-sortable-hoc
+    version: 1.11.0
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0
+      react-dom: ^0.14.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.18.9
+      invariant: registry.npmmirror.com/invariant/2.2.4
+      prop-types: registry.npmmirror.com/prop-types/15.8.1
+      react: registry.npmmirror.com/react/18.2.0
+    dev: false
+
   registry.npmmirror.com/react-sticky-box/0.9.3:
     resolution: {integrity: sha512-Y/qO7vTqAvXuRR6G6ZCW4fX2Bz0GZRwiiLTVeZN5CVz9wzs37ev0Xj3KSKF/PzF0jifwATivI4t24qXG8rSz4Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-sticky-box/-/react-sticky-box-0.9.3.tgz}
     name: react-sticky-box
@@ -9723,6 +9886,20 @@ packages:
       react: ^0.14.0 || ^15.0.0 || ^16.0.0
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.18.9
+      resize-observer-polyfill: registry.npmmirror.com/resize-observer-polyfill/1.5.1
+    dev: false
+
+  registry.npmmirror.com/react-sticky-box/0.9.3_react@18.2.0:
+    resolution: {integrity: sha512-Y/qO7vTqAvXuRR6G6ZCW4fX2Bz0GZRwiiLTVeZN5CVz9wzs37ev0Xj3KSKF/PzF0jifwATivI4t24qXG8rSz4Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-sticky-box/-/react-sticky-box-0.9.3.tgz}
+    id: registry.npmmirror.com/react-sticky-box/0.9.3
+    name: react-sticky-box
+    version: 0.9.3
+    peerDependencies:
+      prop-types: ^15.6.2
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.18.9
+      react: registry.npmmirror.com/react/18.2.0
       resize-observer-polyfill: registry.npmmirror.com/resize-observer-polyfill/1.5.1
     dev: false
 
@@ -10369,6 +10546,12 @@ packages:
     resolution: {integrity: sha512-oeVtt7eWQS+Na6F//S4kJ2K2VbRlS9D43mAlMyVpVWovy9o+jfgH8O9agzANzaiLjclA0oYzUXEM4PurhSUChw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/stackframe/-/stackframe-1.3.4.tgz}
     name: stackframe
     version: 1.3.4
+    dev: false
+
+  registry.npmmirror.com/state-local/1.0.7:
+    resolution: {integrity: sha512-HTEHMNieakEnoe33shBYcZ7NX83ACUjCu8c40iOGEZsngj9zRnkqS9j1pqQPXwobB0ZcVTk27REb7COQ0UR59w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/state-local/-/state-local-1.0.7.tgz}
+    name: state-local
+    version: 1.0.7
     dev: false
 
   registry.npmmirror.com/static-extend/0.1.2:
