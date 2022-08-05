@@ -14,5 +14,13 @@ export const FormLayout: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'NumberPicker',
     },
+    colon: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
+    },
   },
 };
