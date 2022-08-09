@@ -7,9 +7,15 @@ export default {
       MonacoInput: {
         helpDocument: '帮助文档',
       },
-      SizeInput: {
+      SelectionInput: {
+        // SizeInput
         inherit: '继承',
         auto: '自动',
+        // ValueInput
+        text: '文本',
+        expression: '表达式',
+        boolean: '布尔值',
+        number: '数值',
       },
     },
   },

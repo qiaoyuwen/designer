@@ -17,7 +17,7 @@ import {
   FormTab,
 } from '@formily/antd';
 import { Slider } from 'antd';
-import { CollapseItem, SizeInput } from './components';
+import { CollapseItem, SizeInput, ValueInput, MonacoInput } from './components';
 
 export const SchemaField: any = createSchemaField({
   components: {
@@ -40,5 +40,7 @@ export const SchemaField: any = createSchemaField({
     // 自定义组件
     CollapseItem,
     SizeInput,
+    ValueInput,
+    MonacoInput,
   },
 });

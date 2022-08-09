@@ -84,6 +84,29 @@ export const createFieldSchema = (component?: ISchema, decorator: ISchema = AllS
             'x-decorator': 'FormItem',
             'x-component': 'Input',
           },
+          description: {
+            type: 'string',
+            'x-decorator': 'FormItem',
+            'x-component': 'Input.TextArea',
+          },
+          'x-pattern': {
+            type: 'string',
+            enum: ['editable', 'disabled', 'readOnly', 'readPretty', ''],
+            'x-decorator': 'FormItem',
+            'x-component': 'Select',
+            'x-component-props': {
+              defaultValue: 'editable',
+            },
+          },
+          default: {
+            'x-decorator': 'FormItem',
+            'x-component': 'ValueInput',
+          },
+          required: {
+            type: 'boolean',
+            'x-decorator': 'FormItem',
+            'x-component': 'Switch',
+          },
         },
       },
       // ...createComponentSchema(component, decorator),

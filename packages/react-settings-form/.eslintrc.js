@@ -10,6 +10,7 @@ module.exports = {
     'no-empty': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/typedef': 'off',
     '@rushstack/typedef-var': 'off',
   },
 };

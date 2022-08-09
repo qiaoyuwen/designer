@@ -34,7 +34,10 @@ const getEventValue = (event: any) => {
   return event;
 };
 
-export function createPolyInput(inputOptions: ISelectionInputOption[] = []): React.FC<ISelectionInputProps> {
+export function createSelectionInput(
+  inputOptions: ISelectionInputOption[] = [],
+  controllerWidth?: number,
+): React.FC<ISelectionInputProps> {
   return (props) => {
     const prefix = usePrefix('selection-input');
     const options = props.options || inputOptions;
@@ -55,7 +58,7 @@ export function createPolyInput(inputOptions: ISelectionInputOption[] = []): Rea
     };
 
     return (
-      <div className={cls(prefix, props.className)}>
+      <div className={cls(prefix, props.className)} style={props.style}>
         {option?.component && (
           <div className={prefix + '-content'}>
             {React.createElement(option.component, {
@@ -72,23 +75,23 @@ export function createPolyInput(inputOptions: ISelectionInputOption[] = []): Rea
         <Select
           className={prefix + '-controller'}
           style={{
-            width: !option?.component ? '100%' : 'auto',
+            width: !option?.component ? '100%' : controllerWidth || 60,
           }}
+          showArrow={false}
           value={current}
           onChange={(selection) => {
             setCurrent(selection);
             const nextOption = options.find((op) => op.value === selection);
             props.onChange?.(transformOnChangeValue(optionsValue.current[nextOption?.value], nextOption));
           }}
-          options={options?.map((option) => {
-            const token = `SettingComponents.SizeInput.${option.label || option.value}`;
+        >
+          {options?.map((option) => {
+            const token = `SettingComponents.SelectionInput.${option.label || option.value}`;
             const localeLabel = takeMessage(token);
-            return {
-              value: option.value,
-              label: localeLabel === token ? option.label || option.value : localeLabel,
-            };
+            const label = localeLabel === token ? option.label || option.value : localeLabel;
+            return <Select.Option value={option.value}>{label}</Select.Option>;
           })}
-        />
+        </Select>
       </div>
     );
   };

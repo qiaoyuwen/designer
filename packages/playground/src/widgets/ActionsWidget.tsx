@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Space, Button, Radio } from 'antd';
+import { Space, Button } from 'antd';
 import { useDesigner, TextWidget } from '@designer/react';
 import { GlobalRegistry } from '@designer/core';
 import { observer } from '@formily/react';
@@ -18,7 +18,7 @@ export const ActionsWidget = observer(() => {
   }, []);
   return (
     <Space style={{ marginRight: 10 }}>
-      <Radio.Group
+      {/* <Radio.Group
         value={GlobalRegistry.getDesignerLanguage()}
         optionType="button"
         options={[
@@ -28,7 +28,8 @@ export const ActionsWidget = observer(() => {
         onChange={(e) => {
           GlobalRegistry.setDesignerLanguage(e.target.value);
         }}
-      />
+      /> */}
+
       <Button
         onClick={() => {
           saveSchema(designer);

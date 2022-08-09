@@ -1,5 +1,5 @@
 import { InputNumber } from 'antd';
-import { createPolyInput, ISelectionInputProps } from '../SelectionInput';
+import { createSelectionInput, ISelectionInputProps } from '../SelectionInput';
 
 const takeNumber = (value: any) => {
   const num = String(value)
@@ -47,4 +47,4 @@ const NormalSizeOptions = [
   createUnitType('em'),
 ];
 
-export const SizeInput: React.FC<ISelectionInputProps> = createPolyInput(NormalSizeOptions);
+export const SizeInput: React.FC<ISelectionInputProps> = createSelectionInput(NormalSizeOptions);
