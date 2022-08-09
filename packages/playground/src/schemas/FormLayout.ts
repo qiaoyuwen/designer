@@ -14,6 +14,13 @@ export const FormLayout: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'NumberPicker',
     },
+    labelWidth: {
+      'x-decorator': 'FormItem',
+      'x-component': 'SizeInput',
+      'x-component-props': {
+        defaultOption: 'auto',
+      },
+    },
     colon: {
       type: 'boolean',
       'x-decorator': 'FormItem',
