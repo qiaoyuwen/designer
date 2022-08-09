@@ -28,14 +28,6 @@ export const FormLayout: ISchema = {
         defaultOption: 'auto',
       },
     },
-    colon: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-      'x-component-props': {
-        defaultChecked: true,
-      },
-    },
     size: {
       type: 'string',
       enum: ['large', 'small', 'default', ''],
@@ -52,6 +44,36 @@ export const FormLayout: ISchema = {
       'x-component': 'Select',
       'x-component-props': {
         defaultValue: 'horizontal',
+      },
+    },
+    labelAlign: {
+      type: 'string',
+      enum: ['left', 'right', ''],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        defaultValue: 'right',
+      },
+    },
+    colon: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
+    },
+    labelWrap: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    bordered: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
       },
     },
   },

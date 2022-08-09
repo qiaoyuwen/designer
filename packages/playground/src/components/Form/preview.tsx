@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react';
 import { createBehavior, createResource, TreeNode } from '@designer/core';
 import { createForm } from '@formily/core';
@@ -37,8 +36,17 @@ Form.Behavior = createBehavior({
       propsSchema: {
         type: 'object',
         properties: {
-          ...(AllSchemas.FormLayout.properties as any),
-          style: AllSchemas.CSSStyle,
+          'form-layout-group': {
+            type: 'void',
+            'x-component': 'CollapseItem',
+            properties: AllSchemas.FormLayout.properties,
+          },
+          'form-style-group': {
+            type: 'void',
+            'x-component': 'CollapseItem',
+            'x-component-props': { defaultExpand: false },
+            properties: AllSchemas.CSSStyle.properties,
+          },
         },
       },
       defaultProps: {
