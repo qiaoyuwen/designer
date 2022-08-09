@@ -7,6 +7,10 @@ export default {
       MonacoInput: {
         helpDocument: '帮助文档',
       },
+      SizeInput: {
+        inherit: '继承',
+        auto: '自动',
+      },
     },
   },
 };

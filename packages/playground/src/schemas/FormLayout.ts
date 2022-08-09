@@ -21,12 +21,37 @@ export const FormLayout: ISchema = {
         defaultOption: 'auto',
       },
     },
+    wrapperWidth: {
+      'x-decorator': 'FormItem',
+      'x-component': 'SizeInput',
+      'x-component-props': {
+        defaultOption: 'auto',
+      },
+    },
     colon: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
       'x-component-props': {
         defaultChecked: true,
+      },
+    },
+    size: {
+      type: 'string',
+      enum: ['large', 'small', 'default', ''],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        defaultValue: 'default',
+      },
+    },
+    layout: {
+      type: 'string',
+      enum: ['vertical', 'horizontal', 'inline', ''],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        defaultValue: 'horizontal',
       },
     },
   },

@@ -1,5 +1,6 @@
-import { usePrefix } from '@designer/react';
 import React, { useEffect, useRef, useState } from 'react';
+import { usePrefix } from '@designer/react';
+import { takeMessage } from '@designer/core';
 import { Select } from 'antd';
 import cls from 'classnames';
 import './styles.less';
@@ -79,10 +80,14 @@ export function createPolyInput(inputOptions: ISelectionInputOption[] = []): Rea
             const nextOption = options.find((op) => op.value === selection);
             props.onChange?.(transformOnChangeValue(optionsValue.current[nextOption?.value], nextOption));
           }}
-          options={options?.map((option) => ({
-            value: option.value,
-            label: option.label || option.label,
-          }))}
+          options={options?.map((option) => {
+            const token = `SettingComponents.SizeInput.${option.label || option.value}`;
+            const localeLabel = takeMessage(token);
+            return {
+              value: option.value,
+              label: localeLabel === token ? option.label || option.value : localeLabel,
+            };
+          })}
         />
       </div>
     );
