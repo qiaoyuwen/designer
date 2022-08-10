@@ -113,6 +113,10 @@ export const createFieldSchema = (options: {
               include: valueInputTypes,
             },
           },
+          'x-validator': {
+            type: 'array',
+            'x-component': 'ValidatorSetter',
+          },
           required: {
             type: 'boolean',
             'x-decorator': 'FormItem',
@@ -152,7 +156,7 @@ export const createVoidFieldSchema = (component?: ISchema, decorator: ISchema = 
           },
         },
       },
-      // ...createComponentSchema(component, decorator),
+      ...createComponentSchema(component, decorator),
     },
   };
 };

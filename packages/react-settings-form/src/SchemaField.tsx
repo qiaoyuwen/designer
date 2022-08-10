@@ -17,7 +17,15 @@ import {
   FormTab,
 } from '@formily/antd';
 import { Slider } from 'antd';
-import { CollapseItem, SizeInput, ValueInput, MonacoInput } from './components';
+import {
+  CollapseItem,
+  SizeInput,
+  ValueInput,
+  MonacoInput,
+  DrawerSetter,
+  FoldItem,
+  ValidatorSetter,
+} from './components';
 
 export const SchemaField: any = createSchemaField({
   components: {
@@ -42,5 +50,8 @@ export const SchemaField: any = createSchemaField({
     SizeInput,
     ValueInput,
     MonacoInput,
+    DrawerSetter,
+    FoldItem,
+    ValidatorSetter,
   },
 });
