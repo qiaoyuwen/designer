@@ -106,5 +106,5 @@ export const ValueInput: React.FC<ISelectionInputProps> = createSelectionInput(
       },
     },
   ],
-  70,
+  65,
 );

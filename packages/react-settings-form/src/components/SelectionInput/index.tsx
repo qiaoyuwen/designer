@@ -52,10 +52,10 @@ export function createSelectionInput(
   inputOptions: ISelectionInputOption[] = [],
   controllerWidth?: number,
 ): React.FC<ISelectionInputProps> {
-  return (props) => {
+  return ({ defaultOption, ...props }) => {
     const prefix = usePrefix('selection-input');
     const options = createOptions(props.options || inputOptions, props.include, props.exclude);
-    const [current, setCurrent] = useState(props.defaultOption || options[0]?.value);
+    const [current, setCurrent] = useState(defaultOption || options[0]?.value);
     const option = options?.find(({ value }) => value === current);
     const optionsValue = useRef({});
 
@@ -90,9 +90,10 @@ export function createSelectionInput(
           className={prefix + '-controller'}
           style={{
             display: options.length === 1 ? 'none' : undefined,
-            width: !option?.component ? '100%' : controllerWidth || 60,
+            width: !option?.component ? '100%' : controllerWidth || 40,
           }}
           showArrow={false}
+          dropdownMatchSelectWidth={false}
           value={current}
           onChange={(selection) => {
             setCurrent(selection);

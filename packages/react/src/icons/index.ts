@@ -14,3 +14,4 @@ export * from './page';
 export * from './setting';
 export * from './position';
 export * from './return';
+export * from './help';
