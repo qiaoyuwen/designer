@@ -18,21 +18,6 @@ export const createComponentSchema = (component?: ISchema, decorator?: ISchema) 
         'x-component-props': component,
       },
     },
-    'decorator-group': decorator && {
-      type: 'void',
-      'x-component': 'CollapseItem',
-      'x-component-props': { defaultExpand: false },
-      'x-reactions': {
-        fulfill: {
-          state: {
-            visible: '{{!!$form.values["x-decorator"]}}',
-          },
-        },
-      },
-      properties: {
-        'x-decorator-props': decorator,
-      },
-    },
     'component-style-group': {
       type: 'void',
       'x-component': 'CollapseItem',
@@ -46,6 +31,21 @@ export const createComponentSchema = (component?: ISchema, decorator?: ISchema) 
       },
       properties: {
         'x-component-props.style': AllSchemas.CSSStyle,
+      },
+    },
+    'decorator-group': decorator && {
+      type: 'void',
+      'x-component': 'CollapseItem',
+      'x-component-props': { defaultExpand: false },
+      'x-reactions': {
+        fulfill: {
+          state: {
+            visible: '{{!!$form.values["x-decorator"]}}',
+          },
+        },
+      },
+      properties: {
+        'x-decorator-props': decorator,
       },
     },
     'decorator-style-group': {
@@ -120,7 +120,7 @@ export const createFieldSchema = (options: {
           },
         },
       },
-      // ...createComponentSchema(component, decorator),
+      ...createComponentSchema(component, decorator),
     } as any,
   };
 };
