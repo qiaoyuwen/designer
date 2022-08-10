@@ -21,6 +21,8 @@ export interface ISelectionInputProps {
   options: ISelectionInputOption[];
   defaultOption?: string;
   onChange?: (value: any) => void;
+  exclude?: string[];
+  include?: string[];
 }
 
 const isValid = (val: any) => val !== undefined && val !== null;
@@ -34,13 +36,25 @@ const getEventValue = (event: any) => {
   return event;
 };
 
+const createOptions = (options: ISelectionInputOption[], include: string[], exclude: string[]) => {
+  return options.filter(({ value }) => {
+    if (Array.isArray(include) && include.length) {
+      return include.includes(value);
+    }
+    if (Array.isArray(exclude) && exclude.length) {
+      return !exclude.includes(value);
+    }
+    return true;
+  });
+};
+
 export function createSelectionInput(
   inputOptions: ISelectionInputOption[] = [],
   controllerWidth?: number,
 ): React.FC<ISelectionInputProps> {
   return (props) => {
     const prefix = usePrefix('selection-input');
-    const options = props.options || inputOptions;
+    const options = createOptions(props.options || inputOptions, props.include, props.exclude);
     const [current, setCurrent] = useState(props.defaultOption || options[0]?.value);
     const option = options?.find(({ value }) => value === current);
     const optionsValue = useRef({});
@@ -75,6 +89,7 @@ export function createSelectionInput(
         <Select
           className={prefix + '-controller'}
           style={{
+            display: options.length === 1 ? 'none' : undefined,
             width: !option?.component ? '100%' : controllerWidth || 60,
           }}
           showArrow={false}
@@ -89,7 +104,11 @@ export function createSelectionInput(
             const token = `SettingComponents.SelectionInput.${option.label || option.value}`;
             const localeLabel = takeMessage(token);
             const label = localeLabel === token ? option.label || option.value : localeLabel;
-            return <Select.Option value={option.value}>{label}</Select.Option>;
+            return (
+              <Select.Option key={option.value} value={option.value}>
+                {label}
+              </Select.Option>
+            );
           })}
         </Select>
       </div>

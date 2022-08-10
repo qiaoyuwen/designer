@@ -66,7 +66,15 @@ export const createComponentSchema = (component?: ISchema, decorator?: ISchema) 
   };
 };
 
-export const createFieldSchema = (component?: ISchema, decorator: ISchema = AllSchemas.FormItem): ISchema => {
+type IValueInputType = 'text' | 'expression' | 'boolean' | 'number';
+
+export const createFieldSchema = (options: {
+  component?: ISchema;
+  decorator?: ISchema;
+  valueInputTypes?: IValueInputType[];
+}): ISchema => {
+  const { component, decorator = AllSchemas.FormItem, valueInputTypes } = options;
+
   return {
     type: 'object',
     properties: {
@@ -101,6 +109,9 @@ export const createFieldSchema = (component?: ISchema, decorator: ISchema = AllS
           default: {
             'x-decorator': 'FormItem',
             'x-component': 'ValueInput',
+            'x-component-props': {
+              include: valueInputTypes,
+            },
           },
           required: {
             type: 'boolean',

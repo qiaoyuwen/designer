@@ -16,7 +16,10 @@ Input.Behavior = createBehavior(
       return node.props?.['x-component'] === 'Input';
     },
     designerProps: {
-      propsSchema: createFieldSchema(AllSchemas.Input),
+      propsSchema: createFieldSchema({
+        component: AllSchemas.Input,
+        valueInputTypes: ['text'],
+      }),
     },
     designerLocales: AllLocales.Input,
   },
@@ -25,7 +28,10 @@ Input.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props?.['x-component'] === 'Input.TextArea',
     designerProps: {
-      propsSchema: createFieldSchema(AllSchemas.Input.TextArea),
+      propsSchema: createFieldSchema({
+        component: AllSchemas.Input.TextArea,
+        valueInputTypes: ['text'],
+      }),
     },
     designerLocales: AllLocales.TextArea,
   },
