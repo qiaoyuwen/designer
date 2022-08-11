@@ -17,7 +17,7 @@ import {
 } from '@designer/react';
 import { saveSchema } from '@/service';
 import { ActionsWidget, LogoWidget } from '@/widgets';
-import { Form, Field, Input, Password, NumberPicker, Select, TreeSelect } from '@/components';
+import { Form, Field, Input, Password, NumberPicker, Select, TreeSelect, Cascader } from '@/components';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 
 setNpmCDNRegistry('//unpkg.com');
@@ -55,7 +55,10 @@ const HomePage: FunctionComponent = () => {
       <StudioPanel logo={<LogoWidget />} actions={<ActionsWidget />}>
         <CompositePanel>
           <CompositePanel.Item title="panels.Component" icon="Component">
-            <ResourceWidget title="sources.Inputs" sources={[Input, Password, NumberPicker, Select, TreeSelect]} />
+            <ResourceWidget
+              title="sources.Inputs"
+              sources={[Input, Password, NumberPicker, Select, TreeSelect, Cascader]}
+            />
           </CompositePanel.Item>
         </CompositePanel>
         <Workspace id="form">
@@ -66,7 +69,7 @@ const HomePage: FunctionComponent = () => {
                 {() => {
                   return (
                     <ComponentTreeWidget
-                      components={{ Form, Field, Input, Password, NumberPicker, Select, TreeSelect }}
+                      components={{ Form, Field, Input, Password, NumberPicker, Select, TreeSelect, Cascader }}
                     />
                   );
                 }}
