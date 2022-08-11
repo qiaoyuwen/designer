@@ -4,3 +4,4 @@ export * from './Input';
 export * from './Password';
 export * from './NumberPicker';
 export * from './Select';
+export * from './TreeSelect';
