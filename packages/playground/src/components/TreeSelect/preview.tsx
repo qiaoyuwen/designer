@@ -15,7 +15,7 @@ TreeSelect.Behavior = createBehavior({
   designerProps: {
     propsSchema: createFieldSchema({
       component: AllSchemas.TreeSelect,
-      valueInputTypes: ['text'],
+      valueInputTypes: ['text', 'number'],
     }),
   },
   designerLocales: AllLocales.TreeSelect,

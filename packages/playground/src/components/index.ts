@@ -6,3 +6,4 @@ export * from './NumberPicker';
 export * from './Select';
 export * from './TreeSelect';
 export * from './Cascader';
+export * from './Checkbox';
