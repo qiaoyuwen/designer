@@ -74,6 +74,9 @@ export const Select: ISchema = {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
     },
     showSearch: {
       type: 'boolean',
@@ -126,14 +129,6 @@ export const Select: ISchema = {
       type: 'number',
       'x-decorator': 'FormItem',
       'x-component': 'NumberPicker',
-    },
-    notFoundContent: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-      'x-component-props': {
-        defaultValue: 'Not Found',
-      },
     },
     size: {
       type: 'string',

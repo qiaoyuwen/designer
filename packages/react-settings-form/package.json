@@ -23,7 +23,10 @@
     "@designer/react": "workspace:*",
     "@babel/parser": "~7.18.11",
     "react-dom": "~18.2.0",
-    "@formily/reactive": "~2.1.11"
+    "@formily/reactive": "~2.1.11",
+    "@formily/reactive-react": "~2.1.11",
+    "@ant-design/icons": "~4.7.0",
+    "@formily/shared": "~2.1.12"
   },
   "devDependencies": {
     "rimraf": "~3.0.2",

@@ -113,6 +113,10 @@ export const createFieldSchema = (options: {
               include: valueInputTypes,
             },
           },
+          enum: {
+            'x-decorator': 'FormItem',
+            'x-component': 'DataSourceSetter',
+          },
           'x-validator': {
             type: 'array',
             'x-component': 'ValidatorSetter',

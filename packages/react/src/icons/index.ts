@@ -15,3 +15,4 @@ export * from './setting';
 export * from './position';
 export * from './return';
 export * from './help';
+export * from './add';

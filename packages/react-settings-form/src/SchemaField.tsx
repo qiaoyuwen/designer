@@ -25,6 +25,7 @@ import {
   DrawerSetter,
   FoldItem,
   ValidatorSetter,
+  DataSourceSetter,
 } from './components';
 
 export const SchemaField: any = createSchemaField({
@@ -53,5 +54,6 @@ export const SchemaField: any = createSchemaField({
     DrawerSetter,
     FoldItem,
     ValidatorSetter,
+    DataSourceSetter,
   },
 });
