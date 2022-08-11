@@ -17,7 +17,18 @@ import {
 } from '@designer/react';
 import { saveSchema } from '@/service';
 import { ActionsWidget, LogoWidget } from '@/widgets';
-import { Form, Field, Input, Password, NumberPicker, Select, TreeSelect, Cascader, Checkbox } from '@/components';
+import {
+  Form,
+  Field,
+  Input,
+  Password,
+  NumberPicker,
+  Select,
+  TreeSelect,
+  Cascader,
+  Checkbox,
+  Radio,
+} from '@/components';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 
 setNpmCDNRegistry('//unpkg.com');
@@ -57,7 +68,7 @@ const HomePage: FunctionComponent = () => {
           <CompositePanel.Item title="panels.Component" icon="Component">
             <ResourceWidget
               title="sources.Inputs"
-              sources={[Input, Password, NumberPicker, Select, TreeSelect, Cascader, Checkbox]}
+              sources={[Input, Password, NumberPicker, Select, TreeSelect, Cascader, Checkbox, Radio]}
             />
           </CompositePanel.Item>
         </CompositePanel>
@@ -79,6 +90,7 @@ const HomePage: FunctionComponent = () => {
                         TreeSelect,
                         Cascader,
                         Checkbox,
+                        Radio,
                       }}
                     />
                   );
