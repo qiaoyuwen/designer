@@ -16,3 +16,7 @@ export * from './position';
 export * from './return';
 export * from './help';
 export * from './add';
+export * from './design';
+export * from './json';
+export * from './code';
+export * from './play';

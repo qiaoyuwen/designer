@@ -14,9 +14,10 @@ import {
   ViewPanel,
   ComponentTreeWidget,
   SettingsPanel,
+  ViewToolsWidget,
 } from '@designer/react';
 import { saveSchema } from '@/service';
-import { ActionsWidget, LogoWidget } from '@/widgets';
+import { ActionsWidget, LogoWidget, MarkupSchemaWidget, PreviewWidget, SchemaEditorWidget } from '@/widgets';
 import {
   Form,
   Field,
@@ -74,7 +75,10 @@ const HomePage: FunctionComponent = () => {
         </CompositePanel>
         <Workspace id="form">
           <WorkspacePanel>
-            <ToolbarPanel></ToolbarPanel>
+            <ToolbarPanel>
+              <div></div>
+              <ViewToolsWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']} />
+            </ToolbarPanel>
             <ViewportPanel style={{ height: '100%' }}>
               <ViewPanel type="DESIGNABLE">
                 {() => {
@@ -96,6 +100,13 @@ const HomePage: FunctionComponent = () => {
                   );
                 }}
               </ViewPanel>
+              <ViewPanel type="JSONTREE" scrollable={false}>
+                {(tree, onChange) => <SchemaEditorWidget tree={tree} onChange={onChange} />}
+              </ViewPanel>
+              <ViewPanel type="MARKUP" scrollable={false}>
+                {(tree) => <MarkupSchemaWidget tree={tree} />}
+              </ViewPanel>
+              <ViewPanel type="PREVIEW">{(tree) => <PreviewWidget tree={tree} />}</ViewPanel>
             </ViewportPanel>
           </WorkspacePanel>
         </Workspace>

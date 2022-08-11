@@ -60,6 +60,7 @@ importers:
       '@formily/react': ~2.1.11
       '@formily/reactive': ~2.1.11
       '@formily/reactive-react': ~2.1.11
+      '@formily/shared': ~2.1.12
       '@rushstack/eslint-patch': ~1.1.0
       '@types/node': ~18.0.0
       '@types/react': ~18.0.15
@@ -79,6 +80,7 @@ importers:
       '@formily/react': registry.npmmirror.com/@formily/react/2.1.11_a661de2e0dda3438d06b4b877c7d949b
       '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.1.11
       '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react/2.1.11_031bc34c10457774b45fd32962bae9b0
+      '@formily/shared': registry.npmmirror.com/@formily/shared/2.1.12
       antd: registry.npmmirror.com/antd/4.18.9
       umi: registry.npmmirror.com/umi/4.0.9_2f23fd4c7b0ee0fcd20cb14a0a248a42
     devDependencies:

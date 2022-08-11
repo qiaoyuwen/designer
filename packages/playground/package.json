@@ -22,7 +22,8 @@
     "@formily/core": "~2.1.11",
     "@formily/reactive": "~2.1.11",
     "@formily/antd": "~2.1.11",
-    "@formily/reactive-react": "~2.1.11"
+    "@formily/reactive-react": "~2.1.11",
+    "@formily/shared": "~2.1.12"
   },
   "devDependencies": {
     "@types/react": "~18.0.15",
