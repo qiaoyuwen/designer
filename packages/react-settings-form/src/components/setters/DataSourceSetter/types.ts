@@ -6,6 +6,7 @@ export interface IDataSourceItem {
 
 export interface INodeItem {
   key: string;
+  title?: string;
   duplicateKey?: string;
   map?: { label: string; value: any }[];
   children?: INodeItem[];

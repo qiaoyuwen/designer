@@ -76,6 +76,7 @@ export default {
         defaultTitle: '默认标题',
         dataSourceTree: '可选项节点树',
         addNode: '新增节点',
+        removeNode: '移除节点',
         label: '键名',
         value: '键值',
         item: '选项',

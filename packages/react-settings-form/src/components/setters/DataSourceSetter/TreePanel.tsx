@@ -73,6 +73,7 @@ export const TreePanel: React.FC<ITreePanelProps> = observer((props) => {
     }
     props.treeDataSource.dataSource = data;
   };
+
   return (
     <Fragment>
       <Header
@@ -114,11 +115,20 @@ export const TreePanel: React.FC<ITreePanelProps> = observer((props) => {
           defaultExpandParent
           autoExpandParent
           showLine={{ showLeafIcon: false }}
-          treeData={props.treeDataSource.dataSource}
+          treeData={props.treeDataSource.dataSource.map((item) => ({
+            ...item,
+            title: item.map[0]?.value,
+          }))}
           onDragEnter={() => {}}
           onDrop={dropHandler}
           titleRender={(titleProps: INodeItem) => {
-            return <Title {...titleProps} treeDataSource={props.treeDataSource}></Title>;
+            return (
+              <Title
+                {...titleProps}
+                treeDataSource={props.treeDataSource}
+                defaultOptionValue={props.defaultOptionValue}
+              ></Title>
+            );
           }}
           onSelect={(selectedKeys) => {
             if (selectedKeys[0]) {

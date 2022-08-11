@@ -1,12 +1,16 @@
-import React from 'react';
-import { clone, toArr } from '@formily/shared';
+import { clone, toArr, uid } from '@formily/shared';
 import { observer } from '@formily/reactive-react';
 import { IconWidget, TextWidget, usePrefix } from '@designer/react';
+import { GlobalRegistry, takeMessage } from '@designer/core';
 import { INodeItem, ITreeDataSource } from './types';
 import { traverseTree } from './shared';
 import './styles.less';
 export interface ITitleProps extends INodeItem {
   treeDataSource: ITreeDataSource;
+  defaultOptionValue: {
+    label: string;
+    value: any;
+  }[];
 }
 
 export const Title: React.FC<ITitleProps> = observer((props) => {
@@ -43,17 +47,53 @@ export const Title: React.FC<ITitleProps> = observer((props) => {
   return (
     <div className={prefix}>
       <span style={{ marginRight: '5px' }}>{renderTitle(props?.map || [])}</span>
-      <IconWidget
-        className={prefix + '-icon'}
-        infer="Remove"
-        onClick={() => {
-          const newDataSource = clone(props?.treeDataSource?.dataSource);
-          traverseTree(newDataSource || [], (dataItem, i, data) => {
-            if (data[i].key === props.duplicateKey) toArr(data).splice(i, 1);
-          });
-          props.treeDataSource.dataSource = newDataSource;
-        }}
-      />
+      <div>
+        <IconWidget
+          title={takeMessage('SettingComponents.DataSourceSetter.addNode')}
+          className={prefix + '-icon'}
+          style={{ marginRight: 5 }}
+          infer="Add"
+          onClick={() => {
+            const newDataSource = clone(props?.treeDataSource?.dataSource);
+            traverseTree(newDataSource || [], (dataItem) => {
+              if (dataItem.key === props.duplicateKey) {
+                const arr = toArr(dataItem.children);
+                const uuid = uid();
+                const initialKeyValuePairs = props.defaultOptionValue?.map((item) => ({ ...item })) || [
+                  {
+                    label: 'label',
+                    value: `${GlobalRegistry.getDesignerMessage(`SettingComponents.DataSourceSetter.item`)} ${
+                      arr.length + 1
+                    }`,
+                  },
+                  { label: 'value', value: uuid },
+                ];
+                arr.push({
+                  key: uuid,
+                  duplicateKey: uuid,
+                  map: initialKeyValuePairs,
+                  children: [],
+                });
+              }
+            });
+            props.treeDataSource.dataSource = newDataSource;
+          }}
+        />
+        <IconWidget
+          className={prefix + '-icon'}
+          title={takeMessage('SettingComponents.DataSourceSetter.removeNode')}
+          infer="Remove"
+          onClick={() => {
+            const newDataSource = clone(props?.treeDataSource?.dataSource);
+            traverseTree(newDataSource || [], (dataItem, i, data) => {
+              if (data[i].key === props.duplicateKey) {
+                toArr(data).splice(i, 1);
+              }
+            });
+            props.treeDataSource.dataSource = newDataSource;
+          }}
+        />
+      </div>
     </div>
   );
 });
