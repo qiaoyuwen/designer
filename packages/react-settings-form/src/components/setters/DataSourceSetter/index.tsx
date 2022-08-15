@@ -1,6 +1,6 @@
 import React, { Fragment, useMemo, useState } from 'react';
 import cls from 'classnames';
-import { Modal as AntdModal, Button } from 'antd';
+import { Modal, Button } from 'antd';
 import { Form } from '@formily/core';
 import { observable } from '@formily/reactive';
 import { observer } from '@formily/reactive-react';
@@ -10,8 +10,6 @@ import { TreePanel } from './TreePanel';
 import { transformDataToValue, transformValueToData } from './shared';
 import { IDataSourceItem, ITreeDataSource } from './types';
 import './styles.less';
-
-const Modal = AntdModal as any;
 
 export interface IDataSourceSetterProps {
   className?: string;

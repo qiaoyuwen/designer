@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "react": "~18.2.0",
-    "antd": "~4.18.6",
+    "antd": "~4.22.4",
     "@formily/reactive": "~2.1.11",
     "@formily/reactive-react": "~2.1.11",
     "@juggle/resize-observer": "~3.3.1",

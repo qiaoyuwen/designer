@@ -1,12 +1,10 @@
 import React from 'react';
-import { Button as AntdButton } from 'antd';
+import { Button } from 'antd';
 import { observer } from '@formily/reactive-react';
 import { WorkbenchTypes } from '@designer/core';
 import { IconWidget } from '../IconWidget';
 import { usePrefix, useWorkbench } from '../../hooks';
 import cls from 'classnames';
-
-const Button = AntdButton as any;
 
 export interface IViewToolsWidget {
   use?: WorkbenchTypes[];
