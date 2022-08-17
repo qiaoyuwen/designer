@@ -4,7 +4,7 @@ import { usePrefix } from '@designer/react';
 import './styles.less';
 
 export interface IHeaderProps {
-  extra: ReactNode | null;
+  extra?: ReactNode;
   title: ReactNode | string;
 }
 

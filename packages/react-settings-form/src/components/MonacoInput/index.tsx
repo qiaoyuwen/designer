@@ -39,7 +39,6 @@ export const MonacoInput: React.FC<IMonacoInputProps> & {
   const theme = useTheme();
   const valueRef = useRef('');
   const validateRef = useRef(null);
-  const submitRef = useRef(null);
   const declarationRef = useRef<string[]>([]);
   const extraLibRef = useRef<monaco.IDisposable>(null);
   const monacoRef = useRef<Monaco>();
@@ -115,10 +114,7 @@ export const MonacoInput: React.FC<IMonacoInputProps> & {
   };
 
   const submit = () => {
-    clearTimeout(submitRef.current);
-    submitRef.current = setTimeout(() => {
-      onChange?.(valueRef.current);
-    }, 1000);
+    onChange?.(valueRef.current);
   };
 
   const validate = () => {

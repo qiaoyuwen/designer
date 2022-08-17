@@ -75,6 +75,7 @@ export default {
         dataSource: '可选项',
         defaultTitle: '默认标题',
         dataSourceTree: '可选项节点树',
+        jsonPanel: 'JSON映射',
         addNode: '新增节点',
         removeNode: '移除节点',
         label: '键名',

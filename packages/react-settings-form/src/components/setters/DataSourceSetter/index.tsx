@@ -1,6 +1,6 @@
 import React, { Fragment, useMemo, useState } from 'react';
 import cls from 'classnames';
-import { Modal, Button } from 'antd';
+import { Modal, Button, Tabs } from 'antd';
 import { Form } from '@formily/core';
 import { observable } from '@formily/reactive';
 import { observer } from '@formily/reactive-react';
@@ -10,6 +10,7 @@ import { TreePanel } from './TreePanel';
 import { transformDataToValue, transformValueToData } from './shared';
 import { IDataSourceItem, ITreeDataSource } from './types';
 import './styles.less';
+import { JSONPanel } from './JSONPanel';
 
 export interface IDataSourceSetterProps {
   className?: string;
@@ -38,6 +39,7 @@ export const DataSourceSetter: React.FC<IDataSourceSetterProps> = observer((prop
   const theme = useTheme();
   const prefix = usePrefix('data-source-setter');
   const [modalVisible, setModalVisible] = useState(false);
+  const [tab, setTab] = useState('tree');
   const treeDataSource: ITreeDataSource = useMemo(
     () =>
       observable({
@@ -48,6 +50,7 @@ export const DataSourceSetter: React.FC<IDataSourceSetterProps> = observer((prop
   );
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
+
   return (
     <Fragment>
       <Button block onClick={openModal}>
@@ -66,14 +69,37 @@ export const DataSourceSetter: React.FC<IDataSourceSetterProps> = observer((prop
           closeModal();
         }}
       >
-        <div className={`${cls(prefix, className)} ${prefix + '-' + theme} ${prefix + '-layout'}`}>
-          <div className={`${prefix + '-layout-item left'}`}>
-            <TreePanel defaultOptionValue={defaultOptionValue} allowTree={allowTree} treeDataSource={treeDataSource} />
-          </div>
-          <div className={`${prefix + '-layout-item right'}`}>
-            <DataSettingPanel allowExtendOption={allowExtendOption} treeDataSource={treeDataSource} effects={effects} />
-          </div>
-        </div>
+        <Tabs activeKey={tab} onChange={setTab}>
+          <Tabs.TabPane tab="节点配置" key="tree">
+            {tab === 'tree' && (
+              <div className={`${cls(prefix, className)} ${prefix + '-' + theme} ${prefix + '-layout'}`}>
+                <div className={`${prefix + '-layout-item left'}`}>
+                  <TreePanel
+                    defaultOptionValue={defaultOptionValue}
+                    allowTree={allowTree}
+                    treeDataSource={treeDataSource}
+                  />
+                </div>
+                <div className={`${prefix + '-layout-item right'}`}>
+                  <DataSettingPanel
+                    allowExtendOption={allowExtendOption}
+                    treeDataSource={treeDataSource}
+                    effects={effects}
+                  />
+                </div>
+              </div>
+            )}
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="JSON配置" key="json">
+            {tab === 'json' && (
+              <div className={`${cls(prefix, className)} ${prefix + '-' + theme} ${prefix + '-layout'}`}>
+                <div className={`${prefix + '-layout-item single'}`}>
+                  <JSONPanel treeDataSource={treeDataSource} />
+                </div>
+              </div>
+            )}
+          </Tabs.TabPane>
+        </Tabs>
       </Modal>
     </Fragment>
   );

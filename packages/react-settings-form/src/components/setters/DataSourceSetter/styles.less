@@ -33,6 +33,7 @@
 
   &-layout {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     border: 1px solid @border-color-split;
     border-radius: 3px;
@@ -58,6 +59,10 @@
 
       &.right {
         width: 60%;
+      }
+
+      &.single {
+        width: 100%;
       }
 
       &-header {
