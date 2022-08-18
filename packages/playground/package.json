@@ -10,11 +10,13 @@
     "start": "npm run dev"
   },
   "dependencies": {
+    "classnames": "~2.3.1",
     "umi": "~4.0.7",
     "@designer/utils": "workspace:*",
     "@designer/core": "workspace:*",
     "@designer/react": "workspace:*",
     "@designer/react-settings-form": "workspace:*",
+    "@designer/formily-antd": "workspace:*",
     "antd": "~4.22.4",
     "@ant-design/icons": "~4.7.0",
     "@formily/json-schema": "~2.1.11",

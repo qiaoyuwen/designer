@@ -418,6 +418,10 @@
     {
       "packageName": "@designer/react-settings-form",
       "projectFolder": "packages/react-settings-form"
+    },
+    {
+      "packageName": "@designer/formily-antd",
+      "projectFolder": "packages/formily-antd"
     }
     // {
     //   /**

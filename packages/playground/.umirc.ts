@@ -7,6 +7,7 @@ export default {
     '@designer/core': path.join(__dirname, '../core/src'),
     '@designer/react': path.join(__dirname, '../react/src'),
     '@designer/react-settings-form': path.join(__dirname, '../react-settings-form/src'),
+    '@designer/formily-antd': path.join(__dirname, '../formily-antd/src'),
   },
   mfsu: false,
 };

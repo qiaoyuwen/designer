@@ -162,5 +162,5 @@ export const createVoidFieldSchema = (component?: ISchema, decorator: ISchema = 
       },
       ...createComponentSchema(component, decorator),
     },
-  };
+  } as any;
 };

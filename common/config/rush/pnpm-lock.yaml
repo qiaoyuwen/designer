@@ -46,11 +46,37 @@ importers:
       rimraf: registry.npmmirror.com/rimraf/3.0.2
       typescript: registry.npmmirror.com/typescript/4.7.4
 
+  ../../packages/formily-antd:
+    specifiers:
+      '@designer/eslint': workspace:*
+      '@designer/scripts': workspace:*
+      '@rushstack/eslint-patch': ~1.1.0
+      '@types/react': ~18.0.15
+      antd: ~4.22.4
+      classnames: ~2.3.1
+      react: ~18.2.0
+      rimraf: ~3.0.2
+      ts-node: ~10.5.0
+      typescript: ~4.7.4
+    dependencies:
+      antd: registry.npmmirror.com/antd/4.22.4_react@18.2.0
+      classnames: registry.npmmirror.com/classnames/2.3.1
+      react: registry.npmmirror.com/react/18.2.0
+    devDependencies:
+      '@designer/eslint': link:../eslint
+      '@designer/scripts': link:../scripts
+      '@rushstack/eslint-patch': registry.npmmirror.com/@rushstack/eslint-patch/1.1.4
+      '@types/react': registry.npmmirror.com/@types/react/18.0.15
+      rimraf: registry.npmmirror.com/rimraf/3.0.2
+      ts-node: registry.npmmirror.com/ts-node/10.5.0_typescript@4.7.4
+      typescript: registry.npmmirror.com/typescript/4.7.4
+
   ../../packages/playground:
     specifiers:
       '@ant-design/icons': ~4.7.0
       '@designer/core': workspace:*
       '@designer/eslint': workspace:*
+      '@designer/formily-antd': workspace:*
       '@designer/react': workspace:*
       '@designer/react-settings-form': workspace:*
       '@designer/utils': workspace:*
@@ -66,11 +92,13 @@ importers:
       '@types/react': ~18.0.15
       '@types/react-dom': ~18.0.6
       antd: ~4.22.4
+      classnames: ~2.3.1
       typescript: ~4.7.4
       umi: ~4.0.7
     dependencies:
       '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/4.7.0
       '@designer/core': link:../core
+      '@designer/formily-antd': link:../formily-antd
       '@designer/react': link:../react
       '@designer/react-settings-form': link:../react-settings-form
       '@designer/utils': link:../utils
@@ -82,6 +110,7 @@ importers:
       '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react/2.1.11_031bc34c10457774b45fd32962bae9b0
       '@formily/shared': registry.npmmirror.com/@formily/shared/2.1.12
       antd: registry.npmmirror.com/antd/4.22.4
+      classnames: registry.npmmirror.com/classnames/2.3.1
       umi: registry.npmmirror.com/umi/4.0.9_2f23fd4c7b0ee0fcd20cb14a0a248a42
     devDependencies:
       '@designer/eslint': link:../eslint

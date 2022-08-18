@@ -30,6 +30,7 @@ import {
   Checkbox,
   Radio,
 } from '@/components';
+import { BaseLayout, Card } from '@/layouts';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 
 setNpmCDNRegistry('//unpkg.com');
@@ -37,7 +38,8 @@ setNpmCDNRegistry('//unpkg.com');
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
     sources: {
-      Inputs: '输入控件',
+      Inputs: '表单组件',
+      Layouts: '布局组件',
     },
   },
 });
@@ -71,6 +73,7 @@ const HomePage: FunctionComponent = () => {
               title="sources.Inputs"
               sources={[Input, Password, NumberPicker, Select, TreeSelect, Cascader, Checkbox, Radio]}
             />
+            <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card]} />
           </CompositePanel.Item>
         </CompositePanel>
         <Workspace id="form">
@@ -95,6 +98,8 @@ const HomePage: FunctionComponent = () => {
                         Cascader,
                         Checkbox,
                         Radio,
+                        BaseLayout,
+                        Card,
                       }}
                     />
                   );
