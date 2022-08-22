@@ -13,3 +13,4 @@ export * from './BaseLayout';
 export * from './Card';
 export * from './Switch';
 export * from './Slider';
+export * from './Rate';
