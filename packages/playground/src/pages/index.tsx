@@ -30,6 +30,7 @@ import {
   Checkbox,
   Radio,
   Switch,
+  Slider,
 } from '@/components';
 import { BaseLayout, Card } from '@/layouts';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
@@ -72,7 +73,7 @@ const HomePage: FunctionComponent = () => {
           <CompositePanel.Item title="panels.Component" icon="Component">
             <ResourceWidget
               title="sources.Inputs"
-              sources={[Input, Password, NumberPicker, Select, TreeSelect, Cascader, Checkbox, Radio, Switch]}
+              sources={[Input, Password, NumberPicker, Select, TreeSelect, Cascader, Checkbox, Radio, Switch, Slider]}
             />
             <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card]} />
           </CompositePanel.Item>
@@ -102,6 +103,7 @@ const HomePage: FunctionComponent = () => {
                         BaseLayout,
                         Card,
                         Switch,
+                        Slider,
                       }}
                     />
                   );
