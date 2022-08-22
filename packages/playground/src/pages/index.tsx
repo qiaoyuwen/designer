@@ -32,6 +32,7 @@ import {
   Switch,
   Slider,
   Rate,
+  Upload,
 } from '@/components';
 import { BaseLayout, Card } from '@/layouts';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
@@ -86,6 +87,7 @@ const HomePage: FunctionComponent = () => {
                 Switch,
                 Slider,
                 Rate,
+                Upload,
               ]}
             />
             <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card]} />
@@ -118,6 +120,7 @@ const HomePage: FunctionComponent = () => {
                         Switch,
                         Slider,
                         Rate,
+                        Upload,
                       }}
                     />
                   );
