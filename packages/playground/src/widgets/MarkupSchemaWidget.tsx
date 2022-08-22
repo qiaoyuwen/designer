@@ -63,9 +63,9 @@ const transformToMarkupSchemaCode = (tree: TreeNode) => {
   const root = tree.find((child) => {
     return child.componentName === 'Form' || child.componentName === 'Root';
   });
-  return `import React, { useMemo } from 'react'
-import { createForm } from '@formily/core'
-import { createSchemaField } from '@formily/react'
+  return `import React, { useMemo } from 'react';
+import { createForm } from '@formily/core';
+import { createSchemaField } from '@formily/react';
 import {
   Form,
   FormItem,
@@ -93,8 +93,9 @@ import {
   FormCollapse,
   ArrayTable,
   ArrayCards,
-} from '@formily/antd'
-import { Card, Slider, Rate } from 'antd'
+} from '@formily/antd';
+import { Card, Slider, Rate } from 'antd';
+import { BaseLayout } from '@designer/formily-antd';
 
 const Text: React.FC<{
   value?: string
@@ -136,6 +137,8 @@ const SchemaField = createSchemaField({
     Card,
     Slider,
     Rate,
+    // 自定义组件
+    BaseLayout,
   },
 })
 

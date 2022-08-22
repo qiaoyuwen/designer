@@ -8,3 +8,4 @@ export * from './TreeSelect';
 export * from './Cascader';
 export * from './Checkbox';
 export * from './Radio';
+export * from './Switch';

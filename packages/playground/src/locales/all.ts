@@ -12,3 +12,4 @@ export * from './Checkbox';
 export * from './Radio';
 export * from './BaseLayout';
 export * from './Card';
+export * from './Switch';

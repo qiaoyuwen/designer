@@ -30,6 +30,7 @@ import {
   ArrayCards,
 } from '@formily/antd';
 import { Card, Slider, Rate } from 'antd';
+import { BaseLayout } from '@designer/formily-antd';
 import { TreeNode } from '@designer/core';
 import { transformToSchema } from '@/transformer';
 
@@ -73,6 +74,8 @@ const SchemaField = createSchemaField({
     Card,
     Slider,
     Rate,
+    // 自定义组件
+    BaseLayout,
   },
 });
 
