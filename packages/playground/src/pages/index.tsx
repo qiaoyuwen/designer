@@ -33,6 +33,7 @@ import {
   Slider,
   Rate,
   Upload,
+  DatePicker,
 } from '@/components';
 import { BaseLayout, Card } from '@/layouts';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
@@ -87,6 +88,7 @@ const HomePage: FunctionComponent = () => {
                 Switch,
                 Slider,
                 Rate,
+                DatePicker,
                 Upload,
               ]}
             />
@@ -120,6 +122,7 @@ const HomePage: FunctionComponent = () => {
                         Switch,
                         Slider,
                         Rate,
+                        DatePicker,
                         Upload,
                       }}
                     />
