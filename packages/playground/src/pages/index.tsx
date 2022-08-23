@@ -45,6 +45,7 @@ GlobalRegistry.registerDesignerLocales({
     sources: {
       Inputs: '表单组件',
       Layouts: '布局组件',
+      DataDisplays: '数据展示组件',
     },
   },
 });
@@ -93,6 +94,7 @@ const HomePage: FunctionComponent = () => {
               ]}
             />
             <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card]} />
+            <ResourceWidget title="sources.DataDisplays" sources={[]} />
           </CompositePanel.Item>
         </CompositePanel>
         <Workspace id="form">

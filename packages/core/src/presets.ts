@@ -1,39 +1,3 @@
-// TODO
-/* import {
-  DragDropDriver,
-  MouseClickDriver,
-  MouseMoveDriver,
-  ViewportResizeDriver,
-  ViewportScrollDriver,
-  KeyboardDriver,
-} from './drivers'
-import {
-  useCursorEffect,
-  useViewportEffect,
-  useDragDropEffect,
-  useSelectionEffect,
-  useKeyboardEffect,
-  useAutoScrollEffect,
-  useWorkspaceEffect,
-  useFreeSelectionEffect,
-  useContentEditableEffect,
-  useTransformEffect,
-} from './effects'
-import {
-  SelectNodes,
-  SelectAllNodes,
-  SelectSameTypeNodes,
-  DeleteNodes,
-  CopyNodes,
-  PasteNodes,
-  UndoMutation,
-  RedoMutation,
-  CursorSwitchSelection,
-  PreventCommandX,
-  SelectPrevNode,
-  SelectNextNode,
-} from './shortcuts' */
-
 import { MouseMoveDriver, DragDropDriver, MouseClickDriver, KeyboardDriver } from './drivers';
 import {
   useCursorEffect,
@@ -41,6 +5,8 @@ import {
   useKeyboardEffect,
   useSelectionEffect,
   useTransformEffect,
+  useWorkspaceEffect,
+  useContentEditableEffect,
 } from './effects';
 
 export const DEFAULT_EFFECTS = [
@@ -52,8 +18,8 @@ export const DEFAULT_EFFECTS = [
   // useFreeSelectionEffect,
   // useViewportEffect,
   // useAutoScrollEffect,
-  // useWorkspaceEffect,
-  // useContentEditableEffect,
+  useWorkspaceEffect,
+  useContentEditableEffect,
 ];
 
 export const DEFAULT_DRIVERS = [
