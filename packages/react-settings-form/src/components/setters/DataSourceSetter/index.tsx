@@ -29,7 +29,7 @@ export interface IDataSourceSetterProps {
 export const DataSourceSetter: React.FC<IDataSourceSetterProps> = observer((props) => {
   const {
     className,
-    value = [],
+    value,
     onChange,
     allowTree = true,
     allowExtendOption = true,
@@ -40,14 +40,12 @@ export const DataSourceSetter: React.FC<IDataSourceSetterProps> = observer((prop
   const prefix = usePrefix('data-source-setter');
   const [modalVisible, setModalVisible] = useState(false);
   const [tab, setTab] = useState('tree');
-  const treeDataSource: ITreeDataSource = useMemo(
-    () =>
-      observable({
-        dataSource: transformValueToData(value),
-        selectedKey: '',
-      }),
-    [value, modalVisible],
-  );
+  const treeDataSource: ITreeDataSource = useMemo(() => {
+    return observable({
+      dataSource: transformValueToData(value || []),
+      selectedKey: '',
+    });
+  }, [value, modalVisible]);
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
 
