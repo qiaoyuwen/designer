@@ -35,8 +35,10 @@ import {
   Upload,
   DatePicker,
 } from '@/components';
-import { BaseLayout, Card } from '@/layouts';
+import { BaseLayout, Card, Table } from '@/layouts';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 
 setNpmCDNRegistry('//unpkg.com');
 
@@ -94,7 +96,7 @@ const HomePage: FunctionComponent = () => {
               ]}
             />
             <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card]} />
-            <ResourceWidget title="sources.DataDisplays" sources={[]} />
+            <ResourceWidget title="sources.DataDisplays" sources={[Table]} />
           </CompositePanel.Item>
         </CompositePanel>
         <Workspace id="form">
@@ -107,27 +109,30 @@ const HomePage: FunctionComponent = () => {
               <ViewPanel type="DESIGNABLE">
                 {() => {
                   return (
-                    <ComponentTreeWidget
-                      components={{
-                        Form,
-                        Field,
-                        Input,
-                        Password,
-                        NumberPicker,
-                        Select,
-                        TreeSelect,
-                        Cascader,
-                        Checkbox,
-                        Radio,
-                        BaseLayout,
-                        Card,
-                        Switch,
-                        Slider,
-                        Rate,
-                        DatePicker,
-                        Upload,
-                      }}
-                    />
+                    <ConfigProvider locale={zhCN}>
+                      <ComponentTreeWidget
+                        components={{
+                          Form,
+                          Field,
+                          Input,
+                          Password,
+                          NumberPicker,
+                          Select,
+                          TreeSelect,
+                          Cascader,
+                          Checkbox,
+                          Radio,
+                          BaseLayout,
+                          Card,
+                          Switch,
+                          Slider,
+                          Rate,
+                          DatePicker,
+                          Upload,
+                          Table,
+                        }}
+                      />
+                    </ConfigProvider>
                   );
                 }}
               </ViewPanel>

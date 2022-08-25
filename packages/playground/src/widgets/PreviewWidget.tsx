@@ -29,7 +29,8 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate } from 'antd';
+import { Card, Slider, Rate, Table, ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 import { BaseLayout } from '@designer/formily-antd';
 import { TreeNode } from '@designer/core';
 import { transformToSchema } from '@/transformer';
@@ -74,6 +75,7 @@ const SchemaField = createSchemaField({
     Card,
     Slider,
     Rate,
+    Table,
     // 自定义组件
     BaseLayout,
   },
@@ -87,8 +89,10 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   const form = useMemo(() => createForm(), []);
   const { form: formProps, schema } = transformToSchema(props.tree);
   return (
-    <Form {...formProps} form={form}>
-      <SchemaField schema={schema} />
-    </Form>
+    <ConfigProvider locale={zhCN}>
+      <Form {...formProps} form={form}>
+        <SchemaField schema={schema} />
+      </Form>
+    </ConfigProvider>
   );
 };

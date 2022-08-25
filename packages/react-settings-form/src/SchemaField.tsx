@@ -26,6 +26,7 @@ import {
   FoldItem,
   ValidatorSetter,
   DataSourceSetter,
+  BoxStyleSetter,
 } from './components';
 
 export const SchemaField: any = createSchemaField({
@@ -55,5 +56,6 @@ export const SchemaField: any = createSchemaField({
     FoldItem,
     ValidatorSetter,
     DataSourceSetter,
+    BoxStyleSetter,
   },
 });
