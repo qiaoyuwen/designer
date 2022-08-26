@@ -18,15 +18,13 @@ const limitTreeDrag = ({ dropPosition }) => {
 };
 
 export interface ITreePanelProps {
+  labelKey: string;
   treeDataSource: ITreeDataSource;
   allowTree: boolean;
-  defaultOptionValue: {
-    label: string;
-    value: any;
-  }[];
+  localeTokenPrefix: string;
 }
 
-export const TreePanel: React.FC<ITreePanelProps> = observer((props) => {
+export const TreePanel: React.FC<ITreePanelProps> = observer(({ labelKey, localeTokenPrefix, ...props }) => {
   const prefix = usePrefix('data-source-setter');
   const dropHandler = (info: Parameters<TreeProps['onDrop']>[0]) => {
     const dropKey = info.node?.key;
@@ -77,32 +75,27 @@ export const TreePanel: React.FC<ITreePanelProps> = observer((props) => {
   return (
     <Fragment>
       <Header
-        title={<TextWidget token="SettingComponents.DataSourceSetter.dataSourceTree" />}
+        title={<TextWidget token={`${localeTokenPrefix}.dataSourceTree`} />}
         extra={
           <Button
             type="text"
             onClick={() => {
               const uuid = uid();
               const dataSource = props.treeDataSource.dataSource;
-              const initialKeyValuePairs = props.defaultOptionValue?.map((item) => ({ ...item })) || [
-                {
-                  label: 'label',
-                  value: `${GlobalRegistry.getDesignerMessage(`SettingComponents.DataSourceSetter.item`)} ${
-                    dataSource.length + 1
-                  }`,
-                },
-                { label: 'value', value: uuid },
-              ];
+              const initialItem = {
+                [labelKey]: `${GlobalRegistry.getDesignerMessage(`${localeTokenPrefix}.item`)} ${
+                  dataSource.length + 1
+                }`,
+              };
               props.treeDataSource.dataSource = dataSource.concat({
+                ...initialItem,
                 key: uuid,
-                duplicateKey: uuid,
-                map: initialKeyValuePairs,
                 children: [],
               });
             }}
             icon={<IconWidget infer="Add" />}
           >
-            <TextWidget token="SettingComponents.DataSourceSetter.addNode" />
+            <TextWidget token={`${localeTokenPrefix}.addNode`} />
           </Button>
         }
       />
@@ -116,8 +109,9 @@ export const TreePanel: React.FC<ITreePanelProps> = observer((props) => {
           autoExpandParent
           showLine={{ showLeafIcon: false }}
           treeData={props.treeDataSource.dataSource.map((item) => ({
-            ...item,
-            title: item.map[0]?.value,
+            key: item.key,
+            [labelKey]: item[labelKey],
+            title: item[labelKey],
           }))}
           onDragEnter={() => {}}
           onDrop={dropHandler}
@@ -125,8 +119,10 @@ export const TreePanel: React.FC<ITreePanelProps> = observer((props) => {
             return (
               <Title
                 {...titleProps}
+                duplicateKey={titleProps.key}
+                labelKey={labelKey}
+                localeTokenPrefix={localeTokenPrefix}
                 treeDataSource={props.treeDataSource}
-                defaultOptionValue={props.defaultOptionValue}
               ></Title>
             );
           }}

@@ -8,15 +8,17 @@ import './styles.less';
 
 export interface IJSONPanelProps {
   treeDataSource: ITreeDataSource;
+  localeTokenPrefix: string;
 }
 
 export const JSONPanel: React.FC<IJSONPanelProps> = observer((props) => {
-  const prefix = usePrefix('data-source-setter');
+  const { treeDataSource, localeTokenPrefix } = props;
+  const prefix = usePrefix('tree-data-setter');
 
   const getJsonValue = () => {
     let result = '';
     try {
-      result = JSON.stringify(props.treeDataSource.dataSource);
+      result = JSON.stringify(treeDataSource.dataSource);
     } catch {}
     return result;
   };
@@ -25,7 +27,7 @@ export const JSONPanel: React.FC<IJSONPanelProps> = observer((props) => {
 
   return (
     <Fragment>
-      <Header title={<TextWidget token="SettingComponents.DataSourceSetter.jsonPanel" />} />
+      <Header title={<TextWidget token={`${localeTokenPrefix}.jsonPanel`} />} />
       <div className={`${prefix + '-layout-item-content'}`}>
         <MonacoInput
           value={value}
@@ -33,7 +35,7 @@ export const JSONPanel: React.FC<IJSONPanelProps> = observer((props) => {
           onChange={(value) => {
             try {
               setValue(value);
-              props.treeDataSource.dataSource = JSON.parse(value);
+              treeDataSource.dataSource = JSON.parse(value);
             } catch {}
           }}
         />

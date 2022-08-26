@@ -1,14 +1,10 @@
 export interface IDataSourceItem {
-  label?: '';
-  value?: any;
   children?: any[];
+  [key: string]: any;
 }
 
-export interface INodeItem {
+export interface INodeItem extends IDataSourceItem {
   key: string;
-  title?: string;
-  duplicateKey?: string;
-  map?: { label: string; value: any }[];
   children?: INodeItem[];
 }
 

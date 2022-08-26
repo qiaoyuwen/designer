@@ -22,5 +22,8 @@ export const CSSStyle: ISchema = {
     'style.margin': {
       'x-component': 'BoxStyleSetter',
     },
+    'style.padding': {
+      'x-component': 'BoxStyleSetter',
+    },
   },
 };
