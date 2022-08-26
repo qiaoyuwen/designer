@@ -39,6 +39,7 @@ export const Title: React.FC<ITitleProps> = observer(({ labelKey, localeTokenPre
                 const uuid = uid();
                 const initialItem = {
                   [labelKey]: `${GlobalRegistry.getDesignerMessage(`${localeTokenPrefix}.item`)} ${arr.length + 1}`,
+                  value: uuid,
                 };
                 arr.push({
                   ...initialItem,
@@ -57,7 +58,6 @@ export const Title: React.FC<ITitleProps> = observer(({ labelKey, localeTokenPre
           onClick={() => {
             const newDataSource = clone(props?.treeDataSource?.dataSource);
             traverseTree(newDataSource || [], (dataItem, i, data) => {
-              console.log('data[i].key === props.duplicateKey', data[i].key, props.duplicateKey);
               if (data[i].key === props.duplicateKey) {
                 toArr(data).splice(i, 1);
               }

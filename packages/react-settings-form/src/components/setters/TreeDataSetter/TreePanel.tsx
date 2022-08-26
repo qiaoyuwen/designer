@@ -86,6 +86,7 @@ export const TreePanel: React.FC<ITreePanelProps> = observer(({ labelKey, locale
                 [labelKey]: `${GlobalRegistry.getDesignerMessage(`${localeTokenPrefix}.item`)} ${
                   dataSource.length + 1
                 }`,
+                value: uuid,
               };
               props.treeDataSource.dataSource = dataSource.concat({
                 ...initialItem,
@@ -112,6 +113,7 @@ export const TreePanel: React.FC<ITreePanelProps> = observer(({ labelKey, locale
             key: item.key,
             [labelKey]: item[labelKey],
             title: item[labelKey],
+            children: item.children,
           }))}
           onDragEnter={() => {}}
           onDrop={dropHandler}
