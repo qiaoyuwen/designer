@@ -18,13 +18,13 @@ const SchemaField = createSchemaField({
   },
 });
 
-export interface IOptionDataSettingFormProps {
+export interface ITableColumnSettingFormProps {
   treeDataSource: ITreeDataSource;
   effects?: (form: FormCore<any>) => void;
   localeTokenPrefix: string;
 }
 
-export const OptionDataSettingForm: React.FC<IOptionDataSettingFormProps> = observer((props) => {
+export const TableColumnSettingForm: React.FC<ITableColumnSettingFormProps> = observer((props) => {
   const { effects, localeTokenPrefix } = props;
 
   const form = useMemo(() => {
@@ -45,22 +45,16 @@ export const OptionDataSettingForm: React.FC<IOptionDataSettingFormProps> = obse
     <Form form={form} labelWidth={100} wrapperWidth={200}>
       <SchemaField>
         <SchemaField.String
-          title={<TextWidget token={`${localeTokenPrefix}.label`} />}
+          title={<TextWidget token={`${localeTokenPrefix}.title`} />}
           x-decorator="FormItem"
-          name="label"
+          name="title"
           x-component="Input"
         />
         <SchemaField.String
-          title={<TextWidget token={`${localeTokenPrefix}.value`} />}
+          title={<TextWidget token={`${localeTokenPrefix}.dataIndex`} />}
           x-decorator="FormItem"
-          name="value"
+          name="dataIndex"
           x-component="ValueInput"
-        />
-        <SchemaField.Boolean
-          name="disabled"
-          title={<TextWidget token={`${localeTokenPrefix}.disabled`} />}
-          x-decorator="FormItem"
-          x-component="Switch"
         />
       </SchemaField>
     </Form>

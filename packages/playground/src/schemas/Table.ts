@@ -5,7 +5,7 @@ export const Table: ISchema & { Addition?: ISchema } = {
   properties: {
     columns: {
       'x-decorator': 'FormItem',
-      'x-component': 'DataSourceSetter',
+      'x-component': 'TableColumnsSetter',
     },
   },
 };

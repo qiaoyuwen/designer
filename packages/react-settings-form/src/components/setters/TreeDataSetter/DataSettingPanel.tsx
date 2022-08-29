@@ -7,15 +7,17 @@ import { Header } from './Header';
 import { ITreeDataSource } from './types';
 import './styles.less';
 import { OptionDataSettingForm } from './forms';
+import { TableColumnSettingForm } from './forms/TableColumnSettingForm';
 
 export interface IDataSettingPanelProps {
   treeDataSource: ITreeDataSource;
   effects?: (form: FormCore<any>) => void;
   localeTokenPrefix: string;
+  type: 'Option' | 'TableColumn';
 }
 
 export const DataSettingPanel: React.FC<IDataSettingPanelProps> = observer((props) => {
-  const { localeTokenPrefix } = props;
+  const { localeTokenPrefix, type } = props;
   const prefix = usePrefix('tree-data-setter');
   if (!props.treeDataSource.selectedKey)
     return (
@@ -30,7 +32,8 @@ export const DataSettingPanel: React.FC<IDataSettingPanelProps> = observer((prop
     <Fragment>
       <Header title={<TextWidget token={`${localeTokenPrefix}.nodeProperty`} />} />
       <div className={`${prefix + '-layout-item-content'}`}>
-        <OptionDataSettingForm {...props} />
+        {type === 'Option' && <OptionDataSettingForm {...props} />}
+        {type === 'TableColumn' && <TableColumnSettingForm {...props} />}
       </div>
     </Fragment>
   );

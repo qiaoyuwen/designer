@@ -11,8 +11,10 @@ import './styles.less';
 import { TreePanel } from './TreePanel';
 import { DataSettingPanel } from './DataSettingPanel';
 import { JSONPanel } from './JSONPanel';
+import { takeMessage } from '@designer/core';
 
 type TabKey = 'tree' | 'json';
+type TreeDataType = 'Option' | 'TableColumn';
 
 export interface ITreeDataSetterProps {
   className?: string;
@@ -22,15 +24,25 @@ export interface ITreeDataSetterProps {
   allowTree?: boolean;
   effects?: (form: Form<any>) => void;
   labelKey?: string;
+  type?: TreeDataType;
 }
 
 export function createTreeDataSetter({
   localeTokenPrefix,
+  type = 'Option',
 }: {
   localeTokenPrefix: string;
+  type?: TreeDataType;
 }): React.FC<ITreeDataSetterProps> {
   return observer((props) => {
-    const { className, value, onChange, allowTree = true, effects = () => {}, labelKey = 'label' } = props;
+    const {
+      className,
+      value,
+      onChange,
+      allowTree = true,
+      effects = () => {},
+      labelKey = type === 'TableColumn' ? 'title' : 'label',
+    } = props;
 
     const theme = useTheme();
     const prefix = usePrefix('tree-data-setter');
@@ -67,7 +79,7 @@ export function createTreeDataSetter({
           }}
         >
           <Tabs activeKey={tab} onChange={(activeKey: TabKey) => setTab(activeKey)}>
-            <Tabs.TabPane tab="节点配置" key="tree">
+            <Tabs.TabPane tab={takeMessage(`${localeTokenPrefix}.dataSourceTab`)} key="tree">
               {tab === 'tree' && (
                 <div className={`${cls(prefix, className)} ${prefix + '-' + theme} ${prefix + '-layout'}`}>
                   <div className={`${prefix + '-layout-item left'}`}>
@@ -83,12 +95,13 @@ export function createTreeDataSetter({
                       treeDataSource={treeDataSource}
                       effects={effects}
                       localeTokenPrefix={localeTokenPrefix}
+                      type={type}
                     />
                   </div>
                 </div>
               )}
             </Tabs.TabPane>
-            <Tabs.TabPane tab="JSON配置" key="json">
+            <Tabs.TabPane tab={takeMessage(`${localeTokenPrefix}.jsonTab`)} key="json">
               {tab === 'json' && (
                 <div className={`${cls(prefix, className)} ${prefix + '-' + theme} ${prefix + '-layout'}`}>
                   <div className={`${prefix + '-layout-item single'}`}>
