@@ -1,11 +1,30 @@
 import { Table as AntdTable } from 'antd';
 import { createBehavior, createResource } from '@designer/core';
-import { DnFC } from '@designer/react';
+import { DnFC, useDesigner } from '@designer/react';
 import { createVoidFieldSchema } from '../../components/Field';
 import { AllSchemas } from '../../schemas';
 import { AllLocales } from '../../locales';
+import { clone } from '@designer/utils';
 
-export const Table: DnFC<React.ComponentProps<typeof AntdTable>> = AntdTable;
+export const Table: DnFC<React.ComponentProps<typeof AntdTable>> = (props) => {
+  const newProps = clone(props);
+  const designer = useDesigner();
+  let nodeIdAttrName = '';
+  let id = '';
+  if (designer.props?.nodeIdAttrName) {
+    nodeIdAttrName = designer.props.nodeIdAttrName;
+    id = newProps[nodeIdAttrName];
+    newProps[nodeIdAttrName] = undefined;
+  }
+  const containerProps = {
+    [nodeIdAttrName]: id,
+  };
+  return (
+    <div {...containerProps}>
+      <AntdTable {...newProps} />
+    </div>
+  );
+};
 
 Table.Behavior = createBehavior({
   name: 'Table',
