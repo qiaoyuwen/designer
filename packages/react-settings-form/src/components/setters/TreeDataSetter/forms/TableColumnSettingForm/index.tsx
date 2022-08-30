@@ -54,7 +54,7 @@ export const TableColumnSettingForm: React.FC<ITableColumnSettingFormProps> = ob
           title={<TextWidget token={`${localeTokenPrefix}.dataIndex`} />}
           x-decorator="FormItem"
           name="dataIndex"
-          x-component="ValueInput"
+          x-component="Input"
         />
       </SchemaField>
     </Form>
