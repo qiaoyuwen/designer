@@ -37,8 +37,6 @@ import {
 } from '@/components';
 import { BaseLayout, Card, Table } from '@/layouts';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
-import { ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
 
 setNpmCDNRegistry('//unpkg.com');
 
@@ -109,30 +107,28 @@ const HomePage: FunctionComponent = () => {
               <ViewPanel type="DESIGNABLE">
                 {() => {
                   return (
-                    <ConfigProvider locale={zhCN}>
-                      <ComponentTreeWidget
-                        components={{
-                          Form,
-                          Field,
-                          Input,
-                          Password,
-                          NumberPicker,
-                          Select,
-                          TreeSelect,
-                          Cascader,
-                          Checkbox,
-                          Radio,
-                          BaseLayout,
-                          Card,
-                          Switch,
-                          Slider,
-                          Rate,
-                          DatePicker,
-                          Upload,
-                          Table,
-                        }}
-                      />
-                    </ConfigProvider>
+                    <ComponentTreeWidget
+                      components={{
+                        Form,
+                        Field,
+                        Input,
+                        Password,
+                        NumberPicker,
+                        Select,
+                        TreeSelect,
+                        Cascader,
+                        Checkbox,
+                        Radio,
+                        BaseLayout,
+                        Card,
+                        Switch,
+                        Slider,
+                        Rate,
+                        DatePicker,
+                        Upload,
+                        Table,
+                      }}
+                    />
                   );
                 }}
               </ViewPanel>

@@ -1,0 +1,14 @@
+export type HttpParams = Record<string, any> | URLSearchParams;
+
+export interface IHttpResponse<T> {
+  code: string;
+  message: string;
+  success: boolean;
+  data: T;
+}
+export interface IHttpPaginationResponse<T> {
+  data: T[];
+  current: number;
+  pageSize: number;
+  total: number;
+}

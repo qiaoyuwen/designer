@@ -1,6 +1,6 @@
 import cls from 'classnames';
 
-const prefixCls = 'base-layout';
+const prefixCls = 'formily-antd-base-layout';
 
 export interface IBaseLayoutProps {
   className?: string;
