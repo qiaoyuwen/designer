@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { IParamsType, IProTableProps } from './types';
-import { Table, ConfigProvider } from 'antd';
+import { Table, ConfigProvider, TablePaginationConfig } from 'antd';
 import { useFetchData } from './hooks/useFetchData';
 import zh_CN from 'antd/lib/locale/zh_CN';
 import { HttpParams, IHttpPaginationResponse } from '../../http/types';
@@ -32,6 +32,12 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
     pageInfo: propsPagination === false ? false : propsPagination,
     loading: props.loading,
     dataSource: props.dataSource as any,
+    onPageInfoChange: (pageInfo) => {
+      if (!propsPagination || !url) return;
+
+      propsPagination?.onChange?.(pageInfo.current, pageInfo.pageSize);
+      propsPagination?.onShowSizeChange?.(pageInfo.current, pageInfo.pageSize);
+    },
   });
 
   const pagination = useMemo(() => {
@@ -52,6 +58,9 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
     loading: action.loading,
     dataSource: action.dataSource,
     pagination,
+    onChange: (changePagination: TablePaginationConfig) => {
+      action.setPageInfo(changePagination);
+    },
   });
 
   return (

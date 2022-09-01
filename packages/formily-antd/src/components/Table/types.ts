@@ -92,4 +92,5 @@ export interface IUseFetchProps {
         defaultPageSize?: number;
       }
     | false;
+  onPageInfoChange?: (pageInfo: IPageInfo) => void;
 }

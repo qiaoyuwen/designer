@@ -21,7 +21,9 @@ export const useFetchData = <T extends IRequestData<any>>(
   const [list, setList] = useMountMergeState<any[] | undefined>([], {
     value: options?.dataSource,
   });
-  const [pageInfo, setPageInfo] = useMountMergeState<IPageInfo>(() => mergeOptionAndPageInfo(options));
+  const [pageInfo, setPageInfo] = useMountMergeState<IPageInfo>(() => mergeOptionAndPageInfo(options), {
+    onChange: options?.onPageInfoChange,
+  });
   const [loading, setLoading] = useMountMergeState<IUseFetchDataAction['loading']>(false, {
     value: options?.loading,
   });
