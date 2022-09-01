@@ -17,7 +17,7 @@ export interface IProColumnType<DataType = Record<string, any>> {
    *
    * @name 与实体映射的key
    */
-  dataIndex?: string | number | (string | number)[];
+  dataIndex?: string | number;
   /**
    * @name 标题
    */

@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
 import { IParamsType, IProTableProps } from './types';
-import { Table, ConfigProvider, TablePaginationConfig } from 'antd';
+import { Table, ConfigProvider, TablePaginationConfig, Card } from 'antd';
 import { useFetchData } from './hooks/useFetchData';
 import zh_CN from 'antd/lib/locale/zh_CN';
 import { HttpParams, IHttpPaginationResponse } from '../../http/types';
 import { HttpUtils } from '../../http';
 import { useTableRequest } from './hooks/useTableRequest';
+import { SearchForm } from './components';
 
 export const ProTable = <DataType extends Record<string, any>, Params extends IParamsType = IParamsType>(
   props: IProTableProps<DataType, Params>,
@@ -65,7 +66,14 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
 
   return (
     <ConfigProvider locale={zh_CN}>
-      <Table {...getTableProps()} rowKey={rowKey} />
+      <div style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
+        <Card style={{ marginBottom: 24 }}>
+          <SearchForm columns={columns} />
+        </Card>
+        <Card>
+          <Table {...getTableProps()} rowKey={rowKey} />
+        </Card>
+      </div>
     </ConfigProvider>
   );
 };
