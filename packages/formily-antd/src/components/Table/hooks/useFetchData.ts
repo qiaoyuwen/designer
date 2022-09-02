@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { IPageInfo, IRequestData, IUseFetchDataAction, IUseFetchProps } from '../types';
-import { useMountMergeState, usePrevious } from '../../../hooks';
+import { useDebounceFn, useMountMergeState, usePrevious } from '../../../hooks';
 
 const mergeOptionAndPageInfo = ({ pageInfo }: IUseFetchProps) => {
   if (pageInfo) {
@@ -52,7 +52,7 @@ export const useFetchData = <T extends IRequestData<any>>(
   };
 
   /** 请求数据 */
-  const fetchData = async () => {
+  const fetchDataDebounce = useDebounceFn(async () => {
     if (loading) {
       return [];
     }
@@ -81,7 +81,7 @@ export const useFetchData = <T extends IRequestData<any>>(
       setLoadingByType(false);
     }
     return [];
-  };
+  }, 10);
 
   /** PageIndex 改变重新请求数据 */
   useEffect(() => {
@@ -102,8 +102,9 @@ export const useFetchData = <T extends IRequestData<any>>(
     // 在第一页大于 10
     // 第二页也应该是大于 10
     if (current !== undefined && list && list.length <= pageSize) {
-      fetchData();
+      fetchDataDebounce.run();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageInfo?.current]);
 
   // pageSize 修改后重新请求数据
@@ -111,19 +112,21 @@ export const useFetchData = <T extends IRequestData<any>>(
     if (!prePageSize) {
       return;
     }
-    fetchData();
+    fetchDataDebounce.run();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageInfo?.pageSize]);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchDataDebounce.run();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [...options.effects]);
 
   return {
     dataSource: list,
     loading,
     pageInfo,
     reload: async () => {
-      await fetchData();
+      await fetchDataDebounce.run();
     },
     reset: async () => {
       const { pageInfo: optionPageInfo } = options || {};

@@ -93,4 +93,5 @@ export interface IUseFetchProps {
       }
     | false;
   onPageInfoChange?: (pageInfo: IPageInfo) => void;
+  effects?: any[];
 }

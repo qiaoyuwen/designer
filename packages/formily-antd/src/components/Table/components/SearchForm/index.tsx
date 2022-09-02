@@ -4,8 +4,13 @@ import { FormProvider, createSchemaField } from '@formily/react';
 import { createForm } from '@formily/core';
 import { IProColumnType } from '../../types';
 
-const FormActions = (props: { count: number; maxColumns: number }) => {
-  const { count, maxColumns } = props;
+const FormActions = (props: {
+  count: number;
+  maxColumns: number;
+  onFormSearchSubmit?: (values: any) => void;
+  onFormSearchReset?: () => void;
+}) => {
+  const { count, maxColumns, onFormSearchSubmit, onFormSearchReset } = props;
   const lastRowColumns = count % maxColumns;
 
   return (
@@ -16,8 +21,10 @@ const FormActions = (props: { count: number; maxColumns: number }) => {
         justifyContent: 'flex-end',
       }}
     >
-      <Submit onSubmit={console.log}>查询</Submit>
-      <Reset style={{ marginLeft: 8 }}>重置</Reset>
+      <Submit onSubmit={onFormSearchSubmit}>查询</Submit>
+      <Reset style={{ marginLeft: 8 }} onClick={onFormSearchReset}>
+        重置
+      </Reset>
     </FormGrid.GridColumn>
   );
 };
@@ -35,10 +42,12 @@ const form = createForm();
 
 interface ISearchFormProps<DataType> {
   columns?: IProColumnType<DataType>[];
+  onFormSearchSubmit?: (values: any) => void;
+  onFormSearchReset?: () => void;
 }
 
 export const SearchForm = <DataType extends Record<string, any>>(props: ISearchFormProps<DataType>) => {
-  const { columns } = props;
+  const { columns, onFormSearchSubmit, onFormSearchReset } = props;
   const maxColumns = 3;
 
   const renderedItems = useMemo(() => {
@@ -66,7 +75,10 @@ export const SearchForm = <DataType extends Record<string, any>>(props: ISearchF
           }}
         >
           {renderedItems}
-          <SchemaField.Void x-component="FormActions" x-component-props={{ count: columns?.length || 0, maxColumns }} />
+          <SchemaField.Void
+            x-component="FormActions"
+            x-component-props={{ count: columns?.length || 0, maxColumns, onFormSearchSubmit, onFormSearchReset }}
+          />
         </SchemaField.Void>
       </SchemaField>
     </FormProvider>
