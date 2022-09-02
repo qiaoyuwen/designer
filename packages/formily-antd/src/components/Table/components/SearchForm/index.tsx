@@ -1,33 +1,36 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { FormItem, FormGrid, Input, Submit, Reset } from '@formily/antd';
-import { FormProvider, createSchemaField } from '@formily/react';
+import { FormProvider, createSchemaField, observer } from '@formily/react';
 import { createForm } from '@formily/core';
+import { observable } from '@formily/reactive';
 import { IProColumnType } from '../../types';
 
-const FormActions = (props: {
-  count: number;
-  maxColumns: number;
-  onFormSearchSubmit?: (values: any) => void;
-  onFormSearchReset?: () => void;
-}) => {
-  const { count, maxColumns, onFormSearchSubmit, onFormSearchReset } = props;
-  const lastRowColumns = count % maxColumns;
+const FormActions = observer(
+  (props: {
+    count: number;
+    maxColumns: number;
+    onFormSearchSubmit?: (values: any) => void;
+    onFormSearchReset?: () => void;
+  }) => {
+    const { count, maxColumns, onFormSearchSubmit, onFormSearchReset } = props;
+    const lastRowColumns = count % maxColumns;
 
-  return (
-    <FormGrid.GridColumn
-      gridSpan={maxColumns - lastRowColumns}
-      style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-      }}
-    >
-      <Submit onSubmit={onFormSearchSubmit}>查询</Submit>
-      <Reset style={{ marginLeft: 8 }} onClick={onFormSearchReset}>
-        重置
-      </Reset>
-    </FormGrid.GridColumn>
-  );
-};
+    return (
+      <FormGrid.GridColumn
+        gridSpan={maxColumns - lastRowColumns}
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
+      >
+        <Submit onSubmit={onFormSearchSubmit}>查询</Submit>
+        <Reset style={{ marginLeft: 8 }} onClick={onFormSearchReset}>
+          重置
+        </Reset>
+      </FormGrid.GridColumn>
+    );
+  },
+);
 
 const SchemaField = createSchemaField({
   components: {
@@ -47,14 +50,18 @@ interface ISearchFormProps<DataType> {
 }
 
 export const SearchForm = <DataType extends Record<string, any>>(props: ISearchFormProps<DataType>) => {
-  const { columns, onFormSearchSubmit, onFormSearchReset } = props;
+  const { onFormSearchSubmit, onFormSearchReset } = props;
   const maxColumns = 3;
+
+  const columns = useMemo(() => {
+    return props.columns?.filter((column) => !column.hideInSearch);
+  }, [props.columns]);
 
   const renderedItems = useMemo(() => {
     return columns?.map((column) => {
       return (
         <SchemaField.String
-          key={column.dataIndex}
+          key={column.dataIndex || column.key}
           name={column.dataIndex}
           title={column.title}
           x-decorator="FormItem"
@@ -63,6 +70,19 @@ export const SearchForm = <DataType extends Record<string, any>>(props: ISearchF
       );
     });
   }, [columns]);
+
+  const formActionsProps = useMemo(() => {
+    return observable({ count: columns?.length || 0, maxColumns, onFormSearchSubmit, onFormSearchReset });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    formActionsProps.count = columns?.length || 0;
+    formActionsProps.maxColumns = maxColumns;
+    formActionsProps.onFormSearchSubmit = onFormSearchSubmit;
+    formActionsProps.onFormSearchReset = onFormSearchReset;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [columns?.length, maxColumns, onFormSearchSubmit, onFormSearchReset]);
 
   return (
     <FormProvider form={form}>
@@ -75,10 +95,7 @@ export const SearchForm = <DataType extends Record<string, any>>(props: ISearchF
           }}
         >
           {renderedItems}
-          <SchemaField.Void
-            x-component="FormActions"
-            x-component-props={{ count: columns?.length || 0, maxColumns, onFormSearchSubmit, onFormSearchReset }}
-          />
+          <SchemaField.Void x-component="FormActions" x-component-props={formActionsProps} />
         </SchemaField.Void>
       </SchemaField>
     </FormProvider>

@@ -61,6 +61,12 @@ Table.Resource = createResource({
               title: '创建时间',
               dataIndex: 'created_at',
             },
+            {
+              title: '操作',
+              dataIndex: 'options',
+              hideInSearch: false,
+              width: '120px',
+            },
           ],
           pagination: {
             showSizeChanger: true,

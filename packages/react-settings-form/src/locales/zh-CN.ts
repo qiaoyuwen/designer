@@ -57,6 +57,8 @@ export default {
         // SizeInput
         inherit: '继承',
         auto: '自动',
+        // TableColumnWidthSizeInput
+        undefined: '自动',
         // ValueInput
         text: '文本',
         expression: '表达式',
@@ -100,6 +102,8 @@ export default {
         jsonTab: 'JSON配置',
         title: '列名',
         dataIndex: '数据索引',
+        width: '宽度',
+        hideInSearch: '在表单中隐藏',
       },
     },
   },

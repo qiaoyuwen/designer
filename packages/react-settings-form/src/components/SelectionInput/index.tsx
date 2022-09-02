@@ -17,7 +17,7 @@ interface ISelectionInputOption {
 export interface ISelectionInputProps {
   style?: React.CSSProperties;
   className?: string;
-  value: any;
+  value?: any;
   options?: ISelectionInputOption[];
   defaultOption?: string;
   onChange?: (value: any) => void;

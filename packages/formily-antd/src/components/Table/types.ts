@@ -36,6 +36,11 @@ export interface IProColumnType<DataType = Record<string, any>> {
         children: React.ReactNode;
         props: any;
       };
+  /**
+   *
+   * @name 在查询表单中不展示此项
+   */
+  hideInSearch?: boolean;
 }
 
 export interface IProTableProps<DataType, ParamsType> extends Omit<TableProps<DataType>, 'columns' | 'rowSelection'> {

@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { ValueInput } from '../../../../ValueInput';
+import { TableColumnWidthSizeInput } from '../../../../SizeInput';
 import { createSchemaField } from '@formily/react';
 import { ArrayItems, Form, Input, FormItem, Switch } from '@formily/antd';
 import { ITreeDataSource } from '../../types';
@@ -15,6 +16,7 @@ const SchemaField = createSchemaField({
     ArrayItems,
     ValueInput,
     Switch,
+    TableColumnWidthSizeInput,
   },
 });
 
@@ -55,6 +57,21 @@ export const TableColumnSettingForm: React.FC<ITableColumnSettingFormProps> = ob
           x-decorator="FormItem"
           name="dataIndex"
           x-component="Input"
+        />
+        <SchemaField.String
+          title={<TextWidget token={`${localeTokenPrefix}.width`} />}
+          x-decorator="FormItem"
+          name="width"
+          x-component="TableColumnWidthSizeInput"
+          x-component-props={{
+            defaultOption: 'undefined',
+          }}
+        />
+        <SchemaField.String
+          title={<TextWidget token={`${localeTokenPrefix}.hideInSearch`} />}
+          x-decorator="FormItem"
+          name="hideInSearch"
+          x-component="Switch"
         />
       </SchemaField>
     </Form>

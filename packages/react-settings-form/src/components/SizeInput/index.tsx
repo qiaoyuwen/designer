@@ -48,3 +48,20 @@ const NormalSizeOptions = [
 ];
 
 export const SizeInput: React.FC<ISelectionInputProps> = createSelectionInput(NormalSizeOptions);
+
+const createEmptySizeOption = (optionValue: string, label?: string) => ({
+  label: label || optionValue,
+  value: '',
+  checker(value: any) {
+    if (!value) return true;
+    return false;
+  },
+  toChangeValue() {
+    return '';
+  },
+});
+
+const TableColumnWidthSizeOptions = [createEmptySizeOption('undefined'), createUnitType('px')];
+
+export const TableColumnWidthSizeInput: React.FC<ISelectionInputProps> =
+  createSelectionInput(TableColumnWidthSizeOptions);

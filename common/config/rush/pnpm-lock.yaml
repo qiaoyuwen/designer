@@ -53,6 +53,7 @@ importers:
       '@formily/antd': ~2.1.11
       '@formily/core': ~2.1.11
       '@formily/react': ~2.1.11
+      '@formily/reactive': ~2.1.11
       '@rushstack/eslint-patch': ~1.1.0
       '@types/react': ~18.0.15
       antd: ~4.22.4
@@ -67,6 +68,7 @@ importers:
       '@formily/antd': registry.npmmirror.com/@formily/antd/2.1.13_e716911991cd6388b2b51bc657337c2b
       '@formily/core': registry.npmmirror.com/@formily/core/2.1.13
       '@formily/react': registry.npmmirror.com/@formily/react/2.1.13_abe35c9786954f1b02b9c3b595cf96a9
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.1.13
       antd: registry.npmmirror.com/antd/4.22.8_react@18.2.0
       axios: registry.npmmirror.com/axios/0.27.2
       classnames: registry.npmmirror.com/classnames/2.3.1
