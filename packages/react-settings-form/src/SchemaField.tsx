@@ -28,6 +28,7 @@ import {
   DataSourceSetter,
   BoxStyleSetter,
   TableColumnsSetter,
+  RequestSetter,
 } from './components';
 
 export const SchemaField: any = createSchemaField({
@@ -59,5 +60,6 @@ export const SchemaField: any = createSchemaField({
     DataSourceSetter,
     BoxStyleSetter,
     TableColumnsSetter,
+    RequestSetter,
   },
 });

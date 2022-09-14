@@ -7,5 +7,9 @@ export const Table: ISchema & { Addition?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'TableColumnsSetter',
     },
+    requestConifg: {
+      'x-decorator': 'FormItem',
+      'x-component': 'RequestSetter',
+    },
   },
 };

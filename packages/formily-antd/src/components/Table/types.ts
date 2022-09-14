@@ -44,7 +44,9 @@ export interface IProColumnType<DataType = Record<string, any>> {
 }
 
 export interface IProTableProps<DataType, ParamsType> extends Omit<TableProps<DataType>, 'columns' | 'rowSelection'> {
-  url?: string;
+  requestConifg?: {
+    url?: string;
+  };
   /**
    * @name 列配置能力，支持一个数组
    */
@@ -56,14 +58,6 @@ export interface IProTableProps<DataType, ParamsType> extends Omit<TableProps<Da
    * params={{ pathName }}
    */
   params?: ParamsType;
-  /** @name 获取 dataSource 的方法 */
-  request?: (
-    params: ParamsType & {
-      pageSize?: number;
-      current?: number;
-      keyword?: string;
-    },
-  ) => Promise<Partial<IRequestData<DataType>>>;
   /** @name 给封装的 table 的 className */
   tableClassName?: string;
 

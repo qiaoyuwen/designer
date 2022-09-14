@@ -105,6 +105,12 @@ export default {
         width: '宽度',
         hideInSearch: '在表单中隐藏',
       },
+      RequestSetter: {
+        configureRequest: '配置数据源',
+        RequestSettingForm: {
+          url: '请求地址',
+        },
+      },
     },
   },
 };

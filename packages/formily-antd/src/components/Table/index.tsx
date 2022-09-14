@@ -13,15 +13,15 @@ import { stringify } from './utils';
 export const ProTable = <DataType extends Record<string, any>, Params extends IParamsType = IParamsType>(
   props: IProTableProps<DataType, Params>,
 ) => {
-  const { rowKey, columns, url, params, pagination: propsPagination, tableClassName, tableStyle } = props;
+  const { rowKey, columns, requestConifg, params, pagination: propsPagination, tableClassName, tableStyle } = props;
   const [formSearch, setFormSearch] = useMountMergeState<Record<string, any>>({});
 
   const [request] = useTableRequest<IHttpPaginationResponse<DataType>>((params?: HttpParams) => {
-    return HttpUtils.getPaginationJson<IHttpPaginationResponse<DataType>>(url, params);
+    return HttpUtils.getPaginationJson<IHttpPaginationResponse<DataType>>(requestConifg?.url, params);
   });
 
   const fetchData = useMemo(() => {
-    if (!url) return undefined;
+    if (!requestConifg?.url) return undefined;
     return async (pageParams?: Record<string, any>) => {
       const actionParams = {
         ...(pageParams || {}),
@@ -32,19 +32,19 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
 
       return response;
     };
-  }, [formSearch, params, request, url]);
+  }, [formSearch, params, request, requestConifg]);
 
   const action = useFetchData(fetchData, {
     pageInfo: propsPagination === false ? false : propsPagination,
     loading: props.loading,
     dataSource: props.dataSource as any,
     onPageInfoChange: (pageInfo) => {
-      if (!propsPagination || !url) return;
+      if (!propsPagination || !requestConifg?.url) return;
 
       propsPagination?.onChange?.(pageInfo.current, pageInfo.pageSize);
       propsPagination?.onShowSizeChange?.(pageInfo.current, pageInfo.pageSize);
     },
-    effects: [stringify(params), stringify(formSearch)],
+    effects: [stringify(params), stringify(formSearch), stringify(requestConifg)],
   });
 
   const pagination = useMemo(() => {

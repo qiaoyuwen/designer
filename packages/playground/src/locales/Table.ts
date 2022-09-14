@@ -4,6 +4,7 @@ export const Table = {
     settings: {
       'x-component-props': {
         columns: '表格列',
+        requestConifg: '数据源',
       },
     },
   },

@@ -47,7 +47,9 @@ Table.Resource = createResource({
         'x-component': 'Table',
         'x-component-props': {
           rowKey: 'id',
-          url: 'https://proapi.azurewebsites.net/github/issues',
+          /* requestConifg: {
+            url: 'https://proapi.azurewebsites.net/github/issues',
+          }, */
           columns: [
             {
               title: '标题',
