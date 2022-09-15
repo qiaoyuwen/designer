@@ -47,9 +47,9 @@ Table.Resource = createResource({
         'x-component': 'Table',
         'x-component-props': {
           rowKey: 'id',
-          /* requestConifg: {
+          requestConifg: {
             url: 'https://proapi.azurewebsites.net/github/issues',
-          }, */
+          },
           columns: [
             {
               title: '标题',
@@ -58,16 +58,29 @@ Table.Resource = createResource({
             {
               title: '状态',
               dataIndex: 'state',
+              valueType: 'Select',
+              valueOptions: [
+                {
+                  label: '未解决',
+                  value: 'open',
+                },
+                {
+                  label: '解决中',
+                  value: 'processing',
+                },
+              ],
+              width: '100px',
             },
             {
               title: '创建时间',
               dataIndex: 'created_at',
+              width: '200px',
             },
             {
               title: '操作',
               dataIndex: 'options',
               hideInSearch: false,
-              width: '120px',
+              width: '150px',
             },
           ],
           pagination: {

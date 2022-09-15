@@ -9,11 +9,20 @@ import { useTableRequest } from './hooks/useTableRequest';
 import { SearchForm } from './components';
 import { useMountMergeState } from '../../hooks';
 import { stringify } from './utils';
+import { ColumnValueType } from './enums';
 
 export const ProTable = <DataType extends Record<string, any>, Params extends IParamsType = IParamsType>(
   props: IProTableProps<DataType, Params>,
 ) => {
-  const { rowKey, columns, requestConifg, params, pagination: propsPagination, tableClassName, tableStyle } = props;
+  const {
+    rowKey,
+    columns: propsColumns,
+    requestConifg,
+    params,
+    pagination: propsPagination,
+    tableClassName,
+    tableStyle,
+  } = props;
   const [formSearch, setFormSearch] = useMountMergeState<Record<string, any>>({});
 
   const [request] = useTableRequest<IHttpPaginationResponse<DataType>>((params?: HttpParams) => {
@@ -57,6 +66,24 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
     };
     return pageConfig;
   }, [propsPagination, action.pageInfo]);
+
+  const columns = useMemo(() => {
+    return propsColumns.map((column) => {
+      if (column.valueType === ColumnValueType.Select && !column.render) {
+        column.render = (dom, entity) => {
+          const label = column.valueOptions?.find(
+            (item) => item.value === entity[column.dataIndex || column.key || ''],
+          )?.label;
+
+          return label || '-';
+        };
+      }
+
+      return {
+        ...column,
+      };
+    });
+  }, [propsColumns]);
 
   const getTableProps = () => ({
     className: tableClassName,

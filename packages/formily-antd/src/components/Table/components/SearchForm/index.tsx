@@ -1,9 +1,10 @@
 import { useEffect, useMemo } from 'react';
-import { FormItem, FormGrid, Input, Submit, Reset } from '@formily/antd';
+import { FormItem, FormGrid, Input, Submit, Reset, Select } from '@formily/antd';
 import { FormProvider, createSchemaField, observer } from '@formily/react';
 import { createForm } from '@formily/core';
 import { observable } from '@formily/reactive';
 import { IProColumnType } from '../../types';
+import { ColumnValueType } from '../../enums';
 
 const FormActions = observer(
   (props: {
@@ -38,6 +39,7 @@ const SchemaField = createSchemaField({
     FormGrid,
     FormActions,
     Input,
+    Select,
   },
 });
 
@@ -59,6 +61,21 @@ export const SearchForm = <DataType extends Record<string, any>>(props: ISearchF
 
   const renderedItems = useMemo(() => {
     return columns?.map((column) => {
+      if (column.valueType === ColumnValueType.Select) {
+        return (
+          <SchemaField.String
+            key={column.dataIndex || column.key}
+            name={column.dataIndex}
+            title={column.title}
+            x-decorator="FormItem"
+            x-component="Select"
+            x-component-props={{
+              options: column.valueOptions,
+              allowClear: true,
+            }}
+          />
+        );
+      }
       return (
         <SchemaField.String
           key={column.dataIndex || column.key}
