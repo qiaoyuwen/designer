@@ -107,6 +107,7 @@ export default {
         valueType: '类型',
         Text: '文本框',
         Select: '下拉框',
+        DateRange: '日期区间',
         valueOptions: '可选项',
       },
       RequestSetter: {

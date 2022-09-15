@@ -1,8 +1,7 @@
-import { useEffect, useMemo } from 'react';
-import { FormItem, FormGrid, Input, Submit, Reset, Select } from '@formily/antd';
+import { useMemo } from 'react';
+import { FormItem, FormGrid, Input, Submit, Reset, Select, DatePicker } from '@formily/antd';
 import { FormProvider, createSchemaField, observer } from '@formily/react';
 import { createForm } from '@formily/core';
-import { observable } from '@formily/reactive';
 import { IProColumnType } from '../../types';
 import { ColumnValueType } from '../../enums';
 
@@ -40,10 +39,9 @@ const SchemaField = createSchemaField({
     FormActions,
     Input,
     Select,
+    DatePicker,
   },
 });
-
-const form = createForm();
 
 interface ISearchFormProps<DataType> {
   columns?: IProColumnType<DataType>[];
@@ -54,67 +52,77 @@ interface ISearchFormProps<DataType> {
 export const SearchForm = <DataType extends Record<string, any>>(props: ISearchFormProps<DataType>) => {
   const { onFormSearchSubmit, onFormSearchReset } = props;
   const maxColumns = 3;
+  const form = useMemo(() => {
+    return createForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.columns, onFormSearchSubmit, onFormSearchReset]);
 
-  const columns = useMemo(() => {
-    return props.columns?.filter((column) => !column.hideInSearch);
-  }, [props.columns]);
+  const columns = props.columns?.filter((column) => !column.hideInSearch);
 
-  const renderedItems = useMemo(() => {
-    return columns?.map((column) => {
-      if (column.valueType === ColumnValueType.Select) {
-        return (
-          <SchemaField.String
-            key={column.dataIndex || column.key}
-            name={column.dataIndex}
-            title={column.title}
-            x-decorator="FormItem"
-            x-component="Select"
-            x-component-props={{
-              options: column.valueOptions,
-              allowClear: true,
-            }}
-          />
-        );
+  const getSchema = () => {
+    const schema = {
+      type: 'object',
+      properties: {
+        layout: {
+          type: 'void',
+          'x-component': 'FormGrid',
+          'x-component-props': {
+            maxColumns,
+            minColumns: maxColumns,
+          },
+          properties: {},
+        },
+        actions: {
+          type: 'void',
+          'x-component': 'FormActions',
+          'x-component-props': {
+            count: columns.length,
+            maxColumns,
+            onFormSearchSubmit,
+            onFormSearchReset,
+          },
+        },
+      },
+    };
+
+    columns.forEach((column) => {
+      if (!column.dataIndex && !column.key) {
+        return;
       }
-      return (
-        <SchemaField.String
-          key={column.dataIndex || column.key}
-          name={column.dataIndex}
-          title={column.title}
-          x-decorator="FormItem"
-          x-component="Input"
-        />
-      );
+      if (column.valueType === ColumnValueType.Select) {
+        schema.properties.layout.properties[column.dataIndex || column.key] = {
+          type: 'string',
+          title: column.title,
+          'x-decorator': 'FormItem',
+          'x-component': 'Select',
+          'x-component-props': {
+            options: column.valueOptions,
+            allowClear: true,
+          },
+        };
+      } else if (column.valueType === ColumnValueType.DateRange) {
+        schema.properties.layout.properties[column.dataIndex || column.key] = {
+          type: 'string',
+          title: column.title,
+          'x-decorator': 'FormItem',
+          'x-component': 'DatePicker.RangePicker',
+        };
+      } else {
+        schema.properties.layout.properties[column.dataIndex || column.key] = {
+          type: 'string',
+          title: column.title,
+          'x-decorator': 'FormItem',
+          'x-component': 'Input',
+        };
+      }
     });
-  }, [columns]);
 
-  const formActionsProps = useMemo(() => {
-    return observable({ count: columns?.length || 0, maxColumns, onFormSearchSubmit, onFormSearchReset });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    formActionsProps.count = columns?.length || 0;
-    formActionsProps.maxColumns = maxColumns;
-    formActionsProps.onFormSearchSubmit = onFormSearchSubmit;
-    formActionsProps.onFormSearchReset = onFormSearchReset;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [columns?.length, maxColumns, onFormSearchSubmit, onFormSearchReset]);
+    return schema;
+  };
 
   return (
     <FormProvider form={form}>
-      <SchemaField>
-        <SchemaField.Void
-          x-component="FormGrid"
-          x-component-props={{
-            maxColumns,
-            minColumns: maxColumns,
-          }}
-        >
-          {renderedItems}
-          <SchemaField.Void x-component="FormActions" x-component-props={formActionsProps} />
-        </SchemaField.Void>
-      </SchemaField>
+      <SchemaField schema={getSchema()} />
     </FormProvider>
   );
 };

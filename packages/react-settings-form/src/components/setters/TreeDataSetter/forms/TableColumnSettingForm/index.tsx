@@ -14,6 +14,7 @@ import { DataSourceSetter } from '../../../DataSourceSetter';
 enum ColumnValueType {
   Text = 'Text',
   Select = 'Select',
+  DateRange = 'DateRange',
 }
 
 const SchemaField = createSchemaField({
@@ -80,6 +81,10 @@ export const TableColumnSettingForm: React.FC<ITableColumnSettingFormProps> = ob
               {
                 label: takeMessage(`${localeTokenPrefix}.${ColumnValueType.Select}`),
                 value: ColumnValueType.Select,
+              },
+              {
+                label: takeMessage(`${localeTokenPrefix}.${ColumnValueType.DateRange}`),
+                value: ColumnValueType.DateRange,
               },
             ],
           }}
