@@ -1,5 +1,6 @@
 import type { TableProps } from 'antd/lib/table';
 import type { SpinProps } from 'antd/lib/spin';
+import { ColumnValueType } from './enums';
 
 export interface IParamsType extends Record<string, any> {}
 
@@ -22,6 +23,17 @@ export interface IProColumnType<DataType = Record<string, any>> {
    * @name 标题
    */
   title?: React.ReactNode;
+  /**
+   * @name 值类型
+   */
+  valueType?: ColumnValueType;
+  /**
+   * @name 值选项
+   */
+  valueOptions?: {
+    label: string;
+    value: string | number;
+  }[];
   /**
    *
    * @name 自定义列渲染

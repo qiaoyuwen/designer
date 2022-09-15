@@ -104,6 +104,10 @@ export default {
         dataIndex: '数据索引',
         width: '宽度',
         hideInSearch: '在表单中隐藏',
+        valueType: '类型',
+        Text: '文本框',
+        Select: '下拉框',
+        valueOptions: '可选项',
       },
       RequestSetter: {
         configureRequest: '配置数据源',

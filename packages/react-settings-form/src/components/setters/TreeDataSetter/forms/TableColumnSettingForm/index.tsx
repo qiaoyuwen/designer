@@ -2,12 +2,19 @@ import { useMemo } from 'react';
 import { ValueInput } from '../../../../ValueInput';
 import { TableColumnWidthSizeInput } from '../../../../SizeInput';
 import { createSchemaField } from '@formily/react';
-import { ArrayItems, Form, Input, FormItem, Switch } from '@formily/antd';
+import { ArrayItems, Form, Input, FormItem, Switch, Select } from '@formily/antd';
 import { ITreeDataSource } from '../../types';
 import { traverseTree } from '../../shared';
 import { createForm, Form as FormCore } from '@formily/core';
 import { TextWidget } from '@designer/react';
 import { observer } from '@formily/reactive-react';
+import { takeMessage } from '@designer/core';
+import { DataSourceSetter } from '../../../DataSourceSetter';
+
+enum ColumnValueType {
+  Text = 'Text',
+  Select = 'Select',
+}
 
 const SchemaField = createSchemaField({
   components: {
@@ -16,6 +23,7 @@ const SchemaField = createSchemaField({
     ArrayItems,
     ValueInput,
     Switch,
+    Select,
     TableColumnWidthSizeInput,
   },
 });
@@ -45,7 +53,7 @@ export const TableColumnSettingForm: React.FC<ITableColumnSettingFormProps> = ob
 
   return (
     <Form form={form} labelWidth={100} wrapperWidth={200}>
-      <SchemaField>
+      <SchemaField components={{ DataSourceSetter }}>
         <SchemaField.String
           title={<TextWidget token={`${localeTokenPrefix}.title`} />}
           x-decorator="FormItem"
@@ -57,6 +65,40 @@ export const TableColumnSettingForm: React.FC<ITableColumnSettingFormProps> = ob
           x-decorator="FormItem"
           name="dataIndex"
           x-component="Input"
+        />
+        <SchemaField.String
+          title={<TextWidget token={`${localeTokenPrefix}.valueType`} />}
+          x-decorator="FormItem"
+          name="valueType"
+          x-component="Select"
+          x-component-props={{
+            options: [
+              {
+                label: takeMessage(`${localeTokenPrefix}.${ColumnValueType.Text}`),
+                value: ColumnValueType.Text,
+              },
+              {
+                label: takeMessage(`${localeTokenPrefix}.${ColumnValueType.Select}`),
+                value: ColumnValueType.Select,
+              },
+            ],
+          }}
+          default={ColumnValueType.Text}
+        />
+        <SchemaField.Array
+          title={<TextWidget token={`${localeTokenPrefix}.valueOptions`} />}
+          x-decorator="FormItem"
+          name="valueOptions"
+          x-component="DataSourceSetter"
+          x-reactions={{
+            dependencies: ['valueType'],
+            fulfill: {
+              state: {
+                display: `{{$deps[0] === '${ColumnValueType.Select}' ? 'visible' : 'hidden'}}`,
+              },
+            },
+          }}
+          default={[]}
         />
         <SchemaField.String
           title={<TextWidget token={`${localeTokenPrefix}.width`} />}
