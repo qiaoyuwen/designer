@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { IParamsType, IProTableProps } from './types';
 import { Table, ConfigProvider, TablePaginationConfig, Card } from 'antd';
 import { useFetchData } from './hooks/useFetchData';
@@ -53,7 +53,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
       propsPagination?.onChange?.(pageInfo.current, pageInfo.pageSize);
       propsPagination?.onShowSizeChange?.(pageInfo.current, pageInfo.pageSize);
     },
-    effects: [stringify(params), stringify(formSearch), stringify(requestConifg)],
+    effects: [stringify(params), formSearch, stringify(requestConifg)],
   });
 
   const pagination = useMemo(() => {
@@ -97,20 +97,27 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
     },
   });
 
+  const onFormSearchSubmit = useCallback(
+    (values) => {
+      setFormSearch({
+        ...values,
+      });
+    },
+    [setFormSearch],
+  );
+
+  const onFormSearchReset = useCallback(() => {
+    setFormSearch({});
+    action.setPageInfo({
+      current: 1,
+    });
+  }, [action, setFormSearch]);
+
   return (
     <ConfigProvider locale={zh_CN}>
       <div style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
         <Card style={{ marginBottom: 24 }}>
-          <SearchForm
-            columns={columns}
-            onFormSearchSubmit={setFormSearch}
-            onFormSearchReset={() => {
-              setFormSearch({});
-              action.setPageInfo({
-                current: 1,
-              });
-            }}
-          />
+          <SearchForm columns={columns} onFormSearchSubmit={onFormSearchSubmit} onFormSearchReset={onFormSearchReset} />
         </Card>
         <Card>
           <Table {...getTableProps()} rowKey={rowKey} />

@@ -55,7 +55,7 @@ export const SearchForm = <DataType extends Record<string, any>>(props: ISearchF
   const form = useMemo(() => {
     return createForm();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.columns, onFormSearchSubmit, onFormSearchReset]);
+  }, [props.columns]);
 
   const columns = props.columns?.filter((column) => !column.hideInSearch);
 

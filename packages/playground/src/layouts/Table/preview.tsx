@@ -74,12 +74,13 @@ Table.Resource = createResource({
             {
               title: '创建时间',
               dataIndex: 'created_at',
+              valueType: 'DateRange',
               width: '200px',
             },
             {
               title: '操作',
               dataIndex: 'options',
-              hideInSearch: false,
+              hideInSearch: true,
               width: '150px',
             },
           ],
