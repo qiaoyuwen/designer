@@ -17,7 +17,8 @@
     "@formily/react": "~2.1.11",
     "@formily/antd": "~2.1.11",
     "@formily/core": "~2.1.11",
-    "@formily/reactive": "~2.1.11"
+    "@formily/reactive": "~2.1.11",
+    "moment": "~2.29.4"
   },
   "devDependencies": {
     "rimraf": "~3.0.2",

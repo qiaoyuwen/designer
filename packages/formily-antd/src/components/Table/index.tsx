@@ -10,6 +10,7 @@ import { SearchForm } from './components';
 import { useMountMergeState } from '../../hooks';
 import { stringify } from './utils';
 import { ColumnValueType } from './enums';
+import moment from 'moment';
 
 export const ProTable = <DataType extends Record<string, any>, Params extends IParamsType = IParamsType>(
   props: IProTableProps<DataType, Params>,
@@ -69,14 +70,29 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
 
   const columns = useMemo(() => {
     return propsColumns.map((column) => {
-      if (column.valueType === ColumnValueType.Select && !column.render) {
-        column.render = (dom, entity) => {
-          const label = column.valueOptions?.find(
-            (item) => item.value === entity[column.dataIndex || column.key || ''],
-          )?.label;
-
-          return label || '-';
+      if (!column.dataIndex && !column.key) {
+        return {
+          ...column,
         };
+      }
+
+      if (!column.render) {
+        if (column.valueType === ColumnValueType.Select) {
+          column.render = (dom, entity) => {
+            const label = column.valueOptions?.find(
+              (item) => item.value === entity[column.dataIndex || column.key],
+            )?.label;
+
+            return label || '-';
+          };
+        }
+
+        if (column.valueType === ColumnValueType.DateRange) {
+          column.render = (dom, entity) => {
+            const value = entity[column.dataIndex || column.key];
+            return moment(value).format('YYYY-MM-DD HH:mm:ss');
+          };
+        }
       }
 
       return {
