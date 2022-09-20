@@ -94,7 +94,7 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate } from 'antd';
+import { Card, Slider, Rate, Tag } from 'antd';
 import { BaseLayout } from '@designer/formily-antd';
 
 const Text: React.FC<{
@@ -146,7 +146,7 @@ export default ()=>{
   const form = useMemo(() => createForm(), [])
 
   return <Form form={form} ${printAttribute(root)}>
-    <SchemaField>
+    <SchemaField scope={{ React, Tag }}>
       ${printChildren(root)}
     </SchemaField>
   </Form>

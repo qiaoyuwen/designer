@@ -70,6 +70,7 @@ Table.Resource = createResource({
                 },
               ],
               width: '100px',
+              render: "{{(dom, entity) => React.createElement(Tag, null, entity['state'])}}",
             },
             {
               title: '创建时间',

@@ -16,3 +16,4 @@ export * from './debounce';
 export * from './animation';
 export * from './scroller';
 export * from './observer';
+export * from './compiler';

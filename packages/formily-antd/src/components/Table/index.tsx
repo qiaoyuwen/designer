@@ -95,6 +95,10 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
         }
       }
 
+      if (typeof column.render === 'string') {
+        column.render = undefined;
+      }
+
       return {
         ...column,
       };

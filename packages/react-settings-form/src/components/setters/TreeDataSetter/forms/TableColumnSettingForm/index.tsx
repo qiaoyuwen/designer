@@ -22,7 +22,6 @@ const SchemaField = createSchemaField({
     FormItem,
     Input,
     ArrayItems,
-    ValueInput,
     Switch,
     Select,
     TableColumnWidthSizeInput,
@@ -54,7 +53,7 @@ export const TableColumnSettingForm: React.FC<ITableColumnSettingFormProps> = ob
 
   return (
     <Form form={form} labelWidth={100} wrapperWidth={200}>
-      <SchemaField components={{ DataSourceSetter }}>
+      <SchemaField components={{ ValueInput, DataSourceSetter }}>
         <SchemaField.String
           title={<TextWidget token={`${localeTokenPrefix}.title`} />}
           x-decorator="FormItem"
@@ -119,6 +118,15 @@ export const TableColumnSettingForm: React.FC<ITableColumnSettingFormProps> = ob
           x-decorator="FormItem"
           name="hideInSearch"
           x-component="Switch"
+        />
+        <SchemaField.String
+          title={<TextWidget token={`${localeTokenPrefix}.render`} />}
+          x-decorator="FormItem"
+          name="render"
+          x-component="ValueInput"
+          x-component-props={{
+            include: ['expression'],
+          }}
         />
       </SchemaField>
     </Form>

@@ -104,11 +104,12 @@ export default {
         dataIndex: '数据索引',
         width: '宽度',
         hideInSearch: '在表单中隐藏',
+        render: '自定义渲染',
         valueType: '类型',
+        valueOptions: '可选项',
         Text: '文本框',
         Select: '下拉框',
         DateRange: '日期区间',
-        valueOptions: '可选项',
       },
       RequestSetter: {
         configureRequest: '配置数据源',

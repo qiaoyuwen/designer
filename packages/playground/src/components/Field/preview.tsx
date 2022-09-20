@@ -1,16 +1,19 @@
 /* eslint-disable dot-notation */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import React from 'react';
 import { FormPath } from '@formily/core';
 import { toJS } from '@formily/reactive';
 import { ArrayField, Field as InternalField, ObjectField, VoidField, observer, ISchema, Schema } from '@formily/react';
 import { FormItem } from '@formily/antd';
 import { createBehavior } from '@designer/core';
 import { useDesigner, useTreeNode, useComponents, DnFC } from '@designer/react';
-import { isArr, isStr, reduce, each } from '@designer/utils';
+import { isArr, isStr, reduce, each, compiler } from '@designer/utils';
 import { Container } from '../../common/Container';
 import { AllLocales } from '../../locales';
+import { Tag } from 'antd';
 
 Schema.silent(true);
+compiler.silent(true);
 
 const SchemaStateMap = {
   title: 'title',
@@ -96,7 +99,7 @@ const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName
     results.decorator = [decorator, toJS(decoratorProps)];
   }
   if (component) {
-    results.component = [component, toJS(componentProps)];
+    results.component = [component, compiler.compile(toJS(componentProps), { React, Tag })];
   }
   if (decorator) {
     FormPath.setIn(results['decorator'][1], nodeIdAttrName, id);
