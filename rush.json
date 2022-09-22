@@ -427,6 +427,11 @@
       "packageName": "@designer/manager",
       "projectFolder": "packages/manager",
       "shouldPublish": false
+    },
+    {
+      "packageName": "@designer/playground",
+      "projectFolder": "packages/playground",
+      "shouldPublish": false
     }
     // {
     //   /**

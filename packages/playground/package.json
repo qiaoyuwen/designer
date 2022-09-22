@@ -1,0 +1,32 @@
+{
+  "name": "@designer/playground",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi generate tmp",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "dependencies": {
+    "@ant-design/pro-layout": "^6.15.3",
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0",
+    "umi": "^3.5.34",
+    "@designer/designer-antd": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "~18.0.15",
+    "@types/react-dom": "~18.0.6",
+    "@umijs/preset-react": "^2.1.0",
+    "@umijs/test": "^3.5.34",
+    "typescript": "~4.7.4",
+    "yorkie": "^2.0.0",
+    "@designer/eslint": "workspace:*",
+    "@rushstack/eslint-patch": "~1.1.0"
+  }
+}
