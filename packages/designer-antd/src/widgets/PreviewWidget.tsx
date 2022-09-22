@@ -32,7 +32,7 @@ import {
 import { Card, Slider, Rate, Tag } from 'antd';
 import { BaseLayout, ProTable } from '@designer/formily-antd';
 import { TreeNode } from '@designer/core';
-import { transformToSchema } from '@/transformer';
+import { transformToSchema } from '../transformer';
 
 const Text: React.FC<{
   value?: string;

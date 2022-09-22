@@ -1,16 +1,18 @@
-import { useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { Space, Button } from 'antd';
 import { useDesigner, TextWidget } from '@designer/react';
 import { GlobalRegistry } from '@designer/core';
 import { observer } from '@formily/react';
 import { loadInitialSchema, saveSchema } from '../service';
 
-export const ActionsWidget = observer(() => {
+const supportLocales = ['zh-cn', 'en-us'];
+
+export const ActionsWidget: FunctionComponent = observer(() => {
   const designer = useDesigner();
   useEffect(() => {
     loadInitialSchema(designer);
-  }, []);
-  const supportLocales = ['zh-cn', 'en-us'];
+  }, [designer]);
+
   useEffect(() => {
     if (!supportLocales.includes(GlobalRegistry.getDesignerLanguage())) {
       GlobalRegistry.setDesignerLanguage('zh-cn');

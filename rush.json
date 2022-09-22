@@ -422,6 +422,10 @@
     {
       "packageName": "@designer/formily-antd",
       "projectFolder": "packages/formily-antd"
+    },
+    {
+      "packageName": "@designer/designer-antd",
+      "projectFolder": "packages/designer-antd"
     }
     // {
     //   /**

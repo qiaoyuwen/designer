@@ -1,7 +1,7 @@
 import React from 'react';
 import { TreeNode, ITreeNode } from '@designer/core';
 import { MonacoInput } from '@designer/react-settings-form';
-import { transformToSchema, transformToTreeNode } from '@/transformer';
+import { transformToSchema, transformToTreeNode } from '../transformer';
 
 export interface ISchemaEditorWidgetProps {
   tree: TreeNode;

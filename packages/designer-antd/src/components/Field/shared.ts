@@ -2,7 +2,7 @@
 import { ISchema } from '@formily/json-schema';
 import { AllSchemas } from '../../schemas';
 
-export const createComponentSchema = (component?: ISchema, decorator?: ISchema) => {
+export const createComponentSchema = (component?: ISchema, decorator?: ISchema): ISchema['properties'] => {
   return {
     'component-group': component && {
       type: 'void',
@@ -128,8 +128,8 @@ export const createFieldSchema = (options: {
           },
         },
       },
-      ...createComponentSchema(component, decorator),
-    } as any,
+      ...(createComponentSchema(component, decorator) as any),
+    },
   };
 };
 
@@ -160,7 +160,7 @@ export const createVoidFieldSchema = (component?: ISchema, decorator: ISchema = 
           },
         },
       },
-      ...createComponentSchema(component, decorator),
+      ...(createComponentSchema(component, decorator) as any),
     },
-  } as any;
+  };
 };

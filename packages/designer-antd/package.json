@@ -1,0 +1,37 @@
+{
+  "name": "@designer/designer-antd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf -rf ./dist && tsc --project tsconfig.build.json && ts-node copy"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "~18.2.0",
+    "antd": "~4.22.4",
+    "@designer/utils": "workspace:*",
+    "@designer/core": "workspace:*",
+    "@designer/react": "workspace:*",
+    "@designer/react-settings-form": "workspace:*",
+    "@designer/formily-antd": "workspace:*",
+    "@formily/reactive-react": "~2.1.11",
+    "@formily/antd": "~2.1.11",
+    "@formily/core": "~2.1.11",
+    "@formily/json-schema": "~2.1.11",
+    "@formily/react": "~2.1.11",
+    "@formily/reactive": "~2.1.11",
+    "@formily/shared": "~2.1.12"
+  },
+  "devDependencies": {
+    "rimraf": "~3.0.2",
+    "typescript": "~4.7.4",
+    "@types/react": "~18.0.15",
+    "ts-node": "~10.5.0",
+    "@designer/scripts": "workspace:*",
+    "@designer/eslint": "workspace:*",
+    "@rushstack/eslint-patch": "~1.1.0",
+    "@types/react-dom": "~18.0.6"
+  }
+}
