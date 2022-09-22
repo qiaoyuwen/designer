@@ -10,3 +10,4 @@ export * from './ComponentTreeWidget';
 export * from './AuxToolWidget';
 export * from './NodePathWidget';
 export * from './ViewToolsWidget';
+export * from './OutlineWidget';

@@ -20,3 +20,4 @@ export * from './useMoveHelper';
 export * from './useValidNodeOffsetRect';
 export * from './useHover';
 export * from './useSelectedNode';
+export * from './useOutline';

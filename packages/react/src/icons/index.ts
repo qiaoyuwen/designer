@@ -21,3 +21,4 @@ export * from './json';
 export * from './code';
 export * from './play';
 export * from './container';
+export * from './outline';

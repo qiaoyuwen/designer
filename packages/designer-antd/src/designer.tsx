@@ -14,6 +14,7 @@ import {
   ComponentTreeWidget,
   SettingsPanel,
   ViewToolsWidget,
+  OutlineTreeWidget,
 } from '@designer/react';
 import { saveSchema } from './service';
 import { ActionsWidget, LogoWidget, MarkupSchemaWidget, PreviewWidget, SchemaEditorWidget } from './widgets';
@@ -94,6 +95,9 @@ export const DesignerAntd: FunctionComponent = () => {
             />
             <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card]} />
             <ResourceWidget title="sources.DataDisplays" sources={[Table]} />
+          </CompositePanel.Item>
+          <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
+            <OutlineTreeWidget />
           </CompositePanel.Item>
         </CompositePanel>
         <Workspace id="form">
