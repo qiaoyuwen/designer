@@ -1,5 +1,5 @@
 {
-  "packages/**/*.{js,jsx,ts,tsx}": [
+  "packages/**/*.{ts,tsx}": [
     "eslint --fix --color",
     "prettier --write"
   ],

@@ -400,10 +400,6 @@
       "projectFolder": "packages/utils"
     },
     {
-      "packageName": "@designer/playground",
-      "projectFolder": "packages/playground"
-    },
-    {
       "packageName": "@designer/core",
       "projectFolder": "packages/core"
     },
@@ -426,6 +422,11 @@
     {
       "packageName": "@designer/designer-antd",
       "projectFolder": "packages/designer-antd"
+    },
+    {
+      "packageName": "@designer/manager",
+      "projectFolder": "packages/manager",
+      "shouldPublish": false
     }
     // {
     //   /**
