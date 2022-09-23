@@ -1,4 +1,5 @@
 {
+  "files.associations": { "*.json": "jsonc" },
   "npm.packageManager": "pnpm",
   "prettier.prettierPath": "common/autoinstallers/rush-lint/node_modules/prettier",
   "eslint.packageManager": "pnpm",
