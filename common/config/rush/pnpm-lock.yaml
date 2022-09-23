@@ -50,6 +50,7 @@ importers:
       '@types/react': ~18.0.15
       '@types/react-dom': ~18.0.6
       antd: ~4.22.4
+      classnames: ~2.3.1
       react: ~18.2.0
       rimraf: ~3.0.2
       ts-node: ~10.5.0
@@ -68,6 +69,7 @@ importers:
       '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react/2.1.13_e0c158773e07ced7f0cdf32939ce815a
       '@formily/shared': registry.npmmirror.com/@formily/shared/2.1.13
       antd: registry.npmmirror.com/antd/4.22.8_react@18.2.0
+      classnames: registry.npmmirror.com/classnames/2.3.1
       react: registry.npmmirror.com/react/18.2.0
     devDependencies:
       '@designer/eslint': link:../eslint

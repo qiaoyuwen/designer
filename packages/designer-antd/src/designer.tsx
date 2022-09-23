@@ -35,8 +35,9 @@ import {
   Upload,
   DatePicker,
 } from './components';
-import { BaseLayout, Card, Table } from './layouts';
+import { BaseLayout, Card, Table, Modal } from './layouts';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
+import './global.less';
 
 setNpmCDNRegistry('//unpkg.com');
 
@@ -93,7 +94,7 @@ export const DesignerAntd: FunctionComponent = () => {
                 Upload,
               ]}
             />
-            <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card]} />
+            <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card, Modal]} />
             <ResourceWidget title="sources.DataDisplays" sources={[Table]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
@@ -130,6 +131,7 @@ export const DesignerAntd: FunctionComponent = () => {
                         DatePicker,
                         Upload,
                         Table,
+                        Modal,
                       }}
                     />
                   );
