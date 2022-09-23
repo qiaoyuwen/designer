@@ -459,7 +459,15 @@ export class Viewport {
 
   public getValidNodeClientRect(node: TreeNode): Rect {
     if (!node) return;
-    const rect = this.getElementClientRectById(node.id);
+
+    let rect: Rect;
+    const el = this.findElementById(node.id);
+    if (node.containerClassName && el) {
+      rect = this.getElementClientRect(el.querySelector(node.containerClassName));
+    } else {
+      rect = this.getElementClientRectById(node.id);
+    }
+
     if (node && node === node.root && node.isInOperation) {
       if (!rect) return this.rect;
       return calcBoundaryRect([this.rect, rect]);

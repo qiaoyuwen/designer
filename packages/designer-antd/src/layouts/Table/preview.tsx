@@ -31,7 +31,6 @@ Table.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props?.['x-component'] === 'Table',
   designerProps: {
-    droppable: true,
     propsSchema: createVoidFieldSchema(AllSchemas.Table),
   },
   designerLocales: AllLocales.Table,
