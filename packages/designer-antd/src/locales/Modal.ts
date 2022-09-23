@@ -5,6 +5,7 @@ export const Modal = {
       'x-component-props': {
         title: '标题',
         visible: '显示',
+        mask: '遮罩',
       },
     },
   },

@@ -14,5 +14,11 @@ export const Modal: ISchema = {
       'x-component': 'Switch',
       default: true,
     },
+    mask: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      default: true,
+    },
   },
 };

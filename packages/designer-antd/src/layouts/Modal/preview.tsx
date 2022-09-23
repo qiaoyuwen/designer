@@ -42,6 +42,7 @@ Modal.Resource = createResource({
           title: 'Title',
         },
       },
+      containerClassName: '.ant-modal-content',
     },
   ],
 });

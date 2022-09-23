@@ -396,6 +396,7 @@ export class Viewport {
   public getElementOffsetRectById(id: string) {
     const elements = this.findElementsById(id);
     if (!elements.length) return;
+
     const elementRect = calcBoundaryRect(elements.map((element) => this.getElementClientRect(element)));
     if (elementRect) {
       if (this.isIframe) {
@@ -473,7 +474,14 @@ export class Viewport {
 
   public getValidNodeOffsetRect(node: TreeNode): Rect {
     if (!node) return;
-    const rect = this.getElementOffsetRectById(node.id);
+    let rect: Rect;
+    const el = this.findElementById(node.id);
+    if (node.containerClassName && el) {
+      rect = this.getElementOffsetRect(el.querySelector(node.containerClassName));
+    } else {
+      rect = this.getElementOffsetRectById(node.id);
+    }
+
     if (node && node === node.root && node.isInOperation) {
       if (!rect) return this.innerRect;
       return calcBoundaryRect([this.innerRect, rect]);
