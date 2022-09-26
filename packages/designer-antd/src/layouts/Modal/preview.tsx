@@ -1,13 +1,13 @@
-import { Modal as AntdModal } from 'antd';
+import { Modal as FormilyAntdModal } from '@designer/formily-antd';
 import { createBehavior, createResource } from '@designer/core';
 import { DnFC } from '@designer/react';
 import { createVoidFieldSchema } from '../../components/Field';
 import { AllSchemas } from '../../schemas';
 import { AllLocales } from '../../locales';
 
-export const Modal: DnFC<React.ComponentProps<typeof AntdModal>> = (props) => {
+export const Modal: DnFC<React.ComponentProps<typeof FormilyAntdModal>> = (props) => {
   return (
-    <AntdModal
+    <FormilyAntdModal
       {...props}
       title={<span data-content-editable="x-component-props.title">{props.title}</span>}
       getContainer={() => {
@@ -15,7 +15,7 @@ export const Modal: DnFC<React.ComponentProps<typeof AntdModal>> = (props) => {
       }}
     >
       {props.children}
-    </AntdModal>
+    </FormilyAntdModal>
   );
 };
 

@@ -22,3 +22,4 @@ export * from './code';
 export * from './play';
 export * from './container';
 export * from './outline';
+export * from './eyes';

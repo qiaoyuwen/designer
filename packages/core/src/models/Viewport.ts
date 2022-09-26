@@ -463,7 +463,12 @@ export class Viewport {
     let rect: Rect;
     const el = this.findElementById(node.id);
     if (node.containerClassName && el) {
-      rect = this.getElementClientRect(el.querySelector(node.containerClassName));
+      const containerEl = el.querySelector(node.containerClassName);
+      if (containerEl) {
+        rect = this.getElementClientRect(containerEl);
+      } else {
+        rect = this.getElementClientRectById(node.id);
+      }
     } else {
       rect = this.getElementClientRectById(node.id);
     }
@@ -485,7 +490,12 @@ export class Viewport {
     let rect: Rect;
     const el = this.findElementById(node.id);
     if (node.containerClassName && el) {
-      rect = this.getElementOffsetRect(el.querySelector(node.containerClassName));
+      const containerEl = el.querySelector(node.containerClassName);
+      if (containerEl) {
+        rect = this.getElementOffsetRect(containerEl);
+      } else {
+        rect = this.getElementOffsetRectById(node.id);
+      }
     } else {
       rect = this.getElementOffsetRectById(node.id);
     }
