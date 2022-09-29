@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { createForm } from '@formily/core';
 import { createSchemaField } from '@formily/react';
 import {
@@ -33,6 +33,7 @@ import { Card, Slider, Rate, Tag, Button } from 'antd';
 import { BaseLayout, ProTable, Modal } from '@designer/formily-antd';
 import { TreeNode } from '@designer/core';
 import { transformToSchema } from '../transformer';
+import { createFormFieldSetComponentsFunc } from '../utils';
 
 const Text: React.FC<{
   value?: string;
@@ -93,9 +94,14 @@ export interface IPreviewWidgetProps {
 export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   const form = useMemo(() => createForm(), []);
   const { form: formProps, schema } = transformToSchema(props.tree);
+
+  const $setComponentsProps = useMemo(() => {
+    return createFormFieldSetComponentsFunc(form);
+  }, []);
+
   return (
     <Form {...formProps} form={form}>
-      <SchemaField schema={schema} scope={{ React, Antd: AntdScope }} />
+      <SchemaField schema={schema} scope={{ React, Antd: AntdScope, $setComponentsProps }} />
     </Form>
   );
 };

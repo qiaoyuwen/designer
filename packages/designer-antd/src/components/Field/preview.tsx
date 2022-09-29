@@ -3,7 +3,16 @@
 import React from 'react';
 import { FormPath } from '@formily/core';
 import { toJS } from '@formily/reactive';
-import { ArrayField, Field as InternalField, ObjectField, VoidField, observer, ISchema, Schema } from '@formily/react';
+import {
+  ArrayField,
+  Field as InternalField,
+  ObjectField,
+  VoidField,
+  observer,
+  ISchema,
+  Schema,
+  useForm,
+} from '@formily/react';
 import { FormItem } from '@formily/antd';
 import { createBehavior } from '@designer/core';
 import { useDesigner, useTreeNode, useComponents, DnFC } from '@designer/react';
@@ -11,6 +20,7 @@ import { isArr, isStr, reduce, each, compiler } from '@designer/utils';
 import { Container } from '../../common/Container';
 import { AllLocales } from '../../locales';
 import { Tag, Button } from 'antd';
+import { createFormFieldSetComponentsFunc } from '../../utils';
 
 Schema.silent(true);
 compiler.silent(true);
@@ -78,7 +88,7 @@ const filterExpression = (val: any) => {
   return val;
 };
 
-const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName: string, id: string) => {
+const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName: string, id: string, $form: any) => {
   const results: any = {};
   each(SchemaStateMap, (fieldKey, schemaKey) => {
     const value = schema[schemaKey as keyof ISchema];
@@ -104,7 +114,11 @@ const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName
     results.decorator = [decorator, toJS(decoratorProps)];
   }
   if (component) {
-    results.component = [component, compiler.compile(toJS(componentProps), { React, Antd: AntdScope })];
+    const $setComponentsProps = createFormFieldSetComponentsFunc($form);
+    results.component = [
+      component,
+      compiler.compile(toJS(componentProps), { React, Antd: AntdScope, $form, $setComponentsProps }),
+    ];
   }
   if (decorator) {
     FormPath.setIn(results['decorator'][1], nodeIdAttrName, id);
@@ -120,8 +134,9 @@ export const Field: DnFC<ISchema> = observer((props) => {
   const designer = useDesigner();
   const components = useComponents();
   const node = useTreeNode();
+  const $form = useForm();
   if (!node) return null;
-  const fieldProps = toDesignableFieldProps(props, components, designer.props.nodeIdAttrName || '', node.id);
+  const fieldProps = toDesignableFieldProps(props, components, designer.props.nodeIdAttrName || '', node.id, $form);
   if (props.type === 'object') {
     return (
       <Container>

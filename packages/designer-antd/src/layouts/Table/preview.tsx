@@ -89,6 +89,9 @@ Table.Resource = createResource({
                     type: 'link',
                     style: {
                       marginRight: 0
+                    },
+                    onClick: () => {
+                      $setComponentsProps('@ModalName', {visible: true})
                     }
                   }, '编辑'),
                   React.createElement(Antd.Button, {
