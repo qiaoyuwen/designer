@@ -95,7 +95,7 @@ import {
   ArrayCards,
 } from '@formily/antd';
 import { Card, Slider, Rate, Tag } from 'antd';
-import { BaseLayout } from '@designer/formily-antd';
+import { BaseLayout, ProTable, Modal } from '@designer/formily-antd';
 
 const Text: React.FC<{
   value?: string
@@ -139,14 +139,21 @@ const SchemaField = createSchemaField({
     Rate,
     // 自定义组件
     BaseLayout,
+    Table: ProTable,
+    Modal,
   },
 })
+
+const AntdScope = {
+  Button,
+  Tag,
+};
 
 export default ()=>{
   const form = useMemo(() => createForm(), [])
 
   return <Form form={form} ${printAttribute(root)}>
-    <SchemaField scope={{ React, Tag }}>
+    <SchemaField scope={{ React, Antd: AntdScope }}>
       ${printChildren(root)}
     </SchemaField>
   </Form>

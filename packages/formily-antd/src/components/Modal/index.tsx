@@ -1,21 +1,20 @@
 import { Modal as AntdModal, ConfigProvider } from 'antd';
-import { FunctionComponent, useCallback, useEffect, useState } from 'react';
+import { FunctionComponent, useCallback } from 'react';
 import zh_CN from 'antd/lib/locale/zh_CN';
+import { useField } from '@formily/react';
 
 export const Modal: FunctionComponent<React.ComponentProps<typeof AntdModal>> = (props) => {
-  const [visible, setVisible] = useState<boolean>(props.visible);
+  const field = useField();
 
   const defalutCloseModal = useCallback(() => {
-    setVisible(false);
+    field.setComponentProps({
+      visible: false,
+    });
   }, []);
-
-  useEffect(() => {
-    setVisible(props.visible);
-  }, [props.visible]);
 
   return (
     <ConfigProvider locale={zh_CN}>
-      <AntdModal {...props} visible={visible} onCancel={props.onCancel || defalutCloseModal} />
+      <AntdModal {...props} onCancel={props.onCancel || defalutCloseModal} />
     </ConfigProvider>
   );
 };

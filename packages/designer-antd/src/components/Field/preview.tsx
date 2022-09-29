@@ -10,10 +10,15 @@ import { useDesigner, useTreeNode, useComponents, DnFC } from '@designer/react';
 import { isArr, isStr, reduce, each, compiler } from '@designer/utils';
 import { Container } from '../../common/Container';
 import { AllLocales } from '../../locales';
-import { Tag } from 'antd';
+import { Tag, Button } from 'antd';
 
 Schema.silent(true);
 compiler.silent(true);
+
+const AntdScope = {
+  Button,
+  Tag,
+};
 
 const SchemaStateMap = {
   title: 'title',
@@ -99,7 +104,7 @@ const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName
     results.decorator = [decorator, toJS(decoratorProps)];
   }
   if (component) {
-    results.component = [component, compiler.compile(toJS(componentProps), { React, Tag })];
+    results.component = [component, compiler.compile(toJS(componentProps), { React, Antd: AntdScope })];
   }
   if (decorator) {
     FormPath.setIn(results['decorator'][1], nodeIdAttrName, id);

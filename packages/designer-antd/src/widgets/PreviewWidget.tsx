@@ -29,8 +29,8 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag } from 'antd';
-import { BaseLayout, ProTable } from '@designer/formily-antd';
+import { Card, Slider, Rate, Tag, Button } from 'antd';
+import { BaseLayout, ProTable, Modal } from '@designer/formily-antd';
 import { TreeNode } from '@designer/core';
 import { transformToSchema } from '../transformer';
 
@@ -77,8 +77,14 @@ const SchemaField = createSchemaField({
     // 自定义组件
     BaseLayout,
     Table: ProTable,
+    Modal,
   },
 });
+
+const AntdScope = {
+  Button,
+  Tag,
+};
 
 export interface IPreviewWidgetProps {
   tree: TreeNode;
@@ -89,7 +95,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   const { form: formProps, schema } = transformToSchema(props.tree);
   return (
     <Form {...formProps} form={form}>
-      <SchemaField schema={schema} scope={{ React, Tag }} />
+      <SchemaField schema={schema} scope={{ React, Antd: AntdScope }} />
     </Form>
   );
 };

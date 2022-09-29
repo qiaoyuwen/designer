@@ -69,7 +69,7 @@ Table.Resource = createResource({
                 },
               ],
               width: '100px',
-              render: "{{(dom, entity) => React.createElement(Tag, null, entity['state'])}}",
+              render: "{{(dom, entity) => React.createElement(Antd.Tag, null, entity['state'])}}",
             },
             {
               title: '创建时间',
@@ -81,7 +81,23 @@ Table.Resource = createResource({
               title: '操作',
               dataIndex: 'options',
               hideInSearch: true,
-              width: '150px',
+              width: '160px',
+              render: `{{(dom, entity) => {
+                return React.createElement(React.Fragment, null, [
+                  React.createElement(Antd.Button, {
+                    key: 'edit',
+                    type: 'link',
+                    style: {
+                      marginRight: 0
+                    }
+                  }, '编辑'),
+                  React.createElement(Antd.Button, {
+                    key: 'remove',
+                    type: 'link',
+                    danger: true,
+                  }, '删除')
+                ])
+              }}}`,
             },
           ],
           pagination: {
