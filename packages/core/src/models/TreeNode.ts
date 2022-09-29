@@ -28,7 +28,6 @@ export interface ITreeNode {
   props?: Record<string | number | symbol, any>;
   children?: ITreeNode[];
   containerClassName?: string;
-  dropContainerClassName?: string;
 }
 
 export interface INodeFinder {
@@ -119,7 +118,6 @@ export class TreeNode {
   public isSelfSourceNode: boolean;
 
   public containerClassName?: string;
-  public dropContainerClassName?: string;
 
   public constructor(node?: ITreeNode, parent?: TreeNode) {
     if (node instanceof TreeNode) {
@@ -679,7 +677,6 @@ export class TreeNode {
         props: toJS(this.props),
         children: [],
         containerClassName: this.containerClassName,
-        dropContainerClassName: this.dropContainerClassName,
       },
       parent ? parent : this.parent,
     );
@@ -721,9 +718,6 @@ export class TreeNode {
         if (node.containerClassName) {
           this.containerClassName = node.containerClassName;
         }
-        if (node.dropContainerClassName) {
-          this.dropContainerClassName = node.dropContainerClassName;
-        }
         if (node.children) {
           this.children =
             node.children?.map?.((node) => {
@@ -742,7 +736,6 @@ export class TreeNode {
       props: toJS(this.props),
       hidden: this.hidden,
       containerClassName: this.containerClassName,
-      dropContainerClassName: this.containerClassName,
       children: this.children.map((treeNode) => {
         return treeNode.serialize();
       }),

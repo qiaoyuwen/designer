@@ -99,6 +99,7 @@ export const transformToTreeNode = (formily: IFormilySchema = {}, options?: ITra
       props: cleanProps(schema.toJSON(false)),
       children: [],
     };
+    current['containerClassName'] = current.props['x-component'] === 'Modal' ? '.ant-modal-content' : '';
     parent.children?.push(current);
     if (schema.items && !Array.isArray(schema.items)) {
       appendTreeNode(current, schema.items);
