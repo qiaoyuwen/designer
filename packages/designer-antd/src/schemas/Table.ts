@@ -11,5 +11,12 @@ export const Table: ISchema & { Addition?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'RequestSetter',
     },
+    toolBarRender: {
+      'x-decorator': 'FormItem',
+      'x-component': 'ValueInput',
+      'x-component-props': {
+        include: ['expression'],
+      },
+    },
   },
 };

@@ -23,6 +23,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
     pagination: propsPagination,
     tableClassName,
     tableStyle,
+    toolBarRender,
   } = props;
   const [formSearch, setFormSearch] = useMountMergeState<Record<string, any>>({});
 
@@ -140,6 +141,9 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
           <SearchForm columns={columns} onFormSearchSubmit={onFormSearchSubmit} onFormSearchReset={onFormSearchReset} />
         </Card>
         <Card>
+          {toolBarRender && (
+            <div style={{ paddingBottom: 16, display: 'flex', justifyContent: 'flex-end' }}>{toolBarRender()}</div>
+          )}
           <Table {...getTableProps()} rowKey={rowKey} />
         </Card>
       </div>

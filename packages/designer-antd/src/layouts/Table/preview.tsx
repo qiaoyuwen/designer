@@ -91,7 +91,7 @@ Table.Resource = createResource({
                       marginRight: 0
                     },
                     onClick: () => {
-                      $setComponentsProps('@ModalName', {visible: true})
+                      $setComponentsProps('@ModalName', {visible: true, title: '编辑'})
                     }
                   }, '编辑'),
                   React.createElement(Antd.Button, {
@@ -107,6 +107,18 @@ Table.Resource = createResource({
             showSizeChanger: true,
             showQuickJumper: true,
           },
+          toolBarRender: `{{() => {
+            return React.createElement(
+              Antd.Button,
+              {
+                type: 'primary',
+                onClick: () => {
+                  $setComponentsProps('@ModalName', { visible: true, title: '新增' });
+                },
+              },
+              '新增',
+            );
+          }}}`,
         },
       },
     },

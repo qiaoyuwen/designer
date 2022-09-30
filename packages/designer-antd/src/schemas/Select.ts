@@ -92,7 +92,6 @@ export const Select: ISchema = {
       },
     },
     filterOption: {
-      type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'ValueInput',
       'x-component-props': {
@@ -100,7 +99,6 @@ export const Select: ISchema = {
       },
     },
     filterSort: {
-      type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'ValueInput',
       'x-component-props': {

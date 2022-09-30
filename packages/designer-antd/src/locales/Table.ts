@@ -5,6 +5,7 @@ export const Table = {
       'x-component-props': {
         columns: '表格列',
         requestConifg: '数据源',
+        toolBarRender: '工具栏',
       },
     },
   },

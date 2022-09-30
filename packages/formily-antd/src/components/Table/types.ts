@@ -75,6 +75,11 @@ export interface IProTableProps<DataType, ParamsType> extends Omit<TableProps<Da
 
   /** @name 给封装的 table 的 style */
   tableStyle?: React.CSSProperties;
+
+  /**
+   * @name 自定义工具栏渲染
+   */
+  toolBarRender?: () => React.ReactNode;
 }
 
 export interface IPageInfo {
