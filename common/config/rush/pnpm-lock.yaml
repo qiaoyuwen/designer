@@ -101,6 +101,7 @@ importers:
 
   ../../packages/formily-antd:
     specifiers:
+      '@ant-design/icons': ~4.7.0
       '@designer/eslint': workspace:*
       '@designer/scripts': workspace:*
       '@formily/antd': ~2.1.11
@@ -121,7 +122,8 @@ importers:
       ts-node: ~10.5.0
       typescript: ~4.7.4
     dependencies:
-      '@formily/antd': registry.npmmirror.com/@formily/antd/2.1.13_h7hanrmegvok2fovvuynqkko3e
+      '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/4.7.0_biqbaboplfbrettd7655fr4n2y
+      '@formily/antd': registry.npmmirror.com/@formily/antd/2.1.13_tr6vxc2jief2x2z3ctlbo2nuwi
       '@formily/core': registry.npmmirror.com/@formily/core/2.1.13
       '@formily/react': registry.npmmirror.com/@formily/react/2.1.13_zc2npgiwqqchue33zzo6an4lwy
       '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.1.13
@@ -7678,7 +7680,7 @@ packages:
     name: babel-plugin-macros
     version: 2.6.1
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.4.5
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.19.0
       cosmiconfig: registry.npmmirror.com/cosmiconfig/5.2.1
       resolve: registry.npmmirror.com/resolve/1.22.1
     dev: true

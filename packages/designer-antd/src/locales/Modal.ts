@@ -10,3 +10,15 @@ export const Modal = {
     },
   },
 };
+
+export const ConfirmModal = {
+  'zh-CN': {
+    title: '确认框',
+    settings: {
+      'x-component-props': {
+        title: '提示',
+        visible: '显示',
+      },
+    },
+  },
+};

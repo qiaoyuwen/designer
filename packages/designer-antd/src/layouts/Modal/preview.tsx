@@ -1,4 +1,4 @@
-import { Modal as FormilyAntdModal } from '@designer/formily-antd';
+import { Modal as FormilyAntdModal, ConfirmModal as FormilyAntdConfirmModal } from '@designer/formily-antd';
 import { createBehavior, createResource } from '@designer/core';
 import { DnFC } from '@designer/react';
 import { createVoidFieldSchema } from '../../components/Field';
@@ -20,7 +20,7 @@ export const Modal: DnFC<React.ComponentProps<typeof FormilyAntdModal>> = (props
 };
 
 Modal.Behavior = createBehavior({
-  name: 'Card',
+  name: 'Modal',
   extends: ['Field'],
   selector: (node) => node.props?.['x-component'] === 'Modal',
   designerProps: {
@@ -43,6 +43,43 @@ Modal.Resource = createResource({
         },
       },
       containerClassName: '.ant-modal-content',
+    },
+  ],
+});
+
+export const ConfirmModal: DnFC<React.ComponentProps<typeof FormilyAntdConfirmModal>> = (props) => {
+  return (
+    <FormilyAntdConfirmModal
+      {...props}
+      getContainer={() => {
+        return document.querySelector('.dn-component-tree > .dn-designable-form > form');
+      }}
+    />
+  );
+};
+
+ConfirmModal.Behavior = createBehavior({
+  name: 'ConfirmModal',
+  extends: ['Field'],
+  selector: (node) => node.props?.['x-component'] === 'ConfirmModal',
+  designerProps: {
+    propsSchema: createVoidFieldSchema(AllSchemas.ConfirmModal),
+  },
+  designerLocales: AllLocales.ConfirmModal,
+});
+
+ConfirmModal.Resource = createResource({
+  icon: 'CardSource',
+  elements: [
+    {
+      componentName: 'Field',
+      props: {
+        type: 'void',
+        'x-component': 'ConfirmModal',
+        'x-component-props': {
+          title: 'Tip message',
+        },
+      },
     },
   ],
 });

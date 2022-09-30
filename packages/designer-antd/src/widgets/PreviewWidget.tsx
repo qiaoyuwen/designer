@@ -30,7 +30,7 @@ import {
   ArrayCards,
 } from '@formily/antd';
 import { Card, Slider, Rate, Tag, Button } from 'antd';
-import { BaseLayout, ProTable, Modal } from '@designer/formily-antd';
+import { BaseLayout, ProTable, Modal, ConfirmModal } from '@designer/formily-antd';
 import { TreeNode } from '@designer/core';
 import { transformToSchema } from '../transformer';
 import { createFormFieldSetComponentsFunc } from '../utils';
@@ -79,6 +79,7 @@ const SchemaField = createSchemaField({
     BaseLayout,
     Table: ProTable,
     Modal,
+    ConfirmModal,
   },
 });
 

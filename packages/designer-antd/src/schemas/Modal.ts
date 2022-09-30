@@ -22,3 +22,20 @@ export const Modal: ISchema = {
     },
   },
 };
+
+export const ConfirmModal: ISchema = {
+  type: 'object',
+  properties: {
+    title: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
+    },
+    visible: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      default: true,
+    },
+  },
+};
