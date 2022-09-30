@@ -53,6 +53,7 @@ export const ConfirmModal: FunctionComponent<IConfirmModalProps> = (props) => {
   return (
     <ConfigProvider locale={zh_CN}>
       <AntdModal
+        {...props}
         title={null}
         visible={props.visible}
         closable={false}

@@ -80,6 +80,7 @@ ConfirmModal.Resource = createResource({
           title: 'Tip message',
         },
       },
+      containerClassName: '.ant-modal-content',
     },
   ],
 });

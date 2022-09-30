@@ -92,12 +92,15 @@ Table.Resource = createResource({
                     },
                     onClick: () => {
                       $setComponentsProps('@ModalName', {visible: true, title: '编辑'})
-                    }
+                    },
                   }, '编辑'),
                   React.createElement(Antd.Button, {
                     key: 'remove',
                     type: 'link',
                     danger: true,
+                    onClick: () => {
+                      $setComponentsProps('@ModalName', {visible: true})
+                    },
                   }, '删除')
                 ])
               }}}`,
