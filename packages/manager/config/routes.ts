@@ -1,50 +1,30 @@
 ﻿export default [
   {
-    path: '/user',
+    path: '/login',
+    name: 'login',
+    component: './login',
     layout: false,
+    hideInMenu: true,
+  },
+  {
+    path: '/system',
+    name: 'system',
+    icon: 'setting',
     routes: [
       {
-        name: 'login',
-        path: '/user/login',
-        component: './user/Login',
+        path: '/system/user-list',
+        name: 'user-list',
+        component: './system/user-list',
       },
       {
-        component: './404',
+        path: '/system',
+        redirect: '/system/user-list',
       },
     ],
-  },
-  {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Welcome',
-  },
-  {
-    path: '/admin',
-    name: 'admin',
-    icon: 'crown',
-    access: 'canAdmin',
-    routes: [
-      {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        icon: 'smile',
-        component: './Welcome',
-      },
-      {
-        component: './404',
-      },
-    ],
-  },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
   },
   {
     path: '/',
-    redirect: '/welcome',
+    redirect: '/system',
   },
   {
     component: './404',
