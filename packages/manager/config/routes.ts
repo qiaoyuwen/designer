@@ -7,6 +7,22 @@
     hideInMenu: true,
   },
   {
+    path: '/project',
+    name: 'project',
+    icon: 'setting',
+    routes: [
+      {
+        path: '/project/project-list',
+        name: 'project-list',
+        component: './project/project-list',
+      },
+      {
+        path: '/project',
+        redirect: '/project/project-list',
+      },
+    ],
+  },
+  {
     path: '/system',
     name: 'system',
     icon: 'setting',
@@ -24,7 +40,7 @@
   },
   {
     path: '/',
-    redirect: '/system',
+    redirect: '/project',
   },
   {
     component: './404',
