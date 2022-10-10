@@ -22,7 +22,7 @@ const UserList: FunctionComponent = () => {
     },
     {
       title: '用户名',
-      dataIndex: 'name',
+      dataIndex: 'username',
       align: 'center',
     },
     {
@@ -37,16 +37,7 @@ const UserList: FunctionComponent = () => {
       align: 'center',
       search: false,
       width: 150,
-      render: (_, item) => (
-        <Actions>
-          <Button key="changeStatus" type="link">
-            重置密码
-          </Button>
-          <Button key="delete" type="link" danger>
-            删除
-          </Button>
-        </Actions>
-      ),
+      render: () => <Actions />,
     },
   ];
 

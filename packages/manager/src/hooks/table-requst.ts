@@ -16,11 +16,7 @@ export function useTableRequest<P, T = any>(service: (params?: HttpParams) => Pr
       let data: HttpPaginationResponse<P> | undefined;
       let success = true;
       try {
-        data = await service({
-          ...params,
-          page: params.current,
-          pageSize: params.pageSize,
-        });
+        data = await service(params);
       } catch {
         success = false;
       }
