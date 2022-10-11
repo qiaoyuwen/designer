@@ -3,5 +3,5 @@ export interface Project {
   name: string;
   description: string;
   ctime: string;
-  deleted: boolean;
+  deleted: number;
 }

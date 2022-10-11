@@ -11,7 +11,7 @@ const addProjectPage = (params: Pick<ProjectPage, 'name' | 'description' | 'sche
   return HttpUtils.postJson<void>(`${prefix}/`, params);
 };
 
-const updateProjectPage = (params: Pick<ProjectPage, 'id' | 'name' | 'description' | 'schema' | 'status'>) => {
+const updateProjectPage = (params: Partial<Pick<ProjectPage, 'id' | 'name' | 'description' | 'schema' | 'status'>>) => {
   return HttpUtils.putJson<void>(`${prefix}/${params.id}`, {
     ...params,
     id: undefined,

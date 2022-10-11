@@ -22,11 +22,25 @@ export const useProjectPageList = () => {
     });
   }, []);
 
+  const changeStatus = useCallback((item: ProjectPage) => {
+    Modal.confirm({
+      title: `确认${item.status ? '下线' : '上线'}?`,
+      onOk: async () => {
+        await ProjectPageServices.updateProjectPage({
+          id: item.id,
+          status: item.status ? 0 : 1,
+        });
+        message.success('操作成功');
+        tableActionRef.current?.reload();
+      },
+    });
+  }, []);
+
   return [
     {
       tableActionRef,
     },
     { visible, selectedItem, openModal, onOk, onCancel },
-    { remove },
+    { remove, changeStatus },
   ] as const;
 };

@@ -12,7 +12,8 @@ import AddModal from './add-modal';
 
 const ProjectPageListPage: FunctionComponent = () => {
   const [request] = useTableRequest<ProjectPage>(ProjectPageServices.getProjectPagesPagination);
-  const [{ tableActionRef }, { visible, selectedItem, openModal, onOk, onCancel }, { remove }] = useProjectPageList();
+  const [{ tableActionRef }, { visible, selectedItem, openModal, onOk, onCancel }, { remove, changeStatus }] =
+    useProjectPageList();
 
   const columns: ProColumnType<ProjectPage>[] = [
     {
@@ -52,11 +53,14 @@ const ProjectPageListPage: FunctionComponent = () => {
       title: '操作',
       align: 'center',
       search: false,
-      width: 150,
+      width: 220,
       render: (_, item) => (
         <Actions>
           <Button key="edit" type="link" onClick={() => openModal(item)}>
             编辑
+          </Button>
+          <Button key="online" type="link" onClick={() => changeStatus(item)}>
+            {item.status ? '下线' : '上线'}
           </Button>
           <Button key="delete" type="link" danger onClick={() => remove(item)}>
             删除

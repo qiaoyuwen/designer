@@ -4,6 +4,6 @@ export interface ProjectPage {
   description: string;
   ctime: string;
   schema: string;
-  status: boolean;
-  deleted: boolean;
+  status: number;
+  deleted: number;
 }
