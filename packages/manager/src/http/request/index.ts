@@ -53,6 +53,20 @@ async function postJson<T>(url: string, data?: Record<string, any>): Promise<T> 
   }).then((res) => res.data);
 }
 
+async function putJson<T>(url: string, data?: Record<string, any>): Promise<T> {
+  return request<HttpResponse<T>>(url, {
+    method: 'PUT',
+    data,
+  }).then((res) => res.data);
+}
+
+async function deleteJson(url: string, data?: Record<string, any>): Promise<void> {
+  return request<HttpResponse<void>>(url, {
+    method: 'DELETE',
+    data,
+  }).then((res) => res.data);
+}
+
 async function postFile<T>(
   url: string,
   fileObj: Record<string, File | undefined | null>,
@@ -78,13 +92,6 @@ async function postFile<T>(
   });
 }
 
-async function deleteRequest(url: string, data?: Record<string, any>): Promise<void> {
-  return request<HttpResponse<void>>(url, {
-    method: 'DELETE',
-    data,
-  }).then((res) => res.data);
-}
-
 const objectToFormData = (obj: Record<string, any>) => {
   const formData = new FormData();
   Object.keys(obj).forEach((key) => {
@@ -97,9 +104,10 @@ export const HttpUtils = {
   getFile,
   getJson,
   postJson,
+  putJson,
+  deleteJson,
   postFile,
   getImageToBase64,
-  deleteRequest,
   objectToFormData,
 };
 
