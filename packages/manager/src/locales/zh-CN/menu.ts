@@ -52,7 +52,7 @@ export default {
 
   'menu.project': '项目管理',
   'menu.project.project-list': '项目管理',
-  'menu.project.page-list': '页面管理',
+  'menu.project.project-page-list': '页面管理',
 
   'menu.system': '系统管理',
   'menu.system.user-list': '用户管理',

@@ -17,6 +17,11 @@
         component: './project/project-list',
       },
       {
+        path: '/project/project-page-list',
+        name: 'project-page-list',
+        component: './project/project-page-list',
+      },
+      {
         path: '/project',
         redirect: '/project/project-list',
       },
