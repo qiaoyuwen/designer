@@ -22,6 +22,12 @@
         component: './project/project-page-list',
       },
       {
+        path: '/project/project-page-list/config',
+        name: 'project-page-list-config',
+        component: './project/project-page-list/config',
+        hideInMenu: true,
+      },
+      {
         path: '/project',
         redirect: '/project/project-list',
       },

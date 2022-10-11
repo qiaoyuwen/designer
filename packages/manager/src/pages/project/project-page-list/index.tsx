@@ -9,6 +9,7 @@ import Actions from '@/components/actions';
 import { ProjectPage } from '@/models';
 import { ProjectPageServices } from '@/services';
 import AddModal from './add-modal';
+import { history } from 'umi';
 
 const ProjectPageListPage: FunctionComponent = () => {
   const [request] = useTableRequest<ProjectPage>(ProjectPageServices.getProjectPagesPagination);
@@ -58,6 +59,13 @@ const ProjectPageListPage: FunctionComponent = () => {
         <Actions>
           <Button key="edit" type="link" onClick={() => openModal(item)}>
             编辑
+          </Button>
+          <Button
+            key="config"
+            type="link"
+            onClick={() => history.push(`/project/project-page-list/config?id=${item.id}`)}
+          >
+            配置
           </Button>
           <Button key="online" type="link" onClick={() => changeStatus(item)}>
             {item.status ? '下线' : '上线'}

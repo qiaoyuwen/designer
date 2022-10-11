@@ -152,6 +152,7 @@ importers:
       '@ant-design/pro-form': ^1.22.0
       '@ant-design/pro-layout': ^6.15.3
       '@ant-design/pro-table': ^2.54.3
+      '@designer/designer-antd': workspace:*
       '@designer/eslint': workspace:*
       '@playwright/test': ^1.17.0
       '@rushstack/eslint-patch': ~1.1.0
@@ -200,6 +201,7 @@ importers:
       '@ant-design/pro-form': registry.npmmirror.com/@ant-design/pro-form/1.68.2_cahaojxzfewizjczi2dtqvzhxe
       '@ant-design/pro-layout': registry.npmmirror.com/@ant-design/pro-layout/6.38.22_biqbaboplfbrettd7655fr4n2y
       '@ant-design/pro-table': registry.npmmirror.com/@ant-design/pro-table/2.75.1_cahaojxzfewizjczi2dtqvzhxe
+      '@designer/designer-antd': link:../designer-antd
       '@umijs/route-utils': registry.npmmirror.com/@umijs/route-utils/2.2.0
       antd: registry.npmmirror.com/antd/4.22.8_biqbaboplfbrettd7655fr4n2y
       classnames: registry.npmmirror.com/classnames/2.3.2
