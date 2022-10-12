@@ -16,7 +16,10 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  routes: [{ path: '/', component: '@/pages/index' }],
+  routes: [
+    { path: '/demo', component: '@/pages/demo' },
+    { path: '/', component: '@/pages/index' },
+  ],
   fastRefresh: {},
   alias: {
     '@designer/utils': resolvePakcage('../utils/src'),
@@ -28,5 +31,11 @@ export default defineConfig({
   },
   chainWebpack(config) {
     config.module.rules.get('ts-in-node_modules').include.add(extraBabelIncludes);
+  },
+  proxy: {
+    '/api/': {
+      target: 'http://127.0.0.1:8080',
+      changeOrigin: true,
+    },
   },
 });

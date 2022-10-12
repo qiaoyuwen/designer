@@ -13,11 +13,17 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "antd": "~4.22.4",
     "@ant-design/pro-layout": "^6.15.3",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "umi": "^3.5.34",
-    "@designer/designer-antd": "workspace:*"
+    "@designer/core": "workspace:*",
+    "@designer/designer-antd": "workspace:*",
+    "@designer/formily-antd": "workspace:*",
+    "@formily/core": "~2.1.11",
+    "@formily/react": "~2.1.11",
+    "@formily/antd": "~2.1.11"
   },
   "devDependencies": {
     "@types/react": "~18.0.15",

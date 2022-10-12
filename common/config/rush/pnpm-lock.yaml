@@ -250,13 +250,19 @@ importers:
   ../../packages/playground:
     specifiers:
       '@ant-design/pro-layout': ^6.15.3
+      '@designer/core': workspace:*
       '@designer/designer-antd': workspace:*
       '@designer/eslint': workspace:*
+      '@designer/formily-antd': workspace:*
+      '@formily/antd': ~2.1.11
+      '@formily/core': ~2.1.11
+      '@formily/react': ~2.1.11
       '@rushstack/eslint-patch': ~1.1.0
       '@types/react': ~18.0.15
       '@types/react-dom': ~18.0.6
       '@umijs/preset-react': ^2.1.0
       '@umijs/test': ^3.5.34
+      antd: ~4.22.4
       react: ~18.2.0
       react-dom: ~18.2.0
       typescript: ~4.7.4
@@ -264,7 +270,13 @@ importers:
       yorkie: ^2.0.0
     dependencies:
       '@ant-design/pro-layout': registry.npmmirror.com/@ant-design/pro-layout/6.38.22_biqbaboplfbrettd7655fr4n2y
+      '@designer/core': link:../core
       '@designer/designer-antd': link:../designer-antd
+      '@designer/formily-antd': link:../formily-antd
+      '@formily/antd': registry.npmmirror.com/@formily/antd/2.1.13_h7hanrmegvok2fovvuynqkko3e
+      '@formily/core': registry.npmmirror.com/@formily/core/2.1.13
+      '@formily/react': registry.npmmirror.com/@formily/react/2.1.13_zc2npgiwqqchue33zzo6an4lwy
+      antd: registry.npmmirror.com/antd/4.22.8_biqbaboplfbrettd7655fr4n2y
       react: registry.npmmirror.com/react/18.2.0
       react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
       umi: registry.npmmirror.com/umi/3.5.34
