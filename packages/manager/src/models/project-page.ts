@@ -3,7 +3,7 @@ export interface ProjectPage {
   name: string;
   description: string;
   ctime: string;
-  schema: string;
+  schemaJson: string;
   status: number;
   deleted: number;
 }

@@ -7,11 +7,17 @@ import { loadInitialSchema, saveSchema } from '../service';
 
 const supportLocales = ['zh-cn', 'en-us'];
 
-export const ActionsWidget: FunctionComponent = observer(() => {
+interface IActionsWidgetProps {
+  initialSchema?: string;
+  onSave?: () => Promise<void>;
+  onBack?: () => void;
+}
+
+export const ActionsWidget: FunctionComponent<IActionsWidgetProps> = observer((props) => {
   const designer = useDesigner();
   useEffect(() => {
-    loadInitialSchema(designer);
-  }, [designer]);
+    loadInitialSchema(designer, props.initialSchema);
+  }, [designer, props.initialSchema]);
 
   useEffect(() => {
     if (!supportLocales.includes(GlobalRegistry.getDesignerLanguage())) {
@@ -20,24 +26,20 @@ export const ActionsWidget: FunctionComponent = observer(() => {
   }, []);
   return (
     <Space style={{ marginRight: 10 }}>
-      {/* <Radio.Group
-        value={GlobalRegistry.getDesignerLanguage()}
-        optionType="button"
-        options={[
-          { label: 'English', value: 'en-us' },
-          { label: '简体中文', value: 'zh-cn' },
-        ]}
-        onChange={(e) => {
-          GlobalRegistry.setDesignerLanguage(e.target.value);
-        }}
-      /> */}
-
       <Button
+        type="primary"
         onClick={() => {
-          saveSchema(designer);
+          saveSchema(designer, props.onSave);
         }}
       >
         <TextWidget>Save</TextWidget>
+      </Button>
+      <Button
+        onClick={() => {
+          props.onBack?.();
+        }}
+      >
+        <TextWidget>Back</TextWidget>
       </Button>
     </Space>
   );

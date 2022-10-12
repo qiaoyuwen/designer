@@ -5,5 +5,6 @@ export default {
     cancel: '取消',
     reset: '重置',
     publish: '发布',
+    back: '返回',
   },
 };

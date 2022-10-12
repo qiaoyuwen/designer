@@ -11,11 +11,13 @@ const getProjectPagesPagination = (params?: HttpParams) => {
   return HttpUtils.getJson<HttpPaginationResponse<ProjectPage>>(`${prefix}/pagination`, params);
 };
 
-const addProjectPage = (params: Pick<ProjectPage, 'name' | 'description' | 'schema' | 'status'>) => {
+const addProjectPage = (params: Pick<ProjectPage, 'name' | 'description' | 'schemaJson' | 'status'>) => {
   return HttpUtils.postJson<void>(`${prefix}/`, params);
 };
 
-const updateProjectPage = (params: Partial<Pick<ProjectPage, 'id' | 'name' | 'description' | 'schema' | 'status'>>) => {
+const updateProjectPage = (
+  params: Partial<Pick<ProjectPage, 'id' | 'name' | 'description' | 'schemaJson' | 'status'>>,
+) => {
   return HttpUtils.putJson<void>(`${prefix}/${params.id}`, {
     ...params,
     id: undefined,

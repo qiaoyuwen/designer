@@ -51,7 +51,14 @@ GlobalRegistry.registerDesignerLocales({
   },
 });
 
-export const DesignerAntd: FunctionComponent = () => {
+export interface IDesignerAntdProps {
+  title?: string;
+  initialSchema?: string;
+  onSave?: () => Promise<void>;
+  onBack?: () => void;
+}
+
+export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
   const engine = useMemo(
     () =>
       createDesigner({
@@ -73,7 +80,10 @@ export const DesignerAntd: FunctionComponent = () => {
 
   return (
     <Designer engine={engine}>
-      <StudioPanel logo={<LogoWidget />} actions={<ActionsWidget />}>
+      <StudioPanel
+        logo={<LogoWidget title={props.title} />}
+        actions={<ActionsWidget onSave={props.onSave} initialSchema={props.initialSchema} onBack={props.onBack} />}
+      >
         <CompositePanel>
           <CompositePanel.Item title="panels.Component" icon="Component">
             <ResourceWidget
