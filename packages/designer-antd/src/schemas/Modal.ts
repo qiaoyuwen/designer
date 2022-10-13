@@ -20,6 +20,13 @@ export const Modal: ISchema = {
       'x-component': 'Switch',
       default: true,
     },
+    onOk: {
+      'x-decorator': 'FormItem',
+      'x-component': 'ValueInput',
+      'x-component-props': {
+        include: ['expression'],
+      },
+    },
   },
 };
 

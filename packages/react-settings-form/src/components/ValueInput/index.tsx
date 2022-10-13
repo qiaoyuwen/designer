@@ -75,8 +75,8 @@ export const ValueInput: React.FC<ISelectionInputProps> = createSelectionInput(
             content={
               <div
                 style={{
-                  width: 400,
-                  height: 200,
+                  width: 600,
+                  height: 300,
                   marginLeft: -16,
                   marginRight: -16,
                   marginBottom: -12,

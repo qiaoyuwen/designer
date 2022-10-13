@@ -19,8 +19,9 @@ import { useDesigner, useTreeNode, useComponents, DnFC } from '@designer/react';
 import { isArr, isStr, reduce, each, compiler } from '@designer/utils';
 import { Container } from '../../common/Container';
 import { AllLocales } from '../../locales';
-import { Tag, Button } from 'antd';
+import { Tag, Button, message } from 'antd';
 import { createFormFieldSetComponentsFunc } from '../../utils';
+import { HttpUtils } from '@designer/formily-antd';
 
 Schema.silent(true);
 compiler.silent(true);
@@ -28,6 +29,7 @@ compiler.silent(true);
 const AntdScope = {
   Button,
   Tag,
+  message,
 };
 
 const SchemaStateMap = {
@@ -117,7 +119,7 @@ const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName
     const $setComponentsProps = createFormFieldSetComponentsFunc($form);
     results.component = [
       component,
-      compiler.compile(toJS(componentProps), { React, Antd: AntdScope, $form, $setComponentsProps }),
+      compiler.compile(toJS(componentProps), { React, Antd: AntdScope, HttpUtils, $form, $setComponentsProps }),
     ];
   }
   if (decorator) {
@@ -135,6 +137,7 @@ export const Field: DnFC<ISchema> = observer((props) => {
   const components = useComponents();
   const node = useTreeNode();
   const $form = useForm();
+
   if (!node) return null;
   const fieldProps = toDesignableFieldProps(props, components, designer.props.nodeIdAttrName || '', node.id, $form);
   if (props.type === 'object') {

@@ -29,9 +29,8 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag, Button } from 'antd';
-import { BaseLayout, ProTable, Modal, ConfirmModal } from '@designer/formily-antd';
-import { TreeNode } from '@designer/core';
+import { Card, Slider, Rate, Tag, Button, message } from 'antd';
+import { BaseLayout, ProTable, Modal, ConfirmModal, HttpUtils } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '@designer/designer-antd';
 import { request } from 'umi';
 
@@ -86,6 +85,7 @@ const SchemaField = createSchemaField({
 const AntdScope = {
   Button,
   Tag,
+  message,
 };
 
 const pageId = 'd6739b7370abe5e0ec339839ebd48a6a';
@@ -125,7 +125,7 @@ export const DemoPage: React.FC = () => {
 
   return (
     <Form {...schema.form} form={form}>
-      <SchemaField schema={schema.schema} scope={{ React, Antd: AntdScope, $setComponentsProps }} />
+      <SchemaField schema={schema.schema} scope={{ React, Antd: AntdScope, HttpUtils, $setComponentsProps }} />
     </Form>
   );
 };

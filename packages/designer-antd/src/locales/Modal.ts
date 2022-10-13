@@ -6,6 +6,7 @@ export const Modal = {
         title: '标题',
         visible: '显示',
         mask: '遮罩',
+        onOk: '确认回调',
       },
     },
   },
@@ -18,6 +19,7 @@ export const ConfirmModal = {
       'x-component-props': {
         title: '提示',
         visible: '显示',
+        onOk: '确认回调',
       },
     },
   },
