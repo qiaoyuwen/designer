@@ -138,13 +138,17 @@ export const Field: DnFC<ISchema> = observer((props) => {
   if (!node) return null;
   const fieldProps = toDesignableFieldProps(props, components, designer.props.nodeIdAttrName || '', node.id, $form);
   if (props.type === 'object') {
-    return (
-      <Container>
+    const renderObjectField = () => {
+      return (
         <ObjectField {...fieldProps} name={node.id}>
           {props.children}
         </ObjectField>
-      </Container>
-    );
+      );
+    };
+    if (node.props['x-component'] === 'Modal') {
+      return renderObjectField();
+    }
+    return <Container>{renderObjectField()}</Container>;
   } else if (props.type === 'array') {
     return <ArrayField {...fieldProps} name={node.id} />;
   } else if (node.props.type === 'void') {

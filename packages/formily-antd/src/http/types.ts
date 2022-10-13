@@ -6,9 +6,11 @@ export interface IHttpResponse<T> {
   success: boolean;
   data: T;
 }
-export interface IHttpPaginationResponse<T> {
-  data: T[];
+
+export interface IHttpPaginationResponseData<T> {
+  list: T[];
   current: number;
   pageSize: number;
   total: number;
 }
+export type IHttpPaginationResponse<T> = IHttpResponse<IHttpPaginationResponseData<T>>;

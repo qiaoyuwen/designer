@@ -1,4 +1,4 @@
-import { HttpParams, IHttpPaginationResponse } from 'packages/formily-antd/src/http/types';
+import { HttpParams, IHttpPaginationResponse, IHttpResponse } from '../../../http/types';
 import { useCallback } from 'react';
 
 export function useTableRequest<P, T = any>(service: (params?: HttpParams) => Promise<IHttpPaginationResponse<P>>) {
@@ -22,12 +22,12 @@ export function useTableRequest<P, T = any>(service: (params?: HttpParams) => Pr
       }
 
       return {
-        data: data?.data ?? [],
+        data: data.data?.list ?? [],
         // success 请返回 true，
         // 不然 table 会停止解析数据，即使有数据
         success,
         // 不传会使用 data 的长度，如果是分页一定要传
-        total: data?.total,
+        total: data.data?.total,
       };
     },
     [service],
