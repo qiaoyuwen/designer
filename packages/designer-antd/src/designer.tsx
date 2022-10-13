@@ -120,32 +120,31 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             <ViewportPanel style={{ height: '100%' }}>
               <ViewPanel type="DESIGNABLE">
                 {() => {
-                  return (
-                    <ComponentTreeWidget
-                      components={{
-                        Form,
-                        Field,
-                        Input,
-                        Password,
-                        NumberPicker,
-                        Select,
-                        TreeSelect,
-                        Cascader,
-                        Checkbox,
-                        Radio,
-                        BaseLayout,
-                        Card,
-                        Switch,
-                        Slider,
-                        Rate,
-                        DatePicker,
-                        Upload,
-                        Table,
-                        Modal,
-                        ConfirmModal,
-                      }}
-                    />
-                  );
+                  const components = {
+                    Form,
+                    Field,
+                    Input,
+                    Password,
+                    NumberPicker,
+                    Select,
+                    TreeSelect,
+                    Cascader,
+                    Checkbox,
+                    Radio,
+                    BaseLayout,
+                    Card,
+                    Switch,
+                    Slider,
+                    Rate,
+                    DatePicker,
+                    Upload,
+                    Table,
+                    Modal,
+                    ConfirmModal,
+                  };
+                  GlobalRegistry.registerDesignerBehaviors(components);
+
+                  return <ComponentTreeWidget components={components} />;
                 }}
               </ViewPanel>
               <ViewPanel type="JSONTREE" scrollable={false}>

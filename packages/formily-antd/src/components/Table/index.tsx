@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { IParamsType, IProTableProps } from './types';
 import { Table, ConfigProvider, TablePaginationConfig, Card } from 'antd';
 import { useFetchData } from './hooks/useFetchData';
@@ -11,6 +11,7 @@ import { useMountMergeState } from '../../hooks';
 import { stringify } from './utils';
 import { ColumnValueType } from './enums';
 import moment from 'moment';
+import { useField } from '@formily/react';
 
 export const ProTable = <DataType extends Record<string, any>, Params extends IParamsType = IParamsType>(
   props: IProTableProps<DataType, Params>,
@@ -25,6 +26,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
     tableStyle,
     toolBarRender,
   } = props;
+  const field = useField();
   const [formSearch, setFormSearch] = useMountMergeState<Record<string, any>>({});
 
   const [request] = useTableRequest<IHttpPaginationResponse<DataType>>((params?: HttpParams) => {
@@ -133,6 +135,13 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
       current: 1,
     });
   }, [action, setFormSearch]);
+
+  useEffect(() => {
+    field.inject({
+      reload: action.reload,
+      reset: action.reset,
+    });
+  }, [field, action]);
 
   return (
     <ConfigProvider locale={zh_CN}>

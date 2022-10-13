@@ -21,9 +21,9 @@
     "@designer/core": "workspace:*",
     "@designer/designer-antd": "workspace:*",
     "@designer/formily-antd": "workspace:*",
-    "@formily/core": "~2.1.11",
-    "@formily/react": "~2.1.11",
-    "@formily/antd": "~2.1.11"
+    "@formily/core": "2.2.6",
+    "@formily/react": "2.2.6",
+    "@formily/antd": "2.2.6"
   },
   "devDependencies": {
     "@types/react": "~18.0.15",

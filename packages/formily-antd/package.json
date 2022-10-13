@@ -16,10 +16,10 @@
     "classnames": "~2.3.1",
     "rc-util": "~5.23.0",
     "axios": "~0.27.2",
-    "@formily/react": "~2.1.11",
-    "@formily/antd": "~2.1.11",
-    "@formily/core": "~2.1.11",
-    "@formily/reactive": "~2.1.11",
+    "@formily/react": "2.2.6",
+    "@formily/antd": "2.2.6",
+    "@formily/core": "2.2.6",
+    "@formily/reactive": "2.2.6",
     "moment": "~2.29.4"
   },
   "devDependencies": {

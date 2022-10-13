@@ -10,10 +10,10 @@
   "license": "MIT",
   "dependencies": {
     "@designer/utils": "workspace:*",
-    "@formily/reactive": "~2.1.11",
+    "@formily/reactive": "2.2.6",
     "@juggle/resize-observer": "~3.3.1",
-    "@formily/path": "~2.1.11",
-    "@formily/json-schema": "~2.1.11"
+    "@formily/path": "2.2.6",
+    "@formily/json-schema": "2.2.6"
   },
   "devDependencies": {
     "rimraf": "~3.0.2",
