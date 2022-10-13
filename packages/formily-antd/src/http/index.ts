@@ -23,8 +23,18 @@ async function postJson<T>(url: string, data?: Record<string, any>): Promise<T> 
   return axios.post<IHttpResponse<T>>(url, data).then((res) => res.data.data);
 }
 
+async function putJson<T>(url: string, data?: Record<string, any>): Promise<T> {
+  return axios.put<IHttpResponse<T>>(url, data).then((res) => res.data.data);
+}
+
+async function deleteJson<T>(url: string): Promise<T> {
+  return axios.delete<IHttpResponse<T>>(url).then((res) => res.data.data);
+}
+
 export const HttpUtils = {
   getJson,
   getPaginationJson,
   postJson,
+  putJson,
+  deleteJson,
 };
