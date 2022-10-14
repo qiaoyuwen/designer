@@ -1,5 +1,10 @@
 import { HttpParams, IHttpPaginationResponse, IHttpResponse } from './types';
 import axios from 'axios';
+import Qs from 'qs';
+
+axios.defaults.paramsSerializer = (params) => {
+  return encodeURI(Qs.stringify(params, { arrayFormat: 'brackets' }));
+};
 
 async function getJson<T>(url: string, params?: HttpParams): Promise<T> {
   return axios

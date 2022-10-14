@@ -20,7 +20,8 @@
     "@formily/antd": "2.2.6",
     "@formily/core": "2.2.6",
     "@formily/reactive": "2.2.6",
-    "moment": "~2.29.4"
+    "moment": "~2.29.4",
+    "qs": "~6.11.0"
   },
   "devDependencies": {
     "rimraf": "~3.0.2",
@@ -30,6 +31,7 @@
     "ts-node": "~10.5.0",
     "@designer/scripts": "workspace:*",
     "@designer/eslint": "workspace:*",
-    "@rushstack/eslint-patch": "~1.1.0"
+    "@rushstack/eslint-patch": "~1.1.0",
+    "@types/qs": "~6.9.7"
   }
 }
