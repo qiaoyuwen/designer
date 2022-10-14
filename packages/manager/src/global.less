@@ -56,14 +56,51 @@ ol {
   }
 }
 
+.ant-pro-basicLayout {
+  height: 100%;
+}
+
+.ant-layout {
+  .ant-pro-basicLayout-content {
+    margin: 0;
+
+    .ant-pro-page-container {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      height: 100%;
+
+      .ant-pro-grid-content {
+        flex: 1;
+        padding: 24px 24px 0 24px;
+        min-height: 0;
+
+        .ant-pro-grid-content-children {
+          height: 100%;
+
+          .ant-pro-layout-watermark-wrapper {
+            height: 100%;
+
+            .ant-pro-page-container-children-content {
+              height: 100%;
+              margin: 0;
+
+              .dn-app {
+                display: flex;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .ant-pro-global-footer {
   margin: 12px 0 24px 0 !important;
 }
 
 .dn-main-panel-container.root {
   position: relative !important;
-
-  .dn-settings-panel {
-    height: auto;
-  }
 }
