@@ -42,6 +42,15 @@ const ProjectPageListPage: FunctionComponent = () => {
       search: false,
     },
     {
+      title: '所属项目',
+      dataIndex: 'project.name',
+      align: 'center',
+      search: false,
+      render: (_, item) => {
+        return item.project?.name || '-';
+      },
+    },
+    {
       title: '状态',
       dataIndex: 'status',
       align: 'center',

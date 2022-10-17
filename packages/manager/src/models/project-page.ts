@@ -1,3 +1,5 @@
+import { Project } from './project';
+
 export interface ProjectPage {
   id: string;
   name: string;
@@ -6,4 +8,5 @@ export interface ProjectPage {
   schemaJson: string;
   status: number;
   deleted: number;
+  project?: Project;
 }
