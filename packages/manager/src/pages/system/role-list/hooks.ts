@@ -1,19 +1,19 @@
 import { useTableModalForm } from '@/hooks';
-import { User } from '@/models';
-import { UserServices } from '@/services';
+import { Role } from '@/models';
+import { RoleServices } from '@/services';
 import type { ActionType } from '@ant-design/pro-table';
 import { message, Modal } from 'antd';
 import { useCallback, useRef } from 'react';
 
-export const useUserList = () => {
+export const useRoleList = () => {
   const tableActionRef = useRef<ActionType>();
-  const { visible, item: selectedItem, openModal, onOk, onCancel } = useTableModalForm<User>(tableActionRef);
+  const { visible, item: selectedItem, openModal, onOk, onCancel } = useTableModalForm<Role>(tableActionRef);
 
-  const remove = useCallback((item: User) => {
+  const remove = useCallback((item: Role) => {
     Modal.confirm({
       title: '确认删除？',
       onOk: async () => {
-        await UserServices.deleteUser({
+        await RoleServices.deleteRole({
           id: item.id,
         });
         message.success('操作成功');

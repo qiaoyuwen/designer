@@ -15,8 +15,18 @@ const getUsersPagination = (params?: HttpParams) => {
   return HttpUtils.getJson<HttpPaginationResponse<User>>(`${prefix}/pagination`, params);
 };
 
+const addUser = (params: { username: string }) => {
+  return HttpUtils.postJson<void>(`${prefix}/`, params);
+};
+
+const deleteUser = (params: { id: string }) => {
+  return HttpUtils.deleteJson(`${prefix}/${params.id}`);
+};
+
 export const UserServices = {
   getUserDetail,
   login,
   getUsersPagination,
+  addUser,
+  deleteUser,
 };

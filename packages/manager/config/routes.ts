@@ -44,6 +44,11 @@
         component: './system/user-list',
       },
       {
+        path: '/system/role-list',
+        name: 'role-list',
+        component: './system/role-list',
+      },
+      {
         path: '/system',
         redirect: '/system/user-list',
       },

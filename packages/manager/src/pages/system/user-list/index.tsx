@@ -8,10 +8,14 @@ import { useUserList } from './hooks';
 import type { User } from '@/models/user';
 import { UserServices } from '@/services/user';
 import Actions from '@/components/actions';
+import { useModel } from 'umi';
+import AddModal from './add-modal';
 
 const UserList: FunctionComponent = () => {
+  const { initialState } = useModel('@@initialState');
+
   const [request] = useTableRequest<User>(UserServices.getUsersPagination);
-  const [{ tableActionRef }] = useUserList();
+  const [{ tableActionRef }, { visible, openModal, onOk, onCancel }, { remove }] = useUserList();
 
   const columns: ProColumnType<User>[] = [
     {
@@ -26,6 +30,15 @@ const UserList: FunctionComponent = () => {
       align: 'center',
     },
     {
+      title: '超级管理员',
+      dataIndex: 'root',
+      align: 'center',
+      render: (_, item) => {
+        return item.isRoot ? '是' : '否';
+      },
+      search: false,
+    },
+    {
       title: '创建时间',
       dataIndex: 'ctime',
       align: 'center',
@@ -37,19 +50,38 @@ const UserList: FunctionComponent = () => {
       align: 'center',
       search: false,
       width: 150,
-      render: () => <Actions />,
+      render: (_, item) => {
+        if (!initialState?.currentUser?.isRoot || item.isRoot) {
+          return <Actions />;
+        }
+        return (
+          <Actions>
+            <Button key="role" type="link" onClick={() => {}}>
+              角色
+            </Button>
+            <Button key="delete" type="link" danger onClick={() => remove(item)}>
+              删除
+            </Button>
+          </Actions>
+        );
+      },
     },
   ];
 
   return (
     <PageContainer
-      extra={[
-        <Button key="add" type="primary">
-          新增用户
-        </Button>,
-      ]}
+      extra={
+        initialState?.currentUser?.isRoot
+          ? [
+              <Button key="add" type="primary" onClick={() => openModal()}>
+                新增用户
+              </Button>,
+            ]
+          : []
+      }
     >
       <ProTable<User> actionRef={tableActionRef} columns={columns} rowKey="id" request={request} />
+      <AddModal visible={visible} onOk={onOk} onCancel={onCancel} />
     </PageContainer>
   );
 };
