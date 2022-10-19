@@ -1,10 +1,16 @@
-import { ProjectPage } from '@/models';
 import { ProjectPageServices } from '@/services';
 import { useCallback } from 'react';
 
+export interface FormDataType {
+  id?: string;
+  name?: string;
+  projectId?: string;
+  description?: string;
+}
+
 export interface AddModalProps {
   visible: boolean;
-  formData?: Partial<ProjectPage>;
+  formData?: FormDataType;
   onOk: () => void;
   onCancel: () => void;
 }
@@ -12,7 +18,7 @@ export interface AddModalProps {
 export const useProjectAddModal = (props: AddModalProps) => {
   const { formData } = props;
   const submit = useCallback(
-    async (data: ProjectPage) => {
+    async (data: FormDataType) => {
       if (formData?.id) {
         await ProjectPageServices.updateProjectPage({
           ...data,

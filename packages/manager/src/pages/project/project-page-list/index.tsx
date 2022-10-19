@@ -96,7 +96,15 @@ const ProjectPageListPage: FunctionComponent = () => {
       ]}
     >
       <ProTable<ProjectPage> actionRef={tableActionRef} columns={columns} rowKey="id" request={request} />
-      <AddModal visible={visible} formData={selectedItem} onOk={onOk} onCancel={onCancel} />
+      <AddModal
+        visible={visible}
+        formData={{
+          ...selectedItem,
+          projectId: selectedItem?.project?.id,
+        }}
+        onOk={onOk}
+        onCancel={onCancel}
+      />
     </PageContainer>
   );
 };
