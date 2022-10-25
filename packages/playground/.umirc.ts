@@ -17,6 +17,7 @@ export default defineConfig({
     type: 'none',
   },
   routes: [
+    { path: '/login', component: '@/pages/login' },
     { path: '/demo', component: '@/pages/demo' },
     { path: '/', component: '@/pages/index' },
   ],

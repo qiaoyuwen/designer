@@ -8,6 +8,13 @@ import { useCallback, useRef } from 'react';
 export const useProjectList = () => {
   const tableActionRef = useRef<ActionType>();
   const { visible, item: selectedItem, openModal, onOk, onCancel } = useTableModalForm<Project>(tableActionRef);
+  const {
+    visible: menuModalVisible,
+    item: menuModalSelectedItem,
+    openModal: openMenuModal,
+    onOk: onMenuModalOk,
+    onCancel: onMenuModalCancel,
+  } = useTableModalForm<Project>(tableActionRef);
 
   const remove = useCallback((item: Project) => {
     Modal.confirm({
@@ -28,5 +35,6 @@ export const useProjectList = () => {
     },
     { visible, selectedItem, openModal, onOk, onCancel },
     { remove },
+    { menuModalVisible, menuModalSelectedItem, openMenuModal, onMenuModalOk, onMenuModalCancel },
   ] as const;
 };

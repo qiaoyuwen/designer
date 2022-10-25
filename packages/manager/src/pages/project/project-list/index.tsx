@@ -9,10 +9,16 @@ import Actions from '@/components/actions';
 import { Project } from '@/models';
 import { ProjectServices } from '@/services/project';
 import AddModal from './add-modal';
+import MenuConfigModal from './menu-modal';
 
 const ProjectListPage: FunctionComponent = () => {
   const [request] = useTableRequest<Project>(ProjectServices.getProjectsPagination);
-  const [{ tableActionRef }, { visible, selectedItem, openModal, onOk, onCancel }, { remove }] = useProjectList();
+  const [
+    { tableActionRef },
+    { visible, selectedItem, openModal, onOk, onCancel },
+    { remove },
+    { menuModalVisible, menuModalSelectedItem, openMenuModal, onMenuModalOk, onMenuModalCancel },
+  ] = useProjectList();
 
   const columns: ProColumnType<Project>[] = [
     {
@@ -43,11 +49,14 @@ const ProjectListPage: FunctionComponent = () => {
       title: '操作',
       align: 'center',
       search: false,
-      width: 150,
+      width: 220,
       render: (_, item) => (
         <Actions>
           <Button key="edit" type="link" onClick={() => openModal(item)}>
             编辑
+          </Button>
+          <Button key="menu" type="link" onClick={() => openMenuModal(item)}>
+            菜单
           </Button>
           <Button key="delete" type="link" danger onClick={() => remove(item)}>
             删除
@@ -67,6 +76,14 @@ const ProjectListPage: FunctionComponent = () => {
     >
       <ProTable<Project> actionRef={tableActionRef} columns={columns} rowKey="id" request={request} />
       <AddModal visible={visible} formData={selectedItem} onOk={onOk} onCancel={onCancel} />
+      {menuModalSelectedItem && (
+        <MenuConfigModal
+          visible={menuModalVisible}
+          formData={menuModalSelectedItem}
+          onOk={onMenuModalOk}
+          onCancel={onMenuModalCancel}
+        />
+      )}
     </PageContainer>
   );
 };
