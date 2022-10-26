@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { createForm } from '@formily/core';
 import { createSchemaField } from '@formily/react';
 import {
@@ -30,7 +30,7 @@ import {
   ArrayCards,
 } from '@formily/antd';
 import { Card, Slider, Rate, Tag, Button, message } from 'antd';
-import { BaseLayout, ProTable, Modal, ConfirmModal, HttpUtils } from '@designer/formily-antd';
+import { BaseLayout, ProTable, Modal, ConfirmModal, HttpUtils, Button as FormilyButton } from '@designer/formily-antd';
 import { TreeNode } from '@designer/core';
 import { transformToSchema } from '../transformer';
 import { createFormFieldSetComponentsFunc } from '../utils';
@@ -80,6 +80,7 @@ const SchemaField = createSchemaField({
     Table: ProTable,
     Modal,
     ConfirmModal,
+    Button: FormilyButton,
   },
 });
 

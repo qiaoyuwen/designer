@@ -36,6 +36,7 @@ import {
   DatePicker,
 } from './components';
 import { BaseLayout, Card, Table, Modal, ConfirmModal } from './layouts';
+import { Button } from './operations';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 import './global.less';
 
@@ -47,6 +48,7 @@ GlobalRegistry.registerDesignerLocales({
       Inputs: '表单组件',
       Layouts: '布局组件',
       DataDisplays: '数据展示组件',
+      Operations: '操作组件',
     },
   },
 });
@@ -106,6 +108,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             />
             <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card, Modal, ConfirmModal]} />
             <ResourceWidget title="sources.DataDisplays" sources={[Table]} />
+            <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
             <OutlineTreeWidget />
@@ -141,6 +144,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Table,
                     Modal,
                     ConfirmModal,
+                    Button,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 

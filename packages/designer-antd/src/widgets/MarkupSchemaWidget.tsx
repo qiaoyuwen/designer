@@ -94,8 +94,8 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag } from 'antd';
-import { BaseLayout, ProTable, Modal } from '@designer/formily-antd';
+import { Card, Slider, Rate, Tag, Button } from 'antd';
+import { BaseLayout, ProTable, Modal, Button as FormilyButton } from '@designer/formily-antd';
 
 const Text: React.FC<{
   value?: string
@@ -141,6 +141,7 @@ const SchemaField = createSchemaField({
     BaseLayout,
     Table: ProTable,
     Modal,
+    Button: FormilyButton,
   },
 })
 

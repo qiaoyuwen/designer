@@ -30,7 +30,7 @@ import {
   ArrayCards,
 } from '@formily/antd';
 import { Card, Slider, Rate, Tag, Button, message } from 'antd';
-import { BaseLayout, ProTable, Modal, ConfirmModal, HttpUtils } from '@designer/formily-antd';
+import { BaseLayout, ProTable, Modal, ConfirmModal, HttpUtils, Button as FormilyButton } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '@designer/designer-antd';
 import { IRouteComponentProps } from 'umi';
 import { ProjectPageServices } from '@/services/project-page';
@@ -80,6 +80,7 @@ const SchemaField = createSchemaField({
     Table: ProTable,
     Modal,
     ConfirmModal,
+    Button: FormilyButton,
   },
 });
 
@@ -89,7 +90,7 @@ const AntdScope = {
   message,
 };
 
-const IndexPage: React.FC<IRouteComponentProps<{}, {}>> = (props) => {
+const IndexPage: React.FC<IRouteComponentProps> = (props) => {
   const pageId = props.route.pageId as string;
   const form = useMemo(() => createForm(), [pageId]);
   const [schema, setSchema] = useState<any>();

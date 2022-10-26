@@ -140,6 +140,7 @@ export const Field: DnFC<ISchema> = observer((props) => {
 
   if (!node) return null;
   const fieldProps = toDesignableFieldProps(props, components, designer.props.nodeIdAttrName || '', node.id, $form);
+
   if (props.type === 'object') {
     const renderObjectField = () => {
       return (
