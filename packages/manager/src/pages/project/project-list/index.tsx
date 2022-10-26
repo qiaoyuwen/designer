@@ -56,7 +56,7 @@ const ProjectListPage: FunctionComponent = () => {
             编辑
           </Button>
           <Button key="menu" type="link" onClick={() => openMenuModal(item)}>
-            菜单
+            路由
           </Button>
           <Button key="delete" type="link" danger onClick={() => remove(item)}>
             删除

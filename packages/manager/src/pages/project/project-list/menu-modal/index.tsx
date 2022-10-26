@@ -8,10 +8,10 @@ const MenuConfigModal: FunctionComponent<MenuConfigModalProps> = (props) => {
   const [{ submit }] = useProjectMenuConfigModal(props);
 
   return (
-    <CustomModalForm<Project> title="编辑菜单" submit={submit} {...props}>
+    <CustomModalForm<Project> title="编辑路由" submit={submit} {...props}>
       <ProFormTextArea
         name="menuConfig"
-        label="菜单配置"
+        label="路由配置"
         fieldProps={{
           rows: 8,
         }}

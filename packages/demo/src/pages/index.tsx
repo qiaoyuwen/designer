@@ -35,6 +35,7 @@ import { createFormFieldSetComponentsFunc } from '@designer/designer-antd';
 import { IRouteComponentProps, useModel } from 'umi';
 import { ProjectPageServices } from '@/services/project-page';
 import { history as UmiHistory } from 'umi';
+import { PageContainer } from '@ant-design/pro-layout';
 
 const Text: React.FC<{
   value?: string;
@@ -93,6 +94,7 @@ const AntdScope = {
 
 const IndexPage: React.FC<IRouteComponentProps> = (props) => {
   const pageId = props.route.pageId as string;
+
   const form = useMemo(() => createForm(), [pageId]);
   const [schema, setSchema] = useState<any>();
   const { initialState, setInitialState } = useModel('@@initialState');
@@ -123,14 +125,30 @@ const IndexPage: React.FC<IRouteComponentProps> = (props) => {
     return null;
   }
 
-  return (
-    <Form {...schema.form} form={form}>
-      <SchemaField
-        schema={schema.schema}
-        scope={{ React, Antd: AntdScope, HttpUtils, UmiHistory, initialStateRef, setInitialState, $setComponentsProps }}
-      />
-    </Form>
-  );
+  const renderForm = () => {
+    return (
+      <Form {...schema.form} form={form}>
+        <SchemaField
+          schema={schema.schema}
+          scope={{
+            React,
+            Antd: AntdScope,
+            HttpUtils,
+            UmiHistory,
+            initialStateRef,
+            setInitialState,
+            $setComponentsProps,
+          }}
+        />
+      </Form>
+    );
+  };
+
+  if (props.route.layout === false) {
+    return renderForm();
+  }
+
+  return <PageContainer>{renderForm()}</PageContainer>;
 };
 
 export default IndexPage;
