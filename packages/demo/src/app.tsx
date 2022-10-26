@@ -105,7 +105,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
 let extraRoutes: Route[] = [];
 
 export function patchRoutes({ routes }: { routes: any }) {
-  console.log('routes', routes);
   if (routes[1]) {
     routes[1].routes = [...routes[1].routes, ...extraRoutes];
   } else {
@@ -115,7 +114,7 @@ export function patchRoutes({ routes }: { routes: any }) {
 
 const resolveMenus = (menus: any[]) => {
   for (const menu of menus) {
-    if (!menu.component && !menu.redirect) {
+    if (!menu.component && !menu.redirect && !menu.routes) {
       menu.component = IndexPage;
     }
     if (menu.routes) {

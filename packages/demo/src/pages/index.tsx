@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createForm } from '@formily/core';
 import { createSchemaField } from '@formily/react';
 import {
@@ -32,8 +32,9 @@ import {
 import { Card, Slider, Rate, Tag, Button, message } from 'antd';
 import { BaseLayout, ProTable, Modal, ConfirmModal, HttpUtils, Button as FormilyButton } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '@designer/designer-antd';
-import { IRouteComponentProps } from 'umi';
+import { IRouteComponentProps, useModel } from 'umi';
 import { ProjectPageServices } from '@/services/project-page';
+import { history as UmiHistory } from 'umi';
 
 const Text: React.FC<{
   value?: string;
@@ -94,6 +95,8 @@ const IndexPage: React.FC<IRouteComponentProps> = (props) => {
   const pageId = props.route.pageId as string;
   const form = useMemo(() => createForm(), [pageId]);
   const [schema, setSchema] = useState<any>();
+  const { initialState, setInitialState } = useModel('@@initialState');
+  const initialStateRef = useRef(initialState);
 
   const $setComponentsProps = useMemo(() => {
     return createFormFieldSetComponentsFunc(form);
@@ -112,13 +115,20 @@ const IndexPage: React.FC<IRouteComponentProps> = (props) => {
     getSchema();
   }, [getSchema]);
 
+  useEffect(() => {
+    initialStateRef.current = initialState;
+  }, [initialState]);
+
   if (!schema) {
     return null;
   }
 
   return (
     <Form {...schema.form} form={form}>
-      <SchemaField schema={schema.schema} scope={{ React, Antd: AntdScope, HttpUtils, $setComponentsProps }} />
+      <SchemaField
+        schema={schema.schema}
+        scope={{ React, Antd: AntdScope, HttpUtils, UmiHistory, initialStateRef, setInitialState, $setComponentsProps }}
+      />
     </Form>
   );
 };

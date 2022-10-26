@@ -22,7 +22,7 @@ axios.interceptors.request.use((config) => {
 
 // 添加响应拦截器
 axios.interceptors.response.use((response) => {
-  const token = response.headers['Authorization'];
+  const token = response.headers['authorization'];
   if (token) {
     localStorage.setItem(HttpTokenKey, token);
   }
