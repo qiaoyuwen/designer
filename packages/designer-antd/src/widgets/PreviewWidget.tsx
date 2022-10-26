@@ -30,19 +30,18 @@ import {
   ArrayCards,
 } from '@formily/antd';
 import { Card, Slider, Rate, Tag, Button, message } from 'antd';
-import { BaseLayout, ProTable, Modal, ConfirmModal, HttpUtils, Button as FormilyButton } from '@designer/formily-antd';
+import {
+  BaseLayout,
+  ProTable,
+  Modal,
+  ConfirmModal,
+  HttpUtils,
+  Button as FormilyButton,
+  Text,
+} from '@designer/formily-antd';
 import { TreeNode } from '@designer/core';
 import { transformToSchema } from '../transformer';
 import { createFormFieldSetComponentsFunc } from '../utils';
-
-const Text: React.FC<{
-  value?: string;
-  content?: string;
-  mode?: 'normal' | 'h1' | 'h2' | 'h3' | 'p';
-}> = ({ value, mode, content, ...props }) => {
-  const tagName = mode === 'normal' || !mode ? 'div' : mode;
-  return React.createElement(tagName, props, value || content);
-};
 
 const SchemaField = createSchemaField({
   components: {
@@ -59,7 +58,6 @@ const SchemaField = createSchemaField({
     Cascader,
     Editable,
     Input,
-    Text,
     NumberPicker,
     Switch,
     Password,
@@ -81,6 +79,7 @@ const SchemaField = createSchemaField({
     Modal,
     ConfirmModal,
     Button: FormilyButton,
+    Text,
   },
 });
 

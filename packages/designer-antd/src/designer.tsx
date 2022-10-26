@@ -35,7 +35,8 @@ import {
   Upload,
   DatePicker,
 } from './components';
-import { BaseLayout, Card, Table, Modal, ConfirmModal } from './layouts';
+import { BaseLayout, Card, Modal, ConfirmModal } from './layouts';
+import { Table, Text } from './data-display';
 import { Button } from './operations';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 import './global.less';
@@ -107,7 +108,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
               ]}
             />
             <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card, Modal, ConfirmModal]} />
-            <ResourceWidget title="sources.DataDisplays" sources={[Table]} />
+            <ResourceWidget title="sources.DataDisplays" sources={[Table, Text]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
@@ -145,6 +146,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Modal,
                     ConfirmModal,
                     Button,
+                    Text,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 

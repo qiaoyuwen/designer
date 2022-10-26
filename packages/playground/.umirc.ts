@@ -16,11 +16,7 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  routes: [
-    { path: '/login', component: '@/pages/login' },
-    { path: '/demo', component: '@/pages/demo' },
-    { path: '/', component: '@/pages/index' },
-  ],
+  routes: [{ path: '/', component: '@/pages/index' }],
   fastRefresh: {},
   alias: {
     '@designer/utils': resolvePakcage('../utils/src'),

@@ -20,3 +20,4 @@ export * from './DatePicker';
 export * from './Table';
 export * from './Modal';
 export * from './Button';
+export * from './Text';
