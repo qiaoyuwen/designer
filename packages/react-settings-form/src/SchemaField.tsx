@@ -29,6 +29,7 @@ import {
   BoxStyleSetter,
   TableColumnsSetter,
   RequestSetter,
+  DisplayStyleSetter,
 } from './components';
 
 export const SchemaField: any = createSchemaField({
@@ -61,5 +62,6 @@ export const SchemaField: any = createSchemaField({
     BoxStyleSetter,
     TableColumnsSetter,
     RequestSetter,
+    DisplayStyleSetter,
   },
 });

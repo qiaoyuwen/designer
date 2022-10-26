@@ -30,21 +30,20 @@ import {
   ArrayCards,
 } from '@formily/antd';
 import { Card, Slider, Rate, Tag, Button, message } from 'antd';
-import { BaseLayout, ProTable, Modal, ConfirmModal, HttpUtils, Button as FormilyButton } from '@designer/formily-antd';
+import {
+  BaseLayout,
+  ProTable,
+  Modal,
+  ConfirmModal,
+  HttpUtils,
+  Button as FormilyButton,
+  Text,
+} from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '@designer/designer-antd';
 import { IRouteComponentProps, useModel } from 'umi';
 import { ProjectPageServices } from '@/services/project-page';
 import { history as UmiHistory } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
-
-const Text: React.FC<{
-  value?: string;
-  content?: string;
-  mode?: 'normal' | 'h1' | 'h2' | 'h3' | 'p';
-}> = ({ value, mode, content, ...props }) => {
-  const tagName = mode === 'normal' || !mode ? 'div' : mode;
-  return React.createElement(tagName, props, value || content);
-};
 
 const SchemaField = createSchemaField({
   components: {

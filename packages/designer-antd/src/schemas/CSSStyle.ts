@@ -19,6 +19,9 @@ export const CSSStyle: ISchema = {
         defaultOption: 'inherit',
       },
     },
+    'style.display': {
+      'x-component': 'DisplayStyleSetter',
+    },
     'style.margin': {
       'x-component': 'BoxStyleSetter',
     },

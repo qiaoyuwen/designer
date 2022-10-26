@@ -3,7 +3,7 @@ import { ISchema } from '@formily/react';
 export const Text: ISchema = {
   type: 'object',
   properties: {
-    content: {
+    title: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input.TextArea',

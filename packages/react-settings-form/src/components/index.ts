@@ -7,3 +7,5 @@ export * from './DrawerSetter';
 export * from './FoldItem';
 export * from './InputItems';
 export * from './BoxStyleSetter';
+export * from './DisplayStyleSetter';
+export * from './FlexStyleSetter';
