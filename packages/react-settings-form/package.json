@@ -26,7 +26,8 @@
     "@formily/reactive": "2.2.6",
     "@formily/reactive-react": "2.2.6",
     "@ant-design/icons": "~4.7.0",
-    "@formily/shared": "2.2.6"
+    "@formily/shared": "2.2.6",
+    "react-color": "~2.19.3"
   },
   "devDependencies": {
     "rimraf": "~3.0.2",
@@ -36,6 +37,7 @@
     "ts-node": "~10.5.0",
     "@designer/scripts": "workspace:*",
     "@designer/eslint": "workspace:*",
-    "@rushstack/eslint-patch": "~1.1.0"
+    "@rushstack/eslint-patch": "~1.1.0",
+    "@types/react-color": "~3.0.6"
   }
 }

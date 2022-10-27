@@ -9,3 +9,5 @@ export * from './InputItems';
 export * from './BoxStyleSetter';
 export * from './DisplayStyleSetter';
 export * from './FlexStyleSetter';
+export * from './ColorInput';
+export * from './FontStyleSetter';

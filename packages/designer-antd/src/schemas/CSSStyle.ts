@@ -28,5 +28,8 @@ export const CSSStyle: ISchema = {
     'style.padding': {
       'x-component': 'BoxStyleSetter',
     },
+    'style.font': {
+      'x-component': 'FontStyleSetter',
+    },
   },
 };

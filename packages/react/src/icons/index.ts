@@ -26,3 +26,4 @@ export * from './eyes';
 export * from './text';
 export * from './display';
 export * from './flex';
+export * from './font';
