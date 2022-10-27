@@ -6,7 +6,10 @@ export const Input: ISchema & { TextArea?: ISchema } = {
     addonBefore: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'Input',
+      'x-component': 'ValueInput',
+      'x-component-props': {
+        include: ['expression'],
+      },
     },
     addonAfter: {
       type: 'string',

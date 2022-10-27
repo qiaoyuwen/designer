@@ -22,6 +22,7 @@ import { AllLocales } from '../../locales';
 import { Tag, Button, message } from 'antd';
 import { createFormFieldSetComponentsFunc } from '../../utils';
 import { HttpUtils } from '@designer/formily-antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 Schema.silent(true);
 compiler.silent(true);
@@ -30,6 +31,11 @@ const AntdScope = {
   Button,
   Tag,
   message,
+};
+
+const AntdIconScope = {
+  UserOutlined,
+  LockOutlined,
 };
 
 const SchemaStateMap = {
@@ -119,7 +125,14 @@ const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName
     const $setComponentsProps = createFormFieldSetComponentsFunc($form);
     results.component = [
       component,
-      compiler.compile(toJS(componentProps), { React, Antd: AntdScope, HttpUtils, $form, $setComponentsProps }),
+      compiler.compile(toJS(componentProps), {
+        React,
+        Antd: AntdScope,
+        AntdIcon: AntdIconScope,
+        HttpUtils,
+        $form,
+        $setComponentsProps,
+      }),
     ];
   }
   if (decorator) {

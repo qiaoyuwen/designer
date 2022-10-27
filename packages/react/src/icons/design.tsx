@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const Design = (
   <svg viewBox="0 0 1260 1024">
     <path

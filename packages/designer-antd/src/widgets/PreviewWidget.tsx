@@ -42,6 +42,7 @@ import {
 import { TreeNode } from '@designer/core';
 import { transformToSchema } from '../transformer';
 import { createFormFieldSetComponentsFunc } from '../utils';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 const SchemaField = createSchemaField({
   components: {
@@ -89,6 +90,11 @@ const AntdScope = {
   message,
 };
 
+const AntdIconScope = {
+  UserOutlined,
+  LockOutlined,
+};
+
 export interface IPreviewWidgetProps {
   tree: TreeNode;
 }
@@ -103,7 +109,10 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
 
   return (
     <Form {...formProps} form={form}>
-      <SchemaField schema={schema} scope={{ React, Antd: AntdScope, HttpUtils, $setComponentsProps }} />
+      <SchemaField
+        schema={schema}
+        scope={{ React, Antd: AntdScope, AntdIcon: AntdIconScope, HttpUtils, $setComponentsProps }}
+      />
     </Form>
   );
 };

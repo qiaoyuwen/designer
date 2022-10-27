@@ -44,6 +44,7 @@ import { IRouteComponentProps, useModel } from 'umi';
 import { ProjectPageServices } from '@/services/project-page';
 import { history as UmiHistory } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 const SchemaField = createSchemaField({
   components: {
@@ -91,6 +92,11 @@ const AntdScope = {
   message,
 };
 
+const AntdIconScope = {
+  UserOutlined,
+  LockOutlined,
+};
+
 const IndexPage: React.FC<IRouteComponentProps> = (props) => {
   const pageId = props.route.pageId as string;
 
@@ -132,6 +138,7 @@ const IndexPage: React.FC<IRouteComponentProps> = (props) => {
           scope={{
             React,
             Antd: AntdScope,
+            AntdIcon: AntdIconScope,
             HttpUtils,
             UmiHistory,
             initialStateRef,

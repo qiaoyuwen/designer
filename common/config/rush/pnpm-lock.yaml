@@ -145,6 +145,7 @@ importers:
 
   ../../packages/designer-antd:
     specifiers:
+      '@ant-design/icons': ~4.7.0
       '@designer/core': workspace:*
       '@designer/eslint': workspace:*
       '@designer/formily-antd': workspace:*
@@ -170,12 +171,13 @@ importers:
       ts-node: ~10.5.0
       typescript: ~4.7.4
     dependencies:
+      '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/4.7.0_biqbaboplfbrettd7655fr4n2y
       '@designer/core': link:../core
       '@designer/formily-antd': link:../formily-antd
       '@designer/react': link:../react
       '@designer/react-settings-form': link:../react-settings-form
       '@designer/utils': link:../utils
-      '@formily/antd': registry.npmmirror.com/@formily/antd/2.2.6_h7hanrmegvok2fovvuynqkko3e
+      '@formily/antd': registry.npmmirror.com/@formily/antd/2.2.6_tr6vxc2jief2x2z3ctlbo2nuwi
       '@formily/core': registry.npmmirror.com/@formily/core/2.2.6
       '@formily/json-schema': registry.npmmirror.com/@formily/json-schema/2.2.6_typescript@4.7.4
       '@formily/react': registry.npmmirror.com/@formily/react/2.2.6_zc2npgiwqqchue33zzo6an4lwy

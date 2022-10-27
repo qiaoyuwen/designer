@@ -111,6 +111,9 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             <ResourceWidget title="sources.DataDisplays" sources={[Table, Text]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
+          <CompositePanel.Item title="panels.BusinessComponent" icon="Design">
+            <ResourceWidget title="sources.Inputs" sources={[]} />
+          </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
             <OutlineTreeWidget />
           </CompositePanel.Item>
