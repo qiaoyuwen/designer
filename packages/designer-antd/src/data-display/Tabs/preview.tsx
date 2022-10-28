@@ -24,7 +24,7 @@ const parseTabs = (parent: TreeNode) => {
 const getCorrectActiveKey = (activeKey: string, tabs: TreeNode[]) => {
   if (tabs.length === 0) return;
   if (tabs.some((node) => node.id === activeKey)) return activeKey;
-  return tabs[tabs.length - 1].id;
+  return tabs[0].id;
 };
 
 export const Tabs: DnFC<TabsProps> & {

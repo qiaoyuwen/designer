@@ -22,7 +22,7 @@ import { AllLocales } from '../../locales';
 import { Tag, Button, message } from 'antd';
 import { createFormFieldSetComponentsFunc } from '../../utils';
 import { HttpUtils } from '@designer/formily-antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
 
 Schema.silent(true);
 compiler.silent(true);
@@ -36,6 +36,8 @@ const AntdScope = {
 const AntdIconScope = {
   UserOutlined,
   LockOutlined,
+  MobileOutlined,
+  SafetyOutlined,
 };
 
 const SchemaStateMap = {

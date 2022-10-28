@@ -20,6 +20,7 @@
     "@formily/antd": "2.2.6",
     "@formily/core": "2.2.6",
     "@formily/reactive": "2.2.6",
+    "@formily/json-schema": "2.2.6",
     "moment": "~2.29.4",
     "qs": "~6.11.0"
   },

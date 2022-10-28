@@ -24,7 +24,6 @@ import {
   Upload,
   FormGrid,
   FormLayout,
-  FormTab,
   FormCollapse,
   ArrayTable,
   ArrayCards,
@@ -38,11 +37,12 @@ import {
   HttpUtils,
   Button as FormilyButton,
   Text,
+  Tabs,
 } from '@designer/formily-antd';
 import { TreeNode } from '@designer/core';
 import { transformToSchema } from '../transformer';
 import { createFormFieldSetComponentsFunc } from '../utils';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
 
 const SchemaField = createSchemaField({
   components: {
@@ -73,7 +73,6 @@ const SchemaField = createSchemaField({
     Card,
     Slider,
     Rate,
-    Tabs: FormTab,
     // 自定义组件
     BaseLayout,
     Table: ProTable,
@@ -81,6 +80,7 @@ const SchemaField = createSchemaField({
     ConfirmModal,
     Button: FormilyButton,
     Text,
+    Tabs,
   },
 });
 
@@ -93,6 +93,8 @@ const AntdScope = {
 const AntdIconScope = {
   UserOutlined,
   LockOutlined,
+  MobileOutlined,
+  SafetyOutlined,
 };
 
 export interface IPreviewWidgetProps {

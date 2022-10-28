@@ -24,7 +24,6 @@ import {
   Upload,
   FormGrid,
   FormLayout,
-  FormTab,
   FormCollapse,
   ArrayTable,
   ArrayCards,
@@ -38,13 +37,14 @@ import {
   HttpUtils,
   Button as FormilyButton,
   Text,
+  Tabs,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '@designer/designer-antd';
 import { IRouteComponentProps, useModel } from 'umi';
 import { ProjectPageServices } from '@/services/project-page';
 import { history as UmiHistory } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
 
 const SchemaField = createSchemaField({
   components: {
@@ -76,13 +76,13 @@ const SchemaField = createSchemaField({
     Card,
     Slider,
     Rate,
-    Tabs: FormTab,
     // 自定义组件
     BaseLayout,
     Table: ProTable,
     Modal,
     ConfirmModal,
     Button: FormilyButton,
+    Tabs,
   },
 });
 
@@ -95,6 +95,8 @@ const AntdScope = {
 const AntdIconScope = {
   UserOutlined,
   LockOutlined,
+  MobileOutlined,
+  SafetyOutlined,
 };
 
 const IndexPage: React.FC<IRouteComponentProps> = (props) => {

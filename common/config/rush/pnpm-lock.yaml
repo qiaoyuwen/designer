@@ -221,6 +221,7 @@ importers:
       '@designer/scripts': workspace:*
       '@formily/antd': 2.2.6
       '@formily/core': 2.2.6
+      '@formily/json-schema': 2.2.6
       '@formily/react': 2.2.6
       '@formily/reactive': 2.2.6
       '@rushstack/eslint-patch': ~1.1.0
@@ -242,6 +243,7 @@ importers:
       '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/4.7.0_biqbaboplfbrettd7655fr4n2y
       '@formily/antd': registry.npmmirror.com/@formily/antd/2.2.6_tr6vxc2jief2x2z3ctlbo2nuwi
       '@formily/core': registry.npmmirror.com/@formily/core/2.2.6
+      '@formily/json-schema': registry.npmmirror.com/@formily/json-schema/2.2.6_typescript@4.7.4
       '@formily/react': registry.npmmirror.com/@formily/react/2.2.6_zc2npgiwqqchue33zzo6an4lwy
       '@formily/reactive': registry.npmmirror.com/@formily/reactive/2.2.6
       antd: registry.npmmirror.com/antd/4.22.8_biqbaboplfbrettd7655fr4n2y
