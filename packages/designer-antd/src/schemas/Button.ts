@@ -15,5 +15,31 @@ export const Button: ISchema = {
         include: ['expression'],
       },
     },
+    danger: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: false,
+      },
+    },
+    size: {
+      type: 'string',
+      enum: ['large', 'small', 'default'],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        defaultValue: 'large',
+      },
+    },
+    type: {
+      type: 'string',
+      enum: ['primary', '', 'dashed', 'text', 'link'],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        defaultValue: 'primary',
+      },
+    },
   },
 };

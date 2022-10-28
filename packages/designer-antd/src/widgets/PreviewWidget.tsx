@@ -49,7 +49,6 @@ const SchemaField = createSchemaField({
     Space,
     FormGrid,
     FormLayout,
-    FormTab,
     FormCollapse,
     ArrayTable,
     ArrayCards,
@@ -74,6 +73,7 @@ const SchemaField = createSchemaField({
     Card,
     Slider,
     Rate,
+    Tabs: FormTab,
     // 自定义组件
     BaseLayout,
     Table: ProTable,
