@@ -146,9 +146,15 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
   return (
     <ConfigProvider locale={zh_CN}>
       <div style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
-        <Card style={{ marginBottom: 24 }}>
-          <SearchForm columns={columns} onFormSearchSubmit={onFormSearchSubmit} onFormSearchReset={onFormSearchReset} />
-        </Card>
+        {columns.filter((item) => !item.hideInSearch).length > 0 && (
+          <Card style={{ marginBottom: 24 }}>
+            <SearchForm
+              columns={columns}
+              onFormSearchSubmit={onFormSearchSubmit}
+              onFormSearchReset={onFormSearchReset}
+            />
+          </Card>
+        )}
         <Card>
           {toolBarRender && (
             <div style={{ paddingBottom: 16, display: 'flex', justifyContent: 'flex-end' }}>{toolBarRender()}</div>
