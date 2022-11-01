@@ -7,6 +7,10 @@ const getProjectPageDetail = (params: { id: string }) => {
   return HttpUtils.getJson<ProjectPage>(`${prefix}/${params.id}`);
 };
 
+const getProjectPages = (params: { projectId: string }) => {
+  return HttpUtils.getJson<ProjectPage[]>(`${prefix}`, params);
+};
+
 const getProjectPagesPagination = (params?: HttpParams) => {
   return HttpUtils.getJson<HttpPaginationResponse<ProjectPage>>(`${prefix}/pagination`, params);
 };
@@ -34,6 +38,7 @@ const deleteProjectPage = (params: { id: string }) => {
 };
 
 export const ProjectPageServices = {
+  getProjectPages,
   getProjectPageDetail,
   getProjectPagesPagination,
   addProjectPage,

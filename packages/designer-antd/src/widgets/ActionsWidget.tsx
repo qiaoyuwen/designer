@@ -9,7 +9,7 @@ const supportLocales = ['zh-cn', 'en-us'];
 
 interface IActionsWidgetProps {
   initialSchema?: string;
-  onSave?: () => Promise<void>;
+  onSave?: (schemaJson: string) => Promise<void>;
   onBack?: () => void;
 }
 

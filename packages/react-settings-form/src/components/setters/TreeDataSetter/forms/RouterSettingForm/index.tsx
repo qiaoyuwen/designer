@@ -20,18 +20,23 @@ export interface IRouterSettingFormProps {
   treeDataSource: ITreeDataSource;
   effects?: (form: FormCore<any>) => void;
   localeTokenPrefix: string;
+  childrenKey: string;
 }
 
 export const RouterSettingForm: React.FC<IRouterSettingFormProps> = observer((props) => {
-  const { effects, localeTokenPrefix } = props;
+  const { effects, localeTokenPrefix, childrenKey } = props;
 
   const form = useMemo(() => {
     let values: any;
-    traverseTree(props.treeDataSource.dataSource, (dataItem) => {
-      if (dataItem.key === props.treeDataSource.selectedKey) {
-        values = dataItem;
-      }
-    });
+    traverseTree(
+      props.treeDataSource.dataSource,
+      (dataItem) => {
+        if (dataItem.key === props.treeDataSource.selectedKey) {
+          values = dataItem;
+        }
+      },
+      childrenKey,
+    );
 
     return createForm({
       values,

@@ -24,7 +24,6 @@ export interface ITreePanelProps {
   allowTree: boolean;
   localeTokenPrefix: string;
   type: TreeDataType;
-
   childrenKey: string;
 }
 
@@ -39,35 +38,51 @@ export const TreePanel: React.FC<ITreePanelProps> = observer(
       const data = [...props.treeDataSource.dataSource];
       // Find dragObject
       let dragObj: INodeItem;
-      traverseTree(data, (item, index, arr) => {
-        if (arr[index].key === dragKey) {
-          arr.splice(index, 1);
-          dragObj = item;
-        }
-      });
+      traverseTree(
+        data,
+        (item, index, arr) => {
+          if (arr[index].key === dragKey) {
+            arr.splice(index, 1);
+            dragObj = item;
+          }
+        },
+        childrenKey,
+      );
       if (!info.dropToGap) {
-        traverseTree(data, (item) => {
-          if (item.key === dropKey) {
-            item[childrenKey] = item[childrenKey] || [];
-            item[childrenKey].unshift(dragObj);
-          }
-        });
+        traverseTree(
+          data,
+          (item) => {
+            if (item.key === dropKey) {
+              item[childrenKey] = item[childrenKey] || [];
+              item[childrenKey].unshift(dragObj);
+            }
+          },
+          childrenKey,
+        );
       } else if ((info.node.children || []).length > 0 && info.node.expanded && dropPosition === 1) {
-        traverseTree(data, (item) => {
-          if (item.key === dropKey) {
-            item[childrenKey] = item[childrenKey] || [];
-            item[childrenKey].unshift(dragObj);
-          }
-        });
+        traverseTree(
+          data,
+          (item) => {
+            if (item.key === dropKey) {
+              item[childrenKey] = item[childrenKey] || [];
+              item[childrenKey].unshift(dragObj);
+            }
+          },
+          childrenKey,
+        );
       } else {
         let ar: any[];
         let i: number;
-        traverseTree(data, (item, index, arr) => {
-          if (item.key === dropKey) {
-            ar = arr;
-            i = index;
-          }
-        });
+        traverseTree(
+          data,
+          (item, index, arr) => {
+            if (item.key === dropKey) {
+              ar = arr;
+              i = index;
+            }
+          },
+          childrenKey,
+        );
         if (dropPosition === -1) {
           ar.splice(i, 0, dragObj);
         } else {

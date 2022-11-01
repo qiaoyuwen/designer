@@ -23,3 +23,25 @@ export const useProjectPage = (id?: string) => {
 
   return [data] as const;
 };
+
+export const useProjectPages = (projectId?: string) => {
+  const getProjectPages = useCallback(async () => {
+    if (!projectId) {
+      return {
+        data: [],
+      };
+    }
+    const data = await ProjectPageServices.getProjectPages({
+      projectId,
+    });
+    return {
+      data,
+    };
+  }, [projectId]);
+
+  const { data } = useRequest(getProjectPages, {
+    refreshDeps: [projectId],
+  });
+
+  return [data] as const;
+};

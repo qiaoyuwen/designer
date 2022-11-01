@@ -32,6 +32,7 @@ const ConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = 
       <DesignerAntd
         title={`${projectPage.name}`}
         initialSchema={projectPage.schemaJson}
+        initialRouterData={projectPage.project?.menuConfig}
         onSave={onSave}
         onBack={onBack}
       />

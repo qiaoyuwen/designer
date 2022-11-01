@@ -14,6 +14,7 @@ export interface IDataSettingPanelProps {
   effects?: (form: FormCore<any>) => void;
   localeTokenPrefix: string;
   type: TreeDataType;
+  childrenKey: string;
 }
 
 export const DataSettingPanel: React.FC<IDataSettingPanelProps> = observer((props) => {

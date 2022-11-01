@@ -1,5 +1,5 @@
 import 'antd/dist/antd.less';
-import { FunctionComponent, useMemo } from 'react';
+import { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import { createDesigner, GlobalRegistry, IEngineContext, KeyCode, Shortcut } from '@designer/core';
 import {
   Designer,
@@ -64,8 +64,8 @@ GlobalRegistry.registerDesignerLocales({
 export interface IDesignerAntdProps {
   title?: string;
   initialSchema?: string;
-  initialRouterData?: any;
-  onSave?: () => Promise<void>;
+  initialRouterData?: string;
+  onSave?: (schemaJson: string) => Promise<void>;
   onBack?: () => void;
 }
 
@@ -88,6 +88,21 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       }),
     [],
   );
+  const [router, setRouter] = useState<any[]>([]);
+
+  useEffect(() => {
+    try {
+      if (props.initialRouterData) {
+        setRouter(JSON.parse(props.initialRouterData));
+      }
+    } catch {
+      setRouter([]);
+    }
+  }, [props.initialSchema]);
+
+  const onRouterChange = (newRouter: any[]) => {
+    console.log('onRouterChange', newRouter);
+  };
 
   return (
     <Designer engine={engine}>
@@ -120,7 +135,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.Router" icon="Design">
-            <RouterWidget />
+            <RouterWidget value={router} onChange={onRouterChange} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
             <OutlineTreeWidget />

@@ -51,11 +51,18 @@ export function createTreeDataSetter({
     const [modalVisible, setModalVisible] = useState(false);
     const [tab, setTab] = useState<TabKey>('tree');
     const treeDataSource: ITreeDataSource = useMemo(() => {
+      const setKey = (items: any[]) => {
+        for (const item of items) {
+          item.key = uid();
+          if (item[childrenKey]) {
+            setKey(item[childrenKey]);
+          }
+        }
+      };
+      setKey(value || []);
+
       return observable({
-        dataSource: (value || []).map((item) => ({
-          ...item,
-          key: uid(),
-        })),
+        dataSource: value as any,
         selectedKey: '',
       });
     }, [value, modalVisible]);
@@ -100,6 +107,7 @@ export function createTreeDataSetter({
                       effects={effects}
                       localeTokenPrefix={localeTokenPrefix}
                       type={type}
+                      childrenKey={childrenKey}
                     />
                   </div>
                 </div>

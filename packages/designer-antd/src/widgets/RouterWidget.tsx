@@ -1,14 +1,15 @@
 import { FC } from 'react';
 import { RouterSetter } from '@designer/react-settings-form';
 
-export const RouterWidget: FC = () => {
-  const onChange = (data: any) => {
-    console.log('data', data);
-  };
+export interface IRouterWidgetProps {
+  value: any[];
+  onChange: (router: any[]) => void;
+}
 
+export const RouterWidget: FC<IRouterWidgetProps> = (props) => {
   return (
     <div>
-      <RouterSetter onChange={onChange} />
+      <RouterSetter value={props.value} onChange={props.onChange} />
     </div>
   );
 };

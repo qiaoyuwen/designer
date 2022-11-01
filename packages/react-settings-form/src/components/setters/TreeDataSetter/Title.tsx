@@ -36,23 +36,27 @@ export const Title: React.FC<ITitleProps> = observer(({ labelKey, localeTokenPre
           infer="Add"
           onClick={() => {
             const newDataSource = clone(props?.treeDataSource?.dataSource);
-            traverseTree(newDataSource || [], (dataItem) => {
-              if (dataItem.key === props.duplicateKey) {
-                const arr = toArr(dataItem[childrenKey]);
-                const uuid = uid();
-                const initialItem = {
-                  [labelKey]: `${GlobalRegistry.getDesignerMessage(`${localeTokenPrefix}.item`)} ${arr.length + 1}`,
-                  key: uuid,
-                  [childrenKey]: [],
-                };
-                if (type === 'Option') {
-                  initialItem.value = uuid;
+            traverseTree(
+              newDataSource || [],
+              (dataItem) => {
+                if (dataItem.key === props.duplicateKey) {
+                  const arr = toArr(dataItem[childrenKey]);
+                  const uuid = uid();
+                  const initialItem = {
+                    [labelKey]: `${GlobalRegistry.getDesignerMessage(`${localeTokenPrefix}.item`)} ${arr.length + 1}`,
+                    key: uuid,
+                    [childrenKey]: [],
+                  };
+                  if (type === 'Option') {
+                    initialItem.value = uuid;
+                  }
+                  arr.push({
+                    ...initialItem,
+                  });
                 }
-                arr.push({
-                  ...initialItem,
-                });
-              }
-            });
+              },
+              childrenKey,
+            );
             props.treeDataSource.dataSource = newDataSource;
           }}
         />
@@ -62,11 +66,15 @@ export const Title: React.FC<ITitleProps> = observer(({ labelKey, localeTokenPre
           infer="Remove"
           onClick={() => {
             const newDataSource = clone(props?.treeDataSource?.dataSource);
-            traverseTree(newDataSource || [], (dataItem, i, data) => {
-              if (data[i].key === props.duplicateKey) {
-                toArr(data).splice(i, 1);
-              }
-            });
+            traverseTree(
+              newDataSource || [],
+              (dataItem, i, data) => {
+                if (data[i].key === props.duplicateKey) {
+                  toArr(data).splice(i, 1);
+                }
+              },
+              childrenKey,
+            );
             props.treeDataSource.dataSource = newDataSource;
           }}
         />
