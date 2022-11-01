@@ -8,6 +8,11 @@ export const Modal: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
     },
+    width: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'NumberPicker',
+    },
     visible: {
       type: 'boolean',
       'x-decorator': 'FormItem',

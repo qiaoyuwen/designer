@@ -14,7 +14,7 @@ import { JSONPanel } from './JSONPanel';
 import { takeMessage } from '@designer/core';
 
 type TabKey = 'tree' | 'json';
-type TreeDataType = 'Option' | 'TableColumn';
+export type TreeDataType = 'Option' | 'TableColumn' | 'Router';
 
 export interface ITreeDataSetterProps {
   className?: string;
@@ -24,6 +24,7 @@ export interface ITreeDataSetterProps {
   allowTree?: boolean;
   effects?: (form: Form<any>) => void;
   labelKey?: string;
+  childrenKey?: string;
   type?: TreeDataType;
 }
 
@@ -41,7 +42,8 @@ export function createTreeDataSetter({
       onChange,
       allowTree = true,
       effects = () => {},
-      labelKey = type === 'TableColumn' ? 'title' : 'label',
+      labelKey = type === 'TableColumn' ? 'title' : type === 'Router' ? 'name' : 'label',
+      childrenKey = type === 'Router' ? 'routes' : 'children',
     } = props;
 
     const theme = useTheme();
@@ -88,6 +90,8 @@ export function createTreeDataSetter({
                       localeTokenPrefix={localeTokenPrefix}
                       allowTree={allowTree}
                       treeDataSource={treeDataSource}
+                      type={type}
+                      childrenKey={childrenKey}
                     />
                   </div>
                   <div className={`${prefix + '-layout-item right'}`}>

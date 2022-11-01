@@ -5,15 +5,18 @@ import { GlobalRegistry, takeMessage } from '@designer/core';
 import { ITreeDataSource } from './types';
 import { traverseTree } from './shared';
 import './styles.less';
+import { TreeDataType } from '.';
 
 export interface ITitleProps {
   duplicateKey: string;
   treeDataSource: ITreeDataSource;
   labelKey: string;
   localeTokenPrefix: string;
+  type: TreeDataType;
+  childrenKey: string;
 }
 
-export const Title: React.FC<ITitleProps> = observer(({ labelKey, localeTokenPrefix, ...props }) => {
+export const Title: React.FC<ITitleProps> = observer(({ labelKey, localeTokenPrefix, type, childrenKey, ...props }) => {
   const prefix = usePrefix('tree-data-setter-node-title');
 
   const renderTitle = () => {
@@ -35,16 +38,18 @@ export const Title: React.FC<ITitleProps> = observer(({ labelKey, localeTokenPre
             const newDataSource = clone(props?.treeDataSource?.dataSource);
             traverseTree(newDataSource || [], (dataItem) => {
               if (dataItem.key === props.duplicateKey) {
-                const arr = toArr(dataItem.children);
+                const arr = toArr(dataItem[childrenKey]);
                 const uuid = uid();
                 const initialItem = {
                   [labelKey]: `${GlobalRegistry.getDesignerMessage(`${localeTokenPrefix}.item`)} ${arr.length + 1}`,
-                  value: uuid,
+                  key: uuid,
+                  [childrenKey]: [],
                 };
+                if (type === 'Option') {
+                  initialItem.value = uuid;
+                }
                 arr.push({
                   ...initialItem,
-                  key: uuid,
-                  children: [],
                 });
               }
             });

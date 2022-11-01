@@ -17,7 +17,14 @@ import {
   OutlineTreeWidget,
 } from '@designer/react';
 import { saveSchema } from './service';
-import { ActionsWidget, LogoWidget, MarkupSchemaWidget, PreviewWidget, SchemaEditorWidget } from './widgets';
+import {
+  ActionsWidget,
+  LogoWidget,
+  MarkupSchemaWidget,
+  PreviewWidget,
+  SchemaEditorWidget,
+  RouterWidget,
+} from './widgets';
 import {
   Form,
   Field,
@@ -57,6 +64,7 @@ GlobalRegistry.registerDesignerLocales({
 export interface IDesignerAntdProps {
   title?: string;
   initialSchema?: string;
+  initialRouterData?: any;
   onSave?: () => Promise<void>;
   onBack?: () => void;
 }
@@ -111,8 +119,8 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             <ResourceWidget title="sources.DataDisplays" sources={[Table, Text, Tabs, Statistic]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
-          <CompositePanel.Item title="panels.BusinessComponent" icon="Design">
-            <ResourceWidget title="sources.Inputs" sources={[]} />
+          <CompositePanel.Item title="panels.Router" icon="Design">
+            <RouterWidget />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
             <OutlineTreeWidget />

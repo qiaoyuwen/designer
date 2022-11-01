@@ -6,14 +6,14 @@ import { Header } from './Header';
 
 import { ITreeDataSource } from './types';
 import './styles.less';
-import { OptionDataSettingForm } from './forms';
-import { TableColumnSettingForm } from './forms/TableColumnSettingForm';
+import { OptionDataSettingForm, TableColumnSettingForm, RouterSettingForm } from './forms';
+import { TreeDataType } from '.';
 
 export interface IDataSettingPanelProps {
   treeDataSource: ITreeDataSource;
   effects?: (form: FormCore<any>) => void;
   localeTokenPrefix: string;
-  type: 'Option' | 'TableColumn';
+  type: TreeDataType;
 }
 
 export const DataSettingPanel: React.FC<IDataSettingPanelProps> = observer((props) => {
@@ -34,6 +34,7 @@ export const DataSettingPanel: React.FC<IDataSettingPanelProps> = observer((prop
       <div className={`${prefix + '-layout-item-content'}`}>
         {type === 'Option' && <OptionDataSettingForm {...props} />}
         {type === 'TableColumn' && <TableColumnSettingForm {...props} />}
+        {type === 'Router' && <RouterSettingForm {...props} />}
       </div>
     </Fragment>
   );

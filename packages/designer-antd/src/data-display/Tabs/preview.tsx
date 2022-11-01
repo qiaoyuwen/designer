@@ -103,7 +103,7 @@ export const Tabs: DnFC<TabsProps> & {
                   type: 'void',
                   'x-component': 'Tabs.TabPane',
                   'x-component-props': {
-                    tab: `Unnamed Title`,
+                    tab: `未命名`,
                   },
                 },
               });
