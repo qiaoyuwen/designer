@@ -26,6 +26,7 @@ export interface ITreeDataSetterProps {
   labelKey?: string;
   childrenKey?: string;
   type?: TreeDataType;
+  pageOptions?: { value: string; label: string }[];
 }
 
 export function createTreeDataSetter({
@@ -44,6 +45,7 @@ export function createTreeDataSetter({
       effects = () => {},
       labelKey = type === 'TableColumn' ? 'title' : type === 'Router' ? 'name' : 'label',
       childrenKey = 'children',
+      pageOptions = [],
     } = props;
 
     const theme = useTheme();
@@ -108,6 +110,7 @@ export function createTreeDataSetter({
                       localeTokenPrefix={localeTokenPrefix}
                       type={type}
                       childrenKey={childrenKey}
+                      pageOptions={pageOptions}
                     />
                   </div>
                 </div>

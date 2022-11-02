@@ -67,6 +67,7 @@ export interface IDesignerAntdProps {
   initialRouterData?: string;
   onSave?: (schemaJson: string, routerJson: string) => Promise<void>;
   onBack?: () => void;
+  pageOptions?: { value: string; label: string }[];
 }
 
 export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
@@ -142,7 +143,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.Router" icon="Design">
-            <RouterWidget value={props.initialRouterData} onChange={onRouterChange} />
+            <RouterWidget value={props.initialRouterData} pageOptions={props.pageOptions} onChange={onRouterChange} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
             <OutlineTreeWidget />

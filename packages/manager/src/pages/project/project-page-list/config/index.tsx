@@ -1,6 +1,6 @@
-import { useProjectPage } from '@/data';
+import { useProjectPage, useProjectPages } from '@/data';
 import { PageContainer } from '@ant-design/pro-layout';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useMemo } from 'react';
 import { IRouteComponentProps, history } from 'umi';
 import { DesignerAntd } from '@designer/designer-antd';
 import { ProjectPageServices, ProjectServices } from '@/services';
@@ -9,6 +9,16 @@ import { message } from 'antd';
 const ConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = (props) => {
   const { id } = props.location.query;
   const [projectPage] = useProjectPage(id);
+  const [projectPages] = useProjectPages(projectPage?.project?.id);
+
+  const pageOptions = useMemo(() => {
+    return (projectPages || []).map((item) => {
+      return {
+        label: item.name,
+        value: item.id,
+      };
+    });
+  }, [projectPages]);
 
   if (!projectPage) {
     return null;
@@ -41,6 +51,7 @@ const ConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = 
         initialRouterData={projectPage.project?.menuConfig}
         onSave={onSave}
         onBack={onBack}
+        pageOptions={pageOptions}
       />
     </PageContainer>
   );

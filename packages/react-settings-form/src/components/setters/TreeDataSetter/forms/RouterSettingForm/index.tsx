@@ -21,12 +21,13 @@ export interface IRouterSettingFormProps {
   effects?: (form: FormCore<any>) => void;
   localeTokenPrefix: string;
   childrenKey: string;
+  pageOptions?: { value: string; label: string }[];
 }
 
 export const RouterSettingForm: React.FC<IRouterSettingFormProps> = observer((props) => {
-  const { effects, localeTokenPrefix, childrenKey } = props;
+  const { effects, localeTokenPrefix, childrenKey, pageOptions } = props;
 
-  const form = useMemo(() => {
+  const { form, dataItem } = useMemo(() => {
     let values: any;
     traverseTree(
       props.treeDataSource.dataSource,
@@ -38,10 +39,13 @@ export const RouterSettingForm: React.FC<IRouterSettingFormProps> = observer((pr
       childrenKey,
     );
 
-    return createForm({
-      values,
-      effects: effects,
-    });
+    return {
+      form: createForm({
+        values,
+        effects: effects,
+      }),
+      dataItem: values,
+    };
   }, [props.treeDataSource.selectedKey, props.treeDataSource.dataSource.length]);
 
   return (
@@ -54,24 +58,32 @@ export const RouterSettingForm: React.FC<IRouterSettingFormProps> = observer((pr
           x-component="Input"
         />
         <SchemaField.String
-          title={<TextWidget token={`${localeTokenPrefix}.pageId`} />}
-          x-decorator="FormItem"
-          name="pageId"
-          x-component="Input"
-        />
-        <SchemaField.String
           title={<TextWidget token={`${localeTokenPrefix}.path`} />}
           x-decorator="FormItem"
           name="path"
           x-component="Input"
         />
-        <SchemaField.Boolean
-          name="layout"
-          title={<TextWidget token={`${localeTokenPrefix}.layout`} />}
-          x-decorator="FormItem"
-          x-component="Switch"
-          default={true}
-        />
+        {(!dataItem.children || dataItem.children.length === 0) && (
+          <>
+            <SchemaField.String
+              title={<TextWidget token={`${localeTokenPrefix}.pageId`} />}
+              x-decorator="FormItem"
+              name="pageId"
+              x-component="Select"
+              x-component-props={{
+                allowClear: true,
+                options: pageOptions || [],
+              }}
+            />
+            <SchemaField.Boolean
+              name="layout"
+              title={<TextWidget token={`${localeTokenPrefix}.layout`} />}
+              x-decorator="FormItem"
+              x-component="Switch"
+              default={true}
+            />
+          </>
+        )}
         <SchemaField.Boolean
           name="hideInMenu"
           title={<TextWidget token={`${localeTokenPrefix}.hideInMenu`} />}

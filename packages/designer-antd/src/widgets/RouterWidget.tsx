@@ -4,6 +4,7 @@ import { Menu } from 'antd';
 
 export interface IRouterWidgetProps {
   value?: string;
+  pageOptions?: { value: string; label: string }[];
   onChange: (router: any[]) => void;
 }
 
@@ -46,7 +47,7 @@ export const RouterWidget: FC<IRouterWidgetProps> = (props) => {
 
   return (
     <div>
-      <RouterSetter value={routers} onChange={onRouterChange} />
+      <RouterSetter value={routers} pageOptions={props.pageOptions} onChange={onRouterChange} />
       <Menu style={{ marginTop: 24 }} items={items} mode="inline" />
     </div>
   );
