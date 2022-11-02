@@ -1,5 +1,5 @@
 import 'antd/dist/antd.less';
-import { FunctionComponent, useEffect, useMemo, useState } from 'react';
+import { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import { createDesigner, GlobalRegistry, IEngineContext, KeyCode, Shortcut } from '@designer/core';
 import {
   Designer,
@@ -65,7 +65,7 @@ export interface IDesignerAntdProps {
   title?: string;
   initialSchema?: string;
   initialRouterData?: string;
-  onSave?: (schemaJson: string) => Promise<void>;
+  onSave?: (schemaJson: string, routerJson: string) => Promise<void>;
   onBack?: () => void;
 }
 
@@ -88,27 +88,34 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       }),
     [],
   );
-  const [router, setRouter] = useState<any[]>([]);
+  const routerRef = useRef<any[]>([]);
 
   useEffect(() => {
     try {
       if (props.initialRouterData) {
-        setRouter(JSON.parse(props.initialRouterData));
+        routerRef.current = JSON.parse(props.initialRouterData);
       }
-    } catch {
-      setRouter([]);
-    }
+    } catch {}
   }, [props.initialSchema]);
 
   const onRouterChange = (newRouter: any[]) => {
-    console.log('onRouterChange', newRouter);
+    routerRef.current = newRouter;
+  };
+
+  const onSave = async (schemaJson: string) => {
+    let routerJson = '[]';
+    try {
+      routerJson = JSON.stringify(routerRef.current);
+    } catch {}
+
+    props.onSave(schemaJson, routerJson);
   };
 
   return (
     <Designer engine={engine}>
       <StudioPanel
         logo={<LogoWidget title={props.title} />}
-        actions={<ActionsWidget onSave={props.onSave} initialSchema={props.initialSchema} onBack={props.onBack} />}
+        actions={<ActionsWidget onSave={onSave} initialSchema={props.initialSchema} onBack={props.onBack} />}
       >
         <CompositePanel>
           <CompositePanel.Item title="panels.Component" icon="Component">
@@ -135,7 +142,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.Router" icon="Design">
-            <RouterWidget value={router} onChange={onRouterChange} />
+            <RouterWidget value={props.initialRouterData} onChange={onRouterChange} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
             <OutlineTreeWidget />

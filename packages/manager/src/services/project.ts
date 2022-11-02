@@ -15,7 +15,7 @@ const addProject = (params: Pick<Project, 'name' | 'description'>) => {
   return HttpUtils.postJson<void>(`${prefix}/`, params);
 };
 
-const updateProject = (params: Pick<Project, 'id' | 'name' | 'description' | 'menuConfig'>) => {
+const updateProject = (params: Partial<Pick<Project, 'id' | 'name' | 'description' | 'menuConfig'>>) => {
   return HttpUtils.putJson<void>(`${prefix}/${params.id}`, {
     ...params,
     id: undefined,

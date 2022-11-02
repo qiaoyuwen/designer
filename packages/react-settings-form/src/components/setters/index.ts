@@ -3,3 +3,4 @@ export * from './DataSourceSetter';
 export * from './TableColumnsSetter';
 export * from './RequestSetter';
 export * from './RouterSetter';
+export * from './TreeDataSetter/shared';

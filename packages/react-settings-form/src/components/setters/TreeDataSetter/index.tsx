@@ -43,7 +43,7 @@ export function createTreeDataSetter({
       allowTree = true,
       effects = () => {},
       labelKey = type === 'TableColumn' ? 'title' : type === 'Router' ? 'name' : 'label',
-      childrenKey = type === 'Router' ? 'routes' : 'children',
+      childrenKey = 'children',
     } = props;
 
     const theme = useTheme();
