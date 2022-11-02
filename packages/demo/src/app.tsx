@@ -10,7 +10,6 @@ import { UserServices } from './services';
 import { ProjectServices } from './services/project';
 import NoFoundPage from './pages/404';
 import IndexPage from './pages';
-import { MenuUtils } from './utils/menu';
 export { default as request } from '@/http/request';
 
 const loginPath = '/login';
@@ -57,6 +56,9 @@ export async function getInitialState(): Promise<{
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   return {
+    menu: {
+      locale: false,
+    },
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
     waterMarkProps: {
@@ -113,11 +115,14 @@ export function patchRoutes({ routes }: { routes: any }) {
 
 const resolveMenus = (menus: any[]) => {
   for (const menu of menus) {
-    if (!menu.component && !menu.redirect && !menu.routes) {
+    if (menu.layout === true) {
+      delete menu.layout;
+    }
+    if (!menu.component && !menu.redirect && !menu.children) {
       menu.component = IndexPage;
     }
-    if (menu.routes) {
-      resolveMenus(menu.routes);
+    if (menu.children) {
+      resolveMenus(menu.children);
     }
   }
 };
@@ -127,7 +132,6 @@ export async function render(oldRender: () => void) {
     const project = await ProjectServices.getProjectDetail();
     try {
       const menus = JSON.parse(project.menuConfig || '[]');
-      MenuUtils.setMenus(menus);
       resolveMenus(menus);
 
       let redirect = '';
