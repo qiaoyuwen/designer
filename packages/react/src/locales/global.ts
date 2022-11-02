@@ -6,5 +6,6 @@ export default {
     reset: '重置',
     publish: '发布',
     back: '返回',
+    preview: '预览',
   },
 };

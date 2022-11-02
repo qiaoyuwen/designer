@@ -10,6 +10,7 @@ const supportLocales = ['zh-cn', 'en-us'];
 interface IActionsWidgetProps {
   initialSchema?: string;
   onSave?: (schemaJson: string) => Promise<void>;
+  onPreview?: (schemaJson: string) => Promise<void>;
   onBack?: () => void;
 }
 
@@ -25,7 +26,7 @@ export const ActionsWidget: FunctionComponent<IActionsWidgetProps> = observer((p
     }
   }, []);
   return (
-    <Space style={{ marginRight: 10 }}>
+    <Space size={16}>
       <Button
         type="primary"
         onClick={() => {
@@ -33,6 +34,14 @@ export const ActionsWidget: FunctionComponent<IActionsWidgetProps> = observer((p
         }}
       >
         <TextWidget>Save</TextWidget>
+      </Button>
+      <Button
+        type="primary"
+        onClick={() => {
+          saveSchema(designer, props.onPreview);
+        }}
+      >
+        <TextWidget>Preview</TextWidget>
       </Button>
       <Button
         onClick={() => {

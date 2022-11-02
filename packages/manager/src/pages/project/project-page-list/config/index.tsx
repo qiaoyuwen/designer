@@ -47,6 +47,11 @@ const ConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = 
     history.replace(`/project/project-page-list/config?id=${pageId}`);
   };
 
+  const onPreview = async (schemaJson: string, routerJson: string) => {
+    await onSave(schemaJson, routerJson);
+    window.open(`/preview?id=${id}`, '_blank');
+  };
+
   return (
     <PageContainer>
       <DesignerAntd
@@ -57,6 +62,7 @@ const ConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = 
         onBack={onBack}
         pageOptions={pageOptions}
         onRouterSelect={onRouterSelect}
+        onPreview={onPreview}
       />
     </PageContainer>
   );

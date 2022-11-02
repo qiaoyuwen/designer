@@ -17,14 +17,7 @@ import {
   OutlineTreeWidget,
 } from '@designer/react';
 import { saveSchema } from './service';
-import {
-  ActionsWidget,
-  LogoWidget,
-  MarkupSchemaWidget,
-  PreviewWidget,
-  SchemaEditorWidget,
-  RouterWidget,
-} from './widgets';
+import { ActionsWidget, LogoWidget, MarkupSchemaWidget, SchemaEditorWidget, RouterWidget } from './widgets';
 import {
   Form,
   Field,
@@ -66,6 +59,7 @@ export interface IDesignerAntdProps {
   initialSchema?: string;
   initialRouterData?: string;
   onSave?: (schemaJson: string, routerJson: string) => Promise<void>;
+  onPreview?: (schemaJson: string, routerJson: string) => Promise<void>;
   onBack?: () => void;
   pageOptions?: { value: string; label: string }[];
   onRouterSelect?: (pageId: string) => void;
@@ -113,11 +107,27 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
     props.onSave(schemaJson, routerJson);
   };
 
+  const onPreview = async (schemaJson: string) => {
+    let routerJson = '[]';
+    try {
+      routerJson = JSON.stringify(routerRef.current);
+    } catch {}
+
+    props.onPreview(schemaJson, routerJson);
+  };
+
   return (
     <Designer engine={engine}>
       <StudioPanel
         logo={<LogoWidget title={props.title} />}
-        actions={<ActionsWidget onSave={onSave} initialSchema={props.initialSchema} onBack={props.onBack} />}
+        actions={
+          <ActionsWidget
+            onSave={onSave}
+            onPreview={onPreview}
+            initialSchema={props.initialSchema}
+            onBack={props.onBack}
+          />
+        }
       >
         <CompositePanel>
           <CompositePanel.Item title="panels.Component" icon="Component">
@@ -159,7 +169,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
           <WorkspacePanel>
             <ToolbarPanel>
               <div />
-              <ViewToolsWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']} />
+              <ViewToolsWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP']} />
             </ToolbarPanel>
             <ViewportPanel style={{ height: '100%' }}>
               <ViewPanel type="DESIGNABLE">
@@ -202,7 +212,6 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
               <ViewPanel type="MARKUP" scrollable={false}>
                 {(tree) => <MarkupSchemaWidget tree={tree} />}
               </ViewPanel>
-              <ViewPanel type="PREVIEW">{(tree) => <PreviewWidget tree={tree} />}</ViewPanel>
             </ViewportPanel>
           </WorkspacePanel>
         </Workspace>

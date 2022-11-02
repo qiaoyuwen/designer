@@ -39,8 +39,6 @@ import {
   Text,
   Tabs,
 } from '@designer/formily-antd';
-import { TreeNode } from '@designer/core';
-import { transformToSchema } from '../transformer';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
 
@@ -100,21 +98,32 @@ const AntdIconScope = {
 };
 
 export interface IPreviewWidgetProps {
-  tree: TreeNode;
+  schemaJson: string;
 }
 
 export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
+  const { schemaJson } = props;
   const form = useMemo(() => createForm(), []);
-  const { form: formProps, schema } = transformToSchema(props.tree);
 
   const $setComponentsProps = useMemo(() => {
     return createFormFieldSetComponentsFunc(form);
   }, []);
 
+  const schema = useMemo(() => {
+    let result = {
+      form: {},
+      schema: {},
+    };
+    try {
+      result = JSON.parse(schemaJson);
+    } catch {}
+    return result;
+  }, [schemaJson]);
+
   return (
-    <Form {...formProps} form={form}>
+    <Form {...schema.form} form={form}>
       <SchemaField
-        schema={schema}
+        schema={schema.schema}
         scope={{ React, Antd: AntdScope, AntdIcon: AntdIconScope, HttpUtils, $setComponentsProps }}
       />
     </Form>

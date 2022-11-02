@@ -7,6 +7,13 @@
     hideInMenu: true,
   },
   {
+    path: '/preview',
+    name: 'preview',
+    component: './preview',
+    layout: false,
+    hideInMenu: true,
+  },
+  {
     path: '/project',
     name: 'project',
     icon: 'setting',
