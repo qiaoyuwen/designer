@@ -1,11 +1,12 @@
 import { FC, useEffect, useMemo, useState } from 'react';
-import { RouterSetter } from '@designer/react-settings-form';
+import { RouterSetter, traverseTree } from '@designer/react-settings-form';
 import { Menu } from 'antd';
 
 export interface IRouterWidgetProps {
   value?: string;
   pageOptions?: { value: string; label: string }[];
   onChange: (router: any[]) => void;
+  onSelect?: (pageId: string) => void;
 }
 
 export const RouterWidget: FC<IRouterWidgetProps> = (props) => {
@@ -45,10 +46,22 @@ export const RouterWidget: FC<IRouterWidgetProps> = (props) => {
     props?.onChange(newRouter);
   };
 
+  const onSelect = ({ key }: { key: string }) => {
+    let router: any;
+    traverseTree(routers, (item) => {
+      if (item.key === key) {
+        router = item;
+      }
+    });
+    if (router) {
+      props.onSelect?.(router.pageId);
+    }
+  };
+
   return (
     <div>
       <RouterSetter value={routers} pageOptions={props.pageOptions} onChange={onRouterChange} />
-      <Menu style={{ marginTop: 24 }} items={items} mode="inline" />
+      <Menu style={{ marginTop: 24 }} items={items} mode="inline" onSelect={onSelect} />
     </div>
   );
 };

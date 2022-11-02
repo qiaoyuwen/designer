@@ -43,6 +43,10 @@ const ConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = 
     history.goBack();
   };
 
+  const onRouterSelect = (pageId: string) => {
+    history.replace(`/project/project-page-list/config?id=${pageId}`);
+  };
+
   return (
     <PageContainer>
       <DesignerAntd
@@ -52,6 +56,7 @@ const ConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = 
         onSave={onSave}
         onBack={onBack}
         pageOptions={pageOptions}
+        onRouterSelect={onRouterSelect}
       />
     </PageContainer>
   );

@@ -55,7 +55,7 @@ export function createTreeDataSetter({
     const treeDataSource: ITreeDataSource = useMemo(() => {
       const setKey = (items: any[]) => {
         for (const item of items) {
-          item.key = uid();
+          item.key = item.key || uid();
           if (item[childrenKey]) {
             setKey(item[childrenKey]);
           }
