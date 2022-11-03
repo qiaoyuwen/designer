@@ -24,16 +24,14 @@ export const RouterWidget: FC<IRouterWidgetProps> = (props) => {
     const filter = (innerRouters) => {
       const filterResult = [];
       for (const innerRouter of innerRouters) {
-        if (!innerRouter.hideInMenu) {
-          const newItem: any = {
-            key: innerRouter.key || innerRouter.name,
-            label: innerRouter.name,
-          };
-          if (innerRouter.children && innerRouter.children.length !== 0) {
-            newItem.children = filter(innerRouter.children);
-          }
-          filterResult.push(newItem);
+        const newItem: any = {
+          key: innerRouter.key || innerRouter.name,
+          label: `${innerRouter.name}${innerRouter.hideInMenu ? ' (隐藏菜单)' : ''}`,
+        };
+        if (innerRouter.children && innerRouter.children.length !== 0) {
+          newItem.children = filter(innerRouter.children);
         }
+        filterResult.push(newItem);
       }
       return filterResult;
     };
