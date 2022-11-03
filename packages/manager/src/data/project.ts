@@ -1,4 +1,4 @@
-import { SelectOption } from '@/models';
+import { Project, SelectOption } from '@/models';
 import { ProjectServices } from '@/services';
 import { useCallback } from 'react';
 import { useRequest } from 'umi';
@@ -21,4 +21,23 @@ export const useProjectOptions = (name?: string) => {
   }));
 
   return [options] as const;
+};
+
+export const useProject = (id?: string) => {
+  const getProject = useCallback(async () => {
+    let data: Project | undefined;
+    if (id) {
+      data = await ProjectServices.getProject({
+        id,
+      });
+    }
+
+    return {
+      data,
+    };
+  }, [id]);
+
+  const { data } = useRequest(getProject);
+
+  return [data] as const;
 };

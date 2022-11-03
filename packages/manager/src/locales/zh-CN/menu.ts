@@ -51,6 +51,8 @@ export default {
   'menu.editor.koni': '拓扑编辑器',
 
   'menu.preview': '预览',
+  'menu.project-designer': '配置视图',
+  'menu.project-designer-config': '配置页面',
 
   'menu.project': '项目管理',
   'menu.project.project-list': '项目管理',

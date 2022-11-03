@@ -14,6 +14,20 @@
     hideInMenu: true,
   },
   {
+    path: '/project-designer',
+    name: 'project-designer',
+    component: './project-designer',
+    layout: false,
+    hideInMenu: true,
+  },
+  {
+    path: '/project-designer/config',
+    name: 'project-designer-config',
+    component: './project-designer/config',
+    layout: false,
+    hideInMenu: true,
+  },
+  {
     path: '/project',
     name: 'project',
     icon: 'setting',

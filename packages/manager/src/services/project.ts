@@ -11,6 +11,10 @@ const getProjects = (params?: { name?: string }) => {
   return HttpUtils.getJson<Project[]>(`${prefix}`, params);
 };
 
+const getProject = (params: { id: string }) => {
+  return HttpUtils.getJson<Project>(`${prefix}/${params.id}`);
+};
+
 const addProject = (params: Pick<Project, 'name' | 'description'>) => {
   return HttpUtils.postJson<void>(`${prefix}/`, params);
 };
@@ -29,6 +33,7 @@ const deleteProject = (params: { id: string }) => {
 export const ProjectServices = {
   getProjectsPagination,
   getProjects,
+  getProject,
   addProject,
   updateProject,
   deleteProject,

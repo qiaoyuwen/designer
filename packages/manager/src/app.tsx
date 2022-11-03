@@ -24,6 +24,10 @@ export async function getInitialState(): Promise<{
   loading?: boolean;
   fetchUserInfo?: () => Promise<User | undefined>;
 }> {
+  const token = history.location.query?.token;
+  if (token) {
+    localStorage.setItem('token', token as string);
+  }
   const fetchUserInfo = async () => {
     try {
       const user = await UserServices.getUserDetail();
