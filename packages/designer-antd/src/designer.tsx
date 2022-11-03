@@ -35,7 +35,7 @@ import {
   Upload,
   DatePicker,
 } from './components';
-import { BaseLayout, Card, Modal, ConfirmModal, Divider } from './layouts';
+import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid } from './layouts';
 import { Table, Text, Tabs, Statistic } from './data-display';
 import { Button } from './operations';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
@@ -149,7 +149,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                 Upload,
               ]}
             />
-            <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card, Modal, ConfirmModal, Divider]} />
+            <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card, Grid, Modal, ConfirmModal, Divider]} />
             <ResourceWidget title="sources.DataDisplays" sources={[Table, Text, Tabs, Statistic]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
@@ -200,6 +200,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Tabs,
                     Divider,
                     Statistic,
+                    Grid,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 

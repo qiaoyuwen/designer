@@ -45,7 +45,7 @@ import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant
 const SchemaField = createSchemaField({
   components: {
     Space,
-    FormGrid,
+    Grid: FormGrid,
     FormLayout,
     FormCollapse,
     ArrayTable,

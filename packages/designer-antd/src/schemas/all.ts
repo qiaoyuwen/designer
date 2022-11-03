@@ -23,3 +23,4 @@ export * from './Text';
 export * from './Tabs';
 export * from './Divider';
 export * from './Statistic';
+export * from './Grid';
