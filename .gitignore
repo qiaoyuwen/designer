@@ -69,3 +69,5 @@ common/autoinstallers/*/.npmrc
 
 # build
 dist
+
+.idea
