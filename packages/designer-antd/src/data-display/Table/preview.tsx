@@ -47,35 +47,33 @@ Table.Resource = createResource({
         'x-component-props': {
           rowKey: 'id',
           requestConifg: {
-            url: 'https://proapi.azurewebsites.net/github/issues',
+            url: '',
           },
           columns: [
             {
-              title: '标题',
-              dataIndex: 'title',
+              title: '列1',
+              dataIndex: 'column1',
             },
             {
-              title: '状态',
-              dataIndex: 'state',
+              title: '列2',
+              dataIndex: 'column2',
               valueType: 'Select',
               valueOptions: [
                 {
-                  label: '未解决',
-                  value: 'open',
+                  label: '选项1',
+                  value: '1',
                 },
                 {
-                  label: '解决中',
-                  value: 'processing',
+                  label: '选项2',
+                  value: '2',
                 },
               ],
-              width: '100px',
               render: "{{(dom, entity) => React.createElement(Antd.Tag, null, entity['state'])}}",
             },
             {
-              title: '创建时间',
-              dataIndex: 'created_at',
+              title: '列3',
+              dataIndex: 'column3',
               valueType: 'DateRange',
-              width: '200px',
             },
             {
               title: '操作',

@@ -43,6 +43,11 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
     return null;
   }
 
+  const reload = () => {
+    loadProject();
+    loadProjectPages();
+  };
+
   const onSave = async (schemaJson: string) => {
     const curPage = projectPages.find((item) => item.id === curRouter?.pageId);
     if (!curPage) {
@@ -54,6 +59,7 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
         schemaJson,
       }),
     ]).then(() => {
+      reload();
       message.success('保存成功');
     });
   };
@@ -80,8 +86,7 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
           routers={routers}
           selectedKeys={curRouter ? [curRouter.key] : []}
           onOk={() => {
-            loadProject();
-            loadProjectPages();
+            reload();
           }}
           onSelect={(key) => {
             traverseTree(routers, (item) => {
