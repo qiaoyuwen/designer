@@ -20,13 +20,15 @@ export const Title: React.FC<ITitleProps> = ({ projectId, routers, curNode, onAd
         <PlusOutlined
           className={styles.icon}
           style={{ marginRight: 5 }}
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             onAdd?.();
           }}
         />
         <DeleteOutlined
           className={styles.icon}
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             Modal.confirm({
               title: '确认删除？',
               onOk: async () => {

@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import { IRouteComponentProps, history } from 'umi';
 import { DesignerAntd } from '@designer/designer-antd';
-import { ProjectPageServices, ProjectServices } from '@/services';
+import { ProjectPageServices } from '@/services';
 import { Empty, message } from 'antd';
 import { RouterWidget, traverseTree } from './RouterWidget';
 
@@ -20,15 +20,6 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
     } catch {}
     return result;
   }, [project]);
-
-  const pageOptions = useMemo(() => {
-    return (projectPages || []).map((item) => {
-      return {
-        label: item.name,
-        value: item.id,
-      };
-    });
-  }, [projectPages]);
 
   useEffect(() => {
     let firstLeafRouter: any;
@@ -52,16 +43,12 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
     return null;
   }
 
-  const onSave = async (schemaJson: string, routerJson: string) => {
+  const onSave = async (schemaJson: string) => {
     const curPage = projectPages.find((item) => item.id === curRouter?.pageId);
     if (!curPage) {
       return;
     }
     Promise.all([
-      ProjectServices.updateProject({
-        id: project!.id,
-        menuConfig: routerJson,
-      }),
       ProjectPageServices.updateProjectPage({
         id: curPage.id,
         schemaJson,
@@ -75,8 +62,8 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
     history.goBack();
   };
 
-  const onPreview = async (schemaJson: string, routerJson: string) => {
-    await onSave(schemaJson, routerJson);
+  const onPreview = async (schemaJson: string) => {
+    await onSave(schemaJson);
     window.open(`/preview?id=${id}`, '_blank');
   };
 
@@ -124,12 +111,12 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
           ) : (
             <DesignerAntd
               title={`${project.name}: ${curRouter?.name || ''}`}
-              initialSchema={projectPages.find((item) => item.id === curRouter?.pageId)?.schemaJson}
               initialRouterData={project.menuConfig}
+              initialSchema={projectPages.find((item) => item.id === curRouter?.pageId)?.schemaJson}
               onSave={onSave}
               onBack={onBack}
-              pageOptions={pageOptions}
               onPreview={onPreview}
+              hideBackBtn={props.route.layout === false}
             />
           )}
         </div>

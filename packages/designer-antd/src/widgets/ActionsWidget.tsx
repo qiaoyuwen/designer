@@ -12,6 +12,7 @@ interface IActionsWidgetProps {
   onSave?: (schemaJson: string) => Promise<void>;
   onPreview?: (schemaJson: string) => Promise<void>;
   onBack?: () => void;
+  hideBackBtn?: boolean;
 }
 
 export const ActionsWidget: FunctionComponent<IActionsWidgetProps> = observer((props) => {
@@ -43,13 +44,15 @@ export const ActionsWidget: FunctionComponent<IActionsWidgetProps> = observer((p
       >
         <TextWidget>Preview</TextWidget>
       </Button>
-      <Button
-        onClick={() => {
-          props.onBack?.();
-        }}
-      >
-        <TextWidget>Back</TextWidget>
-      </Button>
+      {props.hideBackBtn !== true && (
+        <Button
+          onClick={() => {
+            props.onBack?.();
+          }}
+        >
+          <TextWidget>Back</TextWidget>
+        </Button>
+      )}
     </Space>
   );
 });

@@ -1,5 +1,6 @@
 import { ProFormText, ProFormSwitch, ModalForm } from '@ant-design/pro-form';
-import type { FunctionComponent } from 'react';
+import { useForm } from 'antd/es/form/Form';
+import { FunctionComponent, useEffect } from 'react';
 
 export interface PageFormData {
   routerKey?: string;
@@ -23,9 +24,17 @@ const formItemLayout = {
 
 const AddPageModal: FunctionComponent<AddPageModalProps> = (props) => {
   const { formData, visible, onOk, onCancel } = props;
+  const [form] = useForm();
+
+  useEffect(() => {
+    if (visible) {
+      form.resetFields();
+    }
+  }, [visible]);
 
   return (
     <ModalForm<PageFormData>
+      form={form}
       width={600}
       title="新增页面"
       visible={visible}

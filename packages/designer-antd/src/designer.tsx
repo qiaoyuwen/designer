@@ -63,6 +63,7 @@ export interface IDesignerAntdProps {
   onBack?: () => void;
   pageOptions?: { value: string; label: string }[];
   onRouterSelect?: (pageId: string) => void;
+  hideBackBtn?: boolean;
 }
 
 export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
@@ -122,6 +123,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             onPreview={onPreview}
             initialSchema={props.initialSchema}
             onBack={props.onBack}
+            hideBackBtn={props.hideBackBtn}
           />
         }
       >
