@@ -23,7 +23,7 @@
   {
     path: '/project-designer/config',
     name: 'project-designer-config',
-    component: './project-designer/config',
+    component: './project/project-list/config',
     layout: false,
     hideInMenu: true,
   },

@@ -80,8 +80,8 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
     window.open(`/preview?id=${id}`, '_blank');
   };
 
-  return (
-    <PageContainer>
+  const render = () => {
+    return (
       <div
         style={{
           display: 'flex',
@@ -106,6 +106,7 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
         />
         <div
           style={{
+            display: 'flex',
             flex: 1,
           }}
         >
@@ -133,8 +134,14 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
           )}
         </div>
       </div>
-    </PageContainer>
-  );
+    );
+  };
+
+  if (props.route.layout === false) {
+    return render();
+  }
+
+  return <PageContainer>{render()}</PageContainer>;
 };
 
 export default ProjectConfigPage;
