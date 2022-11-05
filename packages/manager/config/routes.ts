@@ -38,6 +38,12 @@
         component: './project/project-list',
       },
       {
+        path: '/project/project-list/config',
+        name: 'project-list-config',
+        component: './project/project-list/config',
+        hideInMenu: true,
+      },
+      {
         path: '/project/project-page-list',
         name: 'project-page-list',
         component: './project/project-page-list',

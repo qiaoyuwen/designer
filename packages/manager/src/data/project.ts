@@ -37,7 +37,7 @@ export const useProject = (id?: string) => {
     };
   }, [id]);
 
-  const { data } = useRequest(getProject);
+  const { data, run } = useRequest(getProject);
 
-  return [data] as const;
+  return [data, run] as const;
 };

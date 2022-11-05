@@ -39,9 +39,9 @@ export const useProjectPages = (projectId?: string) => {
     };
   }, [projectId]);
 
-  const { data } = useRequest(getProjectPages, {
+  const { data, run } = useRequest(getProjectPages, {
     refreshDeps: [projectId],
   });
 
-  return [data] as const;
+  return [data, run] as const;
 };

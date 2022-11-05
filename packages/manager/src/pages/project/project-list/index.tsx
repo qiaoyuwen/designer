@@ -10,6 +10,7 @@ import { Project } from '@/models';
 import { ProjectServices } from '@/services/project';
 import AddModal from './add-modal';
 import MenuConfigModal from './menu-modal';
+import { history } from 'umi';
 
 const ProjectListPage: FunctionComponent = () => {
   const [request] = useTableRequest<Project>(ProjectServices.getProjectsPagination);
@@ -17,7 +18,7 @@ const ProjectListPage: FunctionComponent = () => {
     { tableActionRef },
     { visible, selectedItem, openModal, onOk, onCancel },
     { remove },
-    { menuModalVisible, menuModalSelectedItem, openMenuModal, onMenuModalOk, onMenuModalCancel },
+    { menuModalVisible, menuModalSelectedItem, onMenuModalOk, onMenuModalCancel },
   ] = useProjectList();
 
   const columns: ProColumnType<Project>[] = [
@@ -55,8 +56,14 @@ const ProjectListPage: FunctionComponent = () => {
           <Button key="edit" type="link" onClick={() => openModal(item)}>
             编辑
           </Button>
-          <Button key="menu" type="link" onClick={() => openMenuModal(item)}>
-            路由
+          <Button
+            key="menu"
+            type="link"
+            onClick={() => {
+              history.push(`/project/project-list/config?id=${item.id}`);
+            }}
+          >
+            配置
           </Button>
           <Button key="delete" type="link" danger onClick={() => remove(item)}>
             删除

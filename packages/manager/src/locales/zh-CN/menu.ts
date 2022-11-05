@@ -56,6 +56,7 @@ export default {
 
   'menu.project': '项目管理',
   'menu.project.project-list': '项目管理',
+  'menu.project.project-list-config': '配置项目',
   'menu.project.project-page-list': '页面管理',
   'menu.project.project-page-list-config': '配置页面',
 

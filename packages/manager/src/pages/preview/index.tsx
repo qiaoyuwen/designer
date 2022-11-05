@@ -1,10 +1,11 @@
-import { useProjectPage } from '@/data';
+import { useProject, useProjectPages } from '@/data';
 import { FunctionComponent, useEffect, useMemo, useState } from 'react';
-import { history, IRouteComponentProps } from 'umi';
+import { IRouteComponentProps } from 'umi';
 import { PreviewWidget } from '@designer/designer-antd';
 import styles from './index.less';
 import { Menu } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
+import { ProjectPage } from '@/models';
 
 const traverseTree = <T extends { key: string; children: any[] }>(
   data: T[],
@@ -20,21 +21,19 @@ const traverseTree = <T extends { key: string; children: any[] }>(
 
 const PreviewPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = (props) => {
   const { id } = props.location.query;
-  const [projectPage] = useProjectPage(id);
+  const [project] = useProject(id);
+  const [projectPages] = useProjectPages(id);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
   const routers = useMemo(() => {
     let result = [];
     try {
-      result = JSON.parse(projectPage?.project?.menuConfig || '[]');
+      result = JSON.parse(project?.menuConfig || '[]');
     } catch {}
     return result;
-  }, [projectPage]);
+  }, [project]);
 
   const items = useMemo(() => {
-    if (!projectPage) {
-      return [];
-    }
     const filter = (innerRouters: any[]) => {
       const filterResult = [];
       for (const innerRouter of innerRouters) {
@@ -64,21 +63,35 @@ const PreviewPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> =
   };
 
   useEffect(() => {
-    const router = getRouter(projectPage?.id || '');
-    if (router) {
-      setSelectedKeys([router.key]);
+    let find: any;
+    traverseTree(routers, (item: any) => {
+      if (!item.children || item.children.length === 0) {
+        if (!find) {
+          find = item;
+        }
+      }
+    });
+    if (find) {
+      setSelectedKeys([find.key]);
     }
-  }, [projectPage]);
+  }, [routers]);
+
+  const projectPage = useMemo(() => {
+    let result: ProjectPage | undefined;
+    const router = getRouter(selectedKeys[0]);
+    for (const page of projectPages || []) {
+      if (page.id === router?.pageId) {
+        result = page;
+      }
+    }
+    return result;
+  }, [selectedKeys, projectPages]);
 
   if (!projectPage) {
     return null;
   }
 
   const onSelect = ({ key }: { key: string }) => {
-    const router = getRouter(key);
-    if (router) {
-      history.push(`/preview?id=${router.pageId}`);
-    }
     setSelectedKeys([key]);
   };
 

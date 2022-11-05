@@ -16,7 +16,7 @@ const getProjectPagesPagination = (params?: HttpParams) => {
 };
 
 const addProjectPage = (params: { name?: string; projectId?: string; description?: string }) => {
-  return HttpUtils.postJson<void>(`${prefix}/`, params);
+  return HttpUtils.postJson<ProjectPage>(`${prefix}/`, params);
 };
 
 const updateProjectPage = (params: {

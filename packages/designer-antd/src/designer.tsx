@@ -1,5 +1,5 @@
 import 'antd/dist/antd.less';
-import { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
+import { FunctionComponent, useEffect, useMemo, useRef } from 'react';
 import { createDesigner, GlobalRegistry, IEngineContext, KeyCode, Shortcut } from '@designer/core';
 import {
   Designer,
@@ -17,7 +17,7 @@ import {
   OutlineTreeWidget,
 } from '@designer/react';
 import { saveSchema } from './service';
-import { ActionsWidget, LogoWidget, MarkupSchemaWidget, SchemaEditorWidget, RouterWidget } from './widgets';
+import { ActionsWidget, LogoWidget, MarkupSchemaWidget, SchemaEditorWidget } from './widgets';
 import {
   Form,
   Field,
@@ -94,10 +94,6 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
     } catch {}
   }, [props.initialSchema]);
 
-  const onRouterChange = (newRouter: any[]) => {
-    routerRef.current = newRouter;
-  };
-
   const onSave = async (schemaJson: string) => {
     let routerJson = '[]';
     try {
@@ -152,14 +148,6 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card, Grid, Modal, ConfirmModal, Divider]} />
             <ResourceWidget title="sources.DataDisplays" sources={[Table, Text, Tabs, Statistic]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
-          </CompositePanel.Item>
-          <CompositePanel.Item title="panels.Router" icon="Design">
-            <RouterWidget
-              value={props.initialRouterData}
-              pageOptions={props.pageOptions}
-              onSelect={props.onRouterSelect}
-              onChange={onRouterChange}
-            />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
             <OutlineTreeWidget />
