@@ -3,7 +3,7 @@ import { IParamsType, IProTableProps } from './types';
 import { Table, ConfigProvider, TablePaginationConfig, Card } from 'antd';
 import { useFetchData } from './hooks/useFetchData';
 import zh_CN from 'antd/lib/locale/zh_CN';
-import { HttpParams, IHttpPaginationResponse, IHttpResponse } from '../../http/types';
+import { HttpParams, IHttpPaginationResponse } from '../../http/types';
 import { HttpUtils } from '../../http';
 import { useTableRequest } from './hooks/useTableRequest';
 import { SearchForm } from './components';
@@ -34,16 +34,23 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
   });
 
   const fetchData = useMemo(() => {
-    if (!requestConifg?.url) return undefined;
+    if (!requestConifg?.url && !requestConifg?.dataSource) return undefined;
     return async (pageParams?: Record<string, any>) => {
       const actionParams = {
         ...(pageParams || {}),
         ...formSearch,
         ...params,
       };
-      const response = await request(actionParams as unknown as Params);
-
-      return response;
+      if (requestConifg.dataSource) {
+        return Promise.resolve({
+          data: requestConifg.dataSource,
+          success: true,
+          total: requestConifg.dataSource.length,
+        });
+      } else {
+        const response = await request(actionParams as unknown as Params);
+        return response;
+      }
     };
   }, [formSearch, params, request, requestConifg]);
 
@@ -108,17 +115,19 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
     });
   }, [propsColumns]);
 
-  const getTableProps = () => ({
-    className: tableClassName,
-    style: tableStyle,
-    columns: columns,
-    loading: action.loading,
-    dataSource: action.dataSource,
-    pagination,
-    onChange: (changePagination: TablePaginationConfig) => {
-      action.setPageInfo(changePagination);
-    },
-  });
+  const getTableProps = () => {
+    return {
+      className: tableClassName,
+      style: tableStyle,
+      columns: columns,
+      loading: action.loading,
+      dataSource: action.dataSource,
+      pagination,
+      onChange: (changePagination: TablePaginationConfig) => {
+        action.setPageInfo(changePagination);
+      },
+    };
+  };
 
   const onFormSearchSubmit = useCallback(
     (values) => {

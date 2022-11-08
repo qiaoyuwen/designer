@@ -114,6 +114,8 @@ export default {
       RequestSetter: {
         configureRequest: '配置数据源',
         RequestSettingForm: {
+          dataType: '数据类型',
+          dataSource: 'JSON数据',
           url: '请求地址',
         },
       },

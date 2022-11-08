@@ -5,8 +5,29 @@ import { observer } from '@formily/reactive-react';
 import { observable } from '@formily/reactive';
 import { RequestSettingForm } from './RequestSettingForm';
 
+const EXPRESSION_REX = /^\{\{([\s\S]*)\}\}$/;
+
+const toInputValue = (value: string) => {
+  if (!value || value === '{{}}') return;
+  const matched = String(value).match(EXPRESSION_REX);
+  return matched?.[1] || value || '';
+};
+
+const toChangeValue = (value: string) => {
+  if (!value || value === '{{}}') return;
+  const matched = String(value).match(EXPRESSION_REX);
+  return `{{${matched?.[1] || value || ''}}}`;
+};
+
+export enum DataType {
+  Static = 'Static',
+  Dynamic = 'Dynamic',
+}
+
 export interface IRequstConfig {
-  url: string;
+  dataType: DataType;
+  dataSource?: string;
+  url?: string;
 }
 
 interface IRequestSetterProps {
@@ -20,6 +41,7 @@ export const RequestSetter: FunctionComponent<IRequestSetterProps> = observer((p
   const requestConfig: IRequstConfig = useMemo(() => {
     return observable({
       ...value,
+      dataSource: toInputValue(value.dataSource),
     });
   }, [value, modalVisible]);
 
@@ -40,7 +62,17 @@ export const RequestSetter: FunctionComponent<IRequestSetterProps> = observer((p
         visible={modalVisible}
         onCancel={closeModal}
         onOk={() => {
-          onChange(requestConfig);
+          onChange(
+            requestConfig.dataType === DataType.Static
+              ? {
+                  dataType: requestConfig.dataType,
+                  dataSource: toChangeValue(requestConfig.dataSource),
+                }
+              : {
+                  dataType: requestConfig.dataType,
+                  url: requestConfig.url,
+                },
+          );
           closeModal();
         }}
       >
