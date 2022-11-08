@@ -57,6 +57,10 @@ export interface IProColumnType<DataType = Record<string, any>> {
 
 export interface IProTableProps<DataType, ParamsType> extends Omit<TableProps<DataType>, 'columns' | 'rowSelection'> {
   requestConifg?: {
+    /**
+     * @name 数据源
+     */
+    dataSource?: DataType[];
     url?: string;
   };
   /**

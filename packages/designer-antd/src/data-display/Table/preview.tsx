@@ -45,9 +45,10 @@ Table.Resource = createResource({
         type: 'void',
         'x-component': 'Table',
         'x-component-props': {
-          rowKey: 'id',
+          rowKey: 'column1',
           requestConifg: {
-            url: '',
+            dataType: 'static',
+            dataSource: `{{[\n  {\n    column1: '列名1',\n    column2: '1',\n    column3: '2022-11-07 16:25:49',\n  },\n]}}`,
           },
           columns: [
             {
@@ -68,7 +69,7 @@ Table.Resource = createResource({
                   value: '2',
                 },
               ],
-              render: "{{(dom, entity) => React.createElement(Antd.Tag, null, entity['state'])}}",
+              render: "{{(dom, entity) => React.createElement(Antd.Tag, null, entity['column2'])}}",
             },
             {
               title: '列3',
