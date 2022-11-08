@@ -32,6 +32,7 @@ import {
   DisplayStyleSetter,
   FontStyleSetter,
   ColorInput,
+  ActionSetter,
 } from './components';
 
 export const SchemaField: any = createSchemaField({
@@ -67,5 +68,6 @@ export const SchemaField: any = createSchemaField({
     DisplayStyleSetter,
     FontStyleSetter,
     ColorInput,
+    ActionSetter,
   },
 });

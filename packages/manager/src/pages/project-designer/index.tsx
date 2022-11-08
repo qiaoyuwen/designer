@@ -82,7 +82,6 @@ const ProjectDesignerPage: FunctionComponent<IRouteComponentProps<{}, { id: stri
             key="edit"
             type="link"
             onClick={() => {
-              console.log('item', item);
               openModal(item);
             }}
           >

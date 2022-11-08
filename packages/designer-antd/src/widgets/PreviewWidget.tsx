@@ -99,10 +99,11 @@ const AntdIconScope = {
 
 export interface IPreviewWidgetProps {
   schemaJson: string;
+  UmiHistory?: any;
 }
 
 export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
-  const { schemaJson } = props;
+  const { schemaJson, UmiHistory } = props;
   const form = useMemo(() => createForm(), []);
 
   const $setComponentsProps = useMemo(() => {
@@ -124,7 +125,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
     <Form {...schema.form} form={form}>
       <SchemaField
         schema={schema.schema}
-        scope={{ React, Antd: AntdScope, AntdIcon: AntdIconScope, HttpUtils, $setComponentsProps }}
+        scope={{ React, Antd: AntdScope, AntdIcon: AntdIconScope, HttpUtils, UmiHistory, $setComponentsProps }}
       />
     </Form>
   );

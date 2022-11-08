@@ -8,12 +8,9 @@ export const Button: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
     },
-    onClick: {
+    actionConfig: {
       'x-decorator': 'FormItem',
-      'x-component': 'ValueInput',
-      'x-component-props': {
-        include: ['expression'],
-      },
+      'x-component': 'ActionSetter',
     },
     danger: {
       type: 'boolean',

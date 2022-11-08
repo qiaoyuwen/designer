@@ -24,7 +24,6 @@ export const RequestSettingForm: React.FC<IRequestSettingFormProps> = observer((
   const { requstConfig } = props;
 
   const form = useMemo(() => {
-    console.log('requstConfig', requstConfig);
     return createForm({
       values: requstConfig,
     });

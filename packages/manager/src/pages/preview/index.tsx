@@ -87,6 +87,22 @@ const PreviewPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> =
     return result;
   }, [selectedKeys, projectPages]);
 
+  const UmiHistory = useMemo(() => {
+    return {
+      push: (pageId: string) => {
+        let router: any;
+        traverseTree(routers, (item: any) => {
+          if (item.pageId === pageId) {
+            router = item;
+          }
+        });
+        if (router?.key) {
+          setSelectedKeys([router.key]);
+        }
+      },
+    };
+  }, [routers]);
+
   if (!projectPage) {
     return null;
   }
@@ -107,7 +123,7 @@ const PreviewPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> =
               title: getRouter(selectedKeys[0])?.name,
             }}
           >
-            <PreviewWidget schemaJson={projectPage.schemaJson} />
+            <PreviewWidget schemaJson={projectPage.schemaJson} UmiHistory={UmiHistory} />
           </PageContainer>
         }
       </div>

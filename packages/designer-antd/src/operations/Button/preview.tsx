@@ -7,7 +7,7 @@ import { AllSchemas } from '../../schemas';
 import { AllLocales } from '../../locales';
 
 export const Button: DnFC<React.ComponentProps<typeof FormilyButton>> = (props) => {
-  return <FormilyButton {...props} onClick={() => {}} />;
+  return <FormilyButton {...props} onClick={() => {}} actionConfig={undefined} />;
 };
 
 Button.Behavior = createBehavior({
