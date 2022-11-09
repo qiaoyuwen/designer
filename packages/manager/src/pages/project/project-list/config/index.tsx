@@ -13,6 +13,15 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
   const [projectPages, loadProjectPages] = useProjectPages(project?.id);
   const [curRouter, setCurRouter] = useState<any>();
 
+  const pageOptions = useMemo(() => {
+    return (projectPages || []).map((item) => {
+      return {
+        label: item.name,
+        value: item.id,
+      };
+    });
+  }, [projectPages]);
+
   const routers = useMemo(() => {
     let result = [];
     try {
@@ -122,6 +131,7 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
               onBack={onBack}
               onPreview={onPreview}
               hideBackBtn={props.route.layout === false}
+              pageOptions={pageOptions}
             />
           )}
         </div>

@@ -6,4 +6,5 @@ export interface ISettingFormProps {
   components?: Record<string, React.FC<any>>;
   effects?: (form: Form) => void;
   scope?: any;
+  pageOptions?: { value: string; label: string }[];
 }

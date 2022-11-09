@@ -207,7 +207,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
           </WorkspacePanel>
         </Workspace>
         <SettingsPanel title="panels.PropertySettings">
-          <SettingsForm />
+          <SettingsForm pageOptions={props.pageOptions} />
         </SettingsPanel>
       </StudioPanel>
     </Designer>

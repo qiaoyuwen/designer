@@ -1,11 +1,11 @@
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { createSchemaField } from '@formily/react';
 import { Form, Input, FormItem, Select } from '@formily/antd';
 import { MonacoInput } from '../../../MonacoInput';
 import { createForm } from '@formily/core';
-import { TextWidget } from '@designer/react';
 import { observer } from '@formily/reactive-react';
 import { ActionConfigType, ActionType, IActionConfig } from '..';
+import { SettingsFormContext } from '../../../../shared/context';
 
 const SchemaField = createSchemaField({
   components: {
@@ -22,6 +22,8 @@ export interface IActionSettingFormProps {
 
 export const ActionSettingForm: React.FC<IActionSettingFormProps> = observer((props) => {
   const { actionConfig } = props;
+
+  const { pageOptions } = useContext(SettingsFormContext);
 
   const form = useMemo(() => {
     return createForm({
@@ -86,7 +88,15 @@ export const ActionSettingForm: React.FC<IActionSettingFormProps> = observer((pr
               },
             }}
           >
-            <SchemaField.String title="页面ID" x-decorator="FormItem" name="pageId" x-component="Input" />
+            <SchemaField.String
+              title="跳转页面页面"
+              x-decorator="FormItem"
+              name="pageId"
+              x-component="Select"
+              x-component-props={{
+                options: pageOptions,
+              }}
+            />
           </SchemaField.Object>
         </SchemaField.Object>
 
