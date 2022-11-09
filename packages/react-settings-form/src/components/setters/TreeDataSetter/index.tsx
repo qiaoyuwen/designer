@@ -64,7 +64,7 @@ export function createTreeDataSetter({
       setKey(value || []);
 
       return observable({
-        dataSource: value as any,
+        dataSource: (value || []) as any,
         selectedKey: '',
       });
     }, [value, modalVisible]);
