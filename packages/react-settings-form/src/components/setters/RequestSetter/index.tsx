@@ -20,8 +20,8 @@ const toChangeValue = (value: string) => {
 };
 
 export enum DataType {
-  Static = 'Static',
-  Dynamic = 'Dynamic',
+  Static = 'static',
+  Dynamic = 'dynamic',
 }
 
 export interface IRequstConfig {
@@ -57,6 +57,7 @@ export const RequestSetter: FunctionComponent<IRequestSetterProps> = observer((p
         title={<TextWidget token={`SettingComponents.RequestSetter.configureRequest`} />}
         width="65%"
         bodyStyle={{ padding: 10 }}
+        destroyOnClose
         transitionName=""
         maskTransitionName=""
         visible={modalVisible}
