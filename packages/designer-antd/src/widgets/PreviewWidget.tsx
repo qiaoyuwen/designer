@@ -28,7 +28,7 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic } from 'antd';
+import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic, Steps } from 'antd';
 import {
   BaseLayout,
   ProTable,
@@ -71,6 +71,7 @@ const SchemaField = createSchemaField({
     Card,
     Slider,
     Rate,
+    Steps,
     // 自定义组件
     BaseLayout,
     Table: ProTable,
