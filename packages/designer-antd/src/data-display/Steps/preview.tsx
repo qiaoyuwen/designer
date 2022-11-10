@@ -35,7 +35,6 @@ export const Steps: DnFC<StepsProps> & {
           'x-component': 'Steps.Step',
           'x-component-props': {
             title: '标题',
-            prefixCls: 'ant-steps',
           },
         },
         children: source,
@@ -82,7 +81,6 @@ export const Steps: DnFC<StepsProps> & {
                   'x-component': 'Steps.Step',
                   'x-component-props': {
                     title: '标题',
-                    prefixCls: 'ant-steps',
                   },
                 },
               });

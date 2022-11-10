@@ -28,7 +28,7 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic, Steps } from 'antd';
+import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic } from 'antd';
 import {
   BaseLayout,
   ProTable,
@@ -38,6 +38,7 @@ import {
   Button as FormilyButton,
   Text,
   Tabs,
+  Steps,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
