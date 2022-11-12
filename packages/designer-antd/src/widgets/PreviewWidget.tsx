@@ -119,7 +119,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
     };
     try {
       result = JSON.parse(schemaJson);
-    } catch {}
+    } catch { }
     return result;
   }, [schemaJson]);
 

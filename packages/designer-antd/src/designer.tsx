@@ -49,7 +49,7 @@ GlobalRegistry.registerDesignerLocales({
       Inputs: '表单组件',
       Layouts: '布局组件',
       DataDisplays: '数据展示组件',
-      Operations: '操作组件',
+      Operations: '交互组件',
     },
   },
 });
@@ -92,14 +92,14 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       if (props.initialRouterData) {
         routerRef.current = JSON.parse(props.initialRouterData);
       }
-    } catch {}
+    } catch { }
   }, [props.initialSchema]);
 
   const onSave = async (schemaJson: string) => {
     let routerJson = '[]';
     try {
       routerJson = JSON.stringify(routerRef.current);
-    } catch {}
+    } catch { }
 
     props.onSave(schemaJson, routerJson);
   };
@@ -108,7 +108,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
     let routerJson = '[]';
     try {
       routerJson = JSON.stringify(routerRef.current);
-    } catch {}
+    } catch { }
 
     props.onPreview(schemaJson, routerJson);
   };
