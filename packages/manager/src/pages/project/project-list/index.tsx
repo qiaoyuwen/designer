@@ -60,7 +60,8 @@ const ProjectListPage: FunctionComponent = () => {
             key="menu"
             type="link"
             onClick={() => {
-              history.push(`/project/project-list/config?id=${item.id}`);
+              // history.push(`/project/project-list/config?id=${item.id}`);
+              history.push(`/project-designer/config?id=${item.id}`);
             }}
           >
             配置
