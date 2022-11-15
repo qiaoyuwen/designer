@@ -50,7 +50,8 @@
     "react-helmet-async": "^1.2.0",
     "umi": "^3.5.34",
     "@designer/designer-antd": "workspace:*",
-    "@designer/utils": "workspace:*"
+    "@designer/utils": "workspace:*",
+    "@foundbyte/util": "~1.1.7"
   },
   "devDependencies": {
     "@ant-design/pro-cli": "^2.1.0",

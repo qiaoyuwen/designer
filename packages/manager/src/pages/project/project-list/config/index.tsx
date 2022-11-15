@@ -1,14 +1,16 @@
 import { useProject, useProjectPages } from '@/data';
 import { PageContainer } from '@ant-design/pro-layout';
-import { FunctionComponent, useEffect, useMemo, useState } from 'react';
+import { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import { IRouteComponentProps, history } from 'umi';
 import { DesignerAntd } from '@designer/designer-antd';
 import { ProjectPageServices } from '@/services';
 import { Empty, message } from 'antd';
+import { photo } from '@foundbyte/util';
 import { RouterWidget, traverseTree } from './RouterWidget';
 
 const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = (props) => {
   const { id } = props.location.query;
+  const ref = useRef(null);
   const [project, loadProject] = useProject(id);
   const [projectPages, loadProjectPages] = useProjectPages(project?.id);
   const [curRouter, setCurRouter] = useState<any>();
@@ -26,7 +28,7 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
     let result = [];
     try {
       result = JSON.parse(project?.menuConfig || '[]');
-    } catch {}
+    } catch { }
     return result;
   }, [project]);
 
@@ -48,6 +50,12 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
     }
   }, [routers]);
 
+  useEffect(() => {
+    if (ref.current) {
+      console.log('ref:', ref.current)
+    }
+  }, [ref.current])
+
   if (!project || !projectPages) {
     return null;
   }
@@ -58,19 +66,27 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
   };
 
   const onSave = async (schemaJson: string) => {
-    const curPage = projectPages.find((item) => item.id === curRouter?.pageId);
-    if (!curPage) {
-      return;
-    }
-    Promise.all([
-      ProjectPageServices.updateProjectPage({
-        id: curPage.id,
-        schemaJson,
-      }),
-    ]).then(() => {
-      reload();
-      message.success('保存成功');
-    });
+    photo({
+      ref: ref.current,
+      download: false,
+      width: 288,
+      height: 162,
+      quality: 0.75,
+    }).then((url) => {
+      const curPage = projectPages.find((item) => item.id === curRouter?.pageId);
+      if (!curPage) {
+        return;
+      }
+      Promise.all([
+        ProjectPageServices.updateProjectPage({
+          id: curPage.id,
+          schemaJson,
+        }),
+      ]).then(() => {
+        reload();
+        message.success('保存成功');
+      });
+    })
   };
 
   const onBack = () => {
@@ -110,6 +126,7 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
             display: 'flex',
             flex: 1,
           }}
+          ref={ref}
         >
           {projectPages.length === 0 ? (
             <Empty
