@@ -50,12 +50,6 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
     }
   }, [routers]);
 
-  useEffect(() => {
-    if (ref.current) {
-      console.log('ref:', ref.current)
-    }
-  }, [ref.current])
-
   if (!project || !projectPages) {
     return null;
   }

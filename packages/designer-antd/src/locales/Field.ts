@@ -24,6 +24,7 @@ export const Field = {
       'decorator-group': '容器属性',
       'component-style-group': '组件样式',
       'decorator-style-group': '容器样式',
+      'decorator-remarks': '备注',
       'x-component-props': {
         size: { title: '尺寸', dataSource: ['大', '小', '默认', '继承'] },
         allowClear: '允许清除内容',
@@ -94,6 +95,7 @@ export const Field = {
           border: '边框',
           opacity: '透明度',
         },
+        remarks: '备注',
       },
     },
   },

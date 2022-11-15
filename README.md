@@ -125,6 +125,7 @@ Button.Behavior = createBehavior({
   selector: (node) => node.props?.['x-component'] === 'Button',
   /** schema描述 */
   designerProps: {
+    /** 通过 createVoidFieldSchema 注册继承的属性 */
     propsSchema: createVoidFieldSchema(AllSchemas.Button),
   },
   /** 国际化 */
@@ -151,6 +152,14 @@ Button.Resource = createResource({
     },
   ],
 });
+```
+
+## 公共属性
+
+./packages/designer-antd/src/components/Field
+
+```
+shared.ts // 提供了一些通用属性注册的方式
 ```
 
 ## 相关链接

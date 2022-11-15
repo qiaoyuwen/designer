@@ -48,6 +48,7 @@ const SchemaStateMap = {
   readOnly: 'readOnly',
   writeOnly: 'editable',
   required: 'required',
+  remarks: 'remarks',
   'x-content': 'content',
   'x-value': 'value',
   'x-editable': 'editable',
@@ -142,6 +143,7 @@ const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName
   } else if (component) {
     FormPath.setIn(results['component'][1], nodeIdAttrName, id);
   }
+
   results.title = results.title && <span data-content-editable="title">{results.title}</span>;
   results.description = results.description && <span data-content-editable="description">{results.description}</span>;
   return results;

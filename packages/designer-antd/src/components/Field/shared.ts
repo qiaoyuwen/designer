@@ -63,6 +63,23 @@ export const createComponentSchema = (component?: ISchema, decorator?: ISchema):
         'x-decorator-props.style': AllSchemas.CSSStyle,
       },
     },
+    'decorator-remarks': {
+      type: 'void',
+      'x-component': 'CollapseItem',
+      'x-component-props': { defaultExpand: false },
+      properties: {
+        'x-decorator-props.remarks': {
+          type: 'void',
+          properties: {
+            'remarks': {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'Input.TextArea',
+            },
+          }
+        },
+      },
+    },
   };
 };
 
