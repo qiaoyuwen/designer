@@ -20,9 +20,9 @@ const loginOut = async () => {
   const { query = {}, search, pathname } = history.location;
   const { redirect } = query;
   // Note: There may be security issues, please note
-  if (window.location.pathname !== '/login' && !redirect) {
+  if (window.location.pathname !== '/login-tip' && !redirect) {
     history.replace({
-      pathname: '/login',
+      pathname: '/login-tip',
       search: stringify({
         redirect: pathname + search,
       }),
@@ -64,7 +64,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
   const { currentUser } = initialState;
 
-  if (!currentUser || !currentUser.username) {
+  if (!currentUser || !currentUser?.user?.name) {
     return loading;
   }
 
@@ -101,7 +101,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
         {
           // <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
         }
-        <span className={`${styles.name} anticon`}>{currentUser.username}</span>
+        <span className={`${styles.name} anticon`}>{currentUser?.user?.name ?? '暂无'}</span>
       </span>
     </HeaderDropdown>
   );

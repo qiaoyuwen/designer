@@ -4,11 +4,11 @@ import { PageLoading, SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from 'umi';
 import { history } from 'umi';
 import defaultSettings from '../config/defaultSettings';
-import { User } from './models';
+import { IUserInfo } from './models'
 import { UserServices } from './services';
 export { default as request } from '@/http/request';
 
-const loginPath = '/login';
+const loginPath = '/login-tip';
 
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {
@@ -20,9 +20,9 @@ export const initialStateConfig = {
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
-  currentUser?: User;
+  currentUser?: IUserInfo;
   loading?: boolean;
-  fetchUserInfo?: () => Promise<User | undefined>;
+  fetchUserInfo?: () => Promise<IUserInfo | undefined>;
 }> {
   const token = history.location.query?.token;
   if (token) {
@@ -58,13 +58,14 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
     waterMarkProps: {
-      content: initialState?.currentUser?.username,
+      content: initialState?.currentUser?.user?.name ?? '',
     },
     // footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
       if (!initialState?.currentUser && location.pathname !== loginPath) {
+        debugger
         history.push(loginPath);
       }
     },
@@ -78,7 +79,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       return (
         <>
           {children}
-          {!props.location?.pathname?.includes('/login') && (
+          {!props.location?.pathname?.includes(loginPath) && (
             <SettingDrawer
               disableUrlParams
               enableDarkTheme

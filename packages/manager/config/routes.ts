@@ -1,11 +1,19 @@
 ﻿export default [
+  // 登录提示页面
   {
-    path: '/login',
-    name: 'login',
-    component: './login',
+    path: '/login-tip',
+    name: 'loginTip',
+    component: './login-tip',
     layout: false,
     hideInMenu: true,
   },
+  // {
+  //   path: '/login',
+  //   name: 'login',
+  //   component: './login',
+  //   layout: false,
+  //   hideInMenu: true,
+  // },
   {
     path: '/preview',
     name: 'preview',

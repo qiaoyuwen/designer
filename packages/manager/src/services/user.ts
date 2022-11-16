@@ -1,10 +1,11 @@
 import { HttpPaginationResponse, HttpParams, HttpUtils } from '@/http/request';
 import type { User } from '@/models/user';
+import { IUserInfo } from '@/models/user'
 
 const prefix = '/user';
 
 const getUserDetail = () => {
-  return HttpUtils.getJson<User>(`${prefix}`);
+  return HttpUtils.getJson<IUserInfo>(`${prefix}/profile`);
 };
 
 const login = (params: { username?: string; password?: string }) => {

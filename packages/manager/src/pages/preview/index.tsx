@@ -14,7 +14,7 @@ const traverseTree = <T extends { key: string; children: any[] }>(
   for (let i = 0; i < data.length; i++) {
     callback(data[i], i, data);
     if (data[i]?.children) {
-      traverseTree(data[i]?.children, callback);
+      traverseTree(data[i].children, callback);
     }
   }
 };
