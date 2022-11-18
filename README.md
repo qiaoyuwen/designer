@@ -162,6 +162,11 @@ Button.Resource = createResource({
 shared.ts // 提供了一些通用属性注册的方式
 ```
 
+## 部署
+
+- lowcodeengine-pc-dev  
+  http://10.10.11.107:18080/job/lowcodeengine-pc-dev/
+
 ## 相关链接
 
 - designable  
