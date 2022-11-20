@@ -1,4 +1,4 @@
-import { useProject, useProjectPages } from '@/data';
+import { useProject } from '@/data';
 import { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import { IRouteComponentProps } from 'umi';
 import { PreviewWidget } from '@designer/designer-antd';
@@ -20,9 +20,9 @@ const traverseTree = <T extends { key: string; children: any[] }>(
 };
 
 const PreviewPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = (props) => {
-  const { id } = props.location.query;
-  const [project] = useProject(id);
-  const [projectPages] = useProjectPages(id);
+  const { id, teamId } = props.location.query as {id: string; teamId: string};
+  const [project] = useProject({ projectId: id, teamId });
+  // const [projectPages] = useProjectPages(id);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
   const routers = useMemo(() => {
@@ -55,7 +55,7 @@ const PreviewPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> =
   const getRouter = (key: string) => {
     let router: any;
     traverseTree(routers, (item: any) => {
-      if (item.key === key || item.pageId === key) {
+      if (item.key === key) {
         router = item;
       }
     });
@@ -79,20 +79,20 @@ const PreviewPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> =
   const projectPage = useMemo(() => {
     let result: ProjectPage | undefined;
     const router = getRouter(selectedKeys[0]);
-    for (const page of projectPages || []) {
-      if (page.id === router?.pageId) {
+    for (const page of project?.pageList || []) {
+      if (page.id === router?.id) {
         result = page;
       }
     }
     return result;
-  }, [selectedKeys, projectPages]);
+  }, [selectedKeys, project?.pageList]);
 
   const UmiHistory = useMemo(() => {
     return {
       push: (pageId: string) => {
         let router: any;
         traverseTree(routers, (item: any) => {
-          if (item.pageId === pageId) {
+          if (item.id === pageId) {
             router = item;
           }
         });

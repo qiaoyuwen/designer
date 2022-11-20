@@ -1,7 +1,8 @@
 import { Project, SelectOption } from '@/models';
-import { ProjectServices } from '@/services';
+import { ProjectPageServices, ProjectServices } from '@/services'
 import { useCallback } from 'react';
 import { useRequest } from 'umi';
+import { arrToTree } from '@/utils/tree'
 
 export const useProjectOptions = (name?: string) => {
   const getOptions = useCallback(async () => {
@@ -23,19 +24,27 @@ export const useProjectOptions = (name?: string) => {
   return [options] as const;
 };
 
-export const useProject = (id?: string) => {
+export const useProject = (params?: {projectId: string; teamId: string}) => {
   const getProject = useCallback(async () => {
     let data: Project | undefined;
-    if (id) {
-      data = await ProjectServices.getProject({
-        id,
-      });
+    if (params) {
+      // 查询项目信息
+      data = await ProjectServices.getProject(params);
+      // 查询菜单数据
+      const menus = await ProjectPageServices.getProjectPages({projectId: data.id})
+      // 设置菜单列表
+      data.pageList = menus
+      // 设置页面配置
+      try {
+        const menuConfig = arrToTree(menus)
+        data.menuConfig = JSON.stringify(menuConfig)
+      } catch (e) {}
     }
 
     return {
       data,
     };
-  }, [id]);
+  }, [params]);
 
   const { data, run } = useRequest(getProject);
 

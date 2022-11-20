@@ -1,28 +1,28 @@
-import { useProject, useProjectPages } from '@/data';
+import { useProject } from '@/data';
 import { PageContainer } from '@ant-design/pro-layout';
 import { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import { IRouteComponentProps, history } from 'umi';
 import { DesignerAntd } from '@designer/designer-antd';
-import { ProjectPageServices } from '@/services';
+import { ProjectPageServices, updateProjectRequest, uploadFileRequest } from '@/services'
 import { Empty, message } from 'antd';
 import { photo } from '@foundbyte/util';
 import { RouterWidget, traverseTree } from './RouterWidget';
+import { base64ToFile } from '@/utils'
 
 const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = (props) => {
-  const { id } = props.location.query;
+  const { id, teamId } = props.location.query as {id: string; teamId: string};
   const ref = useRef(null);
-  const [project, loadProject] = useProject(id);
-  const [projectPages, loadProjectPages] = useProjectPages(project?.id);
+  const [project, loadProject] = useProject({ projectId: id, teamId });
   const [curRouter, setCurRouter] = useState<any>();
 
   const pageOptions = useMemo(() => {
-    return (projectPages || []).map((item) => {
+    return (project?.pageList || []).map((item) => {
       return {
         label: item.name,
         value: item.id,
       };
     });
-  }, [projectPages]);
+  }, [project]);
 
   const routers = useMemo(() => {
     let result = [];
@@ -50,13 +50,12 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
     }
   }, [routers]);
 
-  if (!project || !projectPages) {
+  if (!project || !project?.pageList) {
     return null;
   }
 
   const reload = () => {
     loadProject();
-    loadProjectPages();
   };
 
   const onSave = async (schemaJson: string) => {
@@ -66,20 +65,44 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
       width: 288,
       height: 162,
       quality: 0.75,
-    }).then((url) => {
-      const curPage = projectPages.find((item) => item.id === curRouter?.pageId);
+    }).then(async (url) => {
+      message.loading('正在保存...')
+      // 保存项目信息
+      const projectParams: Parameters<typeof updateProjectRequest>[0] = {
+        id: project.id,
+        teamId: project.teamId,
+        folderId: project.folderId,
+        name: project.name,
+        accessType: project.accessType
+      }
+      // 1.缩略图存储
+      if (url) {
+        const file = base64ToFile(url)
+        if(file) {
+          projectParams.cover = await uploadFileRequest(file) ?? ''
+        }
+      }
+      // 更新项目信息
+      const updateRes = await updateProjectRequest(projectParams)
+      if (!updateRes) {
+        message.destroy()
+        return
+      }
+
+      // 保存菜单
+      const curPage = project?.pageList?.find((item) => item.key === curRouter?.key);
       if (!curPage) {
+        message.destroy()
         return;
       }
-      Promise.all([
-        ProjectPageServices.updateProjectPage({
-          id: curPage.id,
-          schemaJson,
-        }),
-      ]).then(() => {
-        reload();
-        message.success('保存成功');
-      });
+      curPage.schemaJson = schemaJson
+      await ProjectPageServices.saveProjectPage({
+        projectId: id,
+        routers: project?.pageList || []
+      })
+      message.destroy()
+      reload();
+      message.success('保存成功');
     })
   };
 
@@ -89,7 +112,7 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
 
   const onPreview = async (schemaJson: string) => {
     await onSave(schemaJson);
-    window.open(`/preview?id=${id}`, '_blank');
+    window.open(`/preview?id=${id}&teamId=${teamId}`, '_blank');
   };
 
   const render = () => {
@@ -122,7 +145,7 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
           }}
           ref={ref}
         >
-          {projectPages.length === 0 ? (
+          {project?.pageList?.length === 0 ? (
             <Empty
               style={{
                 width: '100%',
@@ -137,7 +160,7 @@ const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string
             <DesignerAntd
               title={`${project.name}: ${curRouter?.name || ''}`}
               initialRouterData={project.menuConfig}
-              initialSchema={projectPages.find((item) => item.id === curRouter?.pageId)?.schemaJson}
+              initialSchema={project?.pageList?.find((item) => item.key === curRouter?.key)?.schemaJson}
               onSave={onSave}
               onBack={onBack}
               onPreview={onPreview}

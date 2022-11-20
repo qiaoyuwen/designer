@@ -1,4 +1,4 @@
-import { ProjectPageServices, ProjectServices } from '@/services';
+import { ProjectPageServices } from '@/services';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, message, Tree } from 'antd';
 import { FC, useMemo, useState } from 'react';
@@ -7,6 +7,7 @@ import { Header } from './Header';
 import styles from './index.less';
 import { Title } from './Title';
 import { uid } from '@designer/utils';
+import { ProjectPage } from '@/models'
 
 export const traverseTree = <
   T extends {
@@ -48,35 +49,32 @@ export const RouterWidget: FC<IRouterWidget> = ({ projectId, selectedKeys, route
   }, [routers]);
 
   const onOk = async (data: PageFormData) => {
-    const page = await ProjectPageServices.addProjectPage({
-      projectId,
-      name: data.name,
-    });
     const uuid = uid();
-    const newItem = {
+    const newItem: Partial<ProjectPage> = {
       key: uuid,
       name: data.name,
+      title: data.name,
       path: data.path,
       layout: data.layout,
       hideInMenu: data.hideInMenu,
       children: [],
-      pageId: page.id,
     };
     let newRouters: any[] = [];
     if (curRouter) {
       newRouters = [...routers];
       traverseTree(newRouters, (dataItem) => {
         if (dataItem.key === curRouter.key) {
+          if (!dataItem?.children) { dataItem.children = [] }
           dataItem.children.push(newItem);
         }
       });
     } else {
       newRouters = [...routers, newItem];
     }
-    await ProjectServices.updateProject({
-      id: projectId,
-      menuConfig: JSON.stringify(newRouters),
-    });
+    await ProjectPageServices.saveProjectPage({
+      projectId,
+      routers: newRouters
+    })
     props.onOk?.();
     message.success('操作成功');
     setVisible(false);

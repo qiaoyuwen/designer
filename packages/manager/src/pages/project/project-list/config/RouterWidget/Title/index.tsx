@@ -1,4 +1,4 @@
-import { ProjectPageServices, ProjectServices } from '@/services';
+import { ProjectPageServices } from '@/services';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { message, Modal } from 'antd';
 import { traverseTree } from '..';
@@ -32,11 +32,11 @@ export const Title: React.FC<ITitleProps> = ({ projectId, routers, curNode, onAd
             Modal.confirm({
               title: '确认删除？',
               onOk: async () => {
-                if (curNode.pageId) {
-                  await ProjectPageServices.deleteProjectPage({
-                    id: curNode.pageId,
-                  });
-                }
+                // if (curNode.pageId) {
+                //   await ProjectPageServices.deleteProjectPage({
+                //     id: curNode.pageId,
+                //   });
+                // }
 
                 const newRouters = [...routers];
                 traverseTree(newRouters, (dataItem, i, data) => {
@@ -45,10 +45,10 @@ export const Title: React.FC<ITitleProps> = ({ projectId, routers, curNode, onAd
                   }
                 });
 
-                await ProjectServices.updateProject({
-                  id: projectId,
-                  menuConfig: JSON.stringify(newRouters),
-                });
+                await ProjectPageServices.saveProjectPage({
+                  projectId,
+                  routers: newRouters
+                })
 
                 message.success('操作成功');
                 onRemove?.();

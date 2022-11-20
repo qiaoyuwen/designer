@@ -11,8 +11,9 @@ const getProjects = (params?: { name?: string }) => {
   return HttpUtils.getJson<Project[]>(`${prefix}`, params);
 };
 
-const getProject = (params: { id: string }) => {
-  return HttpUtils.getJson<Project>(`${prefix}/${params.id}`);
+const getProject = (params: {projectId: string; teamId: string}) => {
+  // return HttpUtils.getJson<Project>(`${prefix}/${params.id}`);
+  return HttpUtils.getJson<Project>(`${prefix}/get`, params);
 };
 
 const addProject = (params: Pick<Project, 'name' | 'description'>) => {
@@ -25,6 +26,26 @@ const updateProject = (params: Partial<Pick<Project, 'id' | 'name' | 'descriptio
     id: undefined,
   });
 };
+
+/**
+ * 保存项目
+ * @param params
+ */
+export async function updateProjectRequest (params: {
+  teamId: string;
+  folderId: string;
+  id: string;
+  name: string;
+  accessType: number;
+  cover?: string;
+}): Promise<boolean> {
+  return HttpUtils.postJson(`${prefix}/save`, params).then(res => {
+    return res !== undefined;
+  })
+    .catch(() => {
+      return false;
+    })
+}
 
 const deleteProject = (params: { id: string }) => {
   return HttpUtils.deleteJson(`${prefix}/${params.id}`);
