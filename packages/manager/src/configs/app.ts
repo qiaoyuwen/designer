@@ -13,7 +13,7 @@ const config = (() => {
     case 'pre':
       return prodConfig;
     default:
-      return {};
+      return prodConfig;
   }
 })();
 
