@@ -34,6 +34,9 @@ export const CSSStyle: ISchema = {
     'style.background': {
       'x-component': 'BackgroundStyleSetter',
     },
+    'style.boxShadow': {
+      'x-component': 'BoxShadowStyleSetter',
+    },
     'style.font': {
       'x-component': 'FontStyleSetter',
     },
