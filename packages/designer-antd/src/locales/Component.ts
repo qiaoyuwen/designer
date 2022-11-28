@@ -2,6 +2,7 @@ export const Component = {
   'zh-CN': {
     settings: {
       style: {
+        position: '定位',
         width: '宽度',
         height: '高度',
         display: '展示',
