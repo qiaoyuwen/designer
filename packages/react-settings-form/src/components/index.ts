@@ -12,3 +12,4 @@ export * from './FlexStyleSetter';
 export * from './ColorInput';
 export * from './FontStyleSetter';
 export * from './PositionStyleSetter';
+export * from './BackgroundStyleSetter';

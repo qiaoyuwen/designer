@@ -31,6 +31,9 @@ export const CSSStyle: ISchema = {
     'style.padding': {
       'x-component': 'BoxStyleSetter',
     },
+    'style.background': {
+      'x-component': 'BackgroundStyleSetter',
+    },
     'style.font': {
       'x-component': 'FontStyleSetter',
     },

@@ -34,6 +34,7 @@ import {
   ColorInput,
   ActionSetter,
   PositionStyleSetter,
+  BackgroundStyleSetter,
 } from './components';
 
 export const SchemaField: any = createSchemaField({
@@ -71,5 +72,6 @@ export const SchemaField: any = createSchemaField({
     ColorInput,
     ActionSetter,
     PositionStyleSetter,
+    BackgroundStyleSetter,
   },
 });
