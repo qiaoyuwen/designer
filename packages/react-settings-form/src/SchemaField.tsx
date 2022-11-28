@@ -36,6 +36,8 @@ import {
   PositionStyleSetter,
   BackgroundStyleSetter,
   BoxShadowStyleSetter,
+  BorderStyleSetter,
+  BorderRadiusStyleSetter,
 } from './components';
 
 export const SchemaField: any = createSchemaField({
@@ -75,5 +77,7 @@ export const SchemaField: any = createSchemaField({
     PositionStyleSetter,
     BackgroundStyleSetter,
     BoxShadowStyleSetter,
+    BorderStyleSetter,
+    BorderRadiusStyleSetter,
   },
 });

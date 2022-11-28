@@ -31,3 +31,4 @@ export * from './actions';
 export * from './image';
 export * from './upload';
 export * from './shadow';
+export * from './corner';
