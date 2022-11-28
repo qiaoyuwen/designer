@@ -3,6 +3,9 @@ import { ISchema } from '@formily/react';
 export const CSSStyle: ISchema = {
   type: 'void',
   properties: {
+    'style.position': {
+      'x-component': 'PositionStyleSetter',
+    },
     'style.width': {
       type: 'string',
       'x-decorator': 'FormItem',
