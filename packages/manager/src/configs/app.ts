@@ -18,6 +18,8 @@ const config = (() => {
 })();
 
 export const AppCommonConfig: IAppConfig = {
+  appKey: '',
+  endpointCode: '',
   foundByteBigdataURL: ''
 }
 

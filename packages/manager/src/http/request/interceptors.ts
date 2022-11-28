@@ -3,6 +3,7 @@ import type { RequestInterceptor, ResponseError, ResponseInterceptor } from 'umi
 import { HttpResponse } from '.';
 import { CodeMessage } from './constant';
 import { history } from 'umi';
+import { AppConfig } from '@/configs/app'
 /** 异常处理程序
  * @see https://beta-pro.ant.design/docs/request-cn
  */
@@ -48,6 +49,7 @@ export const requestInterceptor: RequestInterceptor = (url, options) => {
       headers: {
         ...options?.headers,
         Authorization: token,
+        endpointCode: AppConfig.endpointCode
       },
     },
   };

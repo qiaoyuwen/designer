@@ -4,5 +4,7 @@ export interface SelectOption {
 }
 
 export interface IAppConfig {
+  appKey: string;
+  endpointCode: string;
   foundByteBigdataURL: string;
 }
