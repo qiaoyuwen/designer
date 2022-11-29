@@ -88,7 +88,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
 
       if (!column.render) {
         if (column.valueType === ColumnValueType.Select) {
-          column.render = (dom, entity) => {
+          column.render = (_, entity) => {
             const label = column.valueOptions?.find(
               (item) => item.value === entity[column.dataIndex || column.key],
             )?.label;
@@ -98,7 +98,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
         }
 
         if (column.valueType === ColumnValueType.DateRange) {
-          column.render = (dom, entity) => {
+          column.render = (_, entity) => {
             const value = entity[column.dataIndex || column.key];
             return moment(value).format('YYYY-MM-DD HH:mm:ss');
           };
