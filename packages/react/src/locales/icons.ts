@@ -63,6 +63,9 @@ export default {
       TextAlignCenter: '居中',
       TextAlignRight: '右对齐',
       TextAlignJustify: '自适应',
+      Clone: '复制',
+      TransformCursor: '移动',
+      Remove: '删除',
     },
   },
 };
