@@ -103,7 +103,11 @@ Steps.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'Steps',
     designerProps: {
-      propsSchema: createVoidFieldSchema(AllSchemas.Steps),
+      droppable: true,
+      allowAppend: (_, sources) => {
+        return sources.every((node) => node.props['x-component'] === 'Steps.Step');
+      },
+      sSchema: createVoidFieldSchema(AllSchemas.Steps),
     },
     designerLocales: AllLocales.Steps,
   },
@@ -112,6 +116,9 @@ Steps.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'Steps.Step',
     designerProps: {
+      allowDrop: (target) => {
+        return target.props['x-component'] === 'Steps';
+      },
       propsSchema: createVoidFieldSchema(AllSchemas.Steps.Step),
     },
     designerLocales: AllLocales.Step,
