@@ -25,6 +25,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
     tableClassName,
     tableStyle,
     toolBarRender,
+    style,
   } = props;
   const field = useField();
   const [formSearch, setFormSearch] = useMountMergeState<Record<string, any>>({});
@@ -154,7 +155,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
 
   return (
     <ConfigProvider locale={zh_CN}>
-      <div style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
+      <div style={{ backgroundColor: 'rgb(245, 245, 245)', ...style }}>
         {columns.filter((item) => !item.hideInSearch).length > 0 && (
           <Card style={{ marginBottom: 24 }}>
             <SearchForm
