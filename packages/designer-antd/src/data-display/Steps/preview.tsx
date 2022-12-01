@@ -107,7 +107,7 @@ Steps.Behavior = createBehavior(
       allowAppend: (_, sources) => {
         return sources.every((node) => node.props['x-component'] === 'Steps.Step');
       },
-      sSchema: createVoidFieldSchema(AllSchemas.Steps),
+      propsSchema: createVoidFieldSchema(AllSchemas.Steps),
     },
     designerLocales: AllLocales.Steps,
   },
