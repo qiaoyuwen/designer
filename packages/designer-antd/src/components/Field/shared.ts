@@ -71,12 +71,12 @@ export const createComponentSchema = (component?: ISchema, decorator?: ISchema):
         'x-decorator-props.remarks': {
           type: 'void',
           properties: {
-            'remarks': {
+            remarks: {
               type: 'string',
               'x-decorator': 'FormItem',
               'x-component': 'Input.TextArea',
             },
-          }
+          },
         },
       },
     },
@@ -89,8 +89,9 @@ export const createFieldSchema = (options: {
   component?: ISchema;
   decorator?: ISchema;
   valueInputTypes?: IValueInputType[];
+  dataSource?: boolean;
 }): ISchema => {
-  const { component, decorator = AllSchemas.FormItem, valueInputTypes } = options;
+  const { component, decorator = AllSchemas.FormItem, valueInputTypes, dataSource } = options;
 
   return {
     type: 'object',
@@ -130,10 +131,12 @@ export const createFieldSchema = (options: {
               include: valueInputTypes,
             },
           },
-          enum: {
-            'x-decorator': 'FormItem',
-            'x-component': 'DataSourceSetter',
-          },
+          enum: dataSource
+            ? {
+                'x-decorator': 'FormItem',
+                'x-component': 'DataSourceSetter',
+              }
+            : undefined,
           'x-validator': {
             type: 'array',
             'x-component': 'ValidatorSetter',

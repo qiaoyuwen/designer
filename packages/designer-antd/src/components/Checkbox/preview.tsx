@@ -16,6 +16,7 @@ Checkbox.Behavior = createBehavior({
     propsSchema: createFieldSchema({
       component: AllSchemas.Checkbox.Group,
       valueInputTypes: ['text', 'number'],
+      dataSource: true,
     }),
   },
   designerLocales: AllLocales.CheckboxGroup,

@@ -16,6 +16,7 @@ Cascader.Behavior = createBehavior({
     propsSchema: createFieldSchema({
       component: AllSchemas.Cascader,
       valueInputTypes: ['text', 'number'],
+      dataSource: true,
     }),
   },
   designerLocales: AllLocales.Cascader,
