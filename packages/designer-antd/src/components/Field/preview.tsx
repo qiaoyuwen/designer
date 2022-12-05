@@ -165,7 +165,7 @@ export const Field: DnFC<ISchema> = observer((props) => {
         </ObjectField>
       );
     };
-    if (node.props['x-component'] === 'Modal') {
+    if (node.props['x-component'] === 'Modal' || node.props['x-component'] === 'Drawer') {
       return renderObjectField();
     }
     return <Container>{renderObjectField()}</Container>;
@@ -178,7 +178,7 @@ export const Field: DnFC<ISchema> = observer((props) => {
       </VoidField>
     );
   }
-  return <InternalField {...fieldProps} name={node.id} />
+  return <InternalField {...fieldProps} name={node.id} />;
 });
 
 Field.Behavior = createBehavior({
