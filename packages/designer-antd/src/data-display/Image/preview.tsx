@@ -1,6 +1,6 @@
 import { Image as AntdImage } from 'antd';
 import { createBehavior, createResource } from '@designer/core';
-import { DnFC } from '@designer/react';
+import { DnFC, useNodeIdProps } from '@designer/react';
 import { createVoidFieldSchema } from '../../components/Field';
 import { AllSchemas } from '../../schemas';
 import { AllLocales } from '../../locales';
@@ -9,7 +9,24 @@ import { withContainer } from '../../common/Container';
 export const Image: DnFC<React.ComponentProps<typeof AntdImage>> & {
   PreviewGroup: DnFC<React.ComponentProps<typeof AntdImage.PreviewGroup>>;
 } = (props) => {
-  return <AntdImage {...props} />;
+  const nodeId = useNodeIdProps();
+  let style: any = {
+    display: 'inline-block',
+  };
+  if (props.style) {
+    const { position, width, height } = props.style;
+    style = {
+      ...style,
+      position,
+      width,
+      height,
+    };
+  }
+  return (
+    <div {...nodeId} style={style}>
+      <AntdImage {...props} />
+    </div>
+  );
 };
 
 Image.PreviewGroup = withContainer(AntdImage.PreviewGroup);
