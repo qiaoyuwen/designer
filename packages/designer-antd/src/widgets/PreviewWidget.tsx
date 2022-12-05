@@ -39,6 +39,7 @@ import {
   Text,
   Tabs,
   Steps,
+  Drawer,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
@@ -84,6 +85,7 @@ const SchemaField = createSchemaField({
     Tabs,
     Divider,
     Statistic,
+    Drawer,
   },
 });
 

@@ -5,3 +5,4 @@ export * from './Button';
 export * from './Text';
 export * from './Tabs';
 export * from './Steps';
+export * from './Drawer';
