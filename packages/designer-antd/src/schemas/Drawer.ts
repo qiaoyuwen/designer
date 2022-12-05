@@ -13,5 +13,17 @@ export const Drawer: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'NumberPicker',
     },
+    visible: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      default: true,
+    },
+    mask: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      default: true,
+    },
   },
 };

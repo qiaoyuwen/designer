@@ -9,6 +9,7 @@ export const Modal: DnFC<React.ComponentProps<typeof FormilyAntdModal>> = (props
   return (
     <FormilyAntdModal
       {...props}
+      visible={true}
       title={<span data-content-editable="x-component-props.title">{props.title}</span>}
       getContainer={() => {
         return document.querySelector('.dn-component-tree > .dn-designable-form > form');

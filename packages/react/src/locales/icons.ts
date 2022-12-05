@@ -66,6 +66,7 @@ export default {
       Clone: '复制',
       TransformCursor: '移动',
       Remove: '删除',
+      EyeClose: '隐藏',
     },
   },
 };
