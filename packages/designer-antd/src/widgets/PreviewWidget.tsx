@@ -28,7 +28,7 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic } from 'antd';
+import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic, Image } from 'antd';
 import {
   BaseLayout,
   ProTable,
@@ -73,6 +73,7 @@ const SchemaField = createSchemaField({
     Slider,
     Rate,
     Steps,
+    Image,
     // 自定义组件
     BaseLayout,
     Table: ProTable,
@@ -119,7 +120,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
     };
     try {
       result = JSON.parse(schemaJson);
-    } catch { }
+    } catch {}
     return result;
   }, [schemaJson]);
 

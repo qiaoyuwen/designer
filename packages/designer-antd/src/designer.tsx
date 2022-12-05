@@ -36,7 +36,7 @@ import {
   DatePicker,
 } from './components';
 import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid } from './layouts';
-import { Table, Text, Tabs, Statistic, Steps } from './data-display';
+import { Table, Text, Tabs, Statistic, Steps, Image } from './data-display';
 import { Button } from './operations';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 import './global.less';
@@ -92,14 +92,14 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       if (props.initialRouterData) {
         routerRef.current = JSON.parse(props.initialRouterData);
       }
-    } catch { }
+    } catch {}
   }, [props.initialSchema]);
 
   const onSave = async (schemaJson: string) => {
     let routerJson = '[]';
     try {
       routerJson = JSON.stringify(routerRef.current);
-    } catch { }
+    } catch {}
 
     props.onSave(schemaJson, routerJson);
   };
@@ -108,7 +108,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
     let routerJson = '[]';
     try {
       routerJson = JSON.stringify(routerRef.current);
-    } catch { }
+    } catch {}
 
     props.onPreview(schemaJson, routerJson);
   };
@@ -148,7 +148,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
               ]}
             />
             <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card, Grid, Modal, ConfirmModal, Divider]} />
-            <ResourceWidget title="sources.DataDisplays" sources={[Table, Text, Tabs, Statistic, Steps]} />
+            <ResourceWidget title="sources.DataDisplays" sources={[Table, Text, Tabs, Statistic, Steps, Image]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
@@ -192,6 +192,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Statistic,
                     Grid,
                     Steps,
+                    Image,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 
