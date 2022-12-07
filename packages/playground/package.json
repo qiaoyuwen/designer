@@ -13,7 +13,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "antd": "~4.22.4",
+    "antd": "~4.24.5",
     "@ant-design/pro-layout": "^6.15.3",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
