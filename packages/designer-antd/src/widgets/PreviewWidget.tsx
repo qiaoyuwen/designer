@@ -28,7 +28,7 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic } from 'antd';
+import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic, Image, Tooltip } from 'antd';
 import {
   BaseLayout,
   ProTable,
@@ -39,6 +39,7 @@ import {
   Text,
   Tabs,
   Steps,
+  Drawer,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
@@ -73,6 +74,7 @@ const SchemaField = createSchemaField({
     Slider,
     Rate,
     Steps,
+    Image,
     // 自定义组件
     BaseLayout,
     Table: ProTable,
@@ -83,6 +85,8 @@ const SchemaField = createSchemaField({
     Tabs,
     Divider,
     Statistic,
+    Drawer,
+    Tooltip,
   },
 });
 
@@ -119,7 +123,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
     };
     try {
       result = JSON.parse(schemaJson);
-    } catch { }
+    } catch {}
     return result;
   }, [schemaJson]);
 

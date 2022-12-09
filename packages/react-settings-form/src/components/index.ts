@@ -11,3 +11,8 @@ export * from './DisplayStyleSetter';
 export * from './FlexStyleSetter';
 export * from './ColorInput';
 export * from './FontStyleSetter';
+export * from './PositionStyleSetter';
+export * from './BackgroundStyleSetter';
+export * from './BoxShadowStyleSetter';
+export * from './BorderStyleSetter';
+export * from './BorderRadiusStyleSetter';

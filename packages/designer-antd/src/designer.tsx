@@ -35,8 +35,9 @@ import {
   Upload,
   DatePicker,
 } from './components';
-import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid } from './layouts';
-import { Table, Text, Tabs, Statistic, Steps } from './data-display';
+import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid, Drawer } from './layouts';
+import { Table, Text, Tabs, Statistic, Steps, Image } from './data-display';
+import { Tooltip } from './feedback';
 import { Button } from './operations';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 import './global.less';
@@ -49,6 +50,7 @@ GlobalRegistry.registerDesignerLocales({
       Inputs: '表单组件',
       Layouts: '布局组件',
       DataDisplays: '数据展示组件',
+      Feedbacks: '反馈组件',
       Operations: '交互组件',
     },
   },
@@ -92,14 +94,14 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       if (props.initialRouterData) {
         routerRef.current = JSON.parse(props.initialRouterData);
       }
-    } catch { }
+    } catch {}
   }, [props.initialSchema]);
 
   const onSave = async (schemaJson: string) => {
     let routerJson = '[]';
     try {
       routerJson = JSON.stringify(routerRef.current);
-    } catch { }
+    } catch {}
 
     props.onSave(schemaJson, routerJson);
   };
@@ -108,7 +110,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
     let routerJson = '[]';
     try {
       routerJson = JSON.stringify(routerRef.current);
-    } catch { }
+    } catch {}
 
     props.onPreview(schemaJson, routerJson);
   };
@@ -147,8 +149,12 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                 Upload,
               ]}
             />
-            <ResourceWidget title="sources.Layouts" sources={[BaseLayout, Card, Grid, Modal, ConfirmModal, Divider]} />
-            <ResourceWidget title="sources.DataDisplays" sources={[Table, Text, Tabs, Statistic, Steps]} />
+            <ResourceWidget
+              title="sources.Layouts"
+              sources={[BaseLayout, Card, Grid, Modal, ConfirmModal, Divider, Drawer]}
+            />
+            <ResourceWidget title="sources.DataDisplays" sources={[Table, Text, Tabs, Statistic, Steps, Image]} />
+            <ResourceWidget title="sources.Feedbacks" sources={[Tooltip]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
@@ -192,6 +198,9 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Statistic,
                     Grid,
                     Steps,
+                    Image,
+                    Drawer,
+                    Tooltip,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 

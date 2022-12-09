@@ -25,6 +25,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
     tableClassName,
     tableStyle,
     toolBarRender,
+    style,
   } = props;
   const field = useField();
   const [formSearch, setFormSearch] = useMountMergeState<Record<string, any>>({});
@@ -88,7 +89,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
 
       if (!column.render) {
         if (column.valueType === ColumnValueType.Select) {
-          column.render = (dom, entity) => {
+          column.render = (_, entity) => {
             const label = column.valueOptions?.find(
               (item) => item.value === entity[column.dataIndex || column.key],
             )?.label;
@@ -98,7 +99,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
         }
 
         if (column.valueType === ColumnValueType.DateRange) {
-          column.render = (dom, entity) => {
+          column.render = (_, entity) => {
             const value = entity[column.dataIndex || column.key];
             return moment(value).format('YYYY-MM-DD HH:mm:ss');
           };
@@ -154,7 +155,7 @@ export const ProTable = <DataType extends Record<string, any>, Params extends IP
 
   return (
     <ConfigProvider locale={zh_CN}>
-      <div style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
+      <div style={{ backgroundColor: 'rgb(245, 245, 245)', ...style }}>
         {columns.filter((item) => !item.hideInSearch).length > 0 && (
           <Card style={{ marginBottom: 24 }}>
             <SearchForm

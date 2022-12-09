@@ -8,23 +8,32 @@ export const Input: ISchema & { TextArea?: ISchema } = {
       'x-decorator': 'FormItem',
       'x-component': 'ValueInput',
       'x-component-props': {
-        include: ['expression'],
+        include: ['text', 'expression'],
       },
     },
     addonAfter: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'Input',
+      'x-component': 'ValueInput',
+      'x-component-props': {
+        include: ['text', 'expression'],
+      },
     },
     prefix: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'Input',
+      'x-component': 'ValueInput',
+      'x-component-props': {
+        include: ['text', 'expression'],
+      },
     },
     suffix: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'Input',
+      'x-component': 'ValueInput',
+      'x-component-props': {
+        include: ['text', 'expression'],
+      },
     },
     maxLength: {
       type: 'number',

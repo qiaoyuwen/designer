@@ -65,3 +65,12 @@ const TableColumnWidthSizeOptions = [createEmptySizeOption('undefined'), createU
 
 export const TableColumnWidthSizeInput: React.FC<ISelectionInputProps> =
   createSelectionInput(TableColumnWidthSizeOptions);
+
+export const BackgroundSizeInput = createSelectionInput([
+  createSpecialSizeOption('cover'),
+  createSpecialSizeOption('contain'),
+  createUnitType('px'),
+  createUnitType('%'),
+  createUnitType('vh'),
+  createUnitType('em'),
+]);

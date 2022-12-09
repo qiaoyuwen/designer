@@ -26,3 +26,6 @@ export * from './Divider';
 export * from './Statistic';
 export * from './Grid';
 export * from './Steps';
+export * from './Image';
+export * from './Drawer';
+export * from './Tooltip';

@@ -93,7 +93,7 @@ Grid.Behavior = createBehavior(
       allowDrop: (node) => node.props['x-component'] === 'Grid',
       propsSchema: createVoidFieldSchema(AllSchemas.Grid.GridColumn),
     },
-    designerLocales: AllLocales.Grid,
+    designerLocales: AllLocales.GridColumn,
   },
 );
 

@@ -1,4 +1,3 @@
-import { GlobalRegistry } from '@designer/core';
 import { ISchema } from '@formily/react';
 
 export const Card: ISchema & { Addition?: ISchema } = {
@@ -15,8 +14,8 @@ export const Card: ISchema & { Addition?: ISchema } = {
       'x-component': 'Input',
     },
     type: {
-      type: 'boolean',
-      enum: GlobalRegistry.getDesignerMessage('settings.cardTypes'),
+      type: 'string',
+      enum: ['', 'inner'],
       'x-decorator': 'FormItem',
       'x-component': 'Radio.Group',
       'x-component-props': {

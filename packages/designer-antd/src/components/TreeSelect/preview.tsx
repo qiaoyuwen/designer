@@ -16,6 +16,7 @@ TreeSelect.Behavior = createBehavior({
     propsSchema: createFieldSchema({
       component: AllSchemas.TreeSelect,
       valueInputTypes: ['text', 'number'],
+      dataSource: true,
     }),
   },
   designerLocales: AllLocales.TreeSelect,

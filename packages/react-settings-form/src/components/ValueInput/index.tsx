@@ -3,9 +3,10 @@
  * Todo: JSON、富文本，公式
  */
 import { createSelectionInput, ISelectionInputProps } from '../SelectionInput';
-import { Input, Button, Popover, InputNumber, Select } from 'antd';
+import { Input, Button, InputNumber, Select, Modal } from 'antd';
 import { MonacoInput } from '../MonacoInput';
 import { TextWidget } from '@designer/react';
+import { useState } from 'react';
 
 const STARTTAG_REX =
   /<([-A-Za-z0-9_]+)((?:\s+[a-zA-Z_:][-a-zA-Z0-9_:.]*(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)>/;
@@ -70,27 +71,36 @@ export const ValueInput: React.FC<ISelectionInputProps> = createSelectionInput(
     {
       value: 'expression',
       component: (props: any) => {
+        const [value, setValue] = useState(props.value);
+        const [modalVisible, setModalVisible] = useState(false);
+        const openModal = () => setModalVisible(true);
+        const closeModal = () => setModalVisible(false);
+
         return (
-          <Popover
-            content={
+          <div>
+            <Modal
+              title="表达式"
+              width="65%"
+              bodyStyle={{ padding: 10 }}
+              visible={modalVisible}
+              onCancel={closeModal}
+              onOk={() => {
+                props.onChange?.(value);
+                closeModal();
+              }}
+            >
               <div
                 style={{
-                  width: 600,
                   height: 300,
-                  marginLeft: -16,
-                  marginRight: -16,
-                  marginBottom: -12,
                 }}
               >
-                <MonacoInput {...props} language="javascript.expression" />
+                <MonacoInput language="javascript.expression" value={value} onChange={(value) => setValue(value)} />
               </div>
-            }
-            trigger="click"
-          >
-            <Button block>
+            </Modal>
+            <Button block onClick={openModal}>
               <TextWidget token="SettingComponents.ValueInput.expression" />
             </Button>
-          </Popover>
+          </div>
         );
       },
       checker: isExpression,

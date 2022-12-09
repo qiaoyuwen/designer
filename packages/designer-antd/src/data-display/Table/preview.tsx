@@ -18,7 +18,13 @@ export const Table: DnFC<React.ComponentProps<typeof ProTable>> = (props) => {
   }
   const containerProps = {
     [nodeIdAttrName]: id,
+    style: newProps.style,
   };
+  newProps['style'] = newProps.style?.backgroundColor
+    ? {
+        backgroundColor: newProps.style?.backgroundColor,
+      }
+    : undefined;
   return (
     <div {...containerProps}>
       <ProTable {...newProps} />

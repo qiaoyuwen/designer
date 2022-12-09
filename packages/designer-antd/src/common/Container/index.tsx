@@ -10,9 +10,18 @@ export const Container: FunctionComponent<PropsWithChildren> = observer((props) 
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const withContainer = (Target: React.JSXElementConstructor<any>) => {
-  return (props: any) => {
+  return ({ ...props }: any) => {
+    let style = {};
+    if (props.style) {
+      const { position, width, height } = props.style;
+      style = {
+        position,
+        width,
+        height,
+      };
+    }
     return (
-      <DroppableWidget>
+      <DroppableWidget style={style}>
         <Target {...props} />
       </DroppableWidget>
     );

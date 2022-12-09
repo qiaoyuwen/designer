@@ -28,3 +28,7 @@ export * from './display';
 export * from './flex';
 export * from './font';
 export * from './actions';
+export * from './image';
+export * from './upload';
+export * from './shadow';
+export * from './corner';

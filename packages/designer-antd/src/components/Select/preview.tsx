@@ -16,6 +16,7 @@ Select.Behavior = createBehavior({
     propsSchema: createFieldSchema({
       component: AllSchemas.Select,
       valueInputTypes: ['text', 'number'],
+      dataSource: true,
     }),
   },
   designerLocales: AllLocales.Select,
