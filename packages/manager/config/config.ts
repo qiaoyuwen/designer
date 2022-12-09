@@ -20,6 +20,7 @@ const extraBabelIncludes = [
 ];
 
 export default defineConfig({
+  base: '/designer',
   alias: {
     '@designer/utils': resolvePakcage('../../utils/src'),
     '@designer/core': resolvePakcage('../../core/src'),
