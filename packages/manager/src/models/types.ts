@@ -7,4 +7,7 @@ export interface IAppConfig {
   appKey: string;
   endpointCode: string;
   foundByteBigdataURL: string;
+  prefixs: {
+    api: string,
+  }
 }

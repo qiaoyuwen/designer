@@ -20,7 +20,10 @@ const config = (() => {
 export const AppCommonConfig: IAppConfig = {
   appKey: '',
   endpointCode: '',
-  foundByteBigdataURL: ''
+  foundByteBigdataURL: '',
+  prefixs: {
+    api: ''
+  }
 }
 
 export const AppConfig: IAppConfig = {

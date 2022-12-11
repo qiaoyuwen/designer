@@ -42,8 +42,9 @@ export const errorHandler = (error: ResponseError<HttpResponse<any>>) => {
 // 请求拦截器
 export const requestInterceptor: RequestInterceptor = (url, options) => {
   const token = localStorage.getItem('token');
+  const prefix = AppConfig.prefixs.api
   return {
-    url: `/api${url}`,
+    url: `${prefix}${url}`,
     options: {
       ...options,
       headers: {
