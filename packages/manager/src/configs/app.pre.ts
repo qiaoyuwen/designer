@@ -1,8 +1,8 @@
 import { IAppConfig } from '@/models'
 
 const config: Partial<IAppConfig> = {
-  appKey: 'dsy_n830otcs8dsa',
-  endpointCode: 'end_B51bphiq0M8b',
+  appKey: 'dsy_zbpp5J4mDC1T',
+  endpointCode: 'end_R2vypKMnc613',
   foundByteBigdataURL: 'http://bigdata-screen-v3-dev.gogdev.cn/',
 }
 
