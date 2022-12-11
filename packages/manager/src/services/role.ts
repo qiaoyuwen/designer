@@ -1,7 +1,8 @@
 import { HttpPaginationResponse, HttpParams, HttpUtils } from '@/http/request';
 import type { Role } from '@/models';
+import { AppConfig } from '@/configs/app'
 
-const prefix = '/role';
+const prefix = AppConfig.prefixs.api + '/role';
 
 const getRolesPagination = (params?: HttpParams) => {
   return HttpUtils.getJson<HttpPaginationResponse<Role>>(`${prefix}/pagination`, params);

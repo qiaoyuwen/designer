@@ -1,7 +1,9 @@
 import { HttpPaginationResponse, HttpParams, HttpUtils } from '@/http/request';
 import type { Project } from '@/models';
+import { AppConfig } from '@/configs/app'
+import { ApiConfig } from '@/configs/api'
 
-const prefix = '/project';
+const prefix = AppConfig.prefixs.api + '/project';
 
 const getProjectsPagination = (params?: HttpParams) => {
   return HttpUtils.getJson<HttpPaginationResponse<Project>>(`${prefix}/pagination`, params);
@@ -13,7 +15,7 @@ const getProjects = (params?: { name?: string }) => {
 
 const getProject = (params: {projectId: string; teamId: string}) => {
   // return HttpUtils.getJson<Project>(`${prefix}/${params.id}`);
-  return HttpUtils.getJson<Project>(`${prefix}/get`, params);
+  return HttpUtils.getJson<Project>(ApiConfig.main.project.info, params);
 };
 
 const addProject = (params: Pick<Project, 'name' | 'description'>) => {

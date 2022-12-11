@@ -1,8 +1,10 @@
 import { HttpPaginationResponse, HttpParams, HttpUtils } from '@/http/request';
 import type { ProjectPage } from '@/models';
 import { IProjectApiPage } from '@/models'
+import { AppConfig } from '@/configs/app'
+import { ApiConfig } from '@/configs/api'
 
-const prefix = '/project_page';
+const prefix = AppConfig.prefixs.api + '/project_page';
 
 const getProjectPageDetail = (params: { id: string }) => {
   return HttpUtils.getJson<ProjectPage>(`${prefix}/${params.id}`);
@@ -10,7 +12,7 @@ const getProjectPageDetail = (params: { id: string }) => {
 
 const getProjectPages = (params: { projectId: string }): Promise<ProjectPage[]> => {
   // return HttpUtils.getJson<ProjectPage[]>(`${prefix}`, params);
-  return HttpUtils.getJson<IProjectApiPage[]>('/project/found/page/list', params).then(res => {
+  return HttpUtils.getJson<IProjectApiPage[]>(ApiConfig.main.projectMenu.list, params).then(res => {
     return res.map(menu => {
       return {
         key: menu.uuid,
@@ -80,7 +82,7 @@ const saveProjectPage = (params: {projectId: string, routers: ProjectPage[]}) =>
     pages: pages
   }
 
-  return HttpUtils.postJson<void>('/project/found/page/save', requestParams);
+  return HttpUtils.postJson<void>(ApiConfig.main.projectMenu.save, requestParams);
 }
 
 const deleteProjectPage = (params: { id: string }) => {

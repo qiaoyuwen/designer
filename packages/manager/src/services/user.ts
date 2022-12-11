@@ -1,11 +1,13 @@
 import { HttpPaginationResponse, HttpParams, HttpUtils } from '@/http/request';
 import type { User } from '@/models/user';
 import { IUserInfo } from '@/models/user'
+import { AppConfig } from '@/configs/app'
+import { ApiConfig } from '@/configs/api'
 
-const prefix = '/user';
+const prefix = AppConfig.prefixs.api + '/user';
 
 const getUserDetail = () => {
-  return HttpUtils.getJson<IUserInfo>(`${prefix}/profile`);
+  return HttpUtils.getJson<IUserInfo>(ApiConfig.main.user.profile);
 };
 
 const login = (params: { username?: string; password?: string }) => {
