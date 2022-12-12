@@ -146,6 +146,10 @@ export const createFieldSchema = (options: {
             'x-decorator': 'FormItem',
             'x-component': 'Switch',
           },
+          'x-reactions': {
+            'x-decorator': 'FormItem',
+            'x-component': 'ReactionsSetter',
+          },
         },
       },
       ...(createComponentSchema(component, decorator) as any),
