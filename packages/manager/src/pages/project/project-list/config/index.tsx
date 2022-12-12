@@ -8,9 +8,18 @@ import { Empty, message } from 'antd';
 import { photo } from '@foundbyte/util';
 import { RouterWidget, traverseTree } from './RouterWidget';
 import { base64ToFile } from '@/utils'
+import { ELocalStorage } from '@/enums/storage'
 
 const ProjectConfigPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = (props) => {
-  const { id, teamId } = props.location.query as {id: string; teamId: string};
+  // 取不到参数，从缓存里面取
+  let { id, teamId } = props.location.query as {id: string; teamId: string};
+  if (!id) {
+    id = localStorage.getItem(ELocalStorage.projectId) ?? ''
+  }
+  if (!teamId) {
+    teamId = localStorage.getItem(ELocalStorage.teamId) ?? ''
+  }
+
   const ref = useRef(null);
   const [project, loadProject] = useProject({ projectId: id, teamId });
   const [curRouter, setCurRouter] = useState<any>();

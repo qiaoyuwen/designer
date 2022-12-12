@@ -10,7 +10,7 @@ const config = (() => {
       return devConfig;
     case 'test':
       return testConfig;
-    case 'pre':
+    case 'pro':
       return prodConfig;
     default:
       return prodConfig;

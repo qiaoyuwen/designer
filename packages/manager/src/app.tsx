@@ -6,6 +6,7 @@ import { history } from 'umi';
 import defaultSettings from '../config/defaultSettings';
 import { IUserInfo } from './models'
 import { UserServices } from './services';
+import { ELocalStorage } from '@/enums/storage'
 export { default as request } from '@/http/request';
 
 const loginPath = '/login-tip';
@@ -14,6 +15,11 @@ const loginPath = '/login-tip';
 export const initialStateConfig = {
   loading: <PageLoading />,
 };
+
+// 以传过来的参数为准，取不到取缓存的参数
+const localStorageToken = localStorage.getItem(ELocalStorage.token)
+const query = history.location.query as { token: string; }
+const token = query.token ?? (localStorageToken ?? undefined)
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -24,11 +30,8 @@ export async function getInitialState(): Promise<{
   loading?: boolean;
   fetchUserInfo?: () => Promise<IUserInfo | undefined>;
 }> {
-  const token = history.location.query?.token;
-  console.log('token', token)
-  console.log('history.location', history.location)
   if (token) {
-    localStorage.setItem('token', token as string);
+    localStorage.setItem(ELocalStorage.token, token as string);
   }
   const fetchUserInfo = async () => {
     try {

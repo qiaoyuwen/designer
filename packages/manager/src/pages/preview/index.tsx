@@ -6,6 +6,7 @@ import styles from './index.less';
 import { Menu } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
 import { ProjectPage } from '@/models';
+import { ELocalStorage } from '@/enums/storage'
 
 const traverseTree = <T extends { key: string; children: any[] }>(
   data: T[],
@@ -20,7 +21,14 @@ const traverseTree = <T extends { key: string; children: any[] }>(
 };
 
 const PreviewPage: FunctionComponent<IRouteComponentProps<{}, { id: string }>> = (props) => {
-  const { id, teamId } = props.location.query as {id: string; teamId: string};
+  let { id, teamId } = props.location.query as {id: string; teamId: string};
+  if (!id) {
+    id = localStorage.getItem(ELocalStorage.projectId) ?? ''
+  }
+  if (!teamId) {
+    teamId = localStorage.getItem(ELocalStorage.teamId) ?? ''
+  }
+
   const [project] = useProject({ projectId: id, teamId });
   // const [projectPages] = useProjectPages(id);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);

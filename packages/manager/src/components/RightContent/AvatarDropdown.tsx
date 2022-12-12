@@ -7,6 +7,7 @@ import React, { useCallback } from 'react';
 import { history, useModel } from 'umi';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
+import { ELocalStorage } from '@/enums/storage'
 
 export interface GlobalHeaderRightProps {
   menu?: boolean;
@@ -16,7 +17,7 @@ export interface GlobalHeaderRightProps {
  * 退出登录，并且将当前的 url 保存
  */
 const loginOut = async () => {
-  localStorage.removeItem('token');
+  localStorage.removeItem(ELocalStorage.token);
   const { query = {}, search, pathname } = history.location;
   const { redirect } = query;
   // Note: There may be security issues, please note

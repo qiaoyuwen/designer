@@ -4,6 +4,7 @@ import { HttpResponse } from '.';
 import { CodeMessage } from './constant';
 import { history } from 'umi';
 import { AppConfig } from '@/configs/app'
+import { ELocalStorage } from '@/enums/storage'
 /** 异常处理程序
  * @see https://beta-pro.ant.design/docs/request-cn
  */
@@ -41,7 +42,7 @@ export const errorHandler = (error: ResponseError<HttpResponse<any>>) => {
 
 // 请求拦截器
 export const requestInterceptor: RequestInterceptor = (url, options) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem(ELocalStorage.token);
   return {
     url: `${url}`,
     options: {
@@ -59,7 +60,7 @@ export const requestInterceptor: RequestInterceptor = (url, options) => {
 export const responseInterceptor: ResponseInterceptor = (response) => {
   const token = response.headers.get('Authorization');
   if (token) {
-    localStorage.setItem('token', token);
+    localStorage.setItem(ELocalStorage.token, token);
   }
   return response;
 };
