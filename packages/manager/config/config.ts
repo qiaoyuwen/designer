@@ -21,6 +21,7 @@ const extraBabelIncludes = [
 
 export default defineConfig({
   base: REACT_APP_ENV === 'pro' ? '/designer' : '/',
+  publicPath: REACT_APP_ENV === 'pro' ? '/designer/' : '/',
   alias: {
     '@designer/utils': resolvePakcage('../../utils/src'),
     '@designer/core': resolvePakcage('../../core/src'),

@@ -1,4 +1,5 @@
 import { Settings as LayoutSettings } from '@ant-design/pro-components';
+const { REACT_APP_ENV } = process.env;
 
 const Settings: LayoutSettings & {
   pwa?: boolean;
@@ -14,7 +15,7 @@ const Settings: LayoutSettings & {
   colorWeak: false,
   title: 'Designer',
   pwa: false,
-  logo: './logo.svg',
+  logo: REACT_APP_ENV === 'pro' ? '/designer/logo.svg' : '/logo.svg',
   iconfontUrl: '',
 };
 
