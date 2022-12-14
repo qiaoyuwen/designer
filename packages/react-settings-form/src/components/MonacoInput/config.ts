@@ -20,12 +20,9 @@ export const initMonaco = () => {
       jsx: monaco.languages.typescript.JsxEmit.React,
       reactNamespace: 'React',
       allowJs: true,
+      checkJs: true,
     });
 
-    monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
-      noSemanticValidation: false,
-      noSyntaxValidation: true,
-    });
     monaco.languages.registerDocumentFormattingEditProvider('typescript', {
       async provideDocumentFormattingEdits(model) {
         return [
