@@ -4,31 +4,49 @@ import { getNpmCDNRegistry } from '../../../registry';
 export interface IDependency {
   name: string;
   path: string;
+  extra?: string;
 }
 
 const loadDependencies = async (deps: IDependency[]) => {
   return Promise.all(
-    deps.map(async ({ name, path }) => ({
+    deps.map(async ({ name, path, extra }) => ({
       name,
       path,
-      library: await fetch(`${getNpmCDNRegistry()}/${name}/${path}`).then((res) => res.text()),
+      library: await fetch(`${getNpmCDNRegistry()}/${path}`).then((res) => res.text()),
+      extra,
     })),
   );
 };
 
 export const initDeclaration = async () => {
   return MonacoInput.loader.init().then(async (monaco) => {
-    const deps = await loadDependencies([{ name: '@formily/core', path: 'dist/formily.core.all.d.ts' }]);
-    deps?.forEach(({ name, library }) => {
+    const deps = await loadDependencies([
+      { name: '@formily/core', path: '@formily/core/dist/formily.core.all.d.ts' },
+      {
+        name: 'react',
+        path: '@types/react/index.d.ts',
+        extra: `
+        export interface IReact {
+          createElement: typeof React.createElement;
+        }
+        `,
+      },
+    ]);
+    deps?.forEach(({ name, library, extra }) => {
       monaco.languages.typescript.typescriptDefaults.addExtraLib(
-        `declare module '${name}'{ ${library} }`,
+        `declare module '${name}'{
+        ${library}
+        ${extra}
+       }`,
         `file:///node_modules/${name}/index.d.ts`,
       );
     });
     monaco.languages.typescript.typescriptDefaults.addExtraLib(
       `
+    import { IReact } from 'react'
     import { Form, Field } from '@formily/core'
     declare global {
+      declare var $React: IReact
       /*
        * Form Model
        **/
