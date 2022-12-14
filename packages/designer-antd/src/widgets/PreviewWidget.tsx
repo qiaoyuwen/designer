@@ -90,10 +90,6 @@ const SchemaField = createSchemaField({
   },
 });
 
-const ReactScope = {
-  createElement: React.createElement,
-};
-
 const AntdScope = {
   Button,
   Tag,
@@ -136,7 +132,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
       <SchemaField
         schema={schema.schema}
         scope={{
-          $React: ReactScope,
+          $React: React,
           $Antd: AntdScope,
           $AntdIcon: AntdIconScope,
           $HttpUtils: HttpUtils,

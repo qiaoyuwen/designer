@@ -75,7 +75,7 @@ Table.Resource = createResource({
                   value: '2',
                 },
               ],
-              render: "{{(dom, entity) => React.createElement(Antd.Tag, null, entity['column2'])}}",
+              render: "{{(dom, entity) => $React.createElement($Antd.Tag, null, entity['column2'])}}",
             },
             {
               title: '列3',
@@ -88,8 +88,8 @@ Table.Resource = createResource({
               hideInSearch: true,
               width: '160px',
               render: `{{(dom, entity) => {
-                return React.createElement(React.Fragment, null, [
-                  React.createElement(Antd.Button, {
+                return $React.createElement($React.Fragment, null, [
+                  $React.createElement($Antd.Button, {
                     key: 'edit',
                     type: 'link',
                     style: {
@@ -99,7 +99,7 @@ Table.Resource = createResource({
                       $setComponentsProps('@ModalName', {visible: true, title: '编辑'})
                     },
                   }, '编辑'),
-                  React.createElement(Antd.Button, {
+                  $React.createElement($Antd.Button, {
                     key: 'remove',
                     type: 'link',
                     danger: true,
@@ -116,8 +116,8 @@ Table.Resource = createResource({
             showQuickJumper: true,
           },
           toolBarRender: `{{() => {
-            return React.createElement(
-              Antd.Button,
+            return $React.createElement(
+              $Antd.Button,
               {
                 type: 'primary',
                 onClick: () => {

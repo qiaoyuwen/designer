@@ -77,7 +77,7 @@ export const ValueInput: React.FC<ISelectionInputProps> = createSelectionInput(
         const closeModal = () => setModalVisible(false);
 
         return (
-          <div>
+          <div style={{ width: '100%' }}>
             <Modal
               title="表达式"
               width="65%"
@@ -116,5 +116,5 @@ export const ValueInput: React.FC<ISelectionInputProps> = createSelectionInput(
       },
     },
   ],
-  65,
+  50,
 );

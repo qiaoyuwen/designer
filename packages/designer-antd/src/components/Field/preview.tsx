@@ -27,10 +27,6 @@ import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant
 Schema.silent(true);
 compiler.silent(true);
 
-const ReactScope = {
-  createElement: React.createElement,
-};
-
 const AntdScope = {
   Button,
   Tag,
@@ -133,7 +129,7 @@ const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName
     results.component = [
       component,
       compiler.compile(toJS(componentProps), {
-        $React: ReactScope,
+        $React: React,
         $Antd: AntdScope,
         $AntdIcon: AntdIconScope,
         $HttpUtils: HttpUtils,

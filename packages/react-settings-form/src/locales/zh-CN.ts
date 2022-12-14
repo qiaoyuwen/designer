@@ -61,7 +61,7 @@ export default {
         undefined: '自动',
         // ValueInput
         text: '文本',
-        expression: '表达式',
+        expression: 'Exp',
         boolean: '布尔值',
         number: '数值',
       },

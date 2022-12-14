@@ -28,6 +28,7 @@ export const initDeclaration = async () => {
         extra: `
         export interface IReact {
           createElement: typeof React.createElement;
+          Fragment: typeof React.Fragment;
         }
         `,
       },
