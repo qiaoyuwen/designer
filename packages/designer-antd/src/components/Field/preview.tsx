@@ -134,9 +134,9 @@ const toDesignableFieldProps = (schema: ISchema, components: any, nodeIdAttrName
       component,
       compiler.compile(toJS(componentProps), {
         $React: ReactScope,
-        Antd: AntdScope,
-        AntdIcon: AntdIconScope,
-        HttpUtils,
+        $Antd: AntdScope,
+        $AntdIcon: AntdIconScope,
+        $HttpUtils: HttpUtils,
         $form,
         $setComponentsProps,
       }),

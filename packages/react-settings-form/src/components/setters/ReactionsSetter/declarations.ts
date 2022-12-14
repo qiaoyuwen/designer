@@ -43,10 +43,42 @@ export const initDeclaration = async () => {
     });
     monaco.languages.typescript.typescriptDefaults.addExtraLib(
       `
-    import { IReact } from 'react'
+    import { IReact, ReactElement } from 'react'
     import { Form, Field } from '@formily/core'
+
+    interface IAntd {
+      Button: ReactElement;
+      Tag: ReactElement;
+      message: {
+        info(content: any, duration?: number, onClose?: () => void): () => void;
+        success(content: any, duration?: number, onClose?: () => void): () => void;
+        error(content: any, duration?: number, onClose?: () => void): () => void;
+        warn(content: any, duration?: number, onClose?: () => void): () => void;
+        warning(content: any, duration?: number, onClose?: () => void): () => void;
+        loading(content: any, duration?: number, onClose?: () => void): () => void;
+      };
+    }
+
+    interface IAntdIcon {
+      UserOutlined: ReactElement;
+      LockOutlined: ReactElement;
+      MobileOutlined: ReactElement;
+      SafetyOutlined: ReactElement;
+    }
+
+    interface IUmiHistory {
+      push(path: string, state?: Record<string, any>): void;
+      replace(path: string, state?: Record<string, any>): void;
+      go(n: number): void;
+      goBack(): void;
+      goForward(): void;
+    }
+
     declare global {
       declare var $React: IReact
+      declare var $Antd: IAntd
+      declare var $AntdIcon: IAntdIcon
+      declare var $UmiHistory: IUmiHistory
       /*
        * Form Model
        **/

@@ -137,10 +137,10 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
         schema={schema.schema}
         scope={{
           $React: ReactScope,
-          Antd: AntdScope,
-          AntdIcon: AntdIconScope,
-          HttpUtils,
-          UmiHistory,
+          $Antd: AntdScope,
+          $AntdIcon: AntdIconScope,
+          $HttpUtils: HttpUtils,
+          $UmiHistory: UmiHistory,
           $setComponentsProps,
         }}
       />
