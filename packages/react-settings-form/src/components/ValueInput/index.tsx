@@ -6,7 +6,9 @@ import { createSelectionInput, ISelectionInputProps } from '../SelectionInput';
 import { Input, Button, InputNumber, Select, Modal } from 'antd';
 import { MonacoInput } from '../MonacoInput';
 import { TextWidget } from '@designer/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { requestIdle } from '@designer/utils';
+import { initDeclaration } from '../setters/ReactionsSetter/declarations';
 
 const STARTTAG_REX =
   /<([-A-Za-z0-9_]+)((?:\s+[a-zA-Z_:][-a-zA-Z0-9_:.]*(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)>/;
@@ -73,8 +75,26 @@ export const ValueInput: React.FC<ISelectionInputProps> = createSelectionInput(
       component: (props: any) => {
         const [value, setValue] = useState(props.value);
         const [modalVisible, setModalVisible] = useState(false);
+        const [innerVisible, setInnerVisible] = useState(false);
         const openModal = () => setModalVisible(true);
         const closeModal = () => setModalVisible(false);
+
+        useEffect(() => {
+          if (modalVisible) {
+            requestIdle(
+              () => {
+                initDeclaration().then(() => {
+                  setInnerVisible(true);
+                });
+              },
+              {
+                timeout: 400,
+              },
+            );
+          } else {
+            setInnerVisible(false);
+          }
+        }, [modalVisible]);
 
         return (
           <div style={{ width: '100%' }}>
@@ -94,7 +114,9 @@ export const ValueInput: React.FC<ISelectionInputProps> = createSelectionInput(
                   height: 300,
                 }}
               >
-                <MonacoInput language="javascript.expression" value={value} onChange={(value) => setValue(value)} />
+                {innerVisible && (
+                  <MonacoInput language="javascript.expression" value={value} onChange={(value) => setValue(value)} />
+                )}
               </div>
             </Modal>
             <Button block onClick={openModal}>

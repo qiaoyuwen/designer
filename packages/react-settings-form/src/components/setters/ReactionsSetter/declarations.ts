@@ -44,12 +44,12 @@ export const initDeclaration = async () => {
     });
     monaco.languages.typescript.typescriptDefaults.addExtraLib(
       `
-    import { IReact, ReactElement } from 'react'
+    import { IReact, ForwardRefExoticComponent } from 'react'
     import { Form, Field } from '@formily/core'
 
     interface IAntd {
-      Button: ReactElement;
-      Tag: ReactElement;
+      Button: ForwardRefExoticComponent<any>;
+      Tag: ForwardRefExoticComponent<any>;
       message: {
         info(content: any, duration?: number, onClose?: () => void): () => void;
         success(content: any, duration?: number, onClose?: () => void): () => void;
@@ -61,10 +61,10 @@ export const initDeclaration = async () => {
     }
 
     interface IAntdIcon {
-      UserOutlined: ReactElement;
-      LockOutlined: ReactElement;
-      MobileOutlined: ReactElement;
-      SafetyOutlined: ReactElement;
+      UserOutlined: ForwardRefExoticComponent<any>;
+      LockOutlined: ForwardRefExoticComponent<any>;
+      MobileOutlined: ForwardRefExoticComponent<any>;
+      SafetyOutlined: ForwardRefExoticComponent<any>;
     }
 
     interface IUmiHistory {
