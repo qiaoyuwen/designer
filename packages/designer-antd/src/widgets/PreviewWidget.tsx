@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { createForm } from '@formily/core';
 import { createSchemaField } from '@formily/react';
 import {
@@ -117,7 +117,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   }, []);
 
   const schema = useMemo(() => {
-    let result = {
+    let result: any = {
       form: {},
       schema: {},
     };
@@ -126,6 +126,16 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
     } catch {}
     return result;
   }, [schemaJson]);
+
+  useEffect(() => {
+    if (schema.form.requestConifg?.dataSource) {
+      let values = {};
+      try {
+        values = JSON.parse(schema.form.requestConifg?.dataSource);
+      } catch {}
+      form.setValues(values);
+    }
+  }, [form, schema]);
 
   return (
     <Form {...schema.form} form={form}>

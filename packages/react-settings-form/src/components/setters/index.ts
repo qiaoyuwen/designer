@@ -6,3 +6,4 @@ export * from './RouterSetter';
 export * from './TreeDataSetter/shared';
 export * from './ActionSetter';
 export * from './ReactionsSetter';
+export * from './FormDataSetter';

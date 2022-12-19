@@ -17,7 +17,6 @@ import { FormItem } from '@formily/antd';
 import { createBehavior } from '@designer/core';
 import { useDesigner, useTreeNode, useComponents, DnFC } from '@designer/react';
 import { isArr, isStr, reduce, each, compiler } from '@designer/utils';
-import { Container } from '../../common/Container';
 import { AllLocales } from '../../locales';
 import { Tag, Button, message } from 'antd';
 import { createFormFieldSetComponentsFunc } from '../../utils';
@@ -158,20 +157,14 @@ export const Field: DnFC<ISchema> = observer((props) => {
   if (!node) return null;
   const fieldProps = toDesignableFieldProps(props, components, designer.props.nodeIdAttrName || '', node.id, $form);
   if (props.type === 'object') {
-    const renderObjectField = () => {
-      return (
-        <ObjectField {...fieldProps} name={node.id}>
-          {props.children}
-        </ObjectField>
-      );
-    };
-    if (node.props['x-component'] === 'Modal' || node.props['x-component'] === 'Drawer') {
-      return renderObjectField();
-    }
-    return <Container>{renderObjectField()}</Container>;
+    return (
+      <ObjectField {...fieldProps} name={node.id}>
+        {props.children}
+      </ObjectField>
+    );
   } else if (props.type === 'array') {
     return <ArrayField {...fieldProps} name={node.id} />;
-  } else if (node.props.type === 'void') {
+  } else if (props.type === 'void') {
     return (
       <VoidField {...fieldProps} name={node.id}>
         {props.children}

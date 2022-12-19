@@ -119,6 +119,14 @@ export default {
           url: '请求地址',
         },
       },
+      FormDataSetter: {
+        configureRequest: '配置数据源',
+        FormDataSettingForm: {
+          dataType: '数据类型',
+          dataSource: 'JSON数据',
+          url: '请求地址',
+        },
+      },
       RouterSetter: {
         nodeProperty: '路由属性',
         pleaseSelectNode: '请先选择左侧路由节点',

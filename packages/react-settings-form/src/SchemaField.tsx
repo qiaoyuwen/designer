@@ -39,6 +39,7 @@ import {
   BorderStyleSetter,
   BorderRadiusStyleSetter,
   ReactionsSetter,
+  FormDataSetter,
 } from './components';
 
 export const SchemaField: any = createSchemaField({
@@ -81,5 +82,6 @@ export const SchemaField: any = createSchemaField({
     BorderStyleSetter,
     BorderRadiusStyleSetter,
     ReactionsSetter,
+    FormDataSetter,
   },
 });
