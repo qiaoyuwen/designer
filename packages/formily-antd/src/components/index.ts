@@ -6,3 +6,4 @@ export * from './Text';
 export * from './Tabs';
 export * from './Steps';
 export * from './Drawer';
+export * from './Descriptions';

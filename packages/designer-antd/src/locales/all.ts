@@ -29,3 +29,4 @@ export * from './Steps';
 export * from './Image';
 export * from './Drawer';
 export * from './Tooltip';
+export * from './Descriptions';
