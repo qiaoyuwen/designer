@@ -36,7 +36,7 @@ import {
   DatePicker,
 } from './components';
 import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid, Drawer } from './layouts';
-import { Table, Text, Tabs, Statistic, Steps, Image, Descriptions } from './data-display';
+import { Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse } from './data-display';
 import { Tooltip } from './feedback';
 import { Button } from './operations';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
@@ -155,7 +155,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             />
             <ResourceWidget
               title="sources.DataDisplays"
-              sources={[Table, Text, Tabs, Statistic, Steps, Image, Descriptions]}
+              sources={[Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse]}
             />
             <ResourceWidget title="sources.Feedbacks" sources={[Tooltip]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
@@ -205,6 +205,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Drawer,
                     Tooltip,
                     Descriptions,
+                    Collapse,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 

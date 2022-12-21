@@ -41,6 +41,7 @@ import {
   Steps,
   Drawer,
   Descriptions,
+  Collapse,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
@@ -89,6 +90,7 @@ const SchemaField = createSchemaField({
     Drawer,
     Tooltip,
     Descriptions,
+    Collapse,
   },
 });
 
