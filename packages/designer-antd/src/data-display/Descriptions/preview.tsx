@@ -138,7 +138,7 @@ Descriptions.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'void',
+        type: 'object',
         'x-component': 'Descriptions',
         'x-component-props': {
           bordered: true,

@@ -33,7 +33,7 @@ const transformDataSource = (node: TreeNode) => {
   };
   const hasNoVoidChildren = (node: TreeNode) => {
     return node.children?.some((node) => {
-      if (node.props.type !== 'void' && node !== currentNode) return true;
+      if (node.props.type !== 'void') return true;
       return hasNoVoidChildren(node);
     });
   };
@@ -54,9 +54,12 @@ const transformDataSource = (node: TreeNode) => {
   };
   const transformChildren = (children: TreeNode[], path = []) => {
     return children.reduce((buf, node) => {
-      if (node === currentNode) return buf;
       if (node.props.type === 'array' && !node.contains(currentNode)) return buf;
-      if (node.props.type === 'void' && !hasNoVoidChildren(node)) return buf;
+      if (node.props.type === 'void') {
+        buf = buf.concat(transformChildren(node.children, path));
+        return buf;
+      }
+
       const currentPath = path.concat(node.props.name || node.id);
       const arrayNode = findArrayParent(node);
       const label =
@@ -90,6 +93,7 @@ export const PathSelector: React.FC<IPathSelectorProps> = (props) => {
       }
     }
   };
+
   return (
     <TreeSelect
       {...props}

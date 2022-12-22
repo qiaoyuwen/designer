@@ -261,7 +261,8 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
                               if (isVoidField(field)) return;
                               field.query('.source').take((source) => {
                                 if (isVoidField(source)) return;
-                                if (source.value && !field.value && !field.modified) {
+                                console.log('source.modified');
+                                if (source.value && source.modified) {
                                   field.value = source.inputValues[1]?.props?.name || `v_${uid()}`;
                                 }
                               });

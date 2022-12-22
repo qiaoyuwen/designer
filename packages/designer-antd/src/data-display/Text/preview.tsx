@@ -13,7 +13,7 @@ export const Text: DnFC<React.ComponentProps<typeof FormilyText>> = (props) => {
     <FormilyText
       {...props}
       className={cls(props.className, 'dn-text')}
-      data-content-editable="x-component-props.title"
+      data-content-editable="x-component-props.text"
     />
   );
 };
