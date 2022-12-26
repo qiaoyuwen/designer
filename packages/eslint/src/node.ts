@@ -8,5 +8,6 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@rushstack/typedef-var': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
   },
 };

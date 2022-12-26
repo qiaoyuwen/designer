@@ -20,5 +20,6 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/typedef': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
   },
 };

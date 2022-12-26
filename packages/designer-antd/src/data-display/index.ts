@@ -4,3 +4,5 @@ export * from './Tabs';
 export * from './Statistic';
 export * from './Steps';
 export * from './Image';
+export * from './Descriptions';
+export * from './Collapse';

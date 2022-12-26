@@ -7,6 +7,7 @@ export const Form = createLocales(Component, {
     settings: {
       'form-layout-group': '表单布局',
       'form-style-group': '表单样式',
+      requestConifg: '数据源',
       labelCol: '标签网格宽度',
       wrapperCol: '组件网格宽度',
       colon: '是否有冒号',

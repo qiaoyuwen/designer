@@ -3,45 +3,20 @@ import { TextWidget } from '@designer/react';
 import { Button, Modal } from 'antd';
 import { observer } from '@formily/reactive-react';
 import { observable } from '@formily/reactive';
-import { RequestSettingForm } from './RequestSettingForm';
+import { FormDataSettingForm } from './FormDataSettingForm';
+import { DataType, IRequstConfig } from '../RequestSetter';
 
-const EXPRESSION_REX = /^\{\{([\s\S]*)\}\}$/;
-
-const toInputValue = (value: string) => {
-  if (!value || value === '{{}}') return;
-  const matched = String(value).match(EXPRESSION_REX);
-  return matched?.[1] || value || '';
-};
-
-const toChangeValue = (value: string) => {
-  if (!value || value === '{{}}') return;
-  const matched = String(value).match(EXPRESSION_REX);
-  return `{{${matched?.[1] || value || ''}}}`;
-};
-
-export enum DataType {
-  Static = 'static',
-  Dynamic = 'dynamic',
-}
-
-export interface IRequstConfig {
-  dataType: DataType;
-  dataSource?: string;
-  url?: string;
-}
-
-interface IRequestSetterProps {
+interface IFormDataSetterProps {
   value?: IRequstConfig;
   onChange: (value: IRequstConfig) => void;
 }
 
-export const RequestSetter: FunctionComponent<IRequestSetterProps> = observer((props) => {
+export const FormDataSetter: FunctionComponent<IFormDataSetterProps> = observer((props) => {
   const { value, onChange } = props;
   const [modalVisible, setModalVisible] = useState(false);
   const requestConfig: IRequstConfig = useMemo(() => {
     return observable({
       ...value,
-      dataSource: toInputValue(value?.dataSource),
     });
   }, [value, modalVisible]);
 
@@ -51,10 +26,10 @@ export const RequestSetter: FunctionComponent<IRequestSetterProps> = observer((p
   return (
     <Fragment>
       <Button block onClick={openModal}>
-        <TextWidget token={`SettingComponents.RequestSetter.configureRequest`} />
+        <TextWidget token={`SettingComponents.FormDataSetter.configureRequest`} />
       </Button>
       <Modal
-        title={<TextWidget token={`SettingComponents.RequestSetter.configureRequest`} />}
+        title={<TextWidget token={`SettingComponents.FormDataSetter.configureRequest`} />}
         width="65%"
         bodyStyle={{ padding: 10 }}
         destroyOnClose
@@ -67,7 +42,7 @@ export const RequestSetter: FunctionComponent<IRequestSetterProps> = observer((p
             requestConfig.dataType === DataType.Static
               ? {
                   dataType: requestConfig.dataType,
-                  dataSource: toChangeValue(requestConfig.dataSource),
+                  dataSource: requestConfig.dataSource,
                 }
               : {
                   dataType: requestConfig.dataType,
@@ -77,7 +52,7 @@ export const RequestSetter: FunctionComponent<IRequestSetterProps> = observer((p
           closeModal();
         }}
       >
-        <RequestSettingForm requstConfig={requestConfig} />
+        <FormDataSettingForm requstConfig={requestConfig} />
       </Modal>
     </Fragment>
   );

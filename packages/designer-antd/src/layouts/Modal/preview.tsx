@@ -37,7 +37,7 @@ Modal.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'void',
+        type: 'object',
         'x-component': 'Modal',
         'x-component-props': {
           title: 'Title',

@@ -146,6 +146,10 @@ export const createFieldSchema = (options: {
             'x-decorator': 'FormItem',
             'x-component': 'Switch',
           },
+          'x-reactions': {
+            'x-decorator': 'FormItem',
+            'x-component': 'ReactionsSetter',
+          },
         },
       },
       ...(createComponentSchema(component, decorator) as any),
@@ -170,13 +174,10 @@ export const createVoidFieldSchema = (component?: ISchema, decorator: ISchema = 
             type: 'string',
             'x-decorator': 'FormItem',
             'x-component': 'Input',
-            'x-reactions': {
-              fulfill: {
-                state: {
-                  hidden: '{{$form.values["x-decorator"] !== "FormItem"}}',
-                },
-              },
-            },
+          },
+          'x-reactions': {
+            'x-decorator': 'FormItem',
+            'x-component': 'ReactionsSetter',
           },
         },
       },

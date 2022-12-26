@@ -8,15 +8,30 @@ import { AllSchemas } from '../../schemas';
 import { AllLocales } from '../../locales';
 import './styles.less';
 
-export const Form: DnFC<React.ComponentProps<typeof FormilyForm>> = observer((props) => {
+export const Form: DnFC<
+  React.ComponentProps<typeof FormilyForm> & {
+    requestConifg?: {
+      dataSource?: string;
+      url?: string;
+    };
+  }
+> = observer((props) => {
+  const { requestConifg } = props;
   const prefix = usePrefix('designable-form');
-  const form = useMemo(
-    () =>
-      createForm({
-        designable: true,
-      }),
-    [],
-  );
+  const form = useMemo(() => {
+    let values = {};
+    try {
+      if (requestConifg?.dataSource) {
+        values = JSON.parse(requestConifg?.dataSource);
+      }
+    } catch {}
+
+    return createForm({
+      designable: true,
+      values,
+    });
+  }, [requestConifg]);
+
   return (
     <FormilyForm {...props} style={{ ...props.style }} className={prefix} form={form}>
       {props.children}

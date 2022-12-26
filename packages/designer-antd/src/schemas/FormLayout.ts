@@ -4,6 +4,10 @@ import { ISchema } from '@formily/react';
 export const FormLayout: ISchema = {
   type: 'object',
   properties: {
+    requestConifg: {
+      'x-decorator': 'FormItem',
+      'x-component': 'FormDataSetter',
+    },
     labelCol: {
       type: 'number',
       'x-decorator': 'FormItem',

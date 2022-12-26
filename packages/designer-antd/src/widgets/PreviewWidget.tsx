@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { createForm } from '@formily/core';
 import { createSchemaField } from '@formily/react';
 import {
@@ -40,6 +40,8 @@ import {
   Tabs,
   Steps,
   Drawer,
+  Descriptions,
+  Collapse,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
@@ -87,6 +89,8 @@ const SchemaField = createSchemaField({
     Statistic,
     Drawer,
     Tooltip,
+    Descriptions,
+    Collapse,
   },
 });
 
@@ -117,7 +121,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   }, []);
 
   const schema = useMemo(() => {
-    let result = {
+    let result: any = {
       form: {},
       schema: {},
     };
@@ -127,11 +131,28 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
     return result;
   }, [schemaJson]);
 
+  useEffect(() => {
+    if (schema.form.requestConifg?.dataSource) {
+      let values = {};
+      try {
+        values = JSON.parse(schema.form.requestConifg?.dataSource);
+      } catch {}
+      form.setValues(values);
+    }
+  }, [form, schema]);
+
   return (
     <Form {...schema.form} form={form}>
       <SchemaField
         schema={schema.schema}
-        scope={{ React, Antd: AntdScope, AntdIcon: AntdIconScope, HttpUtils, UmiHistory, $setComponentsProps }}
+        scope={{
+          $React: React,
+          $Antd: AntdScope,
+          $AntdIcon: AntdIconScope,
+          $HttpUtils: HttpUtils,
+          $UmiHistory: UmiHistory,
+          $setComponentsProps,
+        }}
       />
     </Form>
   );
