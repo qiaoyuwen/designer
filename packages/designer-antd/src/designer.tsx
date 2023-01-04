@@ -37,7 +37,7 @@ import {
 } from './components';
 import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid, Drawer } from './layouts';
 import { Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse } from './data-display';
-import { Tooltip } from './feedback';
+import { Tooltip, Popover } from './feedback';
 import { Button } from './operations';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 import './global.less';
@@ -157,7 +157,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
               title="sources.DataDisplays"
               sources={[Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse]}
             />
-            <ResourceWidget title="sources.Feedbacks" sources={[Tooltip]} />
+            <ResourceWidget title="sources.Feedbacks" sources={[Tooltip, Popover]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
@@ -206,6 +206,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Tooltip,
                     Descriptions,
                     Collapse,
+                    Popover,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 

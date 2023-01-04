@@ -173,11 +173,6 @@ export const createVoidFieldSchema = (component?: ISchema, decorator: ISchema = 
             'x-decorator': 'FormItem',
             'x-component': 'Input',
           },
-          title: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input',
-          },
           'x-reactions': {
             'x-decorator': 'FormItem',
             'x-component': 'ReactionsSetter',

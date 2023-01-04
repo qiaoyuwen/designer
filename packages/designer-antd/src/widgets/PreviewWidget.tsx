@@ -28,7 +28,7 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic, Image, Tooltip } from 'antd';
+import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic, Image, Tooltip, Popover } from 'antd';
 import {
   BaseLayout,
   ProTable,
@@ -91,6 +91,7 @@ const SchemaField = createSchemaField({
     Tooltip,
     Descriptions,
     Collapse,
+    Popover,
   },
 });
 
