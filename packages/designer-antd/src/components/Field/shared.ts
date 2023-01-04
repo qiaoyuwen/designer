@@ -104,6 +104,9 @@ export const createFieldSchema = (options: {
             type: 'string',
             'x-decorator': 'FormItem',
             'x-component': 'Input',
+            'x-validator': {
+              nameValidator: true,
+            },
           },
           title: {
             type: 'string',
