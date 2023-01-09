@@ -65,6 +65,7 @@ export const initDeclaration = async () => {
       LockOutlined: ForwardRefExoticComponent<any>;
       MobileOutlined: ForwardRefExoticComponent<any>;
       SafetyOutlined: ForwardRefExoticComponent<any>;
+      SearchOutlined: ForwardRefExoticComponent<any>;
     }
 
     interface IUmiHistory {

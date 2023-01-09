@@ -44,7 +44,7 @@ import {
   Collapse,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
-import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined, SearchOutlined } from '@ant-design/icons';
 
 const SchemaField = createSchemaField({
   components: {
@@ -106,6 +106,7 @@ const AntdIconScope = {
   LockOutlined,
   MobileOutlined,
   SafetyOutlined,
+  SearchOutlined,
 };
 
 export interface IPreviewWidgetProps {
