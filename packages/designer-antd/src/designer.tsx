@@ -103,7 +103,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       routerJson = JSON.stringify(routerRef.current);
     } catch {}
 
-    props.onSave(schemaJson, routerJson);
+    props?.onSave(schemaJson, routerJson);
   };
 
   const onPreview = async (schemaJson: string) => {
@@ -112,7 +112,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       routerJson = JSON.stringify(routerRef.current);
     } catch {}
 
-    props.onPreview(schemaJson, routerJson);
+    props?.onPreview(schemaJson, routerJson);
   };
 
   return (

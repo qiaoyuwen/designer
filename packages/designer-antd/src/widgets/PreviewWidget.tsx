@@ -28,7 +28,7 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic, Image, Tooltip, Popover } from 'antd';
+import { Slider, Rate, Tag, Button, message, Divider, Statistic, Image, Tooltip, Popover } from 'antd';
 import {
   BaseLayout,
   ProTable,
@@ -42,6 +42,7 @@ import {
   Drawer,
   Descriptions,
   Collapse,
+  Card,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined, SearchOutlined } from '@ant-design/icons';
@@ -72,12 +73,12 @@ const SchemaField = createSchemaField({
     Transfer,
     TreeSelect,
     Upload,
-    Card,
     Slider,
     Rate,
     Steps,
     Image,
     // 自定义组件
+    Card,
     BaseLayout,
     Table: ProTable,
     Modal,

@@ -13,3 +13,21 @@ export const Card = {
     },
   },
 };
+
+export const CardBody = {
+  'zh-CN': {
+    title: '卡片内容',
+    settings: {
+      'x-component-props': {},
+    },
+  },
+};
+
+export const CardExtra = {
+  'zh-CN': {
+    title: '额外内容',
+    settings: {
+      'x-component-props': {},
+    },
+  },
+};

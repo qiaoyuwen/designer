@@ -8,3 +8,4 @@ export * from './Steps';
 export * from './Drawer';
 export * from './Descriptions';
 export * from './Collapse';
+export * from './Card';
