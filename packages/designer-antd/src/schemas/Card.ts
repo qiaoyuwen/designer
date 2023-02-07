@@ -3,16 +3,6 @@ import { ISchema } from '@formily/react';
 export const Card: ISchema & { Title?: ISchema; Body?: ISchema; Extra?: ISchema } = {
   type: 'object',
   properties: {
-    title: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-    },
-    extra: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-    },
     type: {
       type: 'string',
       enum: ['', 'inner'],

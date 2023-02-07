@@ -13,8 +13,15 @@ export const Card: ComposedCard = (props) => {
   const extra = parseNode('Card.Extra', props.children as ReactElement) || props.extra;
   const title = parseNode('Card.Title', props.children as ReactElement) || props.title;
 
+  const getProps = () => {
+    const newProps = { ...props };
+    delete newProps['value'];
+    delete newProps['onChange'];
+    return newProps;
+  };
+
   return (
-    <AntdCard {...props} title={title} extra={extra}>
+    <AntdCard {...getProps()} title={title} extra={extra}>
       {body ? body : props.children}
     </AntdCard>
   );

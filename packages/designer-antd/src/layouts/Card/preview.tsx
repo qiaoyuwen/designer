@@ -151,11 +151,9 @@ Card.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'void',
+        type: 'object',
         'x-component': 'Card',
-        'x-component-props': {
-          title: 'Title',
-        },
+        'x-component-props': {},
       },
     },
   ],

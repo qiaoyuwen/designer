@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { createForm } from '@formily/core';
-import { createSchemaField } from '@formily/react';
+import { createSchemaField, FormConsumer } from '@formily/react';
 import {
   Form,
   FormItem,
@@ -157,6 +157,19 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
           $setComponentsProps,
         }}
       />
+      <FormConsumer>
+        {() => (
+          <div
+            style={{
+              marginTop: 24,
+              padding: 5,
+              border: '1px dashed #666',
+            }}
+          >
+            实时响应：{JSON.stringify(form.values || '')}
+          </div>
+        )}
+      </FormConsumer>
     </Form>
   );
 };
