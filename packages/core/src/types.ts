@@ -74,6 +74,7 @@ export interface IDesignerProps {
   draggable?: boolean; //是否可拖拽，默认为true
   deletable?: boolean; //是否可删除，默认为true
   cloneable?: boolean; //是否可拷贝，默认为true
+  hideable?: boolean; //是否可隐藏, 默认为true
   resizable?: IResizable;
   translatable?: ITranslate; // 自由布局
   inlineChildrenLayout?: boolean; //子节点内联，用于指定复杂布局容器，强制内联
