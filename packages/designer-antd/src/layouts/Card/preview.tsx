@@ -20,8 +20,33 @@ const parseNode = (parent: TreeNode, name: string) => {
 
 export const Card: DnFC<React.ComponentProps<typeof FormilyAntdCard>> = observer((props) => {
   const node = useTreeNode();
+  const title = parseNode(node, 'Card.Title');
   const body = parseNode(node, 'Card.Body');
   const extra = parseNode(node, 'Card.Extra');
+
+  const initTitle = useCallback(() => {
+    if (!title) {
+      const newTitle = new TreeNode({
+        componentName: 'Field',
+        props: {
+          type: 'void',
+          'x-component': 'Card.Title',
+        },
+      });
+      const defaultText = new TreeNode({
+        componentName: 'Field',
+        props: {
+          type: 'string',
+          'x-component': 'Text',
+          'x-component-props': {
+            text: '标题',
+          },
+        },
+      });
+      newTitle.append(defaultText);
+      node.append(newTitle);
+    }
+  }, [title, node]);
 
   const initBody = useCallback(() => {
     if (!body) {
@@ -50,14 +75,19 @@ export const Card: DnFC<React.ComponentProps<typeof FormilyAntdCard>> = observer
   }, [extra, node]);
 
   useEffect(() => {
+    initTitle();
     initBody();
     initExtra();
-  }, [initBody, initExtra]);
+  }, [initTitle, initBody, initExtra]);
 
   return (
     <FormilyAntdCard
       {...props}
-      title={<span data-content-editable="x-component-props.title">{props.title}</span>}
+      title={
+        <FormilyAntdCard.Title>
+          {title?.children?.length ? <TreeNodeWidget node={title} /> : <DroppableWidget node={title} />}
+        </FormilyAntdCard.Title>
+      }
       extra={
         <FormilyAntdCard.Extra>
           {extra?.children?.length ? <TreeNodeWidget node={extra} /> : <DroppableWidget node={extra} />}
@@ -80,6 +110,20 @@ Card.Behavior = createBehavior(
       propsSchema: createVoidFieldSchema(AllSchemas.Card),
     },
     designerLocales: AllLocales.Card,
+  },
+  {
+    name: 'Card.Title',
+    extends: ['Field'],
+    selector: (node) => node.props?.['x-component'] === 'Card.Title',
+    designerProps: {
+      droppable: true,
+      draggable: false,
+      deletable: false,
+      cloneable: false,
+      hideable: false,
+      propsSchema: createVoidFieldSchema(AllSchemas.Card.Title),
+    },
+    designerLocales: AllLocales.CardTitle,
   },
   {
     name: 'Card.Body',

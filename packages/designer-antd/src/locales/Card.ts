@@ -14,6 +14,15 @@ export const Card = {
   },
 };
 
+export const CardTitle = {
+  'zh-CN': {
+    title: '卡片标题',
+    settings: {
+      'x-component-props': {},
+    },
+  },
+};
+
 export const CardBody = {
   'zh-CN': {
     title: '卡片内容',

@@ -4,6 +4,7 @@ import React, { FC, Fragment, ReactElement } from 'react';
 type ComposedCard = FC<CardProps> & {
   Body: FC<React.PropsWithChildren>;
   Extra: FC<React.PropsWithChildren>;
+  Title: FC<React.PropsWithChildren>;
 };
 
 const findNode = (name: string, node?: ReactElement) => {
@@ -29,21 +30,19 @@ const findNode = (name: string, node?: ReactElement) => {
 export const Card: ComposedCard = (props) => {
   const body = findNode('Card.Body', props.children as ReactElement);
   const extra = findNode('Card.Extra', props.children as ReactElement) || props.extra;
+  const title = findNode('Card.Title', props.children as ReactElement) || props.title;
 
   return (
-    <AntdCard {...props} extra={extra}>
+    <AntdCard {...props} title={title} extra={extra}>
       {body ? body : props.children}
     </AntdCard>
   );
 };
 
-const Body: FC<React.PropsWithChildren> = ({ children }) => {
+const Wrapper: FC<React.PropsWithChildren> = ({ children }) => {
   return <Fragment>{children}</Fragment>;
 };
 
-const Extra: FC<React.PropsWithChildren> = ({ children }) => {
-  return <Fragment>{children}</Fragment>;
-};
-
-Card.Body = Body;
-Card.Extra = Extra;
+Card.Body = Wrapper;
+Card.Extra = Wrapper;
+Card.Title = Wrapper;

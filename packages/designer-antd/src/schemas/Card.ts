@@ -1,6 +1,6 @@
 import { ISchema } from '@formily/react';
 
-export const Card: ISchema & { Body?: ISchema; Extra?: ISchema } = {
+export const Card: ISchema & { Title?: ISchema; Body?: ISchema; Extra?: ISchema } = {
   type: 'object',
   properties: {
     title: {
@@ -32,6 +32,11 @@ export const Card: ISchema & { Body?: ISchema; Extra?: ISchema } = {
       },
     },
   },
+};
+
+Card.Title = {
+  type: 'object',
+  properties: {},
 };
 
 Card.Body = {
