@@ -1,29 +1,16 @@
 import React from 'react';
 import { observer } from '@formily/react';
-import { Steps as AntdSteps } from 'antd';
-import { StepsProps, StepProps } from 'antd/lib/steps';
+import { Steps as FormilyAntdSteps } from '@designer/formily-antd';
 import { TreeNode, createBehavior, createResource } from '@designer/core';
-import { useNodeIdProps, useTreeNode, TreeNodeWidget, DroppableWidget, DnFC } from '@designer/react';
+import { useNodeIdProps, useTreeNode, DroppableWidget, DnFC, TreeNodeWidget } from '@designer/react';
 import { LoadTemplate } from '../../common/LoadTemplate';
-import { useDropTemplate } from '../../hooks';
 import { createVoidFieldSchema } from '../../components/Field';
 import { AllSchemas } from '../../schemas';
 import { AllLocales } from '../../locales';
-import { matchComponent } from '../../shared';
+import { parseNode, parseNodes } from '../../utils';
+import { useDropTemplate } from '../../hooks';
 
-const parseSteps = (parent: TreeNode) => {
-  const steps: TreeNode[] = [];
-  parent.children.forEach((node) => {
-    if (matchComponent(node, 'Steps.Step')) {
-      steps.push(node);
-    }
-  });
-  return steps;
-};
-
-export const Steps: DnFC<StepsProps> & {
-  Step?: React.FC<StepProps>;
-} = observer((props) => {
+export const Steps: DnFC<React.ComponentProps<typeof FormilyAntdSteps>> = observer((props) => {
   const nodeId = useNodeIdProps();
   const node = useTreeNode();
   const designer = useDropTemplate('Steps', (source) => {
@@ -33,36 +20,103 @@ export const Steps: DnFC<StepsProps> & {
         props: {
           type: 'void',
           'x-component': 'Steps.Step',
-          'x-component-props': {
-            title: '标题',
-          },
         },
         children: source,
       }),
     ];
   });
-  const steps = parseSteps(node);
+
+  const steps = parseNodes(node, 'Steps.Step');
   const renderSteps = () => {
     if (!node.children?.length) return <DroppableWidget />;
-
     return (
-      <AntdSteps {...props}>
+      <FormilyAntdSteps {...props}>
         {steps.map((step) => {
+          let title = parseNode(step, 'Steps.Step.Title');
+          let subTitle = parseNode(step, 'Steps.Step.SubTitle');
+          let description = parseNode(step, 'Steps.Step.Description');
+
+          if (!title) {
+            title = new TreeNode({
+              componentName: 'Field',
+              props: {
+                type: 'void',
+                'x-component': 'Steps.Step.Title',
+              },
+            });
+            const defaultText = new TreeNode({
+              componentName: 'Field',
+              props: {
+                type: 'string',
+                'x-component': 'Text',
+                'x-component-props': {
+                  text: '标题',
+                },
+              },
+            });
+            title.append(defaultText);
+            step.append(title);
+          }
+
+          if (!subTitle) {
+            subTitle = new TreeNode({
+              componentName: 'Field',
+              props: {
+                type: 'void',
+                'x-component': 'Steps.Step.SubTitle',
+              },
+            });
+            step.append(subTitle);
+          }
+
+          if (!description) {
+            description = new TreeNode({
+              componentName: 'Field',
+              props: {
+                type: 'void',
+                'x-component': 'Steps.Step.Description',
+              },
+            });
+            step.append(description);
+          }
+
           const props = step.props['x-component-props'] || {};
           props[designer.props.nodeIdAttrName] = step.id;
           return (
-            <Steps.Step
+            <FormilyAntdSteps.Step
               {...props}
               key={step.id}
               title={
-                <span data-content-editable="x-component-props.title" data-content-editable-node-id={step.id}>
-                  {props.title}
-                </span>
+                <FormilyAntdSteps.Step.Title>
+                  {title?.children?.length ? (
+                    <TreeNodeWidget node={title} />
+                  ) : (
+                    <DroppableWidget style={{ minWidth: 80 }} node={title} />
+                  )}
+                </FormilyAntdSteps.Step.Title>
+              }
+              subTitle={
+                <FormilyAntdSteps.Step.SubTitle>
+                  {subTitle?.children?.length ? (
+                    <TreeNodeWidget node={subTitle} />
+                  ) : (
+                    <DroppableWidget style={{ minWidth: 120 }} node={subTitle} />
+                  )}
+                </FormilyAntdSteps.Step.SubTitle>
+              }
+              description={
+                <FormilyAntdSteps.Step.Description>
+                  {description?.children?.length ? (
+                    <TreeNodeWidget node={description} />
+                  ) : (
+                    <DroppableWidget node={description} />
+                  )}
+                </FormilyAntdSteps.Step.Description>
               }
             />
           );
         })}
-      </AntdSteps>
+      </FormilyAntdSteps>
     );
   };
   return (
@@ -79,9 +133,6 @@ export const Steps: DnFC<StepsProps> & {
                 props: {
                   type: 'void',
                   'x-component': 'Steps.Step',
-                  'x-component-props': {
-                    title: '标题',
-                  },
                 },
               });
               node.append(step);
@@ -92,10 +143,6 @@ export const Steps: DnFC<StepsProps> & {
     </div>
   );
 });
-
-Steps.Step = (props) => {
-  return <AntdSteps.Step {...props} />;
-};
 
 Steps.Behavior = createBehavior(
   {
@@ -122,6 +169,48 @@ Steps.Behavior = createBehavior(
       propsSchema: createVoidFieldSchema(AllSchemas.Steps.Step),
     },
     designerLocales: AllLocales.Step,
+  },
+  {
+    name: 'Steps.Step.Title',
+    extends: ['Field'],
+    selector: (node) => node.props?.['x-component'] === 'Steps.Step.Title',
+    designerProps: {
+      droppable: true,
+      draggable: false,
+      deletable: false,
+      cloneable: false,
+      hideable: false,
+      propsSchema: createVoidFieldSchema(AllSchemas.Steps.Step.Title),
+    },
+    designerLocales: AllLocales.StepTitle,
+  },
+  {
+    name: 'Steps.Step.SubTitle',
+    extends: ['Field'],
+    selector: (node) => node.props?.['x-component'] === 'Steps.Step.SubTitle',
+    designerProps: {
+      droppable: true,
+      draggable: false,
+      deletable: false,
+      cloneable: false,
+      hideable: false,
+      propsSchema: createVoidFieldSchema(AllSchemas.Steps.Step.SubTitle),
+    },
+    designerLocales: AllLocales.StepSubTitle,
+  },
+  {
+    name: 'Steps.Step.Description',
+    extends: ['Field'],
+    selector: (node) => node.props?.['x-component'] === 'Steps.Step.Description',
+    designerProps: {
+      droppable: true,
+      draggable: false,
+      deletable: false,
+      cloneable: false,
+      hideable: false,
+      propsSchema: createVoidFieldSchema(AllSchemas.Steps.Step.Description),
+    },
+    designerLocales: AllLocales.StepDescription,
   },
 );
 

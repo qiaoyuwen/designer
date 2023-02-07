@@ -5,18 +5,8 @@ import { DnFC, DroppableWidget, TreeNodeWidget, useTreeNode } from '@designer/re
 import { createVoidFieldSchema } from '../../components/Field';
 import { AllSchemas } from '../../schemas';
 import { AllLocales } from '../../locales';
-import { matchComponent } from '../../shared';
 import { observer } from '@formily/react';
-
-const parseNode = (parent: TreeNode, name: string) => {
-  let result: TreeNode;
-  parent.children.forEach((node) => {
-    if (matchComponent(node, name)) {
-      result = node;
-    }
-  });
-  return result;
-};
+import { parseNode } from '../../utils';
 
 export const Card: DnFC<React.ComponentProps<typeof FormilyAntdCard>> = observer((props) => {
   const node = useTreeNode();
