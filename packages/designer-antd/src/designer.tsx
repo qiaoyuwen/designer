@@ -39,6 +39,7 @@ import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid, Drawer } from './
 import { Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse } from './data-display';
 import { Tooltip, Popover } from './feedback';
 import { Button } from './operations';
+import { EachCycle } from './functions';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 import './global.less';
 
@@ -47,6 +48,7 @@ setNpmCDNRegistry('//unpkg.com');
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
     sources: {
+      Functions: '功能',
       Inputs: '表单组件',
       Layouts: '布局组件',
       DataDisplays: '数据展示组件',
@@ -131,6 +133,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       >
         <CompositePanel>
           <CompositePanel.Item title="panels.Component" icon="Component">
+            <ResourceWidget title="sources.Functions" sources={[EachCycle]} />
             <ResourceWidget
               title="sources.Inputs"
               sources={[
@@ -207,6 +210,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Descriptions,
                     Collapse,
                     Popover,
+                    EachCycle,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 

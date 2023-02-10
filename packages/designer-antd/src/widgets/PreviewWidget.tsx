@@ -43,6 +43,7 @@ import {
   Descriptions,
   Collapse,
   Card,
+  EachCycle,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined, SearchOutlined } from '@ant-design/icons';
@@ -93,6 +94,7 @@ const SchemaField = createSchemaField({
     Descriptions,
     Collapse,
     Popover,
+    EachCycle,
   },
 });
 
