@@ -5,7 +5,7 @@ const config: Partial<IAppConfig> = {
   endpointCode: 'end_R2vypKMnc613',
   foundByteBigdataURL: 'https://fastblend.onebuygz.com/',
   prefixs: {
-    api: 'https://modesign.onebuygz.com'
+    api: 'https://moreapi.onebuygz.com'
   }
 }
 
