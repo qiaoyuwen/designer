@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { createForm, Form as FormType } from '@formily/core';
+import React, { useEffect, useMemo } from 'react';
+import { createForm, Form as FormType, registerValidateRules } from '@formily/core';
 import { Form } from '@formily/antd';
 import { observer } from '@formily/react';
 import {
@@ -41,6 +41,20 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer((props) => {
     });
   }, [node, node?.props, schema, operation, isEmpty]);
 
+  useEffect(() => {
+    registerValidateRules({
+      nameValidator: () => {
+        const findedItem = node.parent.children.find(
+          (item) => item !== node && item.props['name'] && item.props['name'] === node.props['name'],
+        );
+        if (findedItem) {
+          return `同级组件字段标识重复`;
+        }
+        return '';
+      },
+    });
+  }, [node]);
+
   const render = () => {
     if (!isEmpty) {
       return (
@@ -52,7 +66,6 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer((props) => {
               labelWidth={120}
               labelAlign="left"
               wrapperAlign="right"
-              feedbackLayout="none"
               tooltipLayout="text"
             >
               <SchemaField schema={schema} components={props.components} scope={{ $node: node, ...props.scope }} />

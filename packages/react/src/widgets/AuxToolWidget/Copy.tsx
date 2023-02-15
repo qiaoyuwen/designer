@@ -17,7 +17,10 @@ export const Copy: React.FC<ICopyProps> = ({ node, style }) => {
       style={style}
       type="primary"
       onClick={() => {
+        const originName = node.props['name'];
+        node.props['name'] = undefined;
         TreeNode.clone([node]);
+        node.props['name'] = originName;
       }}
     >
       <IconWidget infer="Clone" />

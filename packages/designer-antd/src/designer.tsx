@@ -37,8 +37,9 @@ import {
 } from './components';
 import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid, Drawer } from './layouts';
 import { Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse } from './data-display';
-import { Tooltip } from './feedback';
+import { Tooltip, Popover } from './feedback';
 import { Button } from './operations';
+import { EachCycle } from './functions';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 import './global.less';
 
@@ -47,6 +48,7 @@ setNpmCDNRegistry('//unpkg.com');
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
     sources: {
+      Functions: '功能',
       Inputs: '表单组件',
       Layouts: '布局组件',
       DataDisplays: '数据展示组件',
@@ -103,7 +105,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       routerJson = JSON.stringify(routerRef.current);
     } catch {}
 
-    props.onSave(schemaJson, routerJson);
+    props?.onSave(schemaJson, routerJson);
   };
 
   const onPreview = async (schemaJson: string) => {
@@ -112,7 +114,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       routerJson = JSON.stringify(routerRef.current);
     } catch {}
 
-    props.onPreview(schemaJson, routerJson);
+    props?.onPreview(schemaJson, routerJson);
   };
 
   return (
@@ -131,6 +133,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
       >
         <CompositePanel>
           <CompositePanel.Item title="panels.Component" icon="Component">
+            <ResourceWidget title="sources.Functions" sources={[EachCycle]} />
             <ResourceWidget
               title="sources.Inputs"
               sources={[
@@ -157,7 +160,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
               title="sources.DataDisplays"
               sources={[Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse]}
             />
-            <ResourceWidget title="sources.Feedbacks" sources={[Tooltip]} />
+            <ResourceWidget title="sources.Feedbacks" sources={[Tooltip, Popover]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
           </CompositePanel.Item>
           <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
@@ -206,6 +209,8 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Tooltip,
                     Descriptions,
                     Collapse,
+                    Popover,
+                    EachCycle,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 

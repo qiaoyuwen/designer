@@ -28,6 +28,9 @@ Button.Resource = createResource({
       props: {
         type: 'void',
         'x-component': 'Button',
+        'x-component-props': {
+          type: 'primary',
+        },
       },
     },
   ],

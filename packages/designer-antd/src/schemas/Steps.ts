@@ -1,6 +1,12 @@
 import { ISchema } from '@formily/react';
 
-export const Steps: ISchema & { Step?: ISchema } = {
+export const Steps: ISchema & {
+  Step?: ISchema & {
+    Title?: ISchema;
+    SubTitle?: ISchema;
+    Description?: ISchema;
+  };
+} = {
   type: 'object',
   properties: {
     current: {
@@ -29,21 +35,20 @@ export const Steps: ISchema & { Step?: ISchema } = {
 
 Steps.Step = {
   type: 'object',
-  properties: {
-    title: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-    },
-    subTitle: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-    },
-    description: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-    },
-  },
+  properties: {},
+};
+
+Steps.Step.Title = {
+  type: 'object',
+  properties: {},
+};
+
+Steps.Step.SubTitle = {
+  type: 'object',
+  properties: {},
+};
+
+Steps.Step.Description = {
+  type: 'object',
+  properties: {},
 };

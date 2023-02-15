@@ -22,11 +22,34 @@ export const Step = {
   'zh-CN': {
     title: '步骤',
     settings: {
-      'x-component-props': {
-        title: '标题',
-        subTitle: '子标题',
-        description: '描述',
-      },
+      'x-component-props': {},
+    },
+  },
+};
+
+export const StepTitle = {
+  'zh-CN': {
+    title: '标题',
+    settings: {
+      'x-component-props': {},
+    },
+  },
+};
+
+export const StepSubTitle = {
+  'zh-CN': {
+    title: '子标题',
+    settings: {
+      'x-component-props': {},
+    },
+  },
+};
+
+export const StepDescription = {
+  'zh-CN': {
+    title: '描述',
+    settings: {
+      'x-component-props': {},
     },
   },
 };

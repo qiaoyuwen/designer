@@ -407,6 +407,11 @@ export class TreeNode {
     return this.designerProps.cloneable ?? true;
   }
 
+  public allowHide() {
+    if (this === this.root) return false;
+    return this.designerProps.hideable ?? true;
+  }
+
   public allowDrag() {
     if (this === this.root && !this.isSourceNode) return false;
     return this.designerProps.draggable ?? true;

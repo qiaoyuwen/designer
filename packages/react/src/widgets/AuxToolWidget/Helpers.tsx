@@ -100,7 +100,7 @@ export const Helpers: React.FC<IHelpersProps> = ({ node, nodeRect }) => {
     >
       <div className={cls(prefix + '-content')}>
         <Selector node={node} />
-        <Hide node={node} />
+        {node?.allowHide() === false ? null : <Hide node={node} />}
         {node?.allowClone() === false ? null : <Copy node={node} />}
         {node?.allowDrag() === false ? null : <DragHandler node={node} />}
         {node?.allowDelete() === false ? null : <Delete node={node} />}

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { createForm } from '@formily/core';
-import { createSchemaField } from '@formily/react';
+import { createSchemaField, FormConsumer } from '@formily/react';
 import {
   Form,
   FormItem,
@@ -28,7 +28,7 @@ import {
   ArrayTable,
   ArrayCards,
 } from '@formily/antd';
-import { Card, Slider, Rate, Tag, Button, message, Divider, Statistic, Image, Tooltip } from 'antd';
+import { Slider, Rate, Tag, Button, message, Divider, Statistic, Image, Tooltip, Popover } from 'antd';
 import {
   BaseLayout,
   ProTable,
@@ -42,9 +42,11 @@ import {
   Drawer,
   Descriptions,
   Collapse,
+  Card,
+  EachCycle,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
-import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined, SearchOutlined } from '@ant-design/icons';
 
 const SchemaField = createSchemaField({
   components: {
@@ -72,12 +74,12 @@ const SchemaField = createSchemaField({
     Transfer,
     TreeSelect,
     Upload,
-    Card,
     Slider,
     Rate,
     Steps,
     Image,
     // 自定义组件
+    Card,
     BaseLayout,
     Table: ProTable,
     Modal,
@@ -91,6 +93,8 @@ const SchemaField = createSchemaField({
     Tooltip,
     Descriptions,
     Collapse,
+    Popover,
+    EachCycle,
   },
 });
 
@@ -105,6 +109,7 @@ const AntdIconScope = {
   LockOutlined,
   MobileOutlined,
   SafetyOutlined,
+  SearchOutlined,
 };
 
 export interface IPreviewWidgetProps {
@@ -154,6 +159,19 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
           $setComponentsProps,
         }}
       />
+      <FormConsumer>
+        {() => (
+          <div
+            style={{
+              marginTop: 24,
+              padding: 5,
+              border: '1px dashed #666',
+            }}
+          >
+            实时响应：{JSON.stringify(form.values || '')}
+          </div>
+        )}
+      </FormConsumer>
     </Form>
   );
 };

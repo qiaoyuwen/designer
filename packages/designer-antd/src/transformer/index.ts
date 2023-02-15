@@ -42,6 +42,14 @@ export const transformToSchema = (node: ITreeNode, options?: ITransformerOptions
     properties: {},
   };
   if (!root) return { schema };
+
+  const getKey = (node: ITreeNode, schema: ISchema) => {
+    if (node.props?.name && !schema.properties?.[node.props?.name]) {
+      return node.props?.name;
+    }
+    return node.id;
+  };
+
   const createSchema = (node: ITreeNode, schema: ISchema = {}) => {
     if (node !== root) {
       Object.assign(schema, clone(node.props));
@@ -56,7 +64,7 @@ export const transformToSchema = (node: ITreeNode, options?: ITransformerOptions
       }
       node.children?.slice(1).forEach((child, index) => {
         if (child.componentName !== realOptions.designableFieldName) return;
-        const key = child.props?.name || child.id;
+        const key = getKey(child, schema);
         schema.properties = schema.properties || {};
         (schema.properties as any)[key] = createSchema(child);
         (schema.properties as any)[key]['x-index'] = index;
@@ -64,7 +72,7 @@ export const transformToSchema = (node: ITreeNode, options?: ITransformerOptions
     } else {
       node.children?.forEach((child, index) => {
         if (child.componentName !== realOptions.designableFieldName) return;
-        const key = child.props?.name || child.id;
+        const key = getKey(child, schema);
         schema.properties = schema.properties || {};
         (schema.properties as any)[key] = createSchema(child);
         (schema.properties as any)[key]['x-index'] = index;

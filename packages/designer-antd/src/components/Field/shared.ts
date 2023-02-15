@@ -104,6 +104,9 @@ export const createFieldSchema = (options: {
             type: 'string',
             'x-decorator': 'FormItem',
             'x-component': 'Input',
+            'x-validator': {
+              nameValidator: true,
+            },
           },
           title: {
             type: 'string',
@@ -166,11 +169,6 @@ export const createVoidFieldSchema = (component?: ISchema, decorator: ISchema = 
         'x-component': 'CollapseItem',
         properties: {
           name: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input',
-          },
-          title: {
             type: 'string',
             'x-decorator': 'FormItem',
             'x-component': 'Input',
