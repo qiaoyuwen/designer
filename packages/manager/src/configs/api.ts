@@ -1,20 +1,23 @@
 import { AppConfig } from '@/configs/app'
 
+export const workbenchPrefix = '/workbench';
+export const fastblendPrefix = '/fastblend';
+
 const { prefixs } = AppConfig;
 
 /** Api管理 */
 export const ApiConfig = {
   main: {
-    fileUpload: `${prefixs.api}/file/upload`,
+    fileUpload: `${prefixs.api}${workbenchPrefix}/file/upload`,
     project: {
-      info: `${prefixs.api}/project/get`,
+      info: `${prefixs.api}${workbenchPrefix}/project/get`,
     },
     user: {
-      profile: `${prefixs.api}/user/profile`,
+      profile: `${prefixs.api}${workbenchPrefix}/user/profile`,
     },
     projectMenu: {
-      list: `${prefixs.api}/project/found/page/list`,
-      save: `${prefixs.api}/project/found/page/save`,
+      list: `${prefixs.api}${fastblendPrefix}/page/list`,
+      save: `${prefixs.api}${fastblendPrefix}/page/save`,
     },
   }
 }
