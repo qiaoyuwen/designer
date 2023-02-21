@@ -1,5 +1,5 @@
 import React from 'react';
-import { TreeSelect as FormilyTreeSelect } from '@formily/antd';
+import { TreeSelect as FormilyTreeSelect } from '@formily/antd-v5';
 import { createBehavior, createResource } from '@designer/core';
 import { DnFC } from '@designer/react';
 import { createFieldSchema } from '../Field';

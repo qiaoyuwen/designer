@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { ValueInput } from '../../../../ValueInput';
 import { TableColumnWidthSizeInput } from '../../../../SizeInput';
 import { createSchemaField } from '@formily/react';
-import { ArrayItems, Form, Input, FormItem, Switch, Select } from '@formily/antd';
+import { ArrayItems, Form, Input, FormItem, Switch, Select } from '@formily/antd-v5';
 import { ITreeDataSource } from '../../types';
 import { traverseTree } from '../../shared';
 import { createForm, Form as FormCore } from '@formily/core';

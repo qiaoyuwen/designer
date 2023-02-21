@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { ValueInput } from '../../../../ValueInput';
 import { createSchemaField } from '@formily/react';
-import { ArrayItems, Form, Input, FormItem, Switch } from '@formily/antd';
+import { ArrayItems, Form, Input, FormItem, Switch } from '@formily/antd-v5';
 import { ITreeDataSource } from '../../types';
 import { traverseTree } from '../../shared';
 import { createForm, Form as FormCore } from '@formily/core';

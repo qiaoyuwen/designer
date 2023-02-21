@@ -1,4 +1,3 @@
-import 'antd/dist/antd.less';
 import { FunctionComponent, useEffect, useMemo, useRef } from 'react';
 import { createDesigner, GlobalRegistry, IEngineContext, KeyCode, Shortcut } from '@designer/core';
 import {

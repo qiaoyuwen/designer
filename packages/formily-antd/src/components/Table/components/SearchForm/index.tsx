@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { FormItem, FormGrid, Input, Submit, Reset, Select, DatePicker } from '@formily/antd';
+import { FormItem, FormGrid, Input, Submit, Reset, Select, DatePicker } from '@formily/antd-v5';
 import { FormProvider, createSchemaField, observer } from '@formily/react';
 import { createForm } from '@formily/core';
 import { IProColumnType } from '../../types';

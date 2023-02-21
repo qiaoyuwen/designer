@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { createSchemaField } from '@formily/react';
-import { Form, Input, FormItem, Switch, Select } from '@formily/antd';
+import { Form, Input, FormItem, Switch, Select } from '@formily/antd-v5';
 import { ITreeDataSource } from '../../types';
 import { traverseTree } from '../../shared';
 import { createForm, Form as FormCore } from '@formily/core';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input as FormilyInput } from '@formily/antd';
+import { Input as FormilyInput } from '@formily/antd-v5';
 import { createBehavior, createResource } from '@designer/core';
 import { DnFC } from '@designer/react';
 import { createFieldSchema } from '../Field';

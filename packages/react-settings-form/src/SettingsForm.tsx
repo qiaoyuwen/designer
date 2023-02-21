@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { createForm, Form as FormType, registerValidateRules } from '@formily/core';
-import { Form } from '@formily/antd';
+import { Form } from '@formily/antd-v5';
 import { observer } from '@formily/react';
 import {
   usePrefix,

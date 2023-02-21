@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react';
 import { createSchemaField } from '@formily/react';
-import { Form, Input, FormItem, Select } from '@formily/antd';
+import { Form, Input, FormItem, Select } from '@formily/antd-v5';
 import { MonacoInput } from '../../../MonacoInput';
 import { createForm } from '@formily/core';
 import { observer } from '@formily/reactive-react';

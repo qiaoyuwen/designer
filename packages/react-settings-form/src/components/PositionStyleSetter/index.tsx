@@ -1,6 +1,6 @@
 import { useField, Field, observer } from '@formily/react';
 import { usePrefix, IconWidget } from '@designer/react';
-import { Select } from '@formily/antd';
+import { Select } from '@formily/antd-v5';
 import { FoldItem } from '../FoldItem';
 import { SizeInput } from '../SizeInput';
 import { InputItems } from '../InputItems';

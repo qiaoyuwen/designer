@@ -27,7 +27,7 @@ import {
   FormCollapse,
   ArrayTable,
   ArrayCards,
-} from '@formily/antd';
+} from '@formily/antd-v5';
 import { Card, Slider, Rate, Tag, Button, message, Divider } from 'antd';
 import {
   BaseLayout,

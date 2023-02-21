@@ -6,7 +6,7 @@ import { GlobalRegistry } from '@designer/core';
 import { requestIdle } from '@designer/utils';
 import { usePrefix, TextWidget } from '@designer/react';
 import { MonacoInput } from '../../MonacoInput';
-import { Form, ArrayTable, Input, Select, FormItem, FormCollapse } from '@formily/antd';
+import { Form, ArrayTable, Input, Select, FormItem, FormCollapse } from '@formily/antd-v5';
 import { Modal, Card, Button, Tag, Tooltip } from 'antd';
 import { PathSelector } from './PathSelector';
 import { FieldPropertySetter } from './FieldPropertySetter';

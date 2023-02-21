@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { createBehavior, createResource, TreeNode } from '@designer/core';
 import { createForm } from '@formily/core';
 import { observer } from '@formily/react';
-import { Form as FormilyForm } from '@formily/antd';
+import { Form as FormilyForm } from '@formily/antd-v5';
 import { usePrefix, DnFC } from '@designer/react';
 import { AllSchemas } from '../../schemas';
 import { AllLocales } from '../../locales';

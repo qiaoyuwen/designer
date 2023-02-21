@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrayField } from '@formily/core';
 import { observer, useField, SchemaContext, Schema, ISchema } from '@formily/react';
 import { GlobalRegistry } from '@designer/core';
-import { ArrayItems } from '@formily/antd';
+import { ArrayItems } from '@formily/antd-v5';
 import { Select } from 'antd';
 import { FoldItem } from '../../FoldItem';
 

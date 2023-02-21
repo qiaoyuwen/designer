@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGrid as FormilyGird } from '@formily/antd';
+import { FormGrid as FormilyGird } from '@formily/antd-v5';
 import { TreeNode, createBehavior, createResource } from '@designer/core';
 import { DnFC, useTreeNode, useNodeIdProps, DroppableWidget } from '@designer/react';
 import { observer } from '@formily/reactive-react';

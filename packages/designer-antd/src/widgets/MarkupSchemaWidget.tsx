@@ -93,7 +93,7 @@ import {
   FormCollapse,
   ArrayTable,
   ArrayCards,
-} from '@formily/antd';
+} from '@formily/antd-v5';
 import { Card, Slider, Rate, Tag, Button } from 'antd';
 import { BaseLayout, ProTable, Modal, Button as FormilyButton } from '@designer/formily-antd';
 

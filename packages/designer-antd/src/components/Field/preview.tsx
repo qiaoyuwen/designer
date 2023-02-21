@@ -13,7 +13,7 @@ import {
   Schema,
   useForm,
 } from '@formily/react';
-import { FormItem } from '@formily/antd';
+import { FormItem } from '@formily/antd-v5';
 import { createBehavior } from '@designer/core';
 import { useDesigner, useTreeNode, useComponents, DnFC } from '@designer/react';
 import { isArr, isStr, reduce, each, compiler } from '@designer/utils';

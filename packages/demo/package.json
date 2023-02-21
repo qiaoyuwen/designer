@@ -37,7 +37,7 @@
     "@ant-design/pro-form": "^1.22.0",
     "@ant-design/pro-table": "^2.54.3",
     "@umijs/route-utils": "^2.0.0",
-    "antd": "~4.24.5",
+    "antd": "~5.2.2",
     "classnames": "~2.3.1",
     "lodash": "^4.17.0",
     "moment": "~2.29.4",
@@ -54,7 +54,7 @@
     "@designer/formily-antd": "workspace:*",
     "@formily/core": "2.2.6",
     "@formily/react": "2.2.6",
-    "@formily/antd": "2.2.6"
+    "@formily/antd-v5": "1.0.1-rc.1"
   },
   "devDependencies": {
     "@ant-design/pro-cli": "^2.1.0",
