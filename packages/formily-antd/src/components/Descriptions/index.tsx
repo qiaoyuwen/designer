@@ -4,18 +4,19 @@ import * as React from 'react';
 import { ConfigContext } from 'antd/lib/config-provider';
 import { cloneElement } from 'antd/lib/_util/reactNode';
 import type { Breakpoint, ScreenMap } from 'antd/lib/_util/responsiveObserver';
-import ResponsiveObserve, { responsiveArray } from 'antd/lib/_util/responsiveObserver';
+import useResponsiveObserver, { responsiveArray } from 'antd/lib/_util/responsiveObserver';
 import warning from 'antd/lib/_util/warning';
 import { DescriptionsItem } from './Item';
 import { Row } from './Row';
 export type { DescriptionsItemProps } from './Item';
+import useStyle from 'antd/lib/descriptions/style';
 
-export interface DescriptionsContextProps {
+export interface IDescriptionsContextProps {
   labelStyle?: React.CSSProperties;
   contentStyle?: React.CSSProperties;
 }
 
-export const DescriptionsContext = React.createContext<DescriptionsContextProps>({});
+export const DescriptionsContext = React.createContext<IDescriptionsContextProps>({});
 
 const DEFAULT_COLUMN_MAP: Record<Breakpoint, number> = {
   xxl: 3,
@@ -26,7 +27,7 @@ const DEFAULT_COLUMN_MAP: Record<Breakpoint, number> = {
   xs: 1,
 };
 
-function getColumn(column: DescriptionsProps['column'], screens: ScreenMap): number {
+function getColumn(column: IDescriptionsProps['column'], screens: ScreenMap): number {
   if (typeof column === 'number') {
     return column;
   }
@@ -88,7 +89,7 @@ function getRows(children: React.ReactNode, column: number) {
   return rows;
 }
 
-export interface DescriptionsProps {
+export interface IDescriptionsProps {
   prefixCls?: string;
   className?: string;
   style?: React.CSSProperties;
@@ -118,11 +119,13 @@ export function Descriptions({
   size,
   labelStyle,
   contentStyle,
-}: DescriptionsProps) {
+}: IDescriptionsProps) {
   const { getPrefixCls, direction } = React.useContext(ConfigContext);
   const prefixCls = getPrefixCls('descriptions', customizePrefixCls);
   const [screens, setScreens] = React.useState<ScreenMap>({});
   const mergedColumn = getColumn(column, screens);
+  const ResponsiveObserve = useResponsiveObserver();
+  const [, hashId] = useStyle(prefixCls);
 
   // Responsive
   React.useEffect(() => {
@@ -136,7 +139,7 @@ export function Descriptions({
     return () => {
       ResponsiveObserve.unsubscribe(token);
     };
-  }, []);
+  }, [ResponsiveObserve, column]);
 
   // Children
   const rows = getRows(children, mergedColumn);
@@ -153,6 +156,7 @@ export function Descriptions({
             [`${prefixCls}-rtl`]: direction === 'rtl',
           },
           className,
+          hashId,
         )}
         style={style}
       >

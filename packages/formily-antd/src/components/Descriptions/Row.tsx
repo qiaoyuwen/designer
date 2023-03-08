@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { DescriptionsContextProps } from '.';
+import type { IDescriptionsContextProps } from '.';
 import { DescriptionsContext } from '.';
 import { Cell } from './Cell';
 import type { DescriptionsItemProps } from './Item';
@@ -21,7 +21,7 @@ function renderCells(
     showContent,
     labelStyle: rootLabelStyle,
     contentStyle: rootContentStyle,
-  }: CellConfig & DescriptionsContextProps,
+  }: CellConfig & IDescriptionsContextProps,
 ) {
   return items.map((item, index) => {
     const isRecursionField = (item?.type as any)?.name === 'RecursionField';
