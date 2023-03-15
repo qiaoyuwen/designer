@@ -16,7 +16,7 @@ export const EachCycle: DnFC<PropsWithChildren> & { Item?: FC<PropsWithChildren>
       const newItem = new TreeNode({
         componentName: 'Field',
         props: {
-          type: 'object',
+          type: 'void',
           'x-component': 'EachCycle.Item',
         },
       });

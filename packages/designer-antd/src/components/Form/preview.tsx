@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { createBehavior, createResource, TreeNode } from '@designer/core';
 import { createForm } from '@formily/core';
-import { observer } from '@formily/react';
+import { FormConsumer, observer } from '@formily/react';
 import { Form as FormilyForm } from '@formily/antd-v5';
 import { usePrefix, DnFC } from '@designer/react';
 import { AllSchemas } from '../../schemas';
@@ -35,6 +35,19 @@ export const Form: DnFC<
   return (
     <FormilyForm {...props} style={{ ...props.style }} className={prefix} form={form}>
       {props.children}
+      <FormConsumer>
+        {() => (
+          <div
+            style={{
+              marginTop: 24,
+              padding: 5,
+              border: '1px dashed #666',
+            }}
+          >
+            实时响应：{JSON.stringify(form.values || '')}
+          </div>
+        )}
+      </FormConsumer>
     </FormilyForm>
   );
 });

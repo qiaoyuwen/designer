@@ -157,22 +157,24 @@ export const Field: DnFC<ISchema> = observer((props) => {
 
   if (!node) return null;
   const fieldProps = toDesignableFieldProps(props, components, designer.props.nodeIdAttrName || '', node.id, $form);
+  const name = /* node.props?.['name'] || */ node.id;
+
   if (props.type === 'object') {
     return (
-      <ObjectField {...fieldProps} name={node.id}>
+      <ObjectField {...fieldProps} name={name}>
         {props.children}
       </ObjectField>
     );
   } else if (props.type === 'array') {
-    return <ArrayField {...fieldProps} name={node.id} />;
+    return <ArrayField {...fieldProps} name={name} />;
   } else if (props.type === 'void') {
     return (
-      <VoidField {...fieldProps} name={node.id}>
+      <VoidField {...fieldProps} name={name}>
         {props.children}
       </VoidField>
     );
   }
-  return <InternalField {...fieldProps} name={node.id} />;
+  return <InternalField {...fieldProps} name={name} />;
 });
 
 Field.Behavior = createBehavior({

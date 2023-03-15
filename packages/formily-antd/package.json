@@ -22,7 +22,8 @@
     "@formily/reactive": "2.2.6",
     "@formily/json-schema": "2.2.6",
     "moment": "~2.29.4",
-    "qs": "~6.11.0"
+    "qs": "~6.11.0",
+    "@designer/utils": "workspace:*"
   },
   "devDependencies": {
     "rimraf": "~3.0.2",

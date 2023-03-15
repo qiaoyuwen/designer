@@ -4,6 +4,7 @@ export const Descriptions = {
     addItem: '添加描述项',
     settings: {
       'x-component-props': {
+        title: '标题',
         bordered: '边框',
         colon: '冒号',
         column: '列数',
