@@ -25,7 +25,6 @@ import {
   FormGrid,
   FormLayout,
   FormCollapse,
-  ArrayTable,
   ArrayCards,
 } from '@formily/antd-v5';
 import { Slider, Rate, Tag, Button, message, Divider, Statistic, Image, Tooltip, Popover } from 'antd';
@@ -44,6 +43,7 @@ import {
   Collapse,
   Card,
   EachCycle,
+  NextTable,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined, SearchOutlined } from '@ant-design/icons';
@@ -54,7 +54,6 @@ const SchemaField = createSchemaField({
     Grid: FormGrid,
     FormLayout,
     FormCollapse,
-    ArrayTable,
     ArrayCards,
     FormItem,
     DatePicker,
@@ -82,6 +81,7 @@ const SchemaField = createSchemaField({
     Card,
     BaseLayout,
     Table: ProTable,
+    NextTable,
     Modal,
     ConfirmModal,
     Button: FormilyButton,
@@ -123,7 +123,7 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
 
   const $setComponentsProps = useMemo(() => {
     return createFormFieldSetComponentsFunc(form);
-  }, []);
+  }, [form]);
 
   const schema = useMemo(() => {
     let result: any = {

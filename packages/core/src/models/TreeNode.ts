@@ -395,7 +395,7 @@ export class TreeNode {
   }
 
   public allowAppend(nodes: TreeNode[]) {
-    if (!this.designerProps?.droppable) return false;
+    if (this.designerProps?.droppable === false) return false;
     if (this.designerProps?.allowAppend?.(this, nodes) === false) return false;
     if (nodes.some((node) => !node.allowDrop(this))) return false;
     if (this.root === this) return true;
