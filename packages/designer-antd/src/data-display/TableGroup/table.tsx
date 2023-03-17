@@ -1,15 +1,12 @@
 import React from 'react';
 import { Table, TableProps } from 'antd';
-import { TreeNode, createBehavior, createResource } from '@designer/core';
+import { TreeNode } from '@designer/core';
 import { useTreeNode, TreeNodeWidget, DroppableWidget, useNodeIdProps, DnFC } from '@designer/react';
 import { observer } from '@formily/react';
 import { LoadTemplate } from '../../common/LoadTemplate';
 import classnames from 'classnames';
 import { queryNodesByComponentPath, createEnsureTypeItemsNode } from '../../shared';
 import { useDropTemplate } from '../../hooks';
-import { AllSchemas } from '../../schemas';
-import { AllLocales } from '../../locales';
-import { createFieldSchema, createVoidFieldSchema } from '../../components/Field/shared';
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object');
 
@@ -29,16 +26,16 @@ const BodyCell: React.FC = (props: any) => {
   );
 };
 
-export const NextTable: DnFC<TableProps<any>> = observer((props) => {
+export const InnerTable: DnFC<TableProps<any>> = observer((props) => {
   const node = useTreeNode();
   const nodeId = useNodeIdProps();
 
-  useDropTemplate('NextTable', (source) => {
+  useDropTemplate('TableGroup.InnerTable', (source) => {
     const columnNode = new TreeNode({
       componentName: 'Field',
       props: {
         type: 'void',
-        'x-component': 'NextTable.Column',
+        'x-component': 'TableGroup.InnerTable.Column',
         'x-component-props': {
           title: `Title`,
         },
@@ -57,7 +54,7 @@ export const NextTable: DnFC<TableProps<any>> = observer((props) => {
     });
     return [objectNode];
   });
-  const columns = queryNodesByComponentPath(node, ['NextTable', '*', 'NextTable.Column']);
+  const columns = queryNodesByComponentPath(node, ['TableGroup.InnerTable', '*', 'TableGroup.InnerTable.Column']);
   const defaultRowKey = () => {
     return node.id;
   };
@@ -107,7 +104,7 @@ export const NextTable: DnFC<TableProps<any>> = observer((props) => {
     );
   };
 
-  useDropTemplate('NextTable.Column', (source) => {
+  useDropTemplate('TableGroup.InnerTable.Column', (source) => {
     return source.map((node) => {
       node.props.title = undefined;
       return node;
@@ -127,7 +124,7 @@ export const NextTable: DnFC<TableProps<any>> = observer((props) => {
                 componentName: 'Field',
                 props: {
                   type: 'void',
-                  'x-component': 'NextTable.Column',
+                  'x-component': 'TableGroup.InnerTable.Column',
                   'x-component-props': {
                     title: `Title`,
                   },
@@ -140,46 +137,4 @@ export const NextTable: DnFC<TableProps<any>> = observer((props) => {
       />
     </div>
   );
-});
-
-NextTable.Behavior = createBehavior(
-  {
-    name: 'NextTable',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'NextTable',
-    designerProps: {
-      droppable: true,
-      propsSchema: createFieldSchema({
-        component: AllSchemas.NextTable,
-      }),
-    },
-    designerLocales: AllLocales.NextTable,
-  },
-  {
-    name: 'NextTable.Column',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'NextTable.Column',
-    designerProps: {
-      droppable: true,
-      allowDrop: (node) => {
-        return node.props['type'] === 'object' && node.parent?.props?.['x-component'] === 'NextTable';
-      },
-      propsSchema: createVoidFieldSchema(AllSchemas.NextTable.Column),
-    },
-    designerLocales: AllLocales.NextTableColumn,
-  },
-);
-
-NextTable.Resource = createResource({
-  icon: 'ArrayTableSource',
-  elements: [
-    {
-      componentName: 'Field',
-      props: {
-        type: 'array',
-        'x-decorator': 'FormItem',
-        'x-component': 'NextTable',
-      },
-    },
-  ],
 });

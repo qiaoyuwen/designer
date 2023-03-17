@@ -6,4 +6,4 @@ export * from './Steps';
 export * from './Image';
 export * from './Descriptions';
 export * from './Collapse';
-export * from './NextTable';
+export * from './TableGroup';

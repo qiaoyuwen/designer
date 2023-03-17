@@ -43,10 +43,12 @@ import {
   Collapse,
   Card,
   EachCycle,
-  NextTable,
+  TableGroup,
 } from '@designer/formily-antd';
 import { createFormFieldSetComponentsFunc } from '../utils';
 import { UserOutlined, LockOutlined, MobileOutlined, SafetyOutlined, SearchOutlined } from '@ant-design/icons';
+import zhCN from 'antd/locale/zh_CN';
+import { ConfigProvider } from 'antd';
 
 const SchemaField = createSchemaField({
   components: {
@@ -81,7 +83,7 @@ const SchemaField = createSchemaField({
     Card,
     BaseLayout,
     Table: ProTable,
-    NextTable,
+    TableGroup,
     Modal,
     ConfirmModal,
     Button: FormilyButton,
@@ -147,31 +149,33 @@ export const PreviewWidget: React.FC<IPreviewWidgetProps> = (props) => {
   }, [form, schema]);
 
   return (
-    <Form {...schema.form} form={form}>
-      <SchemaField
-        schema={schema.schema}
-        scope={{
-          $React: React,
-          $Antd: AntdScope,
-          $AntdIcon: AntdIconScope,
-          $HttpUtils: HttpUtils,
-          $UmiHistory: UmiHistory,
-          $setComponentsProps,
-        }}
-      />
-      <FormConsumer>
-        {() => (
-          <div
-            style={{
-              marginTop: 24,
-              padding: 5,
-              border: '1px dashed #666',
-            }}
-          >
-            实时响应：{JSON.stringify(form.values || '')}
-          </div>
-        )}
-      </FormConsumer>
-    </Form>
+    <ConfigProvider locale={zhCN}>
+      <Form {...schema.form} form={form}>
+        <SchemaField
+          schema={schema.schema}
+          scope={{
+            $React: React,
+            $Antd: AntdScope,
+            $AntdIcon: AntdIconScope,
+            $HttpUtils: HttpUtils,
+            $UmiHistory: UmiHistory,
+            $setComponentsProps,
+          }}
+        />
+        <FormConsumer>
+          {() => (
+            <div
+              style={{
+                marginTop: 24,
+                padding: 5,
+                border: '1px dashed #666',
+              }}
+            >
+              实时响应：{JSON.stringify(form.values || '')}
+            </div>
+          )}
+        </FormConsumer>
+      </Form>
+    </ConfigProvider>
   );
 };

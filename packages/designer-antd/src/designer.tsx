@@ -35,12 +35,14 @@ import {
   DatePicker,
 } from './components';
 import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid, Drawer } from './layouts';
-import { Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse, NextTable } from './data-display';
+import { Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse, TableGroup } from './data-display';
 import { Tooltip, Popover } from './feedback';
 import { Button } from './operations';
 import { EachCycle } from './functions';
 import { SettingsForm, setNpmCDNRegistry } from '@designer/react-settings-form';
 import './global.less';
+import zhCN from 'antd/locale/zh_CN';
+import { ConfigProvider } from 'antd';
 
 setNpmCDNRegistry('//unpkg.com');
 
@@ -117,119 +119,121 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
   };
 
   return (
-    <Designer engine={engine}>
-      <StudioPanel
-        logo={<LogoWidget title={props.title} />}
-        actions={
-          <ActionsWidget
-            onSave={onSave}
-            onPreview={onPreview}
-            initialSchema={props.initialSchema}
-            onBack={props.onBack}
-            hideBackBtn={props.hideBackBtn}
-          />
-        }
-      >
-        <CompositePanel>
-          <CompositePanel.Item title="panels.Component" icon="Component">
-            <ResourceWidget title="sources.Functions" sources={[EachCycle]} />
-            <ResourceWidget
-              title="sources.Inputs"
-              sources={[
-                Input,
-                Password,
-                NumberPicker,
-                Select,
-                TreeSelect,
-                Cascader,
-                Checkbox,
-                Radio,
-                Switch,
-                Slider,
-                Rate,
-                DatePicker,
-                Upload,
-              ]}
+    <ConfigProvider locale={zhCN}>
+      <Designer engine={engine}>
+        <StudioPanel
+          logo={<LogoWidget title={props.title} />}
+          actions={
+            <ActionsWidget
+              onSave={onSave}
+              onPreview={onPreview}
+              initialSchema={props.initialSchema}
+              onBack={props.onBack}
+              hideBackBtn={props.hideBackBtn}
             />
-            <ResourceWidget
-              title="sources.Layouts"
-              sources={[BaseLayout, Card, Grid, Modal, ConfirmModal, Divider, Drawer]}
-            />
-            <ResourceWidget
-              title="sources.DataDisplays"
-              sources={[Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse, NextTable]}
-            />
-            <ResourceWidget title="sources.Feedbacks" sources={[Tooltip, Popover]} />
-            <ResourceWidget title="sources.Operations" sources={[Button]} />
-          </CompositePanel.Item>
-          <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
-            <OutlineTreeWidget />
-          </CompositePanel.Item>
-        </CompositePanel>
-        <Workspace id="form">
-          <WorkspacePanel>
-            <ToolbarPanel>
-              <div />
-              <ViewToolsWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP']} />
-            </ToolbarPanel>
-            <ViewportPanel style={{ height: '100%' }}>
-              <ViewPanel type="DESIGNABLE">
-                {() => {
-                  const components = {
-                    Form,
-                    Field,
-                    Input,
-                    Password,
-                    NumberPicker,
-                    Select,
-                    TreeSelect,
-                    Cascader,
-                    Checkbox,
-                    Radio,
-                    BaseLayout,
-                    Card,
-                    Switch,
-                    Slider,
-                    Rate,
-                    DatePicker,
-                    Upload,
-                    Table,
-                    Modal,
-                    ConfirmModal,
-                    Button,
-                    Text,
-                    Tabs,
-                    Divider,
-                    Statistic,
-                    Grid,
-                    Steps,
-                    Image,
-                    Drawer,
-                    Tooltip,
-                    Descriptions,
-                    Collapse,
-                    Popover,
-                    EachCycle,
-                    NextTable,
-                  };
-                  GlobalRegistry.registerDesignerBehaviors(components);
+          }
+        >
+          <CompositePanel>
+            <CompositePanel.Item title="panels.Component" icon="Component">
+              <ResourceWidget title="sources.Functions" sources={[EachCycle]} />
+              <ResourceWidget
+                title="sources.Inputs"
+                sources={[
+                  Input,
+                  Password,
+                  NumberPicker,
+                  Select,
+                  TreeSelect,
+                  Cascader,
+                  Checkbox,
+                  Radio,
+                  Switch,
+                  Slider,
+                  Rate,
+                  DatePicker,
+                  Upload,
+                ]}
+              />
+              <ResourceWidget
+                title="sources.Layouts"
+                sources={[BaseLayout, Card, Grid, Modal, ConfirmModal, Divider, Drawer]}
+              />
+              <ResourceWidget
+                title="sources.DataDisplays"
+                sources={[Table, TableGroup, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse]}
+              />
+              <ResourceWidget title="sources.Feedbacks" sources={[Tooltip, Popover]} />
+              <ResourceWidget title="sources.Operations" sources={[Button]} />
+            </CompositePanel.Item>
+            <CompositePanel.Item title="panels.OutlinedTree" icon="Outline">
+              <OutlineTreeWidget />
+            </CompositePanel.Item>
+          </CompositePanel>
+          <Workspace id="form">
+            <WorkspacePanel>
+              <ToolbarPanel>
+                <div />
+                <ViewToolsWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP']} />
+              </ToolbarPanel>
+              <ViewportPanel style={{ height: '100%' }}>
+                <ViewPanel type="DESIGNABLE">
+                  {() => {
+                    const components = {
+                      Form,
+                      Field,
+                      Input,
+                      Password,
+                      NumberPicker,
+                      Select,
+                      TreeSelect,
+                      Cascader,
+                      Checkbox,
+                      Radio,
+                      BaseLayout,
+                      Card,
+                      Switch,
+                      Slider,
+                      Rate,
+                      DatePicker,
+                      Upload,
+                      Table,
+                      Modal,
+                      ConfirmModal,
+                      Button,
+                      Text,
+                      Tabs,
+                      Divider,
+                      Statistic,
+                      Grid,
+                      Steps,
+                      Image,
+                      Drawer,
+                      Tooltip,
+                      Descriptions,
+                      Collapse,
+                      Popover,
+                      EachCycle,
+                      TableGroup,
+                    };
+                    GlobalRegistry.registerDesignerBehaviors(components);
 
-                  return <ComponentTreeWidget components={components} />;
-                }}
-              </ViewPanel>
-              <ViewPanel type="JSONTREE" scrollable={false}>
-                {(tree, onChange) => <SchemaEditorWidget tree={tree} onChange={onChange} />}
-              </ViewPanel>
-              <ViewPanel type="MARKUP" scrollable={false}>
-                {(tree) => <MarkupSchemaWidget tree={tree} />}
-              </ViewPanel>
-            </ViewportPanel>
-          </WorkspacePanel>
-        </Workspace>
-        <SettingsPanel title="panels.PropertySettings">
-          <SettingsForm pageOptions={props.pageOptions} />
-        </SettingsPanel>
-      </StudioPanel>
-    </Designer>
+                    return <ComponentTreeWidget components={components} />;
+                  }}
+                </ViewPanel>
+                <ViewPanel type="JSONTREE" scrollable={false}>
+                  {(tree, onChange) => <SchemaEditorWidget tree={tree} onChange={onChange} />}
+                </ViewPanel>
+                <ViewPanel type="MARKUP" scrollable={false}>
+                  {(tree) => <MarkupSchemaWidget tree={tree} />}
+                </ViewPanel>
+              </ViewportPanel>
+            </WorkspacePanel>
+          </Workspace>
+          <SettingsPanel title="panels.PropertySettings">
+            <SettingsForm pageOptions={props.pageOptions} />
+          </SettingsPanel>
+        </StudioPanel>
+      </Designer>
+    </ConfigProvider>
   );
 };

@@ -1,6 +1,15 @@
-export const NextTable = {
+export const TableGroup = {
   'zh-CN': {
-    title: '新表格',
+    title: '表格组',
+    settings: {
+      'x-component-props': {},
+    },
+  },
+};
+
+export const TableGroupTable = {
+  'zh-CN': {
+    title: '表格',
     addColumn: '添加列',
     settings: {
       'x-component-props': {
@@ -19,9 +28,9 @@ export const NextTable = {
   },
 };
 
-export const NextTableColumn = {
+export const TableGroupTableColumn = {
   'zh-CN': {
-    title: '新表格列',
+    title: '表格列',
     settings: {
       'x-component-props': {
         title: '标题',
@@ -35,6 +44,19 @@ export const NextTableColumn = {
           title: '固定',
           dataSource: ['左', '右', '无'],
         },
+      },
+    },
+  },
+};
+
+export const TableGroupPagination = {
+  'zh-CN': {
+    title: '分页',
+    addColumn: '添加列',
+    settings: {
+      'x-component-props': {
+        showSizeChanger: '页面大小切换器',
+        showQuickJumper: '快速跳转',
       },
     },
   },

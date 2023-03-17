@@ -1,6 +1,6 @@
 import { ArrayField, FieldDisplayTypes, GeneralField } from '@formily/core';
 import { observer, RecursionField, useField, useFieldSchema } from '@formily/react';
-import { Badge, Pagination, PaginationProps, Select, SelectProps, Space, Table } from 'antd';
+import { Badge, Pagination, PaginationProps, Select, SelectProps, Space, Table as AntdTable } from 'antd';
 import { TableProps, ColumnProps } from 'antd/lib/table';
 import { createContext, FC, Fragment, useEffect, useRef, useState } from 'react';
 import { Schema } from '@formily/json-schema';
@@ -8,7 +8,7 @@ import { isArr, isBool } from '@designer/utils';
 import React from 'react';
 import classnames from 'classnames';
 
-type IComposedNextTable = React.FC<React.PropsWithChildren<TableProps<any>>> & {
+type IComposedTable = React.FC<React.PropsWithChildren<TableProps<any>>> & {
   Column?: React.FC<React.PropsWithChildren<ColumnProps<any>>>;
 };
 
@@ -24,7 +24,7 @@ const isColumnComponent = (schema: Schema) => {
   return schema['x-component']?.indexOf('Column') > -1;
 };
 
-const useNextTableSources = () => {
+const useTableSources = () => {
   const arrayField = useField();
   const schema = useFieldSchema();
   const parseSources = (schema: Schema): IObservableColumnSource[] => {
@@ -68,7 +68,7 @@ const useNextTableSources = () => {
   return parseArrayItems(schema.items);
 };
 
-const useNextTableColumns = (
+const useTableColumns = (
   dataSource: any[],
   field: ArrayField,
   sources: IObservableColumnSource[],
@@ -154,12 +154,12 @@ interface IPaginationAction {
 
 const PaginationContext = createContext<IPaginationAction>({});
 
-interface INextTablePaginationProps extends PaginationProps {
+interface ITablePaginationProps extends PaginationProps {
   dataSource?: any[];
   children?: (dataSource: any[], pagination: React.ReactNode) => React.ReactElement;
 }
 
-const NextTablePagination: FC<INextTablePaginationProps> = (props) => {
+const TablePagination: FC<ITablePaginationProps> = (props) => {
   const [current, setCurrent] = useState(1);
   const prefixCls = 'formily-next-table';
   const pageSize = props.pageSize || 10;
@@ -221,23 +221,23 @@ const NextTablePagination: FC<INextTablePaginationProps> = (props) => {
   );
 };
 
-export const NextTable: IComposedNextTable = observer((props: TableProps<any>) => {
+export const Table: IComposedTable = observer((props: TableProps<any>) => {
   const ref = useRef<HTMLDivElement>();
   const field = useField<ArrayField>();
   const prefixCls = 'formily-next-table';
   const dataSource = Array.isArray(field.value) ? field.value.slice() : [];
-  const sources = useNextTableSources();
-  const columns = useNextTableColumns(dataSource, field, sources);
+  const sources = useTableSources();
+  const columns = useTableColumns(dataSource, field, sources);
   const pagination = isBool(props.pagination) ? {} : props.pagination;
   const defaultRowKey = (record: any) => {
     return dataSource.indexOf(record);
   };
 
   return (
-    <NextTablePagination {...pagination} dataSource={dataSource}>
+    <TablePagination {...pagination} dataSource={dataSource}>
       {(dataSource, pager) => (
         <div ref={ref} className={prefixCls}>
-          <Table
+          <AntdTable
             size="small"
             bordered
             rowKey={defaultRowKey}
@@ -260,12 +260,12 @@ export const NextTable: IComposedNextTable = observer((props: TableProps<any>) =
           })}
         </div>
       )}
-    </NextTablePagination>
+    </TablePagination>
   );
 });
 
-NextTable.displayName = 'NextTable';
+Table.displayName = 'Table';
 
-NextTable.Column = () => {
+Table.Column = () => {
   return <Fragment />;
 };

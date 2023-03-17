@@ -110,7 +110,7 @@ Descriptions.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'Descriptions',
     designerProps: {
       droppable: true,
-      allowAppend: (_, sources) => {
+      allowAppend: (target, sources) => {
         return sources.every((node) => node.props['x-component'] === 'Descriptions.Item');
       },
       propsSchema: createVoidFieldSchema(AllSchemas.Descriptions),

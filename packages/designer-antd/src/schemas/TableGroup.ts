@@ -1,6 +1,16 @@
 import { ISchema } from '@formily/react';
 
-export const NextTable: ISchema & { Column?: ISchema } = {
+export const TableGroup: ISchema & {
+  Table?: ISchema & {
+    Column?: ISchema;
+  };
+  Pagination?: ISchema;
+} = {
+  type: 'object',
+  properties: {},
+};
+
+const Table: ISchema & { Column?: ISchema } = {
   type: 'object',
   properties: {
     bordered: {
@@ -76,4 +86,33 @@ const Column: ISchema = {
   },
 };
 
-NextTable.Column = Column;
+const Pagination: ISchema & {
+  Table?: ISchema & {
+    Column?: ISchema;
+  };
+  Pagination?: ISchema;
+} = {
+  type: 'object',
+  properties: {
+    showSizeChanger: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
+    },
+    showQuickJumper: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
+    },
+  },
+};
+
+Table.Column = Column;
+TableGroup.Table = Table;
+TableGroup.Pagination = Pagination;
