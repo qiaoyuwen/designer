@@ -5,7 +5,6 @@ import { TableProps, ColumnProps } from 'antd/lib/table';
 import { createContext, FC, Fragment, useEffect, useRef, useState } from 'react';
 import { Schema } from '@formily/json-schema';
 import { isArr, isBool } from '@designer/utils';
-import { ArrayBase } from '@formily/antd-v5';
 import React from 'react';
 import classnames from 'classnames';
 
@@ -83,11 +82,7 @@ const useNextTableColumns = (
       dataIndex: name,
       render: (value: any, record: any) => {
         const index = dataSource?.indexOf(record);
-        const children = (
-          <ArrayBase.Item index={index} record={() => field?.value?.[index]}>
-            <RecursionField schema={schema} name={index} onlyRenderProperties />
-          </ArrayBase.Item>
-        );
+        const children = <RecursionField schema={schema} name={index} onlyRenderProperties />;
         return children;
       },
     });
@@ -242,29 +237,27 @@ export const NextTable: IComposedNextTable = observer((props: TableProps<any>) =
     <NextTablePagination {...pagination} dataSource={dataSource}>
       {(dataSource, pager) => (
         <div ref={ref} className={prefixCls}>
-          <ArrayBase>
-            <Table
-              size="small"
-              bordered
-              rowKey={defaultRowKey}
-              {...props}
-              onChange={() => {}}
-              pagination={false}
-              columns={columns}
-              dataSource={dataSource}
-            />
-            <div style={{ marginTop: 5, marginBottom: 5 }}>{pager}</div>
-            {sources.map((column, key) => {
-              //专门用来承接对Column的状态管理
-              if (!isColumnComponent(column.schema)) return;
-              return React.createElement(RecursionField, {
-                name: column.name,
-                schema: column.schema,
-                onlyRenderSelf: true,
-                key,
-              });
-            })}
-          </ArrayBase>
+          <Table
+            size="small"
+            bordered
+            rowKey={defaultRowKey}
+            {...props}
+            onChange={() => {}}
+            pagination={false}
+            columns={columns}
+            dataSource={dataSource}
+          />
+          <div style={{ marginTop: 5, marginBottom: 5 }}>{pager}</div>
+          {sources.map((column, key) => {
+            //专门用来承接对Column的状态管理
+            if (!isColumnComponent(column.schema)) return;
+            return React.createElement(RecursionField, {
+              name: column.name,
+              schema: column.schema,
+              onlyRenderSelf: true,
+              key,
+            });
+          })}
         </div>
       )}
     </NextTablePagination>
@@ -276,5 +269,3 @@ NextTable.displayName = 'NextTable';
 NextTable.Column = () => {
   return <Fragment />;
 };
-
-ArrayBase.mixin(NextTable);

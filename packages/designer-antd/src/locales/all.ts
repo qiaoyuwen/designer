@@ -33,6 +33,4 @@ export * from './Descriptions';
 export * from './Collapse';
 export * from './Popover';
 export * from './EachCycle';
-export * from './ArrayBase';
-export * from './ArrayTable';
 export * from './NextTable';

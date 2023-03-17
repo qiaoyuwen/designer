@@ -2,7 +2,6 @@ import React from 'react';
 import { Table, TableProps } from 'antd';
 import { TreeNode, createBehavior, createResource } from '@designer/core';
 import { useTreeNode, TreeNodeWidget, DroppableWidget, useNodeIdProps, DnFC } from '@designer/react';
-import { ArrayBase } from '@formily/antd-v5';
 import { observer } from '@formily/react';
 import { LoadTemplate } from '../../common/LoadTemplate';
 import classnames from 'classnames';
@@ -10,8 +9,7 @@ import { queryNodesByComponentPath, createEnsureTypeItemsNode } from '../../shar
 import { useDropTemplate } from '../../hooks';
 import { AllSchemas } from '../../schemas';
 import { AllLocales } from '../../locales';
-import { createArrayBehavior } from '../../components/ArrayBase';
-import { createVoidFieldSchema } from '../../components/Field/shared';
+import { createFieldSchema, createVoidFieldSchema } from '../../components/Field/shared';
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object');
 
@@ -67,51 +65,45 @@ export const NextTable: DnFC<TableProps<any>> = observer((props) => {
   const renderTable = () => {
     if (node.children.length === 0) return <DroppableWidget />;
     return (
-      <ArrayBase disabled>
-        <Table
-          size="small"
-          bordered
-          {...props}
-          scroll={{ x: '100%' }}
-          className={classnames('ant-formily-next-table', props.className)}
-          style={{ marginBottom: 10, ...props.style }}
-          rowKey={defaultRowKey}
-          dataSource={[{ id: '1' }]}
-          pagination={false}
-          components={{
-            header: {
-              cell: HeaderCell,
-            },
-            body: {
-              cell: BodyCell,
-            },
-          }}
-        >
-          {columns.map((node) => {
-            const children = node.children.map((child) => {
-              return <TreeNodeWidget node={child} key={child.id} />;
-            });
-            const props = node.props['x-component-props'];
-            return (
-              <Table.Column
-                {...props}
-                title={<div data-content-editable="x-component-props.title">{props.title}</div>}
-                dataIndex={node.id}
-                className={`data-id:${node.id}`}
-                key={node.id}
-                render={(value, record, key) => {
-                  return (
-                    <ArrayBase.Item key={key} index={key} record={null}>
-                      {children.length > 0 ? children : 'Droppable'}
-                    </ArrayBase.Item>
-                  );
-                }}
-              />
-            );
-          })}
-          {columns.length === 0 && <Table.Column render={() => <DroppableWidget />} />}
-        </Table>
-      </ArrayBase>
+      <Table
+        size="small"
+        bordered
+        {...props}
+        scroll={{ x: '100%' }}
+        className={classnames('ant-formily-next-table', props.className)}
+        style={{ marginBottom: 10, ...props.style }}
+        rowKey={defaultRowKey}
+        dataSource={[{ id: '1' }]}
+        pagination={false}
+        components={{
+          header: {
+            cell: HeaderCell,
+          },
+          body: {
+            cell: BodyCell,
+          },
+        }}
+      >
+        {columns.map((node) => {
+          const children = node.children.map((child) => {
+            return <TreeNodeWidget node={child} key={child.id} />;
+          });
+          const props = node.props['x-component-props'];
+          return (
+            <Table.Column
+              {...props}
+              title={<div data-content-editable="x-component-props.title">{props.title}</div>}
+              dataIndex={node.id}
+              className={`data-id:${node.id}`}
+              key={node.id}
+              render={(value, record, key) => {
+                return children.length > 0 ? children : 'Droppable';
+              }}
+            />
+          );
+        })}
+        {columns.length === 0 && <Table.Column render={() => <DroppableWidget />} />}
+      </Table>
     );
   };
 
@@ -150,21 +142,33 @@ export const NextTable: DnFC<TableProps<any>> = observer((props) => {
   );
 });
 
-ArrayBase.mixin(NextTable);
-
-NextTable.Behavior = createBehavior(createArrayBehavior('NextTable'), {
-  name: 'NextTable.Column',
-  extends: ['Field'],
-  selector: (node) => node.props['x-component'] === 'NextTable.Column',
-  designerProps: {
-    droppable: true,
-    allowDrop: (node) => {
-      return node.props['type'] === 'object' && node.parent?.props?.['x-component'] === 'NextTable';
+NextTable.Behavior = createBehavior(
+  {
+    name: 'NextTable',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'NextTable',
+    designerProps: {
+      droppable: true,
+      propsSchema: createFieldSchema({
+        component: AllSchemas.NextTable,
+      }),
     },
-    propsSchema: createVoidFieldSchema(AllSchemas.NextTable.Column),
+    designerLocales: AllLocales.NextTable,
   },
-  designerLocales: AllLocales.NextTableColumn,
-});
+  {
+    name: 'NextTable.Column',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'NextTable.Column',
+    designerProps: {
+      droppable: true,
+      allowDrop: (node) => {
+        return node.props['type'] === 'object' && node.parent?.props?.['x-component'] === 'NextTable';
+      },
+      propsSchema: createVoidFieldSchema(AllSchemas.NextTable.Column),
+    },
+    designerLocales: AllLocales.NextTableColumn,
+  },
+);
 
 NextTable.Resource = createResource({
   icon: 'ArrayTableSource',

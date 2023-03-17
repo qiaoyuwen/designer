@@ -33,7 +33,6 @@ import {
   Rate,
   Upload,
   DatePicker,
-  ArrayTable,
 } from './components';
 import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid, Drawer } from './layouts';
 import { Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse, NextTable } from './data-display';
@@ -158,7 +157,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
             />
             <ResourceWidget
               title="sources.DataDisplays"
-              sources={[Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse, NextTable, ArrayTable]}
+              sources={[Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse, NextTable]}
             />
             <ResourceWidget title="sources.Feedbacks" sources={[Tooltip, Popover]} />
             <ResourceWidget title="sources.Operations" sources={[Button]} />
@@ -212,7 +211,6 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     Popover,
                     EachCycle,
                     NextTable,
-                    ArrayTable,
                   };
                   GlobalRegistry.registerDesignerBehaviors(components);
 
