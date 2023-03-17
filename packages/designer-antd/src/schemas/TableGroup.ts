@@ -83,6 +83,36 @@ const Column: ISchema = {
         optionType: 'button',
       },
     },
+    hideInSearch: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: false,
+      },
+    },
+    type: {
+      type: 'string',
+      enum: ['Text', 'Select', 'DateRange'],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        defaultValue: 'Text',
+      },
+    },
+    options: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'DataSourceSetter',
+      'x-reactions': {
+        dependencies: ['.type'],
+        fulfill: {
+          state: {
+            display: `{{$deps[0] === 'Select' ? 'visible' : 'hidden'}}`,
+          },
+        },
+      },
+    },
   },
 };
 

@@ -41,7 +41,7 @@ export const TableGroup: DnFC & {
           'x-component-props': {
             showSizeChanger: true,
             showQuickJumper: true,
-            total: 55,
+            total: 15,
           },
         },
       });

@@ -182,6 +182,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                     const components = {
                       Form,
                       Field,
+                      ObjectContainer,
                       Input,
                       Password,
                       NumberPicker,
@@ -215,7 +216,6 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                       Popover,
                       EachCycle,
                       TableGroup,
-                      ObjectContainer,
                     };
                     GlobalRegistry.registerDesignerBehaviors(components);
 

@@ -44,6 +44,12 @@ export const TableGroupTableColumn = {
           title: '固定',
           dataSource: ['左', '右', '无'],
         },
+        hideInSearch: '在表单中隐藏',
+        type: {
+          title: '表单类型',
+          dataSource: ['文本框', '下拉框', '日期区间'],
+        },
+        options: '表单可选项',
       },
     },
   },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableProps } from 'antd';
+import { Card, Table, TableProps } from 'antd';
 import { TreeNode } from '@designer/core';
 import { useTreeNode, TreeNodeWidget, DroppableWidget, useNodeIdProps, DnFC } from '@designer/react';
 import { observer } from '@formily/react';
@@ -7,6 +7,7 @@ import { LoadTemplate } from '../../common/LoadTemplate';
 import classnames from 'classnames';
 import { queryNodesByComponentPath, createEnsureTypeItemsNode } from '../../shared';
 import { useDropTemplate } from '../../hooks';
+import { SearchForm } from './form';
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object');
 
@@ -62,45 +63,50 @@ export const InnerTable: DnFC<TableProps<any>> = observer((props) => {
   const renderTable = () => {
     if (node.children.length === 0) return <DroppableWidget />;
     return (
-      <Table
-        size="small"
-        bordered
-        {...props}
-        scroll={{ x: '100%' }}
-        className={classnames('ant-formily-next-table', props.className)}
-        style={{ marginBottom: 10, ...props.style }}
-        rowKey={defaultRowKey}
-        dataSource={[{ id: '1' }]}
-        pagination={false}
-        components={{
-          header: {
-            cell: HeaderCell,
-          },
-          body: {
-            cell: BodyCell,
-          },
-        }}
-      >
-        {columns.map((node) => {
-          const children = node.children.map((child) => {
-            return <TreeNodeWidget node={child} key={child.id} />;
-          });
-          const props = node.props['x-component-props'];
-          return (
-            <Table.Column
-              {...props}
-              title={<div data-content-editable="x-component-props.title">{props.title}</div>}
-              dataIndex={node.id}
-              className={`data-id:${node.id}`}
-              key={node.id}
-              render={(value, record, key) => {
-                return children.length > 0 ? children : 'Droppable';
-              }}
-            />
-          );
-        })}
-        {columns.length === 0 && <Table.Column render={() => <DroppableWidget />} />}
-      </Table>
+      <div style={{ backgroundColor: 'rgb(245, 245, 245)', ...props.style }}>
+        <SearchForm columns={columns} />
+        <Card>
+          <Table
+            size="small"
+            bordered
+            {...props}
+            scroll={{ x: '100%' }}
+            className={classnames('ant-formily-next-table', props.className)}
+            style={{ marginBottom: 10, ...props.style }}
+            rowKey={defaultRowKey}
+            dataSource={[{ id: '1' }]}
+            pagination={false}
+            components={{
+              header: {
+                cell: HeaderCell,
+              },
+              body: {
+                cell: BodyCell,
+              },
+            }}
+          >
+            {columns.map((node) => {
+              const children = node.children.map((child) => {
+                return <TreeNodeWidget node={child} key={child.id} />;
+              });
+              const props = node.props['x-component-props'];
+              return (
+                <Table.Column
+                  {...props}
+                  title={<div data-content-editable="x-component-props.title">{props.title}</div>}
+                  dataIndex={node.id}
+                  className={`data-id:${node.id}`}
+                  key={node.id}
+                  render={(value, record, key) => {
+                    return children.length > 0 ? children : 'Droppable';
+                  }}
+                />
+              );
+            })}
+            {columns.length === 0 && <Table.Column render={() => <DroppableWidget />} />}
+          </Table>
+        </Card>
+      </div>
     );
   };
 
