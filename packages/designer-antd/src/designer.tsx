@@ -33,6 +33,7 @@ import {
   Rate,
   Upload,
   DatePicker,
+  ObjectContainer,
 } from './components';
 import { BaseLayout, Card, Modal, ConfirmModal, Divider, Grid, Drawer } from './layouts';
 import { Table, Text, Tabs, Statistic, Steps, Image, Descriptions, Collapse, TableGroup } from './data-display';
@@ -214,6 +215,7 @@ export const DesignerAntd: FunctionComponent<IDesignerAntdProps> = (props) => {
                       Popover,
                       EachCycle,
                       TableGroup,
+                      ObjectContainer,
                     };
                     GlobalRegistry.registerDesignerBehaviors(components);
 

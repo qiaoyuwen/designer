@@ -34,3 +34,4 @@ export * from './Collapse';
 export * from './Popover';
 export * from './EachCycle';
 export * from './TableGroup';
+export * from './Object';

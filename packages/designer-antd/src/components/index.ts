@@ -13,3 +13,4 @@ export * from './Slider';
 export * from './Rate';
 export * from './Upload';
 export * from './DatePicker';
+export * from './Object';
