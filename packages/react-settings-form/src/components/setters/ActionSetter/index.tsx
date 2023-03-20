@@ -63,6 +63,7 @@ export const ActionSetter: FunctionComponent<IRequestSetterProps> = observer((pr
         配置动作
       </Button>
       <Modal
+        destroyOnClose
         title="配置动作"
         width="65%"
         bodyStyle={{ padding: 10 }}
