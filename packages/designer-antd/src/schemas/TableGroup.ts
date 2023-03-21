@@ -140,6 +140,15 @@ const Pagination: ISchema & {
         defaultChecked: true,
       },
     },
+    pageSize: {
+      type: 'number',
+      enum: [10, 20, 50, 100],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        defaultValue: 10,
+      },
+    },
   },
 };
 

@@ -63,6 +63,10 @@ export const TableGroupPagination = {
       'x-component-props': {
         showSizeChanger: '页面大小切换器',
         showQuickJumper: '快速跳转',
+        pageSize: {
+          title: '每页条数',
+          dataSource: ['10 条/页', '20 条/页', '50 条/页', '100 条/页'],
+        },
       },
     },
   },
