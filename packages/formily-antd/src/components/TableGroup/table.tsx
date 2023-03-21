@@ -2,13 +2,13 @@ import { ArrayField, FieldDisplayTypes, GeneralField } from '@formily/core';
 import { observer, RecursionField, useField, useFieldSchema } from '@formily/react';
 import { Table as AntdTable } from 'antd';
 import { TableProps, ColumnProps } from 'antd/lib/table';
-import { Fragment, useRef } from 'react';
+import { FC, Fragment, useRef, createElement } from 'react';
 import { Schema } from '@formily/json-schema';
 import { isArr } from '@designer/utils';
-import React from 'react';
+import { SearchForm } from './form';
 
-type IComposedTable = React.FC<React.PropsWithChildren<TableProps<any>>> & {
-  Column?: React.FC<React.PropsWithChildren<ColumnProps<any>>>;
+type IComposedTable = FC<React.PropsWithChildren<TableProps<any>>> & {
+  Column?: FC<React.PropsWithChildren<ColumnProps<any>>>;
 };
 
 interface IObservableColumnSource {
@@ -97,6 +97,7 @@ export const Table: IComposedTable = observer((props: TableProps<any>) => {
 
   return (
     <div ref={ref} className={prefixCls}>
+      <SearchForm columns={columns} />
       <AntdTable
         size="small"
         bordered
@@ -110,7 +111,7 @@ export const Table: IComposedTable = observer((props: TableProps<any>) => {
       {sources.map((column, key) => {
         //专门用来承接对Column的状态管理
         if (!isColumnComponent(column.schema)) return;
-        return React.createElement(RecursionField, {
+        return createElement(RecursionField, {
           name: column.name,
           schema: column.schema,
           onlyRenderSelf: true,
