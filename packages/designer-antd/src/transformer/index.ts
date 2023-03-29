@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ISchema, Schema } from '@formily/json-schema';
 import { ITreeNode } from '@designer/core';
-import { clone, uid } from '@designer/utils';
+import { clone, uid, isValid } from '@designer/utils';
 
 export interface ITransformerOptions {
   designableFieldName?: string;
@@ -55,6 +55,9 @@ export const transformToSchema = (node: ITreeNode, options?: ITransformerOptions
       Object.assign(schema, clone(node.props));
     }
     schema['x-designable-id'] = node.id;
+    if (isValid(node.hidden)) {
+      schema['x-designable-hidden'] = node.hidden;
+    }
     if (schema.type === 'array') {
       if (node.children?.[0]) {
         if (node.children[0].componentName === realOptions.designableFieldName) {
@@ -106,6 +109,7 @@ export const transformToTreeNode = (formily: IFormilySchema = {}, options?: ITra
       componentName: realOptions.designableFieldName,
       props: cleanProps(schema.toJSON(false)),
       children: [],
+      hidden: schema['x-designable-hidden'] ?? false,
     };
     if (current.props['x-component'] === 'Modal') {
       current['containerClassName'] = '.ant-modal-content';
