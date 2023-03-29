@@ -135,8 +135,13 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
     return createForm({
       values: clone(props.value),
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalVisible, props.value]);
-  const formCollapse = useMemo(() => FormCollapse.createFormCollapse(['deps', 'state']), [modalVisible]);
+
+  const formCollapse = useMemo(() => {
+    return FormCollapse.createFormCollapse(['deps', 'state']);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalVisible]);
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
   useEffect(() => {

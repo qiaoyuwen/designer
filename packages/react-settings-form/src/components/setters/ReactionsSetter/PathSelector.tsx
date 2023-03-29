@@ -31,18 +31,18 @@ const transformDataSource = (node: TreeNode) => {
     transform(targetNode);
     return path.reverse().join('.');
   };
-  const hasNoVoidChildren = (node: TreeNode) => {
+  /* const hasNoVoidChildren = (node: TreeNode) => {
     return node.children?.some((node) => {
       if (node.props.type !== 'void') return true;
       return hasNoVoidChildren(node);
     });
-  };
+  }; */
   const findRoot = (node: TreeNode): TreeNode => {
     if (!node?.parent) return node;
     if (node?.parent?.componentName !== node.componentName) return node.parent;
     return findRoot(node.parent);
   };
-  const findArrayParent = (node: TreeNode) => {
+  const findArrayParent = (node: TreeNode): TreeNode => {
     if (!node?.parent) return;
     if (node.parent.props.type === 'array') return node.parent;
     if (node.parent === root) return;
@@ -62,14 +62,19 @@ const transformDataSource = (node: TreeNode) => {
 
       const currentPath = path.concat(node.props.name || node.id);
       const arrayNode = findArrayParent(node);
-      const label =
+      const isItemsNodeOfArrayNode = arrayNode && node.depth - arrayNode.depth === 1;
+      let label =
         node.props.title || node.props['x-component-props']?.title || node.props.name || node.designerProps.title;
+      if (isItemsNodeOfArrayNode) {
+        label = 'ITEMS';
+      }
       const value = arrayNode ? transformRelativePath(arrayNode, node) : currentPath.join('.');
       return buf.concat({
         label,
         value,
         node,
         children: transformChildren(node.children, currentPath),
+        disabled: isItemsNodeOfArrayNode,
       });
     }, []);
   };
