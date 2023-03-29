@@ -111,7 +111,7 @@ export const transformToTreeNode = (formily: IFormilySchema = {}, options?: ITra
       children: [],
       hidden: schema['x-designable-hidden'] ?? false,
     };
-    if (current.props['x-component'] === 'Modal') {
+    if (current.props['x-component'] === 'Modal' || current.props['x-component'] === 'ConfirmModal') {
       current['containerClassName'] = '.ant-modal-content';
     }
     if (current.props['x-component'] === 'Drawer') {

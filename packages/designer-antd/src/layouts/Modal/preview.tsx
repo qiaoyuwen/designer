@@ -26,6 +26,7 @@ Modal.Behavior = createBehavior({
   selector: (node) => node.props?.['x-component'] === 'Modal',
   designerProps: {
     droppable: true,
+    draggable: false,
     propsSchema: createVoidFieldSchema(AllSchemas.Modal),
   },
   designerLocales: AllLocales.Modal,
@@ -52,6 +53,7 @@ export const ConfirmModal: DnFC<React.ComponentProps<typeof FormilyAntdConfirmMo
   return (
     <FormilyAntdConfirmModal
       {...props}
+      visible={true}
       getContainer={() => {
         return document.querySelector('.dn-component-tree > .dn-designable-form > form');
       }}
@@ -64,6 +66,7 @@ ConfirmModal.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props?.['x-component'] === 'ConfirmModal',
   designerProps: {
+    draggable: false,
     propsSchema: createVoidFieldSchema(AllSchemas.ConfirmModal),
   },
   designerLocales: AllLocales.ConfirmModal,
