@@ -1,6 +1,4 @@
-# FoundBegin-Lowcodeengine
-
-![cmd-markdown-logo](/logo.png)
+# Designer
 
 ## 目录结构
 
@@ -26,8 +24,6 @@
         ├── react-settings-form           //【编辑面板】- 扩展编辑项组件
 
 ## 依赖性
-
-<img src='/document/img/lowcodeengine-frame.png' />
 
 #### ./packages/core
 
@@ -153,33 +149,3 @@ Button.Resource = createResource({
   ],
 });
 ```
-
-## 公共属性
-
-./packages/designer-antd/src/components/Field
-
-```
-shared.ts // 提供了一些通用属性注册的方式
-```
-
-## 部署
-
-- lowcodeengine-pc-dev  
-  http://10.10.11.107:18080/job/lowcodeengine-pc-dev/
-
-## 相关链接
-
-- designable  
-  https://github.com/alibaba/designable
-
-- bigdata-screen-template(静态版)  
-  http://bigdata-screen-v3-dev.gogdev.cn/
-
-- lowcode-engine(体验版)  
-  http://bigdata-screen-v3-bus.gogdev.cn/
-
-- document(dev)  
-  http://foundbyte-bigdata-docs-dev.gogdev.cn/
-
-- rushjs + dumi + webpack_template  
-  http://10.10.11.151:20216/teg/core-front-ends/interior-open-common/documents-template
