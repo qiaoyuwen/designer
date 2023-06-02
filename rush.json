@@ -423,19 +423,19 @@
       "packageName": "@designer/designer-antd",
       "projectFolder": "packages/designer-antd"
     },
-    {
+    /* {
       "packageName": "@designer/manager",
       "projectFolder": "packages/manager",
       "shouldPublish": false
     },
     {
-      "packageName": "@designer/playground",
-      "projectFolder": "packages/playground",
-      "shouldPublish": false
-    },
-    {
       "packageName": "@designer/demo",
       "projectFolder": "packages/demo",
+      "shouldPublish": false
+    }, */
+    {
+      "packageName": "@designer/playground",
+      "projectFolder": "packages/playground",
       "shouldPublish": false
     }
     // {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from '@formily/react';
-import { Descriptions as FormilyDescriptions, DescriptionsProps, DescriptionsItemProps } from '@designer/formily-antd';
+import { Descriptions as FormilyDescriptions, IDescriptionsProps, DescriptionsItemProps } from '@designer/formily-antd';
 import { TreeNode, createBehavior, createResource } from '@designer/core';
 import { useNodeIdProps, useTreeNode, DroppableWidget, DnFC, TreeNodeWidget } from '@designer/react';
 import { LoadTemplate } from '../../common/LoadTemplate';
@@ -20,7 +20,7 @@ const parseDescriptions = (parent: TreeNode) => {
   return descriptions;
 };
 
-export const Descriptions: DnFC<DescriptionsProps> & {
+export const Descriptions: DnFC<IDescriptionsProps> & {
   Item?: React.FC<DescriptionsItemProps>;
 } = observer((props) => {
   const nodeId = useNodeIdProps();
