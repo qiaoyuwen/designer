@@ -36,12 +36,12 @@ export const TableGroup: DnFC & {
       const newPagination = new TreeNode({
         componentName: 'Field',
         props: {
-          type: 'void',
+          type: 'object',
           'x-component': 'TableGroup.Pagination',
           'x-component-props': {
             showSizeChanger: true,
             showQuickJumper: true,
-            total: 15,
+            total: 10,
           },
         },
       });
